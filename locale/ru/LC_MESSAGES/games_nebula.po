@@ -1,0 +1,1212 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-03 14:45+0300\n"
+"PO-Revision-Date: 2017-03-03 15:56+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../games_nebula.py:150
+msgid "Launching 'Games Nebula'"
+msgstr "Запуск 'Games Nebula'"
+
+#: ../games_nebula.py:188 ../games_nebula.py:1119
+msgid "Add tabs"
+msgstr "Добавить вкладки"
+
+#: ../games_nebula.py:197
+msgid "Update GOG library"
+msgstr "Обновить библиотеку GOG"
+
+#: ../games_nebula.py:313
+msgid "You are not authorized on GOG.COM and can't download games."
+msgstr "Вы не авторизованы на GOG.COM и не можете скачивать игры."
+
+#: ../games_nebula.py:321
+msgid "Start in offline mode"
+msgstr "Запустить в режиме \"оффлайн\""
+
+#: ../games_nebula.py:334 ../games_nebula.py:717 ../games_nebula.py:1098
+#: ../games_nebula.py:1261
+msgid "GOG LIBRARY"
+msgstr "БИБЛИОТЕКА GOG"
+
+#: ../games_nebula.py:395
+msgid "Error"
+msgstr "Ошибка"
+
+#: ../games_nebula.py:397
+msgid "Can't get games list."
+msgstr "Невозможно получить список игр"
+
+#: ../games_nebula.py:444 ../games_nebula.py:788
+msgid "Search"
+msgstr "Поиск"
+
+#: ../games_nebula.py:450 ../games_nebula.py:794
+msgid "Status filter"
+msgstr "Фильтр статуса"
+
+#: ../games_nebula.py:453 ../games_nebula.py:471 ../games_nebula.py:496
+#: ../games_nebula.py:521 ../games_nebula.py:546 ../games_nebula.py:797
+#: ../games_nebula.py:816 ../games_nebula.py:842 ../games_nebula.py:868
+#: ../games_nebula.py:894 ../games_nebula.py:2893 ../games_nebula.py:2895
+#: ../games_nebula.py:2896 ../games_nebula.py:2897 ../games_nebula.py:2898
+#: ../games_nebula.py:2954 ../games_nebula.py:2956 ../games_nebula.py:2957
+#: ../games_nebula.py:2958 ../games_nebula.py:2959 ../games_nebula.py:3392
+#: ../games_nebula.py:3423 ../games_nebula.py:3454 ../games_nebula.py:3485
+#: ../games_nebula.py:3516 ../games_nebula.py:3547 ../games_nebula.py:3578
+#: ../games_nebula.py:3609 ../games_nebula.py:3676 ../games_nebula.py:3706
+#: ../games_nebula.py:3925 ../games_nebula.py:3926 ../games_nebula.py:3927
+#: ../games_nebula.py:3928 ../games_nebula.py:4013 ../games_nebula.py:4014
+#: ../games_nebula.py:4015 ../games_nebula.py:4016
+msgid "No filter"
+msgstr "Нет фильтра"
+
+#: ../games_nebula.py:453 ../games_nebula.py:797 ../games_nebula.py:3678
+#: ../games_nebula.py:3708
+msgid "Installed"
+msgstr "Установлено"
+
+#: ../games_nebula.py:453 ../games_nebula.py:3686
+msgid "Unavailable"
+msgstr "Недоступно"
+
+#: ../games_nebula.py:469 ../games_nebula.py:814
+msgid "Tags filter 1"
+msgstr "Фильтр тэгов 1"
+
+#: ../games_nebula.py:481 ../games_nebula.py:506 ../games_nebula.py:531
+#: ../games_nebula.py:556 ../games_nebula.py:827 ../games_nebula.py:853
+#: ../games_nebula.py:879 ../games_nebula.py:905 ../games_nebula.py:3398
+#: ../games_nebula.py:3429 ../games_nebula.py:3460 ../games_nebula.py:3491
+#: ../games_nebula.py:3522 ../games_nebula.py:3553 ../games_nebula.py:3584
+#: ../games_nebula.py:3615 ../games_nebula.py:3939 ../games_nebula.py:3940
+#: ../games_nebula.py:3941 ../games_nebula.py:3942 ../games_nebula.py:4027
+#: ../games_nebula.py:4028 ../games_nebula.py:4029 ../games_nebula.py:4030
+msgid "No tags"
+msgstr "Нет тэгов"
+
+#: ../games_nebula.py:493 ../games_nebula.py:839
+msgid "Tags filter 2"
+msgstr "Фильтр тэгов 2"
+
+#: ../games_nebula.py:518 ../games_nebula.py:865
+msgid "Tags filter 3"
+msgstr "Фильтр тэгов 3"
+
+#: ../games_nebula.py:543 ../games_nebula.py:891
+msgid "Tags filter 4"
+msgstr "Фильтр тэгов 4"
+
+#: ../games_nebula.py:571 ../games_nebula.py:920
+msgid "Add tags filter"
+msgstr "Добавить фильтр тэгов"
+
+#: ../games_nebula.py:578 ../games_nebula.py:927
+msgid "Remove tags filter"
+msgstr "Удалить фильтр тэгов"
+
+#: ../games_nebula.py:586 ../games_nebula.py:935
+msgid "Scale"
+msgstr "Масштаб"
+
+#: ../games_nebula.py:633 ../games_nebula.py:673 ../games_nebula.py:983
+#: ../games_nebula.py:1017 ../games_nebula.py:2575 ../games_nebula.py:2632
+#: ../games_nebula.py:4065 ../games_nebula.py:4085 ../games_nebula.py:4102
+#: ../games_nebula.py:4112 ../games_nebula.py:4133 ../games_nebula.py:4145
+#: ../games_nebula.py:4265 ../games_nebula.py:4314
+msgid "Install"
+msgstr "Установить"
+
+#: ../games_nebula.py:664 ../games_nebula.py:1008
+msgid "Launch"
+msgstr "Запустить"
+
+#: ../games_nebula.py:670 ../games_nebula.py:1014 ../games_nebula.py:2566
+#: ../games_nebula.py:2621
+msgid "Remove"
+msgstr "Удалить"
+
+#: ../games_nebula.py:1060 ../games_nebula.py:1099 ../games_nebula.py:1278
+msgid "MY LIBRARY"
+msgstr "МОЯ БИБЛИОТЕКА"
+
+#: ../games_nebula.py:1100 ../games_nebula.py:1208 ../games_nebula.py:1295
+msgid "GOG.COM"
+msgstr "GOG.COM"
+
+#: ../games_nebula.py:1101 ../games_nebula.py:1308 ../games_nebula.py:2267
+msgid "QUEUE"
+msgstr "ОЧЕРЕДЬ"
+
+#: ../games_nebula.py:1102 ../games_nebula.py:1321 ../games_nebula.py:2213
+msgid "SETTINGS"
+msgstr "НАСТРОЙКИ"
+
+#: ../games_nebula.py:1121
+msgid "Choose tabs you want to add:"
+msgstr "Выберите вкладки, которые хотите добавить:"
+
+#: ../games_nebula.py:1256
+msgid "Tabs at startup"
+msgstr "Вкладки при запуске"
+
+#: ../games_nebula.py:1358
+msgid "GOG library preferences"
+msgstr "Настройки библиотеки GOG"
+
+#: ../games_nebula.py:1364
+msgid "Preferred language"
+msgstr "Предпочтительный язык"
+
+#: ../games_nebula.py:1385 ../games_nebula.py:1644
+msgid "Keep installers"
+msgstr "Оставлять установочные файлы"
+
+#: ../games_nebula.py:1404
+msgid "Download extras"
+msgstr "Скачивать дополнительные материалы"
+
+#: ../games_nebula.py:1417 ../games_nebula.py:1659
+msgid "Downloads directory"
+msgstr "Загрузочная директория"
+
+#: ../games_nebula.py:1422 ../games_nebula.py:1437 ../games_nebula.py:1664
+#: ../games_nebula.py:1679 ../games_nebula.py:2007 ../games_nebula.py:2078
+#: ../games_nebula.py:2151 ../launcher_dosbox.py:215 ../launcher_scummvm.py:230
+#: ../launcher_wine.py:271
+msgid "Select a directory"
+msgstr "Выбрать директорию"
+
+#: ../games_nebula.py:1431 ../games_nebula.py:1673
+msgid "Installation directory"
+msgstr "Установочная директория"
+
+#: ../games_nebula.py:1445 ../games_nebula.py:1688
+msgid "Status filter behaivior:"
+msgstr "Поведения фильтра статуса:"
+
+#: ../games_nebula.py:1449 ../games_nebula.py:1469 ../games_nebula.py:1489
+#: ../games_nebula.py:1509 ../games_nebula.py:1529 ../games_nebula.py:1560
+#: ../games_nebula.py:1692 ../games_nebula.py:1712 ../games_nebula.py:1732
+#: ../games_nebula.py:1752 ../games_nebula.py:1772 ../games_nebula.py:1803
+msgid "Include"
+msgstr "Включать"
+
+#: ../games_nebula.py:1453 ../games_nebula.py:1473 ../games_nebula.py:1493
+#: ../games_nebula.py:1513 ../games_nebula.py:1533 ../games_nebula.py:1567
+#: ../games_nebula.py:1696 ../games_nebula.py:1716 ../games_nebula.py:1736
+#: ../games_nebula.py:1756 ../games_nebula.py:1776 ../games_nebula.py:1810
+msgid "Exclude"
+msgstr "Исключать"
+
+#: ../games_nebula.py:1465 ../games_nebula.py:1708
+msgid "Tags filter 1 behaivior:"
+msgstr "Поведения фильтра тэгов 1:"
+
+#: ../games_nebula.py:1485 ../games_nebula.py:1728
+msgid "Tags filter 2 behaivior:"
+msgstr "Поведения фильтра тэгов 2:"
+
+#: ../games_nebula.py:1505 ../games_nebula.py:1748
+msgid "Tags filter 3 behaivior:"
+msgstr "Поведения фильтра тэгов 3:"
+
+#: ../games_nebula.py:1525 ../games_nebula.py:1768
+msgid "Tags filter 4 behaivior:"
+msgstr "Поведения фильтра тэгов 4:"
+
+#: ../games_nebula.py:1546 ../games_nebula.py:1789
+msgid "Filters color indication"
+msgstr "Цветовая индикация фильтров"
+
+#: ../games_nebula.py:1556 ../games_nebula.py:1799
+msgid "Include/exclude colors:"
+msgstr "Цвета (включить/исключить):"
+
+#: ../games_nebula.py:1604 ../games_nebula.py:1847
+msgid "Filters"
+msgstr "Фильтры"
+
+#: ../games_nebula.py:1638
+msgid "My library preferences"
+msgstr "Настройки моей библиотеки"
+
+#: ../games_nebula.py:1877
+msgid "Visuals"
+msgstr "Внешний вид"
+
+#: ../games_nebula.py:1882
+msgid "GTK+ theme"
+msgstr "Тема GTK+"
+
+#: ../games_nebula.py:1894
+msgid "Dark variant"
+msgstr "Тёмный вариант"
+
+#: ../games_nebula.py:1907
+msgid "Icon theme"
+msgstr "Тема иконок"
+
+#: ../games_nebula.py:1917
+msgid "Font"
+msgstr "Шрифт"
+
+#: ../games_nebula.py:1955
+msgid "Emulators settings"
+msgstr "Настройка эмуляторов"
+
+#: ../games_nebula.py:1960 ../launcher_dosbox.py:262 ../launcher_native.py:154
+#: ../launcher_scummvm.py:277 ../launcher_wine.py:381
+msgid "Monitor"
+msgstr "Монитор"
+
+#: ../games_nebula.py:1978 ../launcher_wine.py:223
+msgid "Wine"
+msgstr "Wine"
+
+#: ../games_nebula.py:1996 ../games_nebula.py:2067 ../games_nebula.py:2140
+#: ../launcher_dosbox.py:196 ../launcher_scummvm.py:211 ../launcher_wine.py:252
+msgid "System version"
+msgstr "Системная версия"
+
+#: ../games_nebula.py:2001 ../games_nebula.py:2039 ../games_nebula.py:2072
+#: ../games_nebula.py:2110 ../games_nebula.py:2183 ../games_nebula.py:4682
+#: ../games_nebula.py:4789 ../games_nebula.py:4801 ../launcher_dosbox.py:202
+#: ../launcher_dosbox.py:348 ../launcher_dosbox.py:353
+#: ../launcher_scummvm.py:217 ../launcher_scummvm.py:354
+#: ../launcher_scummvm.py:359 ../launcher_wine.py:258 ../launcher_wine.py:500
+#: ../launcher_wine.py:505
+msgid "From directory"
+msgstr "Из директории"
+
+#: ../games_nebula.py:2022
+msgid "Wine settings"
+msgstr "Настройки Wine"
+
+#: ../games_nebula.py:2044 ../games_nebula.py:2115 ../games_nebula.py:2145
+#: ../games_nebula.py:2188 ../games_nebula.py:4687 ../games_nebula.py:4794
+#: ../games_nebula.py:4806 ../launcher_dosbox.py:211 ../launcher_dosbox.py:358
+#: ../launcher_scummvm.py:226 ../launcher_scummvm.py:364
+#: ../launcher_wine.py:267 ../launcher_wine.py:510
+msgid "From directory:"
+msgstr "Из директории:"
+
+#: ../games_nebula.py:2049 ../launcher_dosbox.py:167
+msgid "DOSBox"
+msgstr "DOSBox"
+
+#: ../games_nebula.py:2093
+msgid "DOSBox settings"
+msgstr "Настройки DOSBox"
+
+#: ../games_nebula.py:2121 ../launcher_scummvm.py:182
+msgid "ScummVM"
+msgstr "ScummVM"
+
+#: ../games_nebula.py:2166
+msgid "ScummVM settings"
+msgstr "Настройки ScummVM"
+
+#: ../games_nebula.py:2578 ../games_nebula.py:2639 ../games_nebula.py:4235
+#: ../games_nebula.py:4284
+msgid "In queue"
+msgstr "В очереди"
+
+#: ../games_nebula.py:2581 ../games_nebula.py:2641 ../games_nebula.py:2740
+#: ../games_nebula.py:2773 ../games_nebula.py:4233 ../games_nebula.py:4282
+msgid "Installing"
+msgstr "Установка"
+
+#: ../games_nebula.py:2677
+msgid "Changes in library"
+msgstr "Изменения в библиотеке"
+
+#: ../games_nebula.py:2689
+msgid "Updating GOG library..."
+msgstr "Обновление библиотеки GOG..."
+
+#: ../games_nebula.py:3883 ../games_nebula.py:3971
+msgid "Add/modify tags:"
+msgstr "Добавить/изменить тэги:"
+
+#: ../games_nebula.py:3885 ../games_nebula.py:3973
+msgid "Use commas to separate tags."
+msgstr "Используйте запятые для разделения тэгов."
+
+#: ../games_nebula.py:3889 ../games_nebula.py:3977
+msgid "Empty"
+msgstr "Пусто"
+
+#: ../games_nebula.py:4254 ../games_nebula.py:4303
+msgid "Are you sure you want to remove this game?"
+msgstr "Вы уверены, что хотите удалить эту игру?"
+
+#: ../games_nebula.py:4342 ../games_nebula.py:4635
+msgid "Downloading..."
+msgstr "Скачивается..."
+
+#: ../games_nebula.py:4387 ../games_nebula.py:4417 ../games_nebula.py:4650
+#: ../games_nebula.py:4657 ../games_nebula.py:4663
+msgid "Installing..."
+msgstr "Устанавливается..."
+
+#: ../games_nebula.py:4528 ../games_nebula.py:4557
+msgid "Done"
+msgstr "Завершено"
+
+#: ../games_nebula.py:4582
+msgid "No new games in library"
+msgstr "В библиотеке нет новых игр"
+
+#: ../games_nebula.py:4857 ../games_nebula.py:4899
+msgid "Installation directory changed"
+msgstr "Установочная директория изменена"
+
+#: ../games_nebula.py:4859 ../games_nebula.py:4901
+msgid ""
+"Do you really want to change installation directory?\n"
+"All your installed games will be moved to new location.\n"
+"Proceed?"
+msgstr ""
+"Вы действительно хотите изменить установочную директорию?\n"
+"Все установленные игры будут перемещены в новое местоположение.\n"
+"Продолжить?"
+
+#: ../games_nebula.py:5378
+msgid "Quit application?"
+msgstr "Выйти из приложения?"
+
+#: ../launcher_dosbox.py:142 ../launcher_native.py:128
+#: ../launcher_scummvm.py:156 ../launcher_wine.py:197 ../settings_dosbox.py:42
+msgid "Games Nebula"
+msgstr "Games Nebula"
+
+#: ../launcher_dosbox.py:191 ../launcher_scummvm.py:206 ../launcher_wine.py:247
+#: ../launcher_wine.py:442 ../launcher_wine.py:651
+msgid "Global settings"
+msgstr "Глобальные настройки"
+
+#: ../launcher_dosbox.py:231
+msgid "Game specific DOSBox settings"
+msgstr "Настройки DOSBox для этой игры"
+
+#: ../launcher_dosbox.py:236 ../launcher_scummvm.py:246 ../launcher_wine.py:337
+msgid "Version:"
+msgstr "Версия:"
+
+#: ../launcher_dosbox.py:273 ../launcher_wine.py:392
+msgid "Game settings"
+msgstr "Настройки игры"
+
+#: ../launcher_dosbox.py:283 ../launcher_native.py:187
+#: ../launcher_scummvm.py:288 ../launcher_wine.py:404
+msgid "Launch game"
+msgstr "Запустить игру"
+
+#: ../launcher_dosbox.py:291 ../launcher_native.py:192
+#: ../launcher_scummvm.py:294 ../launcher_wine.py:410
+msgid "Always show launcher"
+msgstr "Всегда показывать лаунчер "
+
+#: ../launcher_native.py:165
+msgid "Use:"
+msgstr "Использовать:"
+
+#: ../launcher_native.py:169
+msgid "GOG launcher"
+msgstr "Лаунчер GOG"
+
+#: ../launcher_native.py:173
+msgid "Games Nebula launcher"
+msgstr "Лаунчер Games Nebula"
+
+#: ../launcher_scummvm.py:251
+msgid "Game specific ScummVM settings"
+msgstr "Настройки ScummVM для этой игры"
+
+#: ../launcher_wine.py:287
+msgid "Windows version"
+msgstr "Версия Windows"
+
+#: ../launcher_wine.py:297
+msgid "Use own wine prefix"
+msgstr "Использовать свой префикс wine"
+
+#: ../launcher_wine.py:303
+msgid "Capture the mouse in fullscreen windows"
+msgstr "Удерживать мышь в полноэкранных окнах"
+
+#: ../launcher_wine.py:309
+msgid "Emulate a virtual desktop"
+msgstr "Эмулировать виртуальный рабочий стол"
+
+#: ../launcher_wine.py:315 ../settings_dosbox.py:108 ../settings_dosbox.py:158
+msgid "Width"
+msgstr "Ширина"
+
+#: ../launcher_wine.py:326 ../settings_dosbox.py:117 ../settings_dosbox.py:167
+msgid "Height"
+msgstr "Высота"
+
+#: ../launcher_wine.py:342
+msgid "Game specific Wine settings:"
+msgstr "Настройки Wine для этой игры:"
+
+#: ../launcher_wine.py:347
+msgid "Current wine prefix settings"
+msgstr "Настройки текущего префикса Wine"
+
+#: ../settings_dosbox.py:68
+msgid "Fullscreen"
+msgstr "Полноэкранный режим"
+
+#: ../settings_dosbox.py:70 ../settings_dosbox.py:76
+msgid "Start dosbox directly in fullscreen. (Press ALT-Enter to go back)"
+msgstr "Запускать DOSBox в полноэкранном режиме. (ALT-Enter для переключения)"
+
+#: ../settings_dosbox.py:82
+msgid "Double buffering"
+msgstr "Двойная буферизация"
+
+#: ../settings_dosbox.py:84 ../settings_dosbox.py:90
+msgid ""
+"Use double buffering in fullscreen. It can reduce screen flickering,\n"
+"but it can also result in a slow DOSBox."
+msgstr ""
+"Использовать двойную буферизацию в полноэкранном режиме.\n"
+"Может уменьшить мерцание, но также может замедлить DOSBox."
+
+#: ../settings_dosbox.py:96
+msgid "Fullscreen resolution"
+msgstr "Разрешение в полноэкранном режиме"
+
+#: ../settings_dosbox.py:98 ../settings_dosbox.py:102
+msgid "What resolution to use for fullscreen."
+msgstr "Разрешение в полноэкранном режиме"
+
+#: ../settings_dosbox.py:146
+msgid "Window resolution"
+msgstr "Разрешение в оконном режиме"
+
+#: ../settings_dosbox.py:148 ../settings_dosbox.py:152
+msgid ""
+"Scale the window to this size IF the output device\n"
+"supports hardware scaling (output=surface does not!)."
+msgstr ""
+"Масштабировать окно до этого размера, ЕСЛИ выводящее\n"
+"устройство поддерживает аппаратное масштабирование\n"
+"(surface не поддерживает!)."
+
+#: ../settings_dosbox.py:196
+msgid "Output"
+msgstr "Выводящее устройство"
+
+#: ../settings_dosbox.py:198 ../settings_dosbox.py:202
+msgid "What video system to use for output."
+msgstr "Видео система для вывода"
+
+#: ../settings_dosbox.py:221
+msgid "Mouse autolock"
+msgstr "Автозахват мыши"
+
+#: ../settings_dosbox.py:223 ../settings_dosbox.py:229
+msgid ""
+"Mouse will automatically lock, if you click on the screen.\n"
+"(Press CTRL-F10 to unlock)"
+msgstr ""
+"Мышь будет автоматически захвачена, если щелкнуть\n"
+"в окне DOSBox (CTRL-F10 чтобы освободить)"
+
+#: ../settings_dosbox.py:235
+msgid "Mouse sensitivity"
+msgstr "Чувствительность мыши"
+
+#: ../settings_dosbox.py:237 ../settings_dosbox.py:244
+msgid "Mouse sensitivity."
+msgstr "Чувствительность мыши."
+
+#: ../settings_dosbox.py:254
+msgid "Wait on error"
+msgstr "Ждать в случае ошибки"
+
+#: ../settings_dosbox.py:256 ../settings_dosbox.py:262
+msgid "Wait before closing the console if dosbox has an error."
+msgstr "Не закрывать консоль, если произошла ошибка."
+
+#: ../settings_dosbox.py:268
+msgid "Priority"
+msgstr "Приоритет"
+
+#: ../settings_dosbox.py:270
+msgid "Priority levels for dosbox."
+msgstr "Уровень приоритета для dosbox"
+
+#: ../settings_dosbox.py:274
+msgid "Active."
+msgstr "Окно активно."
+
+#: ../settings_dosbox.py:287
+msgid "Not focused/minimized."
+msgstr "Ок"
+
+#: ../settings_dosbox.py:300
+msgid "Mapperfile"
+msgstr "Окно не в фокусу/свёрнуто"
+
+#: ../settings_dosbox.py:302 ../settings_dosbox.py:306
+msgid ""
+"File used to load/save the key/event mappings from.\n"
+"Resetmapper only works with the defaul value."
+msgstr ""
+"Файл для загрузки/сохранения раскладок кнопок/событий.\n"
+"Resetmapper работает только со значением по умолчанию."
+
+#: ../settings_dosbox.py:307
+msgid "Select a file"
+msgstr "Выберите файл"
+
+#: ../settings_dosbox.py:316
+msgid "Use scancodes"
+msgstr "Использовать сканкоды"
+
+#: ../settings_dosbox.py:318 ../settings_dosbox.py:324
+msgid "Avoid usage of symkeys."
+msgstr "Избегайте использования symkeys"
+
+#: ../settings_dosbox.py:377
+msgid "Language file"
+msgstr "Языковой файл"
+
+#: ../settings_dosbox.py:379 ../settings_dosbox.py:383
+msgid "Select another language file."
+msgstr "Выбрать другой языковой файл"
+
+#: ../settings_dosbox.py:392
+msgid "Machine"
+msgstr "Графический адаптер"
+
+#: ../settings_dosbox.py:394 ../settings_dosbox.py:398
+msgid "The type of machine tries to emulate."
+msgstr "Тип графического адаптера, который пытается эмулировать DOSBox. "
+
+#: ../settings_dosbox.py:428
+msgid "Captures directory"
+msgstr "Директория захватов"
+
+#: ../settings_dosbox.py:430 ../settings_dosbox.py:434
+msgid "Directory where things like wave, midi, screenshot get captured."
+msgstr "Директория, куда сохраняется аудио, midi и снимки экрана."
+
+#: ../settings_dosbox.py:444
+msgid "Memory"
+msgstr "Память"
+
+#: ../settings_dosbox.py:446 ../settings_dosbox.py:450
+msgid ""
+"This value is best left at its default to avoid problems with some games,\n"
+"though few games might require a higher value.\n"
+"There is generally no speed advantage when raising this value."
+msgstr ""
+"Лучше оставить значение по умолчанию, чтобы избежать проблем\n"
+"с некоторыми играми, но некоторым всё же нужно больше.\n"
+"Увеличение значения обычно не увеличивает производительность."
+
+#: ../settings_dosbox.py:494
+msgid "Frameskip"
+msgstr "Пропуск кадров"
+
+#: ../settings_dosbox.py:496 ../settings_dosbox.py:500
+msgid "How many frames DOSBox skips before drawing one."
+msgstr ""
+"Сколько кадров будет пропущено, прежде \n"
+"чем один будет выведен на экран."
+
+#: ../settings_dosbox.py:509
+msgid "Aspect correction"
+msgstr "Коррекция пропорций"
+
+#: ../settings_dosbox.py:511 ../settings_dosbox.py:516
+msgid ""
+"Do aspect correction, if your output method doesn't support\n"
+"scaling this can slow things down!."
+msgstr ""
+"Делать коррекцию пропорций, если выводящее устройство\n"
+"не поддерживает масштабирование, может замедлить работу!"
+
+#: ../settings_dosbox.py:521
+msgid "Scaler"
+msgstr "Алгоритм масштабирования"
+
+#: ../settings_dosbox.py:523 ../settings_dosbox.py:527
+msgid "Scaler used to enlarge/enhance low resolution modes."
+msgstr ""
+"Алгоритм масштабирования для увеличения/улучшения\n"
+"режимов с низким разрешением."
+
+#: ../settings_dosbox.py:559
+msgid "Forced scaler"
+msgstr "Применять алгоритм в любом случае"
+
+#: ../settings_dosbox.py:561 ../settings_dosbox.py:566
+msgid "Scaler will be used even if the result might not be desired."
+msgstr ""
+"Алгоритм масштабирования будет использован, даже\n"
+"если это может привести к нежелательному результату."
+
+#: ../settings_dosbox.py:583
+msgid "Render"
+msgstr ""
+
+#: ../settings_dosbox.py:601
+msgid "Core"
+msgstr ""
+
+#: ../settings_dosbox.py:603 ../settings_dosbox.py:607
+msgid ""
+"CPU Core used in emulation. auto will switch to\n"
+"dynamic if available and appropriate."
+msgstr ""
+
+#: ../settings_dosbox.py:624
+msgid "CPU type"
+msgstr ""
+
+#: ../settings_dosbox.py:626 ../settings_dosbox.py:630
+msgid "CPU Type used in emulation. auto is the fastest choice."
+msgstr ""
+
+#: ../settings_dosbox.py:653 ../settings_dosbox.py:676
+msgid "Cycles"
+msgstr ""
+
+#: ../settings_dosbox.py:655 ../settings_dosbox.py:659
+msgid ""
+"Amount of instructions DOSBox tries to emulate each millisecond.\n"
+"Setting this value too high results in sound dropouts and lags.."
+msgstr ""
+
+#: ../settings_dosbox.py:662 ../settings_dosbox.py:1807
+#: ../settings_dosbox.py:2771 ../settings_dosbox.py:2851
+#: ../settings_dosbox.py:3810 ../settings_dosbox.py:3816
+msgid "custom"
+msgstr ""
+
+#: ../settings_dosbox.py:682
+msgid "Custom value"
+msgstr ""
+
+#: ../settings_dosbox.py:695
+msgid "Cycle up"
+msgstr ""
+
+#: ../settings_dosbox.py:697 ../settings_dosbox.py:701
+msgid ""
+"Amount of cycles to increase with keycombo.(CTRL-F12)\n"
+"Setting it lower than 100 will be a percentage."
+msgstr ""
+
+#: ../settings_dosbox.py:709
+msgid "Cycle down"
+msgstr ""
+
+#: ../settings_dosbox.py:711 ../settings_dosbox.py:715
+msgid ""
+"Amount of cycles to decrease with keycombo.(CTRL-F11)\n"
+"Setting it lower than 100 will be a percentage."
+msgstr ""
+
+#: ../settings_dosbox.py:739
+msgid "CPU"
+msgstr ""
+
+#: ../settings_dosbox.py:757
+msgid "No sound"
+msgstr ""
+
+#: ../settings_dosbox.py:759 ../settings_dosbox.py:764
+msgid "Enable silent mode, sound is still emulated though."
+msgstr ""
+
+#: ../settings_dosbox.py:769 ../settings_dosbox.py:1195
+msgid "Sample rate"
+msgstr ""
+
+#: ../settings_dosbox.py:771 ../settings_dosbox.py:775
+msgid ""
+"Mixer sample rate, setting any device's rate higher than\n"
+"this will probably lower their sound quality."
+msgstr ""
+
+#: ../settings_dosbox.py:787
+msgid "Block size"
+msgstr ""
+
+#: ../settings_dosbox.py:789 ../settings_dosbox.py:793
+msgid ""
+"Mixer block size, larger blocks might help sound stuttering\n"
+"but sound will also be more lagged."
+msgstr ""
+
+#: ../settings_dosbox.py:805
+msgid "Prebuffer"
+msgstr ""
+
+#: ../settings_dosbox.py:807 ../settings_dosbox.py:811
+msgid "How many milliseconds of data to keep on top of the blocksize."
+msgstr ""
+
+#: ../settings_dosbox.py:831
+msgid "Mixer"
+msgstr ""
+
+#: ../settings_dosbox.py:849
+msgid "MPU-401"
+msgstr ""
+
+#: ../settings_dosbox.py:851 ../settings_dosbox.py:855
+msgid "Type of MPU-401 to emulate."
+msgstr ""
+
+#: ../settings_dosbox.py:867
+msgid "MIDI device"
+msgstr ""
+
+#: ../settings_dosbox.py:869 ../settings_dosbox.py:873
+msgid "Device that will receive the MIDI data from MPU-401."
+msgstr ""
+
+#: ../settings_dosbox.py:893
+msgid "MIDI configuration"
+msgstr ""
+
+#: ../settings_dosbox.py:895 ../settings_dosbox.py:900
+msgid ""
+"Special configuration options for the device driver.\n"
+"This is usually the id of the device you want to use.\n"
+"See the README/Manual for more details."
+msgstr ""
+
+#: ../settings_dosbox.py:907
+msgid "Soundfont"
+msgstr ""
+
+#: ../settings_dosbox.py:908 ../settings_dosbox.py:919
+msgid "Soundfont file. Path shouldn't contain spaces"
+msgstr ""
+
+#: ../settings_dosbox.py:918
+msgid "Select a soundfont"
+msgstr ""
+
+#: ../settings_dosbox.py:949
+msgid "MIDI"
+msgstr ""
+
+#: ../settings_dosbox.py:967
+msgid "Soundblaster type"
+msgstr ""
+
+#: ../settings_dosbox.py:969 ../settings_dosbox.py:973
+msgid "Type of Soundblaster to emulate. gb is Gameblaster."
+msgstr ""
+
+#: ../settings_dosbox.py:995 ../settings_dosbox.py:1213
+msgid "IO address"
+msgstr ""
+
+#: ../settings_dosbox.py:997 ../settings_dosbox.py:1001
+msgid "The IO address of the soundblaster."
+msgstr ""
+
+#: ../settings_dosbox.py:1013 ../settings_dosbox.py:1231
+msgid "IRQ number"
+msgstr ""
+
+#: ../settings_dosbox.py:1015 ../settings_dosbox.py:1019
+msgid "The IRQ number of the soundblaster."
+msgstr ""
+
+#: ../settings_dosbox.py:1031 ../settings_dosbox.py:1249
+msgid "DMA number"
+msgstr ""
+
+#: ../settings_dosbox.py:1033 ../settings_dosbox.py:1037
+msgid "The DMA number of the soundblaster."
+msgstr ""
+
+#: ../settings_dosbox.py:1049
+msgid "High DMA number"
+msgstr ""
+
+#: ../settings_dosbox.py:1051 ../settings_dosbox.py:1055
+msgid "The High DMA number of the soundblaster."
+msgstr ""
+
+#: ../settings_dosbox.py:1067
+msgid "Soundblaster mixer"
+msgstr ""
+
+#: ../settings_dosbox.py:1069 ../settings_dosbox.py:1073
+msgid "Allow the soundblaster mixer to modify the DOSBox mixer."
+msgstr ""
+
+#: ../settings_dosbox.py:1079
+msgid "OPL emulation"
+msgstr ""
+
+#: ../settings_dosbox.py:1081 ../settings_dosbox.py:1085
+msgid ""
+"Type of OPL emulation. On 'auto' the mode is determined\n"
+"by sblaster type. All OPL modes are Adlib-compatible,\n"
+"except for 'cms'."
+msgstr ""
+
+#: ../settings_dosbox.py:1107
+msgid "OPL emulation provider"
+msgstr ""
+
+#: ../settings_dosbox.py:1109 ../settings_dosbox.py:1113
+msgid ""
+"Provider for the OPL emulation.\n"
+"compat might provide better quality (see oplrate as well)."
+msgstr ""
+
+#: ../settings_dosbox.py:1125
+msgid "OPL sample rate"
+msgstr ""
+
+#: ../settings_dosbox.py:1127 ../settings_dosbox.py:1131
+msgid ""
+"Sample rate of OPL music emulation.\n"
+"Use 49716 for highest quality (set the mixer rate accordingly)."
+msgstr ""
+
+#: ../settings_dosbox.py:1165
+msgid "SoundBlaster"
+msgstr ""
+
+#: ../settings_dosbox.py:1183 ../settings_dosbox.py:1295
+msgid "Gravis Ultrasound"
+msgstr ""
+
+#: ../settings_dosbox.py:1185 ../settings_dosbox.py:1189
+msgid "Enable the Gravis Ultrasound emulation."
+msgstr ""
+
+#: ../settings_dosbox.py:1197 ../settings_dosbox.py:1201
+msgid "Sample rate of Ultrasound emulation."
+msgstr ""
+
+#: ../settings_dosbox.py:1215 ../settings_dosbox.py:1219
+msgid "The IO base address of the Gravis Ultrasound."
+msgstr ""
+
+#: ../settings_dosbox.py:1233 ../settings_dosbox.py:1237
+msgid "The IRQ number of the Gravis Ultrasound."
+msgstr ""
+
+#: ../settings_dosbox.py:1251 ../settings_dosbox.py:1255
+msgid "The DMA channel of the Gravis Ultrasound."
+msgstr ""
+
+#: ../settings_dosbox.py:1267
+msgid "Ultrasound directory"
+msgstr ""
+
+#: ../settings_dosbox.py:1269 ../settings_dosbox.py:1273
+msgid ""
+"Path to Ultrasound directory. In this directory\n"
+"there should be a MIDI directory that contains\n"
+"the patch files for GUS playback. Patch sets used\n"
+"with Timidity should work fine."
+msgstr ""
+
+#: ../settings_dosbox.py:1313
+msgid "PC-speaker"
+msgstr ""
+
+#: ../settings_dosbox.py:1315 ../settings_dosbox.py:1319
+msgid "Enable PC-Speaker emulation."
+msgstr ""
+
+#: ../settings_dosbox.py:1325
+msgid "PC-speaker sample rate"
+msgstr ""
+
+#: ../settings_dosbox.py:1327 ../settings_dosbox.py:1331
+msgid "Sample rate of the PC-Speaker sound generation."
+msgstr ""
+
+#: ../settings_dosbox.py:1343
+msgid "Tandy Sound System"
+msgstr ""
+
+#: ../settings_dosbox.py:1345 ../settings_dosbox.py:1349
+msgid ""
+"Enable Tandy Sound System emulation.\n"
+"For 'auto', emulation is present only if\n"
+"machine is set to 'tandy'."
+msgstr ""
+
+#: ../settings_dosbox.py:1361
+msgid "Tandy sample rate"
+msgstr ""
+
+#: ../settings_dosbox.py:1363 ../settings_dosbox.py:1367
+msgid "Sample rate of the Tandy 3-Voice generation."
+msgstr ""
+
+#: ../settings_dosbox.py:1379
+msgid "Disney Sound Source"
+msgstr ""
+
+#: ../settings_dosbox.py:1381 ../settings_dosbox.py:1385
+msgid ""
+"Enable Disney Sound Source emulation.\n"
+"(Covox Voice Master and Speech Thing compatible)."
+msgstr ""
+
+#: ../settings_dosbox.py:1405
+msgid "Speaker"
+msgstr ""
+
+#: ../settings_dosbox.py:1423
+msgid "Joystick type"
+msgstr ""
+
+#: ../settings_dosbox.py:1425 ../settings_dosbox.py:1435
+msgid ""
+"Type of joystick to emulate:\n"
+"auto (choose emulation depending on real joystick(s)),\n"
+"none (disable joystick emulation),\n"
+"2axis (supports two joysticks),\n"
+"4axis (supports one joystick, first joystick used),\n"
+"4axis_2 (supports one joystick, second joystick used),\n"
+"fcs (Thrustmaster),\n"
+"ch (CH Flightstick).\n"
+"\n"
+"(Remember to reset dosbox's mapperfile if you saved it earlier)."
+msgstr ""
+
+#: ../settings_dosbox.py:1453
+msgid "Timed intervals for axis"
+msgstr ""
+
+#: ../settings_dosbox.py:1455 ../settings_dosbox.py:1459
+msgid ""
+"Enable timed intervals for axis. Experiment with this option,\n"
+"if your joystick drifts (away)."
+msgstr ""
+
+#: ../settings_dosbox.py:1465
+msgid "Autofire"
+msgstr ""
+
+#: ../settings_dosbox.py:1467 ../settings_dosbox.py:1471
+msgid "Continuously fires as long as you keep the button pressed."
+msgstr ""
+
+#: ../settings_dosbox.py:1477
+msgid "Swap axis"
+msgstr ""
+
+#: ../settings_dosbox.py:1479 ../settings_dosbox.py:1483
+msgid "Swap the 3rd and the 4th axis. Can be useful for certain joysticks."
+msgstr ""
+
+#: ../settings_dosbox.py:1489
+msgid "Button wrapping"
+msgstr ""
+
+#: ../settings_dosbox.py:1491 ../settings_dosbox.py:1495
+msgid "Enable button wrapping at the number of emulated buttons."
+msgstr ""
+
+#: ../settings_dosbox.py:1515
+msgid "Joystick"
+msgstr ""
+
+#: ../settings_dosbox.py:1533
+msgid "Device connected to com port 1"
+msgstr ""
+
+#: ../settings_dosbox.py:1535 ../settings_dosbox.py:1539
+#: ../settings_dosbox.py:1576 ../settings_dosbox.py:1580
+#: ../settings_dosbox.py:1617 ../settings_dosbox.py:1621
+#: ../settings_dosbox.py:1658 ../settings_dosbox.py:1662
+msgid "Set type of device connected to com port."
+msgstr ""
+
+#: ../settings_dosbox.py:1543 ../settings_dosbox.py:1584
+#: ../settings_dosbox.py:1625 ../settings_dosbox.py:1666
+msgid "Additional parameters:"
+msgstr ""
+
+#: ../settings_dosbox.py:1545 ../settings_dosbox.py:1556
+#: ../settings_dosbox.py:1586 ../settings_dosbox.py:1597
+#: ../settings_dosbox.py:1627 ../settings_dosbox.py:1638
+#: ../settings_dosbox.py:1668 ../settings_dosbox.py:1679
+msgid ""
+"Parameter for all types: irq (optional).\n"
+"For directserial: realport (required), rxdelay (optional).\n"
+"For modem: listenport (optional).\n"
+"For nullmodem: server, rxdelay, txdelay, telnet, usedtr,\n"
+"transparent, port, inhsocket (all optional).\n"
+"For modem: listenport (optional).\n"
+"\n"
+"Additional parameters must be in the form\n"
+"of parameter:value (Example: listenport:5000)."
+msgstr ""
+
+#: ../settings_dosbox.py:1574
+msgid "Device connected to com port 2"
+msgstr ""
+
+#: ../settings_dosbox.py:1615
+msgid "Device connected to com port 3"
+msgstr ""
+
+#: ../settings_dosbox.py:1656
+msgid "Device connected to com port 4"
+msgstr ""
+
+#: ../settings_dosbox.py:1737
+msgid "Com port device"
+msgstr ""
+
+#: ../settings_dosbox.py:1755
+msgid "XMS"
+msgstr ""
+
+#: ../settings_dosbox.py:1757 ../settings_dosbox.py:1761
+msgid "Enable XMS support."
+msgstr ""
+
+#: ../settings_dosbox.py:1767
+msgid "EMS"
+msgstr ""
+
+#: ../settings_dosbox.py:1769 ../settings_dosbox.py:1773
+msgid "Enable EMS support."
+msgstr ""
+
+#: ../settings_dosbox.py:1779
+msgid "UMB"
+msgstr ""
+
+#: ../settings_dosbox.py:1781 ../settings_dosbox.py:1785
+msgid "Enable UMB support."
+msgstr ""
+
+#: ../settings_dosbox.py:1791
+msgid "Keyboard lauout:"
+msgstr ""
+
+#: ../settings_dosbox.py:1793 ../settings_dosbox.py:1797
+msgid "Keyboard layout."
+msgstr ""
+
+#: ../settings_dosbox.py:1801
+msgid "Language code of the keyboard layout."
+msgstr ""
+
+#: ../settings_dosbox.py:1802
+msgid "Keyboard layout code"
+msgstr ""
+
+#: ../settings_dosbox.py:1836
+msgid "DOS"
+msgstr ""
+
+#: ../settings_dosbox.py:1854 ../settings_dosbox.py:1872
+msgid "IPX"
+msgstr ""
+
+#: ../settings_dosbox.py:1856 ../settings_dosbox.py:1860
+msgid "Enable ipx over UDP/IP emulation."
+msgstr ""
+
+#: ../settings_dosbox.py:1903
+msgid "Save"
+msgstr "Сохранить"
+
+#: ../settings_dosbox.py:1909
+msgid "Quit"
+msgstr "Выйти"
+
+#: ../settings_wine.py:72
+msgid "Add/remove programs"
+msgstr "Добавить/удалить программы"
+
+#: ../settings_wine.py:77
+msgid "Run in current prefix..."
+msgstr "Запустить в текущем префиксе"
+
+#: ../settings_wine.py:82
+msgid "Open prefix in file manager"
+msgstr "Открыть префикс в файловом менеджере"
+
+#: ../settings_wine.py:87
+msgid "Configure game controllers"
+msgstr "Настроить игровые контроллеры"
+
+#: ../settings_wine.py:92
+msgid "Wine configuration"
+msgstr "Настройки Wine"
+
+#~ msgid "Updating library..."
+#~ msgstr "Обновление библиотеки..."
+
+#~ msgid "In queue..."
+#~ msgstr "В очереди..."
+
+#~ msgid "System"
+#~ msgstr "Системная"
+
+#~ msgid "Path:"
+#~ msgstr "Путь:"
+
+#~ msgid "Version"
+#~ msgstr "Версия"
+
+#~ msgid "Use global settings"
+#~ msgstr "Глобальные настройки"
+
+#~ msgid "Path"
+#~ msgstr "Путь"
+
+#~ msgid "Game specific DOSBox settings:"
+#~ msgstr "Настройки DOSBox для этой игры:"
+
+#~ msgid "Game specific ScummVM settings:"
+#~ msgstr "Настройки ScummVM для этой игры:"
+
+#~ msgid "Run in prefix..."
+#~ msgstr "Запустить "
+
+#~ msgid "Wine prefix settings"
+#~ msgstr "Настройки префикса Wine"
+
+#~ msgid "Tag filter 2"
+#~ msgstr "Фильтр тэгов 2"
+
+#~ msgid "Add tag filter"
+#~ msgstr "Добавить фильтр тэгов"
+
+#~ msgid "Remove tag filter"
+#~ msgstr "Удалить фильтр тэгов"
