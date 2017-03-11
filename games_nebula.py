@@ -2848,9 +2848,14 @@ class GUI:
             os.makedirs(data_dir + '/games/goglib/installed')
             os.makedirs(data_dir + '/config')
             os.makedirs(data_dir + '/scripts/')
+            
+            if os.path.exists(nebula_dir + '/scripts'):
+                os.system('cp -R ' + nebula_dir + '/scripts/* ' + data_dir + '/scripts/')
+
+        if not os.path.exists(data_dir + '/scripts/goglib'):
             os.makedirs(data_dir + '/scripts/goglib')
+        if not os.path.exists(data_dir + '/scripts/mylib'):
             os.makedirs(data_dir + '/scripts/mylib')
-            #os.system('cp -R ' + nebula_dir + '/scripts/* ' + data_dir + '/scripts/')
 
         self.config_parser = ConfigParser.ConfigParser()
         self.config_parser.read(config_dir + '/config.ini')
