@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-03 14:45+0300\n"
-"PO-Revision-Date: 2017-03-03 15:56+0300\n"
+"PO-Revision-Date: 2017-03-11 16:47+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -87,7 +87,7 @@ msgstr "Недоступно"
 
 #: ../games_nebula.py:469 ../games_nebula.py:814
 msgid "Tags filter 1"
-msgstr "Фильтр тэгов 1"
+msgstr "Фильтр тегов 1"
 
 #: ../games_nebula.py:481 ../games_nebula.py:506 ../games_nebula.py:531
 #: ../games_nebula.py:556 ../games_nebula.py:827 ../games_nebula.py:853
@@ -98,27 +98,27 @@ msgstr "Фильтр тэгов 1"
 #: ../games_nebula.py:3941 ../games_nebula.py:3942 ../games_nebula.py:4027
 #: ../games_nebula.py:4028 ../games_nebula.py:4029 ../games_nebula.py:4030
 msgid "No tags"
-msgstr "Нет тэгов"
+msgstr "Нет тегов"
 
 #: ../games_nebula.py:493 ../games_nebula.py:839
 msgid "Tags filter 2"
-msgstr "Фильтр тэгов 2"
+msgstr "Фильтр тегов 2"
 
 #: ../games_nebula.py:518 ../games_nebula.py:865
 msgid "Tags filter 3"
-msgstr "Фильтр тэгов 3"
+msgstr "Фильтр тегов 3"
 
 #: ../games_nebula.py:543 ../games_nebula.py:891
 msgid "Tags filter 4"
-msgstr "Фильтр тэгов 4"
+msgstr "Фильтр тегов 4"
 
 #: ../games_nebula.py:571 ../games_nebula.py:920
 msgid "Add tags filter"
-msgstr "Добавить фильтр тэгов"
+msgstr "Добавить фильтр тегов"
 
 #: ../games_nebula.py:578 ../games_nebula.py:927
 msgid "Remove tags filter"
-msgstr "Удалить фильтр тэгов"
+msgstr "Удалить фильтр тегов"
 
 #: ../games_nebula.py:586 ../games_nebula.py:935
 msgid "Scale"
@@ -216,19 +216,19 @@ msgstr "Исключать"
 
 #: ../games_nebula.py:1465 ../games_nebula.py:1708
 msgid "Tags filter 1 behaivior:"
-msgstr "Поведения фильтра тэгов 1:"
+msgstr "Поведения фильтра тегов 1:"
 
 #: ../games_nebula.py:1485 ../games_nebula.py:1728
 msgid "Tags filter 2 behaivior:"
-msgstr "Поведения фильтра тэгов 2:"
+msgstr "Поведения фильтра тегов 2:"
 
 #: ../games_nebula.py:1505 ../games_nebula.py:1748
 msgid "Tags filter 3 behaivior:"
-msgstr "Поведения фильтра тэгов 3:"
+msgstr "Поведения фильтра тегов 3:"
 
 #: ../games_nebula.py:1525 ../games_nebula.py:1768
 msgid "Tags filter 4 behaivior:"
-msgstr "Поведения фильтра тэгов 4:"
+msgstr "Поведения фильтра тегов 4:"
 
 #: ../games_nebula.py:1546 ../games_nebula.py:1789
 msgid "Filters color indication"
@@ -342,11 +342,11 @@ msgstr "Обновление библиотеки GOG..."
 
 #: ../games_nebula.py:3883 ../games_nebula.py:3971
 msgid "Add/modify tags:"
-msgstr "Добавить/изменить тэги:"
+msgstr "Добавить/изменить теги:"
 
 #: ../games_nebula.py:3885 ../games_nebula.py:3973
 msgid "Use commas to separate tags."
-msgstr "Используйте запятые для разделения тэгов."
+msgstr "Используйте запятые для разделения тегов."
 
 #: ../games_nebula.py:3889 ../games_nebula.py:3977
 msgid "Empty"
@@ -562,11 +562,11 @@ msgstr "Окно активно."
 
 #: ../settings_dosbox.py:287
 msgid "Not focused/minimized."
-msgstr "Ок"
+msgstr "Окно не в фокусу/свёрнуто"
 
 #: ../settings_dosbox.py:300
 msgid "Mapperfile"
-msgstr "Окно не в фокусу/свёрнуто"
+msgstr "Файл раскладок"
 
 #: ../settings_dosbox.py:302 ../settings_dosbox.py:306
 msgid ""
@@ -670,101 +670,115 @@ msgstr ""
 
 #: ../settings_dosbox.py:583
 msgid "Render"
-msgstr ""
+msgstr "Рендер"
 
 #: ../settings_dosbox.py:601
 msgid "Core"
-msgstr ""
+msgstr "Ядро"
 
 #: ../settings_dosbox.py:603 ../settings_dosbox.py:607
 msgid ""
 "CPU Core used in emulation. auto will switch to\n"
 "dynamic if available and appropriate."
 msgstr ""
+"Используемое в эмуляции ядро ЦП. auto переключается в \n"
+"dynamic если возможно."
 
 #: ../settings_dosbox.py:624
 msgid "CPU type"
-msgstr ""
+msgstr "Тип ЦП"
 
 #: ../settings_dosbox.py:626 ../settings_dosbox.py:630
 msgid "CPU Type used in emulation. auto is the fastest choice."
-msgstr ""
+msgstr "Тип ЦП, используемый во время эмуляции. auto - быстрейший вариант."
 
 #: ../settings_dosbox.py:653 ../settings_dosbox.py:676
 msgid "Cycles"
-msgstr ""
+msgstr "Циклы"
 
 #: ../settings_dosbox.py:655 ../settings_dosbox.py:659
 msgid ""
 "Amount of instructions DOSBox tries to emulate each millisecond.\n"
 "Setting this value too high results in sound dropouts and lags.."
 msgstr ""
+"Количество инструкций, которые DOSBox пытается эмулировать каждую "
+"миллисекунду.\n"
+"Если выставить слишком высокое значение могут появиться проблемы со звуком."
 
 #: ../settings_dosbox.py:662 ../settings_dosbox.py:1807
 #: ../settings_dosbox.py:2771 ../settings_dosbox.py:2851
 #: ../settings_dosbox.py:3810 ../settings_dosbox.py:3816
 msgid "custom"
-msgstr ""
+msgstr "другое"
 
 #: ../settings_dosbox.py:682
 msgid "Custom value"
-msgstr ""
+msgstr "Пользовательское значение"
 
 #: ../settings_dosbox.py:695
 msgid "Cycle up"
-msgstr ""
+msgstr "Увеличить количество циклов "
 
 #: ../settings_dosbox.py:697 ../settings_dosbox.py:701
 msgid ""
 "Amount of cycles to increase with keycombo.(CTRL-F12)\n"
 "Setting it lower than 100 will be a percentage."
 msgstr ""
+"Количество циклов прибавляемое комбинацией клавиш.(CTRL-F12)\n"
+"Значение меньше 100 считается процентом."
 
 #: ../settings_dosbox.py:709
 msgid "Cycle down"
-msgstr ""
+msgstr "Уменьшить количество циклов "
 
 #: ../settings_dosbox.py:711 ../settings_dosbox.py:715
 msgid ""
 "Amount of cycles to decrease with keycombo.(CTRL-F11)\n"
 "Setting it lower than 100 will be a percentage."
 msgstr ""
+"Количество циклов вычитаемое комбинацией клавиш.(CTRL-F11)\n"
+"Значение меньше 100 считается процентом."
 
 #: ../settings_dosbox.py:739
 msgid "CPU"
-msgstr ""
+msgstr "ЦП"
 
 #: ../settings_dosbox.py:757
 msgid "No sound"
-msgstr ""
+msgstr "Без звука"
 
 #: ../settings_dosbox.py:759 ../settings_dosbox.py:764
 msgid "Enable silent mode, sound is still emulated though."
-msgstr ""
+msgstr "Активировать беззвучный режим (оборудование всё же эмулируется)"
 
 #: ../settings_dosbox.py:769 ../settings_dosbox.py:1195
 msgid "Sample rate"
-msgstr ""
+msgstr "Частота дискретизации"
 
 #: ../settings_dosbox.py:771 ../settings_dosbox.py:775
 msgid ""
 "Mixer sample rate, setting any device's rate higher than\n"
 "this will probably lower their sound quality."
 msgstr ""
+"Частота дискретизации микшера, установка значения дискретизации \n"
+"какого-либо устройства выше этого значения скорее всего приведёт \n"
+"к снижению качества звука."
 
 #: ../settings_dosbox.py:787
 msgid "Block size"
-msgstr ""
+msgstr "Размер блока"
 
 #: ../settings_dosbox.py:789 ../settings_dosbox.py:793
 msgid ""
 "Mixer block size, larger blocks might help sound stuttering\n"
 "but sound will also be more lagged."
 msgstr ""
+"Большее значение может устранить прерывистость звука,\n"
+"но задержка увеличится."
 
 #: ../settings_dosbox.py:805
 msgid "Prebuffer"
-msgstr ""
+msgstr "Предбуфер"
 
 #: ../settings_dosbox.py:807 ../settings_dosbox.py:811
 msgid "How many milliseconds of data to keep on top of the blocksize."
@@ -772,27 +786,27 @@ msgstr ""
 
 #: ../settings_dosbox.py:831
 msgid "Mixer"
-msgstr ""
+msgstr "Микшер"
 
 #: ../settings_dosbox.py:849
 msgid "MPU-401"
-msgstr ""
+msgstr "MPU-401"
 
 #: ../settings_dosbox.py:851 ../settings_dosbox.py:855
 msgid "Type of MPU-401 to emulate."
-msgstr ""
+msgstr "Тип MPU-401."
 
 #: ../settings_dosbox.py:867
 msgid "MIDI device"
-msgstr ""
+msgstr "MIDI устройство"
 
 #: ../settings_dosbox.py:869 ../settings_dosbox.py:873
 msgid "Device that will receive the MIDI data from MPU-401."
-msgstr ""
+msgstr "Устройство, которое будет получать данные от MPU-401."
 
 #: ../settings_dosbox.py:893
 msgid "MIDI configuration"
-msgstr ""
+msgstr "Конфигурация MIDI"
 
 #: ../settings_dosbox.py:895 ../settings_dosbox.py:900
 msgid ""
@@ -800,74 +814,77 @@ msgid ""
 "This is usually the id of the device you want to use.\n"
 "See the README/Manual for more details."
 msgstr ""
+"Специальные опции для устройства.\n"
+"Обычно id устройства, которое вы хотите использовать.\n"
+"Больше информации в README/Manual."
 
 #: ../settings_dosbox.py:907
 msgid "Soundfont"
-msgstr ""
+msgstr "Soundfont"
 
 #: ../settings_dosbox.py:908 ../settings_dosbox.py:919
 msgid "Soundfont file. Path shouldn't contain spaces"
-msgstr ""
+msgstr "Файл soundfont. Путь не должен содержать пробелов"
 
 #: ../settings_dosbox.py:918
 msgid "Select a soundfont"
-msgstr ""
+msgstr "Выбрать soundfont"
 
 #: ../settings_dosbox.py:949
 msgid "MIDI"
-msgstr ""
+msgstr "MIDI"
 
 #: ../settings_dosbox.py:967
 msgid "Soundblaster type"
-msgstr ""
+msgstr "Тип Soundblaster'а"
 
 #: ../settings_dosbox.py:969 ../settings_dosbox.py:973
 msgid "Type of Soundblaster to emulate. gb is Gameblaster."
-msgstr ""
+msgstr "Тип Soundblaster'а. gb это Gameblaster."
 
 #: ../settings_dosbox.py:995 ../settings_dosbox.py:1213
 msgid "IO address"
-msgstr ""
+msgstr "IO адрес"
 
 #: ../settings_dosbox.py:997 ../settings_dosbox.py:1001
 msgid "The IO address of the soundblaster."
-msgstr ""
+msgstr "IO адрес soundblaster'а."
 
 #: ../settings_dosbox.py:1013 ../settings_dosbox.py:1231
 msgid "IRQ number"
-msgstr ""
+msgstr "Значение IRQ"
 
 #: ../settings_dosbox.py:1015 ../settings_dosbox.py:1019
 msgid "The IRQ number of the soundblaster."
-msgstr ""
+msgstr "Значение IRQ sounfblaster'а."
 
 #: ../settings_dosbox.py:1031 ../settings_dosbox.py:1249
 msgid "DMA number"
-msgstr ""
+msgstr "Значение DMA"
 
 #: ../settings_dosbox.py:1033 ../settings_dosbox.py:1037
 msgid "The DMA number of the soundblaster."
-msgstr ""
+msgstr "Значение DMA soundblaster'а."
 
 #: ../settings_dosbox.py:1049
 msgid "High DMA number"
-msgstr ""
+msgstr "Значение Hight DMA"
 
 #: ../settings_dosbox.py:1051 ../settings_dosbox.py:1055
 msgid "The High DMA number of the soundblaster."
-msgstr ""
+msgstr "Значение Hight DMA soundblaster'а."
 
 #: ../settings_dosbox.py:1067
 msgid "Soundblaster mixer"
-msgstr ""
+msgstr "Микшер sondblaster'а"
 
 #: ../settings_dosbox.py:1069 ../settings_dosbox.py:1073
 msgid "Allow the soundblaster mixer to modify the DOSBox mixer."
-msgstr ""
+msgstr "Разрешить микшеру sondblaster'а изменять микшер DOSBox'а."
 
 #: ../settings_dosbox.py:1079
 msgid "OPL emulation"
-msgstr ""
+msgstr "Эмуляция OPL"
 
 #: ../settings_dosbox.py:1081 ../settings_dosbox.py:1085
 msgid ""
@@ -875,10 +892,13 @@ msgid ""
 "by sblaster type. All OPL modes are Adlib-compatible,\n"
 "except for 'cms'."
 msgstr ""
+"Тип OPL. В случае 'auto' режим определяется типом\n"
+"soundblaster'а. Все режимы OPL совместимы с Adlib,\n"
+"кроме 'cms'."
 
 #: ../settings_dosbox.py:1107
 msgid "OPL emulation provider"
-msgstr ""
+msgstr "Тип эмуляция OPL"
 
 #: ../settings_dosbox.py:1109 ../settings_dosbox.py:1113
 msgid ""
@@ -888,45 +908,47 @@ msgstr ""
 
 #: ../settings_dosbox.py:1125
 msgid "OPL sample rate"
-msgstr ""
+msgstr "Частота дискретизации OPL"
 
 #: ../settings_dosbox.py:1127 ../settings_dosbox.py:1131
 msgid ""
 "Sample rate of OPL music emulation.\n"
 "Use 49716 for highest quality (set the mixer rate accordingly)."
 msgstr ""
+"Частота дискретизации OPL..\n"
+"Используйте 49716 для лучшего качества (настройте микшер соответвтвенно)."
 
 #: ../settings_dosbox.py:1165
 msgid "SoundBlaster"
-msgstr ""
+msgstr "SoundBlaster"
 
 #: ../settings_dosbox.py:1183 ../settings_dosbox.py:1295
 msgid "Gravis Ultrasound"
-msgstr ""
+msgstr "Gravis Ultrasound"
 
 #: ../settings_dosbox.py:1185 ../settings_dosbox.py:1189
 msgid "Enable the Gravis Ultrasound emulation."
-msgstr ""
+msgstr "Включить эмуляцию Gravis Ultrasound."
 
 #: ../settings_dosbox.py:1197 ../settings_dosbox.py:1201
 msgid "Sample rate of Ultrasound emulation."
-msgstr ""
+msgstr "Частота дискретизации Ultrasound."
 
 #: ../settings_dosbox.py:1215 ../settings_dosbox.py:1219
 msgid "The IO base address of the Gravis Ultrasound."
-msgstr ""
+msgstr "IO адрес Gravis Ultrasound."
 
 #: ../settings_dosbox.py:1233 ../settings_dosbox.py:1237
 msgid "The IRQ number of the Gravis Ultrasound."
-msgstr ""
+msgstr "Значение IRQ для Gravis Ultrasound."
 
 #: ../settings_dosbox.py:1251 ../settings_dosbox.py:1255
 msgid "The DMA channel of the Gravis Ultrasound."
-msgstr ""
+msgstr "Канал DMA для Gravis Ultrasound."
 
 #: ../settings_dosbox.py:1267
 msgid "Ultrasound directory"
-msgstr ""
+msgstr "Ultrasound директория"
 
 #: ../settings_dosbox.py:1269 ../settings_dosbox.py:1273
 msgid ""
@@ -935,26 +957,30 @@ msgid ""
 "the patch files for GUS playback. Patch sets used\n"
 "with Timidity should work fine."
 msgstr ""
+"Путь к директории Ultrasound. В этой директории\n"
+"должна быть директория MIDI, в которой находятся\n"
+"патчи для воспроизведения GUS. Патчи, используемые\n"
+"с Timidity должны подойти."
 
 #: ../settings_dosbox.py:1313
 msgid "PC-speaker"
-msgstr ""
+msgstr "Компьютерный динамик"
 
 #: ../settings_dosbox.py:1315 ../settings_dosbox.py:1319
 msgid "Enable PC-Speaker emulation."
-msgstr ""
+msgstr "Включить эмуляцию компьютерного динамика."
 
 #: ../settings_dosbox.py:1325
 msgid "PC-speaker sample rate"
-msgstr ""
+msgstr "Частота дискретизации компьютерного динамика"
 
 #: ../settings_dosbox.py:1327 ../settings_dosbox.py:1331
 msgid "Sample rate of the PC-Speaker sound generation."
-msgstr ""
+msgstr "Частота дискретизации компьютерного динамика."
 
 #: ../settings_dosbox.py:1343
 msgid "Tandy Sound System"
-msgstr ""
+msgstr "Звуковая система Tandy"
 
 #: ../settings_dosbox.py:1345 ../settings_dosbox.py:1349
 msgid ""
@@ -962,32 +988,37 @@ msgid ""
 "For 'auto', emulation is present only if\n"
 "machine is set to 'tandy'."
 msgstr ""
+"Включить эмуляцию Tandy.\n"
+"В случае 'auto' эмуляция осуществляется только\n"
+"если 'Графический адаптер' == 'tandy'."
 
 #: ../settings_dosbox.py:1361
 msgid "Tandy sample rate"
-msgstr ""
+msgstr "Частота дискретизации Tandy"
 
 #: ../settings_dosbox.py:1363 ../settings_dosbox.py:1367
 msgid "Sample rate of the Tandy 3-Voice generation."
-msgstr ""
+msgstr "Частота дискретизации Tandy"
 
 #: ../settings_dosbox.py:1379
 msgid "Disney Sound Source"
-msgstr ""
+msgstr "Disney Sound Source"
 
 #: ../settings_dosbox.py:1381 ../settings_dosbox.py:1385
 msgid ""
 "Enable Disney Sound Source emulation.\n"
 "(Covox Voice Master and Speech Thing compatible)."
 msgstr ""
+"Включить Disney Sound Source.\n"
+"(Совместимо с Covox Voice Master и Speech Thing)."
 
 #: ../settings_dosbox.py:1405
 msgid "Speaker"
-msgstr ""
+msgstr "Динамик"
 
 #: ../settings_dosbox.py:1423
 msgid "Joystick type"
-msgstr ""
+msgstr "Тип джойстика"
 
 #: ../settings_dosbox.py:1425 ../settings_dosbox.py:1435
 msgid ""
@@ -1002,32 +1033,45 @@ msgid ""
 "\n"
 "(Remember to reset dosbox's mapperfile if you saved it earlier)."
 msgstr ""
+"Тип джойстика:\n"
+"auto (выбирать на основе рельного джойстика),\n"
+"none (выключить эмуляцию джойстика),\n"
+"2axis (поддерживает два джойстика),\n"
+"4axis (поддерживает один джойстик, используется первый),\n"
+"4axis_2 (поддерживает один джойстик, используется второй,\n"
+"fcs (Thrustmaster),\n"
+"ch (CH Flightstick).\n"
+"\n"
+"(Не забудьте сбросить файл раскладок, если сохранили его ранее)."
 
 #: ../settings_dosbox.py:1453
 msgid "Timed intervals for axis"
-msgstr ""
+msgstr "Временные интервалы для осей"
 
 #: ../settings_dosbox.py:1455 ../settings_dosbox.py:1459
 msgid ""
 "Enable timed intervals for axis. Experiment with this option,\n"
 "if your joystick drifts (away)."
 msgstr ""
+"Включить временные интервалы для осей.\n"
+"Поэкспериментируйте с этой опцией, если есть проблемы с\n"
+"джойстиком."
 
 #: ../settings_dosbox.py:1465
 msgid "Autofire"
-msgstr ""
+msgstr "Авто-нажатие"
 
 #: ../settings_dosbox.py:1467 ../settings_dosbox.py:1471
 msgid "Continuously fires as long as you keep the button pressed."
-msgstr ""
+msgstr "Повторять действие, пока вы удерживаете кнопку."
 
 #: ../settings_dosbox.py:1477
 msgid "Swap axis"
-msgstr ""
+msgstr "Поменять оси"
 
 #: ../settings_dosbox.py:1479 ../settings_dosbox.py:1483
 msgid "Swap the 3rd and the 4th axis. Can be useful for certain joysticks."
-msgstr ""
+msgstr "Поменять 3-ю и 4-ю оси. Может быть полезно для некоторых джойстиков."
 
 #: ../settings_dosbox.py:1489
 msgid "Button wrapping"
@@ -1039,23 +1083,23 @@ msgstr ""
 
 #: ../settings_dosbox.py:1515
 msgid "Joystick"
-msgstr ""
+msgstr "Джойстик"
 
 #: ../settings_dosbox.py:1533
 msgid "Device connected to com port 1"
-msgstr ""
+msgstr "Устройство подключенное к COM-порту 1"
 
 #: ../settings_dosbox.py:1535 ../settings_dosbox.py:1539
 #: ../settings_dosbox.py:1576 ../settings_dosbox.py:1580
 #: ../settings_dosbox.py:1617 ../settings_dosbox.py:1621
 #: ../settings_dosbox.py:1658 ../settings_dosbox.py:1662
 msgid "Set type of device connected to com port."
-msgstr ""
+msgstr "Тип устройства подключенного к COM-порту."
 
 #: ../settings_dosbox.py:1543 ../settings_dosbox.py:1584
 #: ../settings_dosbox.py:1625 ../settings_dosbox.py:1666
 msgid "Additional parameters:"
-msgstr ""
+msgstr "Дополнительные параметры:"
 
 #: ../settings_dosbox.py:1545 ../settings_dosbox.py:1556
 #: ../settings_dosbox.py:1586 ../settings_dosbox.py:1597
@@ -1072,74 +1116,83 @@ msgid ""
 "Additional parameters must be in the form\n"
 "of parameter:value (Example: listenport:5000)."
 msgstr ""
+"Параметры для всех: irq (необязательно).\n"
+"Для directserial: realport (обязательно), rxdelay (необязательно).\n"
+"Для modem: listenport (необязательно).\n"
+"Для nullmodem: server, rxdelay, txdelay, telnet, usedtr,\n"
+"transparent, port, inhsocket (всё необязательно).\n"
+"Для modem: listenport (необязательно).\n"
+"\n"
+"Дополнителтные параметры должны быть в форме:\n"
+"параметр:значение (Пример: listenport:5000)."
 
 #: ../settings_dosbox.py:1574
 msgid "Device connected to com port 2"
-msgstr ""
+msgstr "Устройство подключенное к COM-порту 2"
 
 #: ../settings_dosbox.py:1615
 msgid "Device connected to com port 3"
-msgstr ""
+msgstr "Устройство подключенное к COM-порту 3"
 
 #: ../settings_dosbox.py:1656
 msgid "Device connected to com port 4"
-msgstr ""
+msgstr "Устройство подключенное к COM-порту 4"
 
 #: ../settings_dosbox.py:1737
 msgid "Com port device"
-msgstr ""
+msgstr "COM-порт устройство"
 
 #: ../settings_dosbox.py:1755
 msgid "XMS"
-msgstr ""
+msgstr "XMS"
 
 #: ../settings_dosbox.py:1757 ../settings_dosbox.py:1761
 msgid "Enable XMS support."
-msgstr ""
+msgstr "Включить поддержку XMS."
 
 #: ../settings_dosbox.py:1767
 msgid "EMS"
-msgstr ""
+msgstr "EMS"
 
 #: ../settings_dosbox.py:1769 ../settings_dosbox.py:1773
 msgid "Enable EMS support."
-msgstr ""
+msgstr "Включить поддержку EMS."
 
 #: ../settings_dosbox.py:1779
 msgid "UMB"
-msgstr ""
+msgstr "UMB"
 
 #: ../settings_dosbox.py:1781 ../settings_dosbox.py:1785
 msgid "Enable UMB support."
-msgstr ""
+msgstr "Включить поддержку UMB."
 
 #: ../settings_dosbox.py:1791
 msgid "Keyboard lauout:"
-msgstr ""
+msgstr "Раскладка клавиатуры:"
 
 #: ../settings_dosbox.py:1793 ../settings_dosbox.py:1797
 msgid "Keyboard layout."
-msgstr ""
+msgstr "Раскладка клавиатуры."
 
 #: ../settings_dosbox.py:1801
 msgid "Language code of the keyboard layout."
-msgstr ""
+msgstr "Языковой код раскладки клавиатуры."
 
 #: ../settings_dosbox.py:1802
 msgid "Keyboard layout code"
-msgstr ""
+msgstr "Код раскладки клавиатуры"
 
 #: ../settings_dosbox.py:1836
 msgid "DOS"
-msgstr ""
+msgstr "DOS"
 
 #: ../settings_dosbox.py:1854 ../settings_dosbox.py:1872
 msgid "IPX"
-msgstr ""
+msgstr "IPX"
 
 #: ../settings_dosbox.py:1856 ../settings_dosbox.py:1860
 msgid "Enable ipx over UDP/IP emulation."
-msgstr ""
+msgstr "Включить эмуляцию ipx поверх UDP/IP."
 
 #: ../settings_dosbox.py:1903
 msgid "Save"
