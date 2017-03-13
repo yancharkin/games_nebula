@@ -122,13 +122,17 @@ class GUI:
         self.config_load()
         self.parse_goglib_colors()
         self.parse_mylib_colors()
-        self.create_window_main()
-        self.timer()
-
+        
+        if (self.goglib_tab_at_start == True) and \
+                (not goglib_check_authorization.goglib_authorized()):
+            self.create_login_window()
+        else:
+            self.create_main_window()
+            self.timer()
 
     def create_loading_window(self):
 
-        self.window_loading = Gtk.Window(
+        self.loading_window = Gtk.Window(
             title = "Games Nebula",
             icon = app_icon,
             type = Gtk.WindowType.POPUP,
@@ -156,24 +160,88 @@ class GUI:
 
         self.box_loading_window.pack_start(self.image_loading, True, True, 0)
         self.box_loading_window.pack_start(self.label_loading, True, True, 0)
-        self.window_loading.add(self.box_loading_window)
-        self.window_loading.show_all()
+        self.loading_window.add(self.box_loading_window)
+        self.loading_window.show_all()
+    
+    def create_login_window(self):
+        
+        self.login_window = Gtk.Window(
+            title = "Games Nebula",
+            type = Gtk.WindowType.TOPLEVEL,
+            window_position = Gtk.WindowPosition.CENTER_ALWAYS,
+            icon = app_icon,
+            width_request = 360,
+            resizable = False
+            )
+        self.login_window.connect('delete-event', self.quit_app)
+        
+        grid = Gtk.Grid(
+            column_homogeneous = True,
+            row_spacing = 10,
+            column_spacing = 10,
+            margin_right = 10,
+            margin_left = 10,
+            margin_top = 10,
+            margin_bottom = 10
+            )
+            
+        label_authorization = Gtk.Label(
+            label = _("GOG Authorization")
+            )
+        
+        self.entry_email = Gtk.Entry(
+            placeholder_text = _("E-mail"),
+            xalign = 0.5,
+            #input_purpose = Gtk.InputPurpose.EMAIL
+            )
+        self.entry_password = Gtk.Entry(
+            placeholder_text = _("Password"),
+            xalign = 0.5,
+            #input_purpose = Gtk.InputPurpose.PASSWORD
+            visibility = False
+            )
+        
+        checkbutton_show_password = Gtk.CheckButton(
+            label = _("Show password")
+            )
+        checkbutton_show_password.connect('clicked', self.cb_checkbutton_show_password)
+        
+        button_ok = Gtk.Button(
+            label = _("OK")
+            )
+        button_ok.connect('clicked', self.cb_login)
+        
+        button_cancel = Gtk.Button(
+            label = _("Cancel")
+            )
+        button_cancel.connect('clicked', self.cb_login)
+           
+        grid.attach(label_authorization, 0, 0, 2, 1)
+        grid.attach(self.entry_email, 0, 1, 2, 1)
+        grid.attach(self.entry_password, 0, 2, 2, 1)
+        grid.attach(checkbutton_show_password, 0, 3, 2, 1)
+        grid.attach(button_ok, 0, 4, 1, 1)
+        grid.attach(button_cancel, 1, 4, 1, 1)
+        
+        self.login_window.add(grid)
+        self.login_window.show_all()
+        button_cancel.grab_focus()
+        self.loading_window.hide()
 
+    def create_main_window(self):
 
-    def create_window_main(self):
-
-        self.window_main = Gtk.Window(
+        self.main_window = Gtk.Window(
             title = "Games Nebula",
             type = Gtk.WindowType.TOPLEVEL,
             window_position = Gtk.WindowPosition.CENTER_ALWAYS,
             icon = app_icon,
             )
-        self.window_main.connect('delete-event', self.quit_app)
-        self.window_main.connect('key-press-event', self.shortcuts)
+        self.main_window.connect('delete-event', self.quit_app)
+        self.main_window.connect('key-press-event', self.shortcuts)
 
-        workarea_width, workarea_height = self.get_monitor_workarea(self.window_main)
-        self.window_main.set_property('default_width', workarea_width)
-        self.window_main.set_property('default_height', workarea_height)
+        workarea_width, workarea_height = self.get_monitor_workarea(self.main_window)
+        self.main_window.set_property('default_width', workarea_width)
+        self.main_window.set_property('default_height', workarea_height)
 
         self.notebook = Gtk.Notebook(
             show_tabs = self.show_tabs
@@ -221,16 +289,16 @@ class GUI:
         self.create_settings_tab()
         self.create_queue_tab()
 
-        self.window_main.add(self.notebook)
+        self.main_window.add(self.notebook)
 
         self.notebook.connect('switch-page', self.notebook_page_switched)
 
-        self.window_main.show_all()
-        self.window_loading.hide()
+        self.main_window.show_all()
+        self.loading_window.hide()
 
     def notebook_page_switched(self, notebook, widget, arg):
 
-        # Automatically check for new games (not a good idea for now)
+        # Automatically check for new games (not a good idea)
         #~ if (widget.get_name() == 'goglib_tab') and (self.last_active_tab == 'gogcom_tab'):
             #~ if self.goglib_offline_mode:
                 #~ if goglib_authorized:
@@ -285,10 +353,10 @@ class GUI:
 
     def create_goglib_tab(self):
 
-        # More reliable, but slow
-        #if goglib_check_authorization.goglib_authorized():
-
-        if goglib_check_connection.goglib_available():
+        # Quick but unreliable
+        #if goglib_check_connection.goglib_available():
+        
+        if goglib_check_authorization.goglib_authorized():
             self.goglib_offline_mode = False
             self.create_goglib_tab_content()
         else:
@@ -360,7 +428,7 @@ class GUI:
 
         self.goglib_offline_available_games()
 
-        self.window_main.show_all()
+        self.main_window.show_all()
 
         new_active_page = self.notebook.page_num(self.box_goglib_page)
         self.notebook.set_current_page(new_active_page)
@@ -388,7 +456,7 @@ class GUI:
             if returncode != 0:
 
                 message_dialog = Gtk.MessageDialog(
-                    self.window_main,
+                    self.main_window,
                     0,
                     Gtk.MessageType.ERROR,
                     Gtk.ButtonsType.OK,
@@ -1112,7 +1180,7 @@ class GUI:
         if len(tabs_to_add_names) != 0:
 
             message_dialog = Gtk.MessageDialog(
-                self.window_main,
+                self.main_window,
                 0,
                 Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.OK_CANCEL,
@@ -1182,7 +1250,7 @@ class GUI:
 
                 self.set_new_page_active()
 
-            self.window_main.show_all()
+            self.main_window.show_all()
 
 
     def create_gogcom_tab(self):
@@ -2705,7 +2773,7 @@ class GUI:
 
         self.window_update_message.add(self.box_update_message)
 
-        self.window_main.hide()
+        self.main_window.hide()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.hide()
@@ -2761,7 +2829,7 @@ class GUI:
 
     def update_goglib_interface(self):
 
-        if (len(self.goglib_new_games_list) != 0) and self.window_main.get_visible():
+        if (len(self.goglib_new_games_list) != 0) and self.main_window.get_visible():
             self.update_goglib()
 
         if (len(goglib_installation_queue) > 0) and (goglib_installation_queue[0] != self.goglib_now_installing):
@@ -3860,6 +3928,68 @@ class GUI:
             self.combobox_mylib_tags3.set_visible(True)
             self.combobox_mylib_tags4.set_visible(True)
 
+    def cb_login(self, button):
+        if button.get_label() == _("OK"):
+            email = self.entry_email.get_text()
+            password = self.entry_password.get_text()
+            
+            if (email == '') or (password == ''):
+                message_dialog = Gtk.MessageDialog(
+                    self.login_window,
+                    0,
+                    Gtk.MessageType.ERROR,
+                    Gtk.ButtonsType.OK,
+                    _("Error!"),
+                    )
+                message_dialog.format_secondary_text(_("Empty e-mail or password."))
+                self.login_window.hide()
+                message_dialog.run()
+                message_dialog.destroy()
+                self.login_window.show()
+            else:
+                os.system('lgogdownloader --login-email ' + email 
+                + ' --login-password ' + password)
+            
+                if not goglib_check_authorization.goglib_authorized():
+                    
+                    message_dialog = Gtk.MessageDialog(
+                        self.login_window,
+                        0,
+                        Gtk.MessageType.ERROR,
+                        Gtk.ButtonsType.OK,
+                        _("Error!"),
+                        )
+                    message_dialog.format_secondary_text(_("Authorization failed."))
+                    self.login_window.hide()
+                    message_dialog.run()
+                    message_dialog.destroy()
+                    self.login_window.show()
+                else:
+                    self.login_window.hide()
+                    self.loading_window.show()
+
+                    while Gtk.events_pending():
+                        Gtk.main_iteration()
+
+                    self.create_main_window()
+                    self.timer()
+        else:
+
+            self.login_window.hide()
+            self.loading_window.show()
+
+            while Gtk.events_pending():
+                Gtk.main_iteration()
+
+            self.create_main_window()
+            self.timer()
+        
+    def cb_checkbutton_show_password(self, checkbutton):
+        if checkbutton.get_active() == True:
+            self.entry_password.set_visibility(True)
+        else:
+            self.entry_password.set_visibility(False)
+
     def cb_adjustment_goglib_scale_banner(self, adjustment):
 
         self.scale_level = adjustment.get_value()
@@ -3881,7 +4011,7 @@ class GUI:
             current_tags_str = str1 = ','.join(current_tags_list)
 
             message_dialog = Gtk.MessageDialog(
-                self.window_main,
+                self.main_window,
                 0,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK_CANCEL,
@@ -3969,7 +4099,7 @@ class GUI:
             current_tags_str = str1 = ','.join(current_tags_list)
 
             message_dialog = Gtk.MessageDialog(
-                self.window_main,
+                self.main_window,
                 0,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK_CANCEL,
@@ -4162,7 +4292,7 @@ class GUI:
         #mode = self.combobox_monitor.get_active_text().split()[1]
         os.system('xrandr --output '+ output + ' --primary')
 
-        self.window_main.hide()
+        self.main_window.hide()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.hide()
@@ -4186,7 +4316,7 @@ class GUI:
         output = self.monitor_primary.split()[0]
         os.system('xrandr --output '+ output + ' --primary')
 
-        self.window_main.show()
+        self.main_window.show()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.show()
@@ -4198,7 +4328,7 @@ class GUI:
         #mode = self.combobox_monitor.get_active_text().split()[1]
         os.system('xrandr --output '+ output + ' --primary')
 
-        self.window_main.hide()
+        self.main_window.hide()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.hide()
@@ -4223,7 +4353,7 @@ class GUI:
         output = self.monitor_primary.split()[0]
         os.system('xrandr --output '+ output + ' --primary')
 
-        self.window_main.show()
+        self.main_window.show()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.show()
@@ -4251,7 +4381,7 @@ class GUI:
         else:
 
             message_dialog = Gtk.MessageDialog(
-                self.window_main,
+                self.main_window,
                 0,
                 Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.YES_NO
@@ -4300,7 +4430,7 @@ class GUI:
         else:
 
             message_dialog = Gtk.MessageDialog(
-                self.window_main,
+                self.main_window,
                 0,
                 Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.YES_NO
@@ -4580,7 +4710,7 @@ class GUI:
 
                 if len(self.goglib_new_games_list) == 0:
                     message = Gtk.MessageDialog(
-                        self.window_main,
+                        self.main_window,
                         0,
                         Gtk.MessageType.INFO,
                         Gtk.ButtonsType.OK,
@@ -4696,7 +4826,7 @@ class GUI:
 
     def cb_button_wine_settings(self, button):
 
-        self.window_main.hide()
+        self.main_window.hide()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.hide()
@@ -4714,14 +4844,14 @@ class GUI:
         os.system('python ' + nebula_dir + '/settings_wine.py ' + \
         wine_path + ' ' + wineprefix_path)
 
-        self.window_main.show()
+        self.main_window.show()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.show()
 
     def cb_button_scummvm_settings(self, button):
 
-        self.window_main.hide()
+        self.main_window.hide()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.hide()
@@ -4735,14 +4865,14 @@ class GUI:
         if self.scummvm == 'system':
             os.system('scummvm -F -c ' + config_dir + '/scummvmrc')
 
-        self.window_main.show()
+        self.main_window.show()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.show()
 
     def cb_button_dosbox_settings(self, button):
 
-        self.window_main.hide()
+        self.main_window.hide()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.hide()
@@ -4770,7 +4900,7 @@ class GUI:
             #~ os.system('python ' + nebula_dir + '/dosbox_settings_svn_daum.py ' + \
             #~ dosbox_global_config + ' global ' + dosbox_version)
 
-        self.window_main.show()
+        self.main_window.show()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.show()
@@ -4855,7 +4985,7 @@ class GUI:
         if new_goglib_install_dir != self.goglib_install_dir:
 
             message_dialog = Gtk.MessageDialog(
-                self.window_main,
+                self.main_window,
                 0,
                 Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.YES_NO,
@@ -4897,7 +5027,7 @@ class GUI:
         if new_mylib_install_dir != self.mylib_install_dir:
 
             message_dialog = Gtk.MessageDialog(
-                self.window_main,
+                self.main_window,
                 0,
                 Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.YES_NO,
@@ -5376,7 +5506,7 @@ class GUI:
         # Quit (Ctrl + Q)
         if (key_scancode == 24) and (event.state & Gdk.ModifierType.CONTROL_MASK):
             message_dialog = Gtk.MessageDialog(
-                self.window_main,
+                self.main_window,
                 0,
                 Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.OK_CANCEL,
