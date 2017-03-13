@@ -2,7 +2,7 @@
 Do not expect a full-featured client like GOG Galaxy, it's not. But it's works (most of the times) and can be useful.
 
 ###Supported distros
-Debian 9
+Debian 9,
 Ubuntu 16.04
 
 Anything else may or may not work.
