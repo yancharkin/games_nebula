@@ -123,8 +123,10 @@ class GUI:
         self.parse_goglib_colors()
         self.parse_mylib_colors()
         
+        self.goglib_authorized = goglib_check_authorization.goglib_authorized()
+        
         if (self.goglib_tab_at_start == True) and \
-                (not goglib_check_authorization.goglib_authorized()):
+                (self.goglib_authorized == False):
             self.create_login_window()
         else:
             self.create_main_window()
@@ -356,7 +358,7 @@ class GUI:
         # Quick but unreliable
         #if goglib_check_connection.goglib_available():
         
-        if goglib_check_authorization.goglib_authorized():
+        if self.goglib_authorized == True:
             self.goglib_offline_mode = False
             self.create_goglib_tab_content()
         else:
