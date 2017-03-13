@@ -2,7 +2,7 @@
 Do not expect a full-featured client like GOG Galaxy, it's not. But it's works (most of the times) and can be useful.
 
 ###Supported distros
-Debian 9,
+Debian 9  
 Ubuntu 16.04
 
 Anything else may or may not work.
@@ -37,5 +37,5 @@ You can do it by executing start.sh, games_nebula.py or shortcut in main menu.
 **Note:** If you have a lot of games in your library and/or slow CPU first launch can take some time.
 
 ###Limitations
-For **every** game you need installation script. I've added quite a few, but for most games there is no scripts.
+For **every** game you need installation script. I've added quite a few, but for most games there is no scripts.  
 [Scripts repository](https://github.com/yancharkin/games_nebula_goglib_scripts)
