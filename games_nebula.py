@@ -4893,8 +4893,8 @@ class GUI:
 
         dosbox_global_config = os.getenv('HOME') + '/.games_nebula/config/dosbox.conf'
 
-        os.system('python ' + nebula_dir + '/settings_dosbox.py ' + \
-        self.install_dir + '/' + self.game_name + '/dosbox.conf local ' + dosbox_version)
+        os.system('python ' + nebula_dir + '/settings_dosbox.py ' \
+        + dosbox_global_config + ' global ' + dosbox_version)
 
         # TODO Use if special config tool for svn-daum build created (settings_dosbox_svn_daum.py)
         #~ if (dosbox_version == 'stable') or (dosbox_version == 'svn'):
