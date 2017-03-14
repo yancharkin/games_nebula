@@ -123,11 +123,13 @@ class GUI:
         self.parse_goglib_colors()
         self.parse_mylib_colors()
         
-        self.goglib_authorized = goglib_check_authorization.goglib_authorized()
-        
-        if (self.goglib_tab_at_start == True) and \
-                (self.goglib_authorized == False):
-            self.create_login_window()
+        if self.goglib_tab_at_start == True:
+            self.goglib_authorized = goglib_check_authorization.goglib_authorized()
+            if self.goglib_authorized == False:
+                self.create_login_window()
+            else:
+                self.create_main_window()
+                self.timer()
         else:
             self.create_main_window()
             self.timer()
@@ -354,10 +356,10 @@ class GUI:
         Gtk.main_quit()
 
     def create_goglib_tab(self):
+    
+        if self.goglib_tab_at_start == False:
+            self.goglib_authorized = goglib_check_authorization.goglib_authorized()
 
-        # Quick but unreliable
-        #if goglib_check_connection.goglib_available():
-        
         if self.goglib_authorized == True:
             self.goglib_offline_mode = False
             self.create_goglib_tab_content()
