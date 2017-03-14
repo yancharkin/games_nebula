@@ -3951,8 +3951,10 @@ class GUI:
             else:
                 os.system('lgogdownloader --login-email ' + email 
                 + ' --login-password ' + password)
-            
-                if not goglib_check_authorization.goglib_authorized():
+                
+                self.goglib_authorized = goglib_check_authorization.goglib_authorized()
+
+                if self.goglib_authorized == False:
                     
                     message_dialog = Gtk.MessageDialog(
                         self.login_window,
