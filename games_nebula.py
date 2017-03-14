@@ -62,7 +62,7 @@ goglib_game_grids_current_list = []
 goglib_games_banners_list = []
 goglib_setup_buttons_list = []
 goglib_launch_buttons_list = []
-goglib_pixbufs_list = []
+#~ goglib_pixbufs_list = []
 
 mylib_game_grids_full_list = []
 mylib_game_grids_current_list = []
@@ -482,7 +482,7 @@ class GUI:
         self.list_icons,\
         self.available_scripts = goglib_get_data.games_info(data_dir)
 
-        self.number_of_games_to_show = self.number_of_games
+        self.goglib_number_of_games_to_show = self.number_of_games
         self.goglib_shown_games_list = list(self.goglib_games_list)
         self.status_filter_list = list(self.goglib_games_list)
         self.tags1_filter_list = list(self.goglib_games_list)
@@ -690,7 +690,7 @@ class GUI:
 
         self.scrolledwindow_goglib.add(self.grid_goglib)
 
-        for i in range(0, self.number_of_games_to_show):
+        for i in range(0, self.goglib_number_of_games_to_show):
 
             gtk_grid_game = Gtk.Grid(
                 name = self.goglib_shown_games_list[i],
@@ -710,15 +710,15 @@ class GUI:
 
             # Not needed (?) images updated in update function (job done twice).
             # FIX Or create pixbufs here and use later everywhere (do not read from file)
-            if self.goglib_shown_games_list[i] not in self.available_scripts:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/unavailable/' + self.goglib_shown_games_list[i] + '.jpg')
-                pixbuf = pixbuf.scale_simple(518 * self.scale_level, 240 * self.scale_level, InterpType.BILINEAR)
-                gtk_button_setup.set_sensitive(False)
-            else:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/' + self.goglib_shown_games_list[i] + '.jpg')
-                pixbuf = pixbuf.scale_simple(518 * self.scale_level, 240 * self.scale_level, InterpType.BILINEAR)
-                gtk_button_setup.set_sensitive(True)
-            goglib_pixbufs_list.append(pixbuf)
+            #~ if self.goglib_shown_games_list[i] not in self.available_scripts:
+                #~ pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/unavailable/' + self.goglib_shown_games_list[i] + '.jpg')
+                #~ pixbuf = pixbuf.scale_simple(518 * self.scale_level, 240 * self.scale_level, InterpType.BILINEAR)
+                #~ gtk_button_setup.set_sensitive(False)
+            #~ else:
+                #~ pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/' + self.goglib_shown_games_list[i] + '.jpg')
+                #~ pixbuf = pixbuf.scale_simple(518 * self.scale_level, 240 * self.scale_level, InterpType.BILINEAR)
+                #~ gtk_button_setup.set_sensitive(True)
+            #~ goglib_pixbufs_list.append(pixbuf)
 
             image_goglib_banner = Gtk.Image(
                 name = self.goglib_shown_games_list[i],
@@ -2471,7 +2471,7 @@ class GUI:
         scale_level = float(pixbuf_width)/518
         pixbuf_height = 240 * scale_level
 
-        for i in range(self.number_of_games_to_show):
+        for i in range(self.goglib_number_of_games_to_show):
             if self.goglib_shown_games_list[i] == game_name:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/' + game_name + '.jpg')
                 pixbuf = pixbuf.scale_simple(pixbuf_width, pixbuf_height, InterpType.BILINEAR)
@@ -2611,10 +2611,10 @@ class GUI:
 
         for j in range(number_of_columns):
 
-            for i in range(j, self.number_of_games_to_show, number_of_columns):
+            for i in range(j, self.goglib_number_of_games_to_show, number_of_columns):
                 column_indexes.append(i)
 
-            for i in range(0, self.number_of_games_to_show):
+            for i in range(0, self.goglib_number_of_games_to_show):
                 if i in column_indexes:
                     self.grid_goglib.attach(goglib_game_grids_current_list[i], j, int(i / number_of_columns), 1, 1)
 
@@ -2688,7 +2688,7 @@ class GUI:
         new_pixbuf_width = self.scale_level * 518
         new_pixbuf_height = self.scale_level * 240
 
-        for i in range(0, self.number_of_games_to_show):
+        for i in range(0, self.goglib_number_of_games_to_show):
 
             if os.path.exists(self.goglib_install_dir + '/' + self.goglib_shown_games_list[i] + '/start.sh'):
                 goglib_setup_buttons_list[i].set_label(_("Remove"))
@@ -2731,7 +2731,7 @@ class GUI:
             goglib_games_banners_list[i].set_property('tooltip_text', \
                                     self.dict_name_title[self.goglib_shown_games_list[i]])
 
-        if self.number_of_games_to_show < number_of_columns:
+        if self.goglib_number_of_games_to_show < number_of_columns:
             self.grid_goglib.set_property('halign', Gtk.Align.START)
             column_spacing = (self.goglib_box_width  - (new_pixbuf_width * number_of_columns)) / (number_of_columns)
             self.grid_goglib.set_property('column_spacing', column_spacing + 1)
@@ -3810,7 +3810,7 @@ class GUI:
         self.grid_unattach()
 
         self.goglib_shown_games_list = list(self.final_list)
-        self.number_of_games_to_show = len(self.goglib_shown_games_list)
+        self.goglib_number_of_games_to_show = len(self.goglib_shown_games_list)
 
         goglib_game_grids_current_list  = []
 
@@ -4202,7 +4202,7 @@ class GUI:
                 if os.path.exists(self.goglib_download_dir + '/' + game_name):
                     os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
 
-            for i in range(self.number_of_games_to_show):
+            for i in range(self.goglib_number_of_games_to_show):
                 if goglib_setup_buttons_list[i].get_name() == game_name:
                     goglib_setup_buttons_list[i].set_label(_("Install"))
                     goglib_setup_buttons_list[i].set_sensitive(True)
@@ -4222,7 +4222,7 @@ class GUI:
                     os.system(self.goglib_install_dir + '/' + game_name + '/uninstall')
                 os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
 
-            for i in range(self.number_of_games_to_show):
+            for i in range(self.goglib_number_of_games_to_show):
                 if goglib_setup_buttons_list[i].get_name() == game_name:
                     goglib_setup_buttons_list[i].set_label(_("Install"))
                     goglib_setup_buttons_list[i].set_sensitive(True)
@@ -4239,7 +4239,7 @@ class GUI:
                     os.system(self.goglib_install_dir + '/' + game_name + '/uninstall')
                 os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
 
-            for i in range(self.number_of_games_to_show):
+            for i in range(self.goglib_number_of_games_to_show):
                 if goglib_setup_buttons_list[i].get_name() == game_name:
                     goglib_setup_buttons_list[i].set_label(_("Install"))
                     goglib_setup_buttons_list[i].set_sensitive(True)
@@ -4249,7 +4249,7 @@ class GUI:
             goglib_installation_queue.remove(game_name)
 
             if not os.path.exists(self.goglib_install_dir + '/' + game_name + '/start.sh'):
-                for i in range(self.number_of_games_to_show):
+                for i in range(self.goglib_number_of_games_to_show):
                     if goglib_setup_buttons_list[i].get_name() == game_name:
                         goglib_setup_buttons_list[i].set_label(_("Install"))
                         goglib_setup_buttons_list[i].set_sensitive(True)
