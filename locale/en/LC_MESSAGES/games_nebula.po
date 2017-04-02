@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-03 14:42+0300\n"
-"PO-Revision-Date: 2017-03-03 14:44+0300\n"
+"POT-Creation-Date: 2017-04-02 15:59+0300\n"
+"PO-Revision-Date: 2017-04-02 15:59+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -18,274 +18,298 @@ msgstr ""
 "X-Generator: Poedit 1.8.11\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../games_nebula.py:150
+#: ../games_nebula.py:159
 msgid "Launching 'Games Nebula'"
 msgstr "Launching 'Games Nebula'"
 
-#: ../games_nebula.py:188 ../games_nebula.py:1119
+#: ../games_nebula.py:194
+msgid "GOG Authorization"
+msgstr "GOG Authorization"
+
+#: ../games_nebula.py:198
+msgid "E-mail"
+msgstr "E-mail"
+
+#: ../games_nebula.py:203
+msgid "Password"
+msgstr "Password"
+
+#: ../games_nebula.py:210
+msgid "Show password"
+msgstr "Show password"
+
+#: ../games_nebula.py:215 ../games_nebula.py:3937
+msgid "OK"
+msgstr "OK"
+
+#: ../games_nebula.py:220
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ../games_nebula.py:261 ../games_nebula.py:1192
 msgid "Add tabs"
 msgstr "Add tabs"
 
-#: ../games_nebula.py:197
+#: ../games_nebula.py:270
 msgid "Update GOG library"
 msgstr "Update GOG library"
 
-#: ../games_nebula.py:313
+#: ../games_nebula.py:386
 msgid "You are not authorized on GOG.COM and can't download games."
 msgstr "You are not authorized on GOG.COM and can't download games."
 
-#: ../games_nebula.py:321
+#: ../games_nebula.py:394
 msgid "Start in offline mode"
 msgstr "Start in offline mode"
 
-#: ../games_nebula.py:334 ../games_nebula.py:717 ../games_nebula.py:1098
-#: ../games_nebula.py:1261
+#: ../games_nebula.py:407 ../games_nebula.py:790 ../games_nebula.py:1171
+#: ../games_nebula.py:1334
 msgid "GOG LIBRARY"
 msgstr "GOG LIBRARY"
 
-#: ../games_nebula.py:395
+#: ../games_nebula.py:468
 msgid "Error"
 msgstr "Error"
 
-#: ../games_nebula.py:397
+#: ../games_nebula.py:470
 msgid "Can't get games list."
 msgstr "Can't get games list."
 
-#: ../games_nebula.py:444 ../games_nebula.py:788
+#: ../games_nebula.py:517 ../games_nebula.py:861
 msgid "Search"
 msgstr "Search"
 
-#: ../games_nebula.py:450 ../games_nebula.py:794
+#: ../games_nebula.py:523 ../games_nebula.py:867
 msgid "Status filter"
 msgstr "Status filter"
 
-#: ../games_nebula.py:453 ../games_nebula.py:471 ../games_nebula.py:496
-#: ../games_nebula.py:521 ../games_nebula.py:546 ../games_nebula.py:797
-#: ../games_nebula.py:816 ../games_nebula.py:842 ../games_nebula.py:868
-#: ../games_nebula.py:894 ../games_nebula.py:2893 ../games_nebula.py:2895
-#: ../games_nebula.py:2896 ../games_nebula.py:2897 ../games_nebula.py:2898
-#: ../games_nebula.py:2954 ../games_nebula.py:2956 ../games_nebula.py:2957
-#: ../games_nebula.py:2958 ../games_nebula.py:2959 ../games_nebula.py:3392
-#: ../games_nebula.py:3423 ../games_nebula.py:3454 ../games_nebula.py:3485
-#: ../games_nebula.py:3516 ../games_nebula.py:3547 ../games_nebula.py:3578
-#: ../games_nebula.py:3609 ../games_nebula.py:3676 ../games_nebula.py:3706
-#: ../games_nebula.py:3925 ../games_nebula.py:3926 ../games_nebula.py:3927
-#: ../games_nebula.py:3928 ../games_nebula.py:4013 ../games_nebula.py:4014
-#: ../games_nebula.py:4015 ../games_nebula.py:4016
+#: ../games_nebula.py:526 ../games_nebula.py:544 ../games_nebula.py:569
+#: ../games_nebula.py:594 ../games_nebula.py:619 ../games_nebula.py:870
+#: ../games_nebula.py:889 ../games_nebula.py:915 ../games_nebula.py:941
+#: ../games_nebula.py:967 ../games_nebula.py:2971 ../games_nebula.py:2973
+#: ../games_nebula.py:2974 ../games_nebula.py:2975 ../games_nebula.py:2976
+#: ../games_nebula.py:3032 ../games_nebula.py:3034 ../games_nebula.py:3035
+#: ../games_nebula.py:3036 ../games_nebula.py:3037 ../games_nebula.py:3470
+#: ../games_nebula.py:3501 ../games_nebula.py:3532 ../games_nebula.py:3563
+#: ../games_nebula.py:3594 ../games_nebula.py:3625 ../games_nebula.py:3656
+#: ../games_nebula.py:3687 ../games_nebula.py:3754 ../games_nebula.py:3784
+#: ../games_nebula.py:4067 ../games_nebula.py:4068 ../games_nebula.py:4069
+#: ../games_nebula.py:4070 ../games_nebula.py:4155 ../games_nebula.py:4156
+#: ../games_nebula.py:4157 ../games_nebula.py:4158
 msgid "No filter"
 msgstr "No filter"
 
-#: ../games_nebula.py:453 ../games_nebula.py:797 ../games_nebula.py:3678
-#: ../games_nebula.py:3708
+#: ../games_nebula.py:526 ../games_nebula.py:870 ../games_nebula.py:3756
+#: ../games_nebula.py:3786
 msgid "Installed"
 msgstr "Installed"
 
-#: ../games_nebula.py:453 ../games_nebula.py:3686
+#: ../games_nebula.py:526 ../games_nebula.py:3764
 msgid "Unavailable"
 msgstr "Unavailable"
 
-#: ../games_nebula.py:469 ../games_nebula.py:814
+#: ../games_nebula.py:542 ../games_nebula.py:887
 msgid "Tags filter 1"
 msgstr "Tags filter 1"
 
-#: ../games_nebula.py:481 ../games_nebula.py:506 ../games_nebula.py:531
-#: ../games_nebula.py:556 ../games_nebula.py:827 ../games_nebula.py:853
-#: ../games_nebula.py:879 ../games_nebula.py:905 ../games_nebula.py:3398
-#: ../games_nebula.py:3429 ../games_nebula.py:3460 ../games_nebula.py:3491
-#: ../games_nebula.py:3522 ../games_nebula.py:3553 ../games_nebula.py:3584
-#: ../games_nebula.py:3615 ../games_nebula.py:3939 ../games_nebula.py:3940
-#: ../games_nebula.py:3941 ../games_nebula.py:3942 ../games_nebula.py:4027
-#: ../games_nebula.py:4028 ../games_nebula.py:4029 ../games_nebula.py:4030
+#: ../games_nebula.py:554 ../games_nebula.py:579 ../games_nebula.py:604
+#: ../games_nebula.py:629 ../games_nebula.py:900 ../games_nebula.py:926
+#: ../games_nebula.py:952 ../games_nebula.py:978 ../games_nebula.py:3476
+#: ../games_nebula.py:3507 ../games_nebula.py:3538 ../games_nebula.py:3569
+#: ../games_nebula.py:3600 ../games_nebula.py:3631 ../games_nebula.py:3662
+#: ../games_nebula.py:3693 ../games_nebula.py:4081 ../games_nebula.py:4082
+#: ../games_nebula.py:4083 ../games_nebula.py:4084 ../games_nebula.py:4169
+#: ../games_nebula.py:4170 ../games_nebula.py:4171 ../games_nebula.py:4172
 msgid "No tags"
 msgstr "No tags"
 
-#: ../games_nebula.py:493 ../games_nebula.py:839
+#: ../games_nebula.py:566 ../games_nebula.py:912
 msgid "Tags filter 2"
 msgstr "Tags filter 2"
 
-#: ../games_nebula.py:518 ../games_nebula.py:865
+#: ../games_nebula.py:591 ../games_nebula.py:938
 msgid "Tags filter 3"
 msgstr "Tags filter 3"
 
-#: ../games_nebula.py:543 ../games_nebula.py:891
+#: ../games_nebula.py:616 ../games_nebula.py:964
 msgid "Tags filter 4"
 msgstr "Tags filter 4"
 
-#: ../games_nebula.py:571 ../games_nebula.py:920
+#: ../games_nebula.py:644 ../games_nebula.py:993
 msgid "Add tags filter"
 msgstr "Add tags filter"
 
-#: ../games_nebula.py:578 ../games_nebula.py:927
+#: ../games_nebula.py:651 ../games_nebula.py:1000
 msgid "Remove tags filter"
 msgstr "Remove tags filter"
 
-#: ../games_nebula.py:586 ../games_nebula.py:935
+#: ../games_nebula.py:659 ../games_nebula.py:1008
 msgid "Scale"
 msgstr "Scale"
 
-#: ../games_nebula.py:633 ../games_nebula.py:673 ../games_nebula.py:983
-#: ../games_nebula.py:1017 ../games_nebula.py:2575 ../games_nebula.py:2632
-#: ../games_nebula.py:4065 ../games_nebula.py:4085 ../games_nebula.py:4102
-#: ../games_nebula.py:4112 ../games_nebula.py:4133 ../games_nebula.py:4145
-#: ../games_nebula.py:4265 ../games_nebula.py:4314
+#: ../games_nebula.py:706 ../games_nebula.py:746 ../games_nebula.py:1056
+#: ../games_nebula.py:1090 ../games_nebula.py:2648 ../games_nebula.py:2705
+#: ../games_nebula.py:4207 ../games_nebula.py:4227 ../games_nebula.py:4244
+#: ../games_nebula.py:4254 ../games_nebula.py:4275 ../games_nebula.py:4287
+#: ../games_nebula.py:4407 ../games_nebula.py:4456
 msgid "Install"
 msgstr "Install"
 
-#: ../games_nebula.py:664 ../games_nebula.py:1008
+#: ../games_nebula.py:737 ../games_nebula.py:1081
 msgid "Launch"
 msgstr "Launch"
 
-#: ../games_nebula.py:670 ../games_nebula.py:1014 ../games_nebula.py:2566
-#: ../games_nebula.py:2621
+#: ../games_nebula.py:743 ../games_nebula.py:1087 ../games_nebula.py:2639
+#: ../games_nebula.py:2694
 msgid "Remove"
 msgstr "Remove"
 
-#: ../games_nebula.py:1060 ../games_nebula.py:1099 ../games_nebula.py:1278
+#: ../games_nebula.py:1133 ../games_nebula.py:1172 ../games_nebula.py:1351
 msgid "MY LIBRARY"
 msgstr "MY LIBRARY"
 
-#: ../games_nebula.py:1100 ../games_nebula.py:1208 ../games_nebula.py:1295
+#: ../games_nebula.py:1173 ../games_nebula.py:1281 ../games_nebula.py:1368
 msgid "GOG.COM"
 msgstr "GOG.COM"
 
-#: ../games_nebula.py:1101 ../games_nebula.py:1308 ../games_nebula.py:2267
+#: ../games_nebula.py:1174 ../games_nebula.py:1381 ../games_nebula.py:2340
 msgid "QUEUE"
 msgstr "QUEUE"
 
-#: ../games_nebula.py:1102 ../games_nebula.py:1321 ../games_nebula.py:2213
+#: ../games_nebula.py:1175 ../games_nebula.py:1394 ../games_nebula.py:2286
 msgid "SETTINGS"
 msgstr "SETTINGS"
 
-#: ../games_nebula.py:1121
+#: ../games_nebula.py:1194
 msgid "Choose tabs you want to add:"
 msgstr "Choose tabs you want to add:"
 
-#: ../games_nebula.py:1256
+#: ../games_nebula.py:1329
 msgid "Tabs at startup"
 msgstr "Tabs at startup"
 
-#: ../games_nebula.py:1358
+#: ../games_nebula.py:1431
 msgid "GOG library preferences"
 msgstr "GOG library preferences"
 
-#: ../games_nebula.py:1364
+#: ../games_nebula.py:1437
 msgid "Preferred language"
 msgstr "Preferred language"
 
-#: ../games_nebula.py:1385 ../games_nebula.py:1644
+#: ../games_nebula.py:1458 ../games_nebula.py:1717
 msgid "Keep installers"
 msgstr "Keep installers"
 
-#: ../games_nebula.py:1404
+#: ../games_nebula.py:1477
 msgid "Download extras"
 msgstr "Download extras"
 
-#: ../games_nebula.py:1417 ../games_nebula.py:1659
+#: ../games_nebula.py:1490 ../games_nebula.py:1732
 msgid "Downloads directory"
 msgstr "Downloads directory"
 
-#: ../games_nebula.py:1422 ../games_nebula.py:1437 ../games_nebula.py:1664
-#: ../games_nebula.py:1679 ../games_nebula.py:2007 ../games_nebula.py:2078
-#: ../games_nebula.py:2151 ../launcher_dosbox.py:215 ../launcher_scummvm.py:230
+#: ../games_nebula.py:1495 ../games_nebula.py:1510 ../games_nebula.py:1737
+#: ../games_nebula.py:1752 ../games_nebula.py:2080 ../games_nebula.py:2151
+#: ../games_nebula.py:2224 ../launcher_dosbox.py:215 ../launcher_scummvm.py:230
 #: ../launcher_wine.py:271
 msgid "Select a directory"
 msgstr "Select a directory"
 
-#: ../games_nebula.py:1431 ../games_nebula.py:1673
+#: ../games_nebula.py:1504 ../games_nebula.py:1746
 msgid "Installation directory"
 msgstr "Installation directory"
 
-#: ../games_nebula.py:1445 ../games_nebula.py:1688
+#: ../games_nebula.py:1518 ../games_nebula.py:1761
 msgid "Status filter behaivior:"
 msgstr "Status filter behaivior:"
 
-#: ../games_nebula.py:1449 ../games_nebula.py:1469 ../games_nebula.py:1489
-#: ../games_nebula.py:1509 ../games_nebula.py:1529 ../games_nebula.py:1560
-#: ../games_nebula.py:1692 ../games_nebula.py:1712 ../games_nebula.py:1732
-#: ../games_nebula.py:1752 ../games_nebula.py:1772 ../games_nebula.py:1803
+#: ../games_nebula.py:1522 ../games_nebula.py:1542 ../games_nebula.py:1562
+#: ../games_nebula.py:1582 ../games_nebula.py:1602 ../games_nebula.py:1633
+#: ../games_nebula.py:1765 ../games_nebula.py:1785 ../games_nebula.py:1805
+#: ../games_nebula.py:1825 ../games_nebula.py:1845 ../games_nebula.py:1876
 msgid "Include"
 msgstr "Include"
 
-#: ../games_nebula.py:1453 ../games_nebula.py:1473 ../games_nebula.py:1493
-#: ../games_nebula.py:1513 ../games_nebula.py:1533 ../games_nebula.py:1567
-#: ../games_nebula.py:1696 ../games_nebula.py:1716 ../games_nebula.py:1736
-#: ../games_nebula.py:1756 ../games_nebula.py:1776 ../games_nebula.py:1810
+#: ../games_nebula.py:1526 ../games_nebula.py:1546 ../games_nebula.py:1566
+#: ../games_nebula.py:1586 ../games_nebula.py:1606 ../games_nebula.py:1640
+#: ../games_nebula.py:1769 ../games_nebula.py:1789 ../games_nebula.py:1809
+#: ../games_nebula.py:1829 ../games_nebula.py:1849 ../games_nebula.py:1883
 msgid "Exclude"
 msgstr "Exclude"
 
-#: ../games_nebula.py:1465 ../games_nebula.py:1708
+#: ../games_nebula.py:1538 ../games_nebula.py:1781
 msgid "Tags filter 1 behaivior:"
 msgstr "Tags filter 1 behaivior:"
 
-#: ../games_nebula.py:1485 ../games_nebula.py:1728
+#: ../games_nebula.py:1558 ../games_nebula.py:1801
 msgid "Tags filter 2 behaivior:"
 msgstr "Tags filter 2 behaivior:"
 
-#: ../games_nebula.py:1505 ../games_nebula.py:1748
+#: ../games_nebula.py:1578 ../games_nebula.py:1821
 msgid "Tags filter 3 behaivior:"
 msgstr "Tags filter 3 behaivior:"
 
-#: ../games_nebula.py:1525 ../games_nebula.py:1768
+#: ../games_nebula.py:1598 ../games_nebula.py:1841
 msgid "Tags filter 4 behaivior:"
 msgstr "Tags filter 4 behaivior:"
 
-#: ../games_nebula.py:1546 ../games_nebula.py:1789
+#: ../games_nebula.py:1619 ../games_nebula.py:1862
 msgid "Filters color indication"
 msgstr "Filters color indication"
 
-#: ../games_nebula.py:1556 ../games_nebula.py:1799
+#: ../games_nebula.py:1629 ../games_nebula.py:1872
 msgid "Include/exclude colors:"
 msgstr "Include/exclude colors:"
 
-#: ../games_nebula.py:1604 ../games_nebula.py:1847
+#: ../games_nebula.py:1677 ../games_nebula.py:1920
 msgid "Filters"
 msgstr "Filters"
 
-#: ../games_nebula.py:1638
+#: ../games_nebula.py:1711
 msgid "My library preferences"
 msgstr "My library preferences"
 
-#: ../games_nebula.py:1877
+#: ../games_nebula.py:1950
 msgid "Visuals"
 msgstr "Visuals"
 
-#: ../games_nebula.py:1882
+#: ../games_nebula.py:1955
 msgid "GTK+ theme"
 msgstr "GTK+ theme"
 
-#: ../games_nebula.py:1894
+#: ../games_nebula.py:1967
 msgid "Dark variant"
 msgstr "Dark variant"
 
-#: ../games_nebula.py:1907
+#: ../games_nebula.py:1980
 msgid "Icon theme"
 msgstr "Icon theme"
 
-#: ../games_nebula.py:1917
+#: ../games_nebula.py:1990
 msgid "Font"
 msgstr "Font"
 
-#: ../games_nebula.py:1955
+#: ../games_nebula.py:2028
 msgid "Emulators settings"
 msgstr "Emulators settings"
 
-#: ../games_nebula.py:1960 ../launcher_dosbox.py:262 ../launcher_native.py:154
+#: ../games_nebula.py:2033 ../launcher_dosbox.py:262 ../launcher_native.py:154
 #: ../launcher_scummvm.py:277 ../launcher_wine.py:381
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../games_nebula.py:1978 ../launcher_wine.py:223
+#: ../games_nebula.py:2051 ../launcher_wine.py:223
 msgid "Wine"
 msgstr "Wine"
 
-#: ../games_nebula.py:1996 ../games_nebula.py:2067 ../games_nebula.py:2140
+#: ../games_nebula.py:2069 ../games_nebula.py:2140 ../games_nebula.py:2213
 #: ../launcher_dosbox.py:196 ../launcher_scummvm.py:211 ../launcher_wine.py:252
 msgid "System version"
 msgstr "System version"
 
-#: ../games_nebula.py:2001 ../games_nebula.py:2039 ../games_nebula.py:2072
-#: ../games_nebula.py:2110 ../games_nebula.py:2183 ../games_nebula.py:4682
-#: ../games_nebula.py:4789 ../games_nebula.py:4801 ../launcher_dosbox.py:202
+#: ../games_nebula.py:2074 ../games_nebula.py:2112 ../games_nebula.py:2145
+#: ../games_nebula.py:2183 ../games_nebula.py:2256 ../games_nebula.py:4824
+#: ../games_nebula.py:4931 ../games_nebula.py:4943 ../launcher_dosbox.py:202
 #: ../launcher_dosbox.py:348 ../launcher_dosbox.py:353
 #: ../launcher_scummvm.py:217 ../launcher_scummvm.py:354
 #: ../launcher_scummvm.py:359 ../launcher_wine.py:258 ../launcher_wine.py:500
@@ -293,90 +317,102 @@ msgstr "System version"
 msgid "From directory"
 msgstr "From directory"
 
-#: ../games_nebula.py:2022
+#: ../games_nebula.py:2095
 msgid "Wine settings"
 msgstr "Wine settings"
 
-#: ../games_nebula.py:2044 ../games_nebula.py:2115 ../games_nebula.py:2145
-#: ../games_nebula.py:2188 ../games_nebula.py:4687 ../games_nebula.py:4794
-#: ../games_nebula.py:4806 ../launcher_dosbox.py:211 ../launcher_dosbox.py:358
+#: ../games_nebula.py:2117 ../games_nebula.py:2188 ../games_nebula.py:2218
+#: ../games_nebula.py:2261 ../games_nebula.py:4829 ../games_nebula.py:4936
+#: ../games_nebula.py:4948 ../launcher_dosbox.py:211 ../launcher_dosbox.py:358
 #: ../launcher_scummvm.py:226 ../launcher_scummvm.py:364
 #: ../launcher_wine.py:267 ../launcher_wine.py:510
 msgid "From directory:"
 msgstr "From directory:"
 
-#: ../games_nebula.py:2049 ../launcher_dosbox.py:167
+#: ../games_nebula.py:2122 ../launcher_dosbox.py:167
 msgid "DOSBox"
 msgstr "DOSBox"
 
-#: ../games_nebula.py:2093
+#: ../games_nebula.py:2166
 msgid "DOSBox settings"
 msgstr "DOSBox settings"
 
-#: ../games_nebula.py:2121 ../launcher_scummvm.py:182
+#: ../games_nebula.py:2194 ../launcher_scummvm.py:182
 msgid "ScummVM"
 msgstr "ScummVM"
 
-#: ../games_nebula.py:2166
+#: ../games_nebula.py:2239
 msgid "ScummVM settings"
 msgstr "ScummVM settings"
 
-#: ../games_nebula.py:2578 ../games_nebula.py:2639 ../games_nebula.py:4235
-#: ../games_nebula.py:4284
+#: ../games_nebula.py:2651 ../games_nebula.py:2712 ../games_nebula.py:4377
+#: ../games_nebula.py:4426
 msgid "In queue"
 msgstr "In queue"
 
-#: ../games_nebula.py:2581 ../games_nebula.py:2641 ../games_nebula.py:2740
-#: ../games_nebula.py:2773 ../games_nebula.py:4233 ../games_nebula.py:4282
+#: ../games_nebula.py:2654 ../games_nebula.py:2714 ../games_nebula.py:2813
+#: ../games_nebula.py:2846 ../games_nebula.py:4375 ../games_nebula.py:4424
 msgid "Installing"
 msgstr "Installing"
 
-#: ../games_nebula.py:2677
+#: ../games_nebula.py:2750
 msgid "Changes in library"
 msgstr "Changes in library"
 
-#: ../games_nebula.py:2689
+#: ../games_nebula.py:2762
 msgid "Updating GOG library..."
 msgstr "Updating GOG library..."
 
-#: ../games_nebula.py:3883 ../games_nebula.py:3971
+#: ../games_nebula.py:3947 ../games_nebula.py:3967
+msgid "Error!"
+msgstr "Error!"
+
+#: ../games_nebula.py:3949
+msgid "The password/e-mail field is empty."
+msgstr "The password/e-mail field is empty."
+
+#: ../games_nebula.py:3969
+msgid "Authorization failed."
+msgstr "Authorization failed."
+
+#: ../games_nebula.py:4025 ../games_nebula.py:4113
 msgid "Add/modify tags:"
 msgstr "Add/modify tags:"
 
-#: ../games_nebula.py:3885 ../games_nebula.py:3973
+#: ../games_nebula.py:4027 ../games_nebula.py:4115
 msgid "Use commas to separate tags."
 msgstr "Use commas to separate tags."
 
-#: ../games_nebula.py:3889 ../games_nebula.py:3977
+#: ../games_nebula.py:4031 ../games_nebula.py:4119
 msgid "Empty"
 msgstr "Empty"
 
-#: ../games_nebula.py:4254 ../games_nebula.py:4303
+#: ../games_nebula.py:4396 ../games_nebula.py:4445
 msgid "Are you sure you want to remove this game?"
 msgstr "Are you sure you want to remove this game?"
 
-#: ../games_nebula.py:4342 ../games_nebula.py:4635
+#: ../games_nebula.py:4484 ../games_nebula.py:4777
 msgid "Downloading..."
 msgstr "Downloading..."
 
-#: ../games_nebula.py:4387 ../games_nebula.py:4417 ../games_nebula.py:4650
-#: ../games_nebula.py:4657 ../games_nebula.py:4663
+#: ../games_nebula.py:4529 ../games_nebula.py:4559 ../games_nebula.py:4792
+#: ../games_nebula.py:4799 ../games_nebula.py:4805
 msgid "Installing..."
 msgstr "Installing..."
 
-#: ../games_nebula.py:4528 ../games_nebula.py:4557
+#: ../games_nebula.py:4670 ../games_nebula.py:4699
 msgid "Done"
 msgstr "Done"
 
-#: ../games_nebula.py:4582
+#: ../games_nebula.py:4724
 msgid "No new games in library"
 msgstr "No new games in library"
 
-#: ../games_nebula.py:4857 ../games_nebula.py:4899
+#: ../games_nebula.py:4999 ../games_nebula.py:5041
 msgid "Installation directory changed"
 msgstr "Installation directory changed"
 
-#: ../games_nebula.py:4859 ../games_nebula.py:4901
+#: ../games_nebula.py:5001 ../games_nebula.py:5043
 msgid ""
 "Do you really want to change installation directory?\n"
 "All your installed games will be moved to new location.\n"
@@ -386,7 +422,7 @@ msgstr ""
 "All your installed games will be moved to new location.\n"
 "Proceed?"
 
-#: ../games_nebula.py:5378
+#: ../games_nebula.py:5520
 msgid "Quit application?"
 msgstr "Quit application?"
 
@@ -599,8 +635,8 @@ msgid "Machine"
 msgstr "Machine"
 
 #: ../settings_dosbox.py:394 ../settings_dosbox.py:398
-msgid "The type of machine tries to emulate."
-msgstr "The type of machine tries to emulate."
+msgid "The type of machine DOSBox tries to emulate."
+msgstr "The type of machine DOSBox tries to emulate."
 
 #: ../settings_dosbox.py:428
 msgid "Captures directory"
@@ -1212,6 +1248,12 @@ msgstr "Configure game controllers"
 #: ../settings_wine.py:92
 msgid "Wine configuration"
 msgstr "Wine configuration"
+
+#~ msgid "The password/email field is empty."
+#~ msgstr "The password/email field is empty."
+
+#~ msgid "The type of machine tries to emulate."
+#~ msgstr "The type of machine tries to emulate."
 
 #~ msgid "Updating library..."
 #~ msgstr "Updating library..."

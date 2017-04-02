@@ -3946,7 +3946,7 @@ class GUI:
                     Gtk.ButtonsType.OK,
                     _("Error!"),
                     )
-                message_dialog.format_secondary_text(_("Empty e-mail or password."))
+                message_dialog.format_secondary_text(_("The password/e-mail field is empty."))
                 self.login_window.hide()
                 message_dialog.run()
                 message_dialog.destroy()
