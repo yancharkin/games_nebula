@@ -4,7 +4,7 @@ Unofficial Linux client for GOG.
 ## Dependencies
 **Debian/Ubuntu:**
 
-    sudo apt-get install python-gi python-webkit gir1.2-webkit-3.0 python-bs4 python-pil lgogdownloaderinnoextract p7zip-full cabextract unshield ffmpeg wine winetricks dosbox scummvm zenity
+    sudo apt-get install python-gi python-webkit gir1.2-webkit-3.0 python-bs4 python-pil lgogdownloader innoextract p7zip-full cabextract unshield ffmpeg wine winetricks dosbox scummvm zenity
 
 innoextract >= 1.5 - required
 
