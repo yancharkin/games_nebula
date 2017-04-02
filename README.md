@@ -7,6 +7,7 @@ Unofficial Linux client for GOG.
     sudo apt-get install python-gi python-webkit gir1.2-webkit-3.0 python-bs4 python-pil lgogdownloaderinnoextract p7zip-full cabextract unshield ffmpeg wine winetricks dosbox scummvm zenity
 
 innoextract >= 1.5 - required
+
 [lgogdownloader](https://github.com/Sude-/lgogdownloader) >= 3.2 - recommended (for early versions you have to manually configure lgogdownloader first)
 	
 ## Installation
