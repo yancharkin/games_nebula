@@ -8,7 +8,7 @@ Unofficial Linux client for GOG.
 
 innoextract >= 1.5 - required
 
-[lgogdownloader](https://github.com/Sude-/lgogdownloader) >= 3.2 - recommended (for early versions you have to manually configure lgogdownloader first)
+[lgogdownloader](https://github.com/Sude-/lgogdownloader) >= 3.2 - recommended (for early versions you have to configure lgogdownloader first)
 	
 ## Installation
 - Download the [latest release](https://github.com/yancharkin/games_nebula/releases) and extract it anywhere you like.
