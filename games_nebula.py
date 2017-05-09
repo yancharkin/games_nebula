@@ -123,7 +123,7 @@ class GUI:
         self.config_load()
         self.parse_goglib_colors()
         self.parse_mylib_colors()
-        
+
         if self.goglib_tab_at_start == True:
             self.goglib_authorized = goglib_check_authorization.goglib_authorized()
             if self.goglib_authorized == False:
@@ -167,9 +167,9 @@ class GUI:
         self.box_loading_window.pack_start(self.label_loading, True, True, 0)
         self.loading_window.add(self.box_loading_window)
         self.loading_window.show_all()
-    
+
     def create_login_window(self):
-        
+
         self.login_window = Gtk.Window(
             title = "Games Nebula",
             type = Gtk.WindowType.TOPLEVEL,
@@ -179,7 +179,7 @@ class GUI:
             resizable = False
             )
         self.login_window.connect('delete-event', self.quit_app)
-        
+
         grid = Gtk.Grid(
             column_homogeneous = True,
             row_spacing = 10,
@@ -189,11 +189,11 @@ class GUI:
             margin_top = 10,
             margin_bottom = 10
             )
-            
+
         label_authorization = Gtk.Label(
             label = _("GOG Authorization")
             )
-        
+
         self.entry_email = Gtk.Entry(
             placeholder_text = _("E-mail"),
             xalign = 0.5,
@@ -205,29 +205,29 @@ class GUI:
             #input_purpose = Gtk.InputPurpose.PASSWORD
             visibility = False
             )
-        
+
         checkbutton_show_password = Gtk.CheckButton(
             label = _("Show password")
             )
         checkbutton_show_password.connect('clicked', self.cb_checkbutton_show_password)
-        
+
         button_ok = Gtk.Button(
             label = _("OK")
             )
         button_ok.connect('clicked', self.cb_login)
-        
+
         button_cancel = Gtk.Button(
             label = _("Cancel")
             )
         button_cancel.connect('clicked', self.cb_login)
-           
+
         grid.attach(label_authorization, 0, 0, 2, 1)
         grid.attach(self.entry_email, 0, 1, 2, 1)
         grid.attach(self.entry_password, 0, 2, 2, 1)
         grid.attach(checkbutton_show_password, 0, 3, 2, 1)
         grid.attach(button_ok, 0, 4, 1, 1)
         grid.attach(button_cancel, 1, 4, 1, 1)
-        
+
         self.login_window.add(grid)
         self.login_window.show_all()
         button_cancel.grab_focus()
@@ -357,7 +357,7 @@ class GUI:
         Gtk.main_quit()
 
     def create_goglib_tab(self):
-    
+
         if self.goglib_tab_at_start == False:
             self.goglib_authorized = goglib_check_authorization.goglib_authorized()
 
@@ -1514,6 +1514,41 @@ class GUI:
         self.filechooserbutton_goglib_install_dir.set_current_folder(self.goglib_install_dir)
         self.filechooserbutton_goglib_install_dir.connect('file-set', self.cb_filechooserbutton_goglib_install_dir)
 
+        self.button_goglib_scripts = Gtk.Button(
+            label = _("Download"),
+            name = 'goglib'
+            )
+        self.button_goglib_scripts.connect('clicked', self.cb_button_get_scripts)
+
+        self.checkbutton_goglib_scripts = Gtk.CheckButton(
+            label = _("Overwrite existing scripts"),
+            name = 'goglib',
+            active = self.goglib_scripts_overwrite
+            )
+        self.checkbutton_goglib_scripts.connect('clicked', self.cb_checkbutton_scripts_overwrite)
+
+        self.grid_goglib_scripts = Gtk.Grid(
+            column_homogeneous = True,
+            row_spacing = 10,
+            column_spacing = 10,
+            margin_top = 10,
+            margin_bottom = 10,
+            margin_left = 10,
+            margin_right = 10,
+            )
+
+        self.grid_goglib_scripts.attach(self.button_goglib_scripts, 0, 0, 1, 1)
+        self.grid_goglib_scripts.attach(self.checkbutton_goglib_scripts, 0, 1, 1, 1)
+
+        self.frame_goglib_scripts = Gtk.Frame(
+            label = _("Installation scripts"),
+            label_xalign = 0.5,
+            margin_left = 10,
+            margin_right = 10,
+            margin_top = 10,
+            )
+        self.frame_goglib_scripts.add(self.grid_goglib_scripts)
+
         self.label_goglib_status_filter_behavior = Gtk.Label(
             label = _("Status filter behaivior:"),
             halign = Gtk.Align.START,
@@ -1694,8 +1729,9 @@ class GUI:
         self.grid_goglib_preferences.attach(self.filechooserbutton_goglib_download_dir, 2, 4, 2, 1)
         self.grid_goglib_preferences.attach(self.label_goglib_install_dir, 0, 5, 2, 1)
         self.grid_goglib_preferences.attach(self.filechooserbutton_goglib_install_dir, 2, 5, 2, 1)
-        self.grid_goglib_preferences.attach(self.frame_goglib_filters, 0, 6, 4, 1)
-        self.grid_goglib_preferences.attach(image_goglib_preferences_bg, 0, 1, 4, 6)
+        self.grid_goglib_preferences.attach(self.frame_goglib_scripts, 0, 6, 4, 1)
+        self.grid_goglib_preferences.attach(self.frame_goglib_filters, 0, 7, 4, 1)
+        self.grid_goglib_preferences.attach(image_goglib_preferences_bg, 0, 1, 4, 7)
 
         self.grid_mylib_preferences = Gtk.Grid(
             column_homogeneous = True,
@@ -1756,6 +1792,41 @@ class GUI:
             )
         self.filechooserbutton_mylib_install_dir.set_current_folder(self.mylib_install_dir)
         self.filechooserbutton_mylib_install_dir.connect('file-set', self.cb_filechooserbutton_mylib_install_dir)
+
+        self.button_mylib_scripts = Gtk.Button(
+            label = _("Download"),
+            name = 'mylib'
+            )
+        self.button_mylib_scripts.connect('clicked', self.cb_button_get_scripts)
+
+        self.checkbutton_mylib_scripts = Gtk.CheckButton(
+            label = _("Overwrite existing scripts"),
+            name = 'mylib',
+            active = self.mylib_scripts_overwrite
+            )
+        self.checkbutton_mylib_scripts.connect('clicked', self.cb_checkbutton_scripts_overwrite)
+
+        self.grid_mylib_scripts = Gtk.Grid(
+            column_homogeneous = True,
+            row_spacing = 10,
+            column_spacing = 10,
+            margin_top = 10,
+            margin_bottom = 10,
+            margin_left = 10,
+            margin_right = 10,
+            )
+
+        self.grid_mylib_scripts.attach(self.button_mylib_scripts, 0, 0, 1, 1)
+        self.grid_mylib_scripts.attach(self.checkbutton_mylib_scripts, 0, 1, 1, 1)
+
+        self.frame_mylib_scripts = Gtk.Frame(
+            label = _("Installation scripts"),
+            label_xalign = 0.5,
+            margin_left = 10,
+            margin_right = 10,
+            margin_top = 10,
+            )
+        self.frame_mylib_scripts.add(self.grid_mylib_scripts)
 
         self.label_mylib_status_filter_behavior = Gtk.Label(
             label = _("Status filter behaivior:"),
@@ -1933,8 +2004,9 @@ class GUI:
         self.grid_mylib_preferences.attach(self.filechooserbutton_mylib_download_dir, 2, 2, 2, 1)
         self.grid_mylib_preferences.attach(self.label_mylib_install_dir, 0, 3, 2, 1)
         self.grid_mylib_preferences.attach(self.filechooserbutton_mylib_install_dir, 2, 3, 2, 1)
-        self.grid_mylib_preferences.attach(self.frame_mylib_filters, 0, 4, 4, 1)
-        self.grid_mylib_preferences.attach(imgage_mylib_preferences_bg, 0, 1, 4, 4)
+        self.grid_mylib_preferences.attach(self.frame_mylib_scripts, 0, 4, 4, 1)
+        self.grid_mylib_preferences.attach(self.frame_mylib_filters, 0, 5, 4, 1)
+        self.grid_mylib_preferences.attach(imgage_mylib_preferences_bg, 0, 1, 4, 5)
 
         self.grid_visuals = Gtk.Grid(
             column_homogeneous = True,
@@ -2921,7 +2993,7 @@ class GUI:
             os.makedirs(data_dir + '/games/goglib/installed')
             os.makedirs(data_dir + '/config')
             os.makedirs(data_dir + '/scripts/')
-            
+
             if os.path.exists(nebula_dir + '/scripts'):
                 os.system('cp -R ' + nebula_dir + '/scripts/* ' + data_dir + '/scripts/')
 
@@ -3161,6 +3233,7 @@ class GUI:
             self.goglib_download_extras = False
             self.goglib_download_dir = data_dir + '/games/goglib/downloads'
             self.goglib_install_dir = data_dir + '/games/goglib/installed'
+            self.goglib_scripts_overwrite = False
 
             self.config_parser.add_section('goglib preferences')
             self.config_parser.set('goglib preferences', 'goglib_lang', self.goglib_lang)
@@ -3168,6 +3241,7 @@ class GUI:
             self.config_parser.set('goglib preferences', 'goglib_download_extras', self.goglib_download_extras)
             self.config_parser.set('goglib preferences', 'goglib_download_dir', self.goglib_download_dir)
             self.config_parser.set('goglib preferences', 'goglib_install_dir', self.goglib_install_dir)
+            self.config_parser.set('goglib preferences', 'goglib_scripts_overwrite', self.goglib_scripts_overwrite)
 
             config_file = open(config_dir + '/config.ini', 'w')
             self.config_parser.write(config_file)
@@ -3178,6 +3252,7 @@ class GUI:
             self.goglib_download_extras = self.config_parser.getboolean('goglib preferences', 'goglib_download_extras')
             self.goglib_download_dir = self.config_parser.get('goglib preferences', 'goglib_download_dir')
             self.goglib_install_dir = self.config_parser.get('goglib preferences', 'goglib_install_dir')
+            self.goglib_scripts_overwrite = self.config_parser.getboolean('goglib preferences', 'goglib_scripts_overwrite')
 
         # mylib library preferences
         if not self.config_parser.has_section('mylib preferences'):
@@ -3185,11 +3260,13 @@ class GUI:
             self.mylib_keep_installers = True
             self.mylib_download_dir = data_dir + '/games/mylib/downloads'
             self.mylib_install_dir = data_dir + '/games/mylib/installed'
+            self.mylib_scripts_overwrite = False
 
             self.config_parser.add_section('mylib preferences')
             self.config_parser.set('mylib preferences', 'mylib_keep_installers', self.mylib_keep_installers)
             self.config_parser.set('mylib preferences', 'mylib_download_dir', self.mylib_download_dir)
             self.config_parser.set('mylib preferences', 'mylib_install_dir', self.mylib_install_dir)
+            self.config_parser.set('mylib preferences', 'mylib_scripts_overwrite', self.mylib_scripts_overwrite)
 
             config_file = open(config_dir + '/config.ini', 'w')
             self.config_parser.write(config_file)
@@ -3198,6 +3275,7 @@ class GUI:
             self.mylib_keep_installers = self.config_parser.getboolean('mylib preferences', 'mylib_keep_installers')
             self.mylib_download_dir = self.config_parser.get('mylib preferences', 'mylib_download_dir')
             self.mylib_install_dir = self.config_parser.get('mylib preferences', 'mylib_install_dir')
+            self.mylib_scripts_overwrite = self.config_parser.getboolean('mylib preferences', 'mylib_scripts_overwrite')
 
         # visuals
         if not self.config_parser.has_section('visuals'):
@@ -3327,12 +3405,14 @@ class GUI:
         self.config_parser.set('goglib preferences', 'goglib_download_extras', self.goglib_download_extras)
         self.config_parser.set('goglib preferences', 'goglib_download_dir', self.goglib_download_dir)
         self.config_parser.set('goglib preferences', 'goglib_install_dir', self.goglib_install_dir)
+        self.config_parser.set('goglib preferences', 'goglib_scripts_overwrite', self.goglib_scripts_overwrite)
 
         # mylib preferences
 
         self.config_parser.set('mylib preferences', 'mylib_keep_installers', self.mylib_keep_installers)
         self.config_parser.set('mylib preferences', 'mylib_download_dir', self.mylib_download_dir)
         self.config_parser.set('mylib preferences', 'mylib_install_dir', self.mylib_install_dir)
+        self.config_parser.set('mylib preferences', 'mylib_scripts_overwrite', self.mylib_scripts_overwrite)
 
         # visuals
         self.config_parser.set('visuals', 'gtk_theme', self.gtk_theme)
@@ -3937,7 +4017,7 @@ class GUI:
         if button.get_label() == _("OK"):
             email = self.entry_email.get_text()
             password = self.entry_password.get_text()
-            
+
             if (email == '') or (password == ''):
                 message_dialog = Gtk.MessageDialog(
                     self.login_window,
@@ -3952,13 +4032,13 @@ class GUI:
                 message_dialog.destroy()
                 self.login_window.show()
             else:
-                os.system('lgogdownloader --login-email ' + email 
+                os.system('lgogdownloader --login-email ' + email
                 + ' --login-password ' + password)
-                
+
                 self.goglib_authorized = goglib_check_authorization.goglib_authorized()
 
                 if self.goglib_authorized == False:
-                    
+
                     message_dialog = Gtk.MessageDialog(
                         self.login_window,
                         0,
@@ -3990,7 +4070,7 @@ class GUI:
 
             self.create_main_window()
             self.timer()
-        
+
     def cb_checkbutton_show_password(self, checkbutton):
         if checkbutton.get_active() == True:
             self.entry_password.set_visibility(True)
@@ -4871,6 +4951,36 @@ class GUI:
             os.system(self.scummvm_dir + '/scummvm -F -c ' + config_dir + '/scummvmrc')
         if self.scummvm == 'system':
             os.system('scummvm -F -c ' + config_dir + '/scummvmrc')
+
+        self.main_window.show()
+        if len(self.additional_windows_list) != 0:
+            for window in self.additional_windows_list:
+                window.show()
+
+    def cb_checkbutton_scripts_overwrite(self, checkbutton):
+        if checkbutton.get_name() == 'goglib':
+            self.goglib_scripts_overwrite = checkbutton.get_active()
+        elif checkbutton.get_name() == 'mylib':
+            self.mylib_scripts_overwrite = checkbutton.get_active()
+
+    def cb_button_get_scripts(self, button):
+
+        lib = button.get_name()
+
+        if lib == 'goglib':
+            overwrite = self.checkbutton_goglib_scripts.get_active()
+        elif lib == 'mylib':
+            overwrite = self.checkbutton_mylib_scripts.get_active()
+
+        self.main_window.hide()
+        if len(self.additional_windows_list) != 0:
+            for window in self.additional_windows_list:
+                window.hide()
+        
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
+        os.system('python ' + nebula_dir + '/get_scripts.py ' + lib + ' ' + str(overwrite))
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
