@@ -594,7 +594,7 @@ class GUI:
         del command_list[0:3]
         exe_path = ' '.join(command_list)
 
-        return exe_path.translate(None, '"')
+        return exe_path.translate(None, '"\n')
 
     def cb_button_game(self, button):
         self.config_save()
