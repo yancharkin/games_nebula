@@ -577,13 +577,11 @@ class GUI:
 
         self.config_save()
 
-        self.exe_path = self.get_new_arguments()
+        self.exe_path = self.get_new_exe_path()
 
         os.execl(sys.executable, 'python', __file__, self.game_name, self.exe_path)
 
-        #self.main_window.show()
-
-    def get_new_arguments(self):
+    def get_new_exe_path(self):
 
         start_file = open(self.install_dir + '/' + self.game_name + '/start.sh', 'r')
         start_file_content = start_file.readlines()
@@ -591,12 +589,12 @@ class GUI:
 
         for line in start_file_content:
             if 'launcher_wine.py' in line:
-                if '"' in line:
-                    exe_path = line.split('"')[1]
-                else:
-                    exe_path = line.split(' ')[3]
+                command_list = line.split(' ')
+        
+        del command_list[0:3]
+        exe_path = ' '.join(command_list)
 
-        return exe_path
+        return exe_path.translate(None, '"')
 
     def cb_button_game(self, button):
         self.config_save()
