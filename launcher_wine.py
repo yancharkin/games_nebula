@@ -573,7 +573,7 @@ class GUI:
         self.additions_setup(wine_path, wineprefix_path)
 
         os.system(self.install_dir + '/' + self.game_name + '/settings.sh ' + \
-        self.install_dir + ' ' + wine_path + ' ' + wineprefix_path)
+        self.install_dir + ' ' + wine_path + ' ' + wineprefix_path + ' ' + nebula_dir)
 
         self.config_save()
 
