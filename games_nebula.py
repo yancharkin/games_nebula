@@ -3007,156 +3007,231 @@ class GUI:
 
         # tabs at startup
         if not self.config_parser.has_section('tabs at startup'):
-
-            self.goglib_tab_at_start = True
-            self.mylib_tab_at_start = False
-            self.gogcom_tab_at_start = False
-            self.queue_tab_at_start = False
-            self.settings_tab_at_start = True
-            self.show_tabs = True
-
             self.config_parser.add_section('tabs at startup')
+
+        if not self.config_parser.has_option('tabs at startup', 'goglib'):
+            self.goglib_tab_at_start = True
             self.config_parser.set('tabs at startup', 'goglib', self.goglib_tab_at_start)
-            self.config_parser.set('tabs at startup', 'mylib', self.mylib_tab_at_start)
-            self.config_parser.set('tabs at startup', 'gogcom', self.gogcom_tab_at_start)
-            self.config_parser.set('tabs at startup', 'queue', self.queue_tab_at_start)
-            self.config_parser.set('tabs at startup', 'settings', self.settings_tab_at_start)
-            self.config_parser.set('tabs at startup', 'show_tabs', self.show_tabs)
-
-            config_file = open(config_dir + '/config.ini', 'w')
-            self.config_parser.write(config_file)
-            config_file.close()
-
         else:
-
             self.goglib_tab_at_start = self.config_parser.getboolean('tabs at startup', 'goglib')
+
+        if not self.config_parser.has_option('tabs at startup', 'mylib'):
+            self.mylib_tab_at_start = False
+            self.config_parser.set('tabs at startup', 'mylib', self.mylib_tab_at_start)
+        else:
             self.mylib_tab_at_start = self.config_parser.getboolean('tabs at startup', 'mylib')
+
+        if not self.config_parser.has_option('tabs at startup', 'gogcom'):
+            self.gogcom_tab_at_start = False
+            self.config_parser.set('tabs at startup', 'gogcom', self.gogcom_tab_at_start)
+        else:
             self.gogcom_tab_at_start = self.config_parser.getboolean('tabs at startup', 'gogcom')
+            
+        if not self.config_parser.has_option('tabs at startup', 'queue'):
+            self.queue_tab_at_start = False
+            self.config_parser.set('tabs at startup', 'queue', self.queue_tab_at_start)
+        else:
             self.queue_tab_at_start = self.config_parser.getboolean('tabs at startup', 'queue')
+            
+        if not self.config_parser.has_option('tabs at startup', 'settings'):
+            self.settings_tab_at_start = True
+            self.config_parser.set('tabs at startup', 'settings', self.settings_tab_at_start)
+        else:
             self.settings_tab_at_start = self.config_parser.getboolean('tabs at startup', 'settings')
+            
+        if not self.config_parser.has_option('tabs at startup', 'show_tabs'):
+            self.show_tabs = True
+            self.config_parser.set('tabs at startup', 'show_tabs', self.show_tabs)
+        else:
             self.show_tabs = self.config_parser.getboolean('tabs at startup', 'show_tabs')
+
 
         # goglib gui preferences
         if not self.config_parser.has_section('goglib gui preferences'):
-
-            self.scale_level = 0.5
-            self.status_filter = _("No filter")
-            self.tf_number = 1
-            self.tags_filter1 = _("No filter")
-            self.tags_filter2 = _("No filter")
-            self.tags_filter3 = _("No filter")
-            self.tags_filter4 = _("No filter")
-
-            self.goglib_filter_color_indication = True
-            self.goglib_status_filter_type = 'include'
-            self.goglib_tags_filter1_type = 'include'
-            self.goglib_tags_filter2_type = 'include'
-            self.goglib_tags_filter3_type = 'exclude'
-            self.goglib_tags_filter4_type = 'exclude'
-            self.goglib_include_color = 'rgba(128,255,128,0.2)'
-            self.goglib_exclude_color = 'rgba(255,128,128,0.2)'
-
             self.config_parser.add_section('goglib gui preferences')
+
+        if not self.config_parser.has_option('goglib gui preferences', 'scale_level'):
+            self.scale_level = 0.5
             self.config_parser.set('goglib gui preferences', 'scale_level', self.scale_level)
-            self.config_parser.set('goglib gui preferences', 'status_filter', self.status_filter)
-            self.config_parser.set('goglib gui preferences', 'tag_filters', self.tf_number)
-            self.config_parser.set('goglib gui preferences', 'tags_filter1', self.tags_filter1)
-            self.config_parser.set('goglib gui preferences', 'tags_filter2', self.tags_filter2)
-            self.config_parser.set('goglib gui preferences', 'tags_filter3', self.tags_filter3)
-            self.config_parser.set('goglib gui preferences', 'tags_filter4', self.tags_filter4)
-
-            self.config_parser.set('goglib gui preferences', 'filter_color_indication', self.goglib_filter_color_indication)
-            self.config_parser.set('goglib gui preferences', 'status_filter_type', self.goglib_status_filter_type)
-            self.config_parser.set('goglib gui preferences', 'tags_filter1_type', self.goglib_tags_filter1_type)
-            self.config_parser.set('goglib gui preferences', 'tags_filter2_type', self.goglib_tags_filter2_type)
-            self.config_parser.set('goglib gui preferences', 'tags_filter3_type', self.goglib_tags_filter3_type)
-            self.config_parser.set('goglib gui preferences', 'tags_filter4_type', self.goglib_tags_filter4_type)
-            self.config_parser.set('goglib gui preferences', 'goglib_include_color', self.goglib_include_color)
-            self.config_parser.set('goglib gui preferences', 'goglib_exclude_color', self.goglib_exclude_color)
-
-            config_file = open(config_dir + '/config.ini', 'w')
-            self.config_parser.write(config_file)
-            config_file.close()
-
         else:
-
             self.scale_level = self.config_parser.getfloat('goglib gui preferences', 'scale_level')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'status_filter'):
+            self.status_filter = _("No filter")
+            self.config_parser.set('goglib gui preferences', 'status_filter', self.status_filter)
+        else:
             self.status_filter = self.config_parser.get('goglib gui preferences', 'status_filter')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'tag_filters'):
+            self.tf_number = 1
+            self.config_parser.set('goglib gui preferences', 'tag_filters', self.tf_number)
+        else:
             self.tf_number = self.config_parser.getint('goglib gui preferences', 'tag_filters')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'tags_filter1'):
+            self.tags_filter1 = _("No filter")
+            self.config_parser.set('goglib gui preferences', 'tags_filter1', self.tags_filter1)
+        else:
             self.tags_filter1 = self.config_parser.get('goglib gui preferences', 'tags_filter1')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'tags_filter2'):
+            self.tags_filter2 = _("No filter")
+            self.config_parser.set('goglib gui preferences', 'tags_filter2', self.tags_filter2)
+        else:
             self.tags_filter2 = self.config_parser.get('goglib gui preferences', 'tags_filter2')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'tags_filter3'):
+            self.tags_filter3 = _("No filter")
+            self.config_parser.set('goglib gui preferences', 'tags_filter3', self.tags_filter3)
+        else:
             self.tags_filter3 = self.config_parser.get('goglib gui preferences', 'tags_filter3')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'tags_filter4'):
+            self.tags_filter4 = _("No filter")
+            self.config_parser.set('goglib gui preferences', 'tags_filter4', self.tags_filter4)
+        else:
             self.tags_filter4 = self.config_parser.get('goglib gui preferences', 'tags_filter4')
 
+        if not self.config_parser.has_option('goglib gui preferences', 'filter_color_indication'):
+            self.goglib_filter_color_indication = True
+            self.config_parser.set('goglib gui preferences', 'filter_color_indication', self.goglib_filter_color_indication)
+        else:
             self.goglib_filter_color_indication = self.config_parser.getboolean('goglib gui preferences', 'filter_color_indication')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'status_filter_type'):
+            self.goglib_status_filter_type = 'include'
+            self.config_parser.set('goglib gui preferences', 'status_filter_type', self.goglib_status_filter_type)
+        else:
             self.goglib_status_filter_type = self.config_parser.get('goglib gui preferences', 'status_filter_type')
+
+        if not self.config_parser.has_option('goglib gui preferences', 'tags_filter1_type'):
+            self.goglib_tags_filter1_type = 'include'
+            self.config_parser.set('goglib gui preferences', 'tags_filter1_type', self.goglib_tags_filter1_type)
+        else:
             self.goglib_tags_filter1_type = self.config_parser.get('goglib gui preferences', 'tags_filter1_type')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'tags_filter2_type'):
+            self.goglib_tags_filter2_type = 'include'
+            self.config_parser.set('goglib gui preferences', 'tags_filter2_type', self.goglib_tags_filter2_type)
+        else:
             self.goglib_tags_filter2_type = self.config_parser.get('goglib gui preferences', 'tags_filter2_type')
+
+        if not self.config_parser.has_option('goglib gui preferences', 'tags_filter3_type'):
+            self.goglib_tags_filter3_type = 'exclude'
+            self.config_parser.set('goglib gui preferences', 'tags_filter3_type', self.goglib_tags_filter3_type)
+        else:
             self.goglib_tags_filter3_type = self.config_parser.get('goglib gui preferences', 'tags_filter3_type')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'tags_filter4_type'):
+            self.goglib_tags_filter4_type = 'exclude'
+            self.config_parser.set('goglib gui preferences', 'tags_filter4_type', self.goglib_tags_filter4_type)
+        else:
             self.goglib_tags_filter4_type = self.config_parser.get('goglib gui preferences', 'tags_filter4_type')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'goglib_include_color'):
+            self.goglib_include_color = 'rgba(128,255,128,0.2)'
+            self.config_parser.set('goglib gui preferences', 'goglib_include_color', self.goglib_include_color)
+        else:
             self.goglib_include_color = self.config_parser.get('goglib gui preferences', 'goglib_include_color')
+            
+        if not self.config_parser.has_option('goglib gui preferences', 'goglib_exclude_color'):
+            self.goglib_exclude_color = 'rgba(255,128,128,0.2)'
+            self.config_parser.set('goglib gui preferences', 'goglib_exclude_color', self.goglib_exclude_color)
+        else:
             self.goglib_exclude_color = self.config_parser.get('goglib gui preferences', 'goglib_exclude_color')
 
         # mylib gui preferences
         if not self.config_parser.has_section('mylib gui preferences'):
-
-            self.mylib_scale_level = 0.5
-            self.mylib_status_filter = _("No filter")
-            self.mylib_tf_number = 1
-            self.mylib_tags_filter1 = _("No filter")
-            self.mylib_tags_filter2 = _("No filter")
-            self.mylib_tags_filter3 = _("No filter")
-            self.mylib_tags_filter4 = _("No filter")
-
-            self.mylib_filter_color_indication = True
-            self.mylib_status_filter_type = 'include'
-            self.mylib_tags_filter1_type = 'include'
-            self.mylib_tags_filter2_type = 'include'
-            self.mylib_tags_filter3_type = 'exclude'
-            self.mylib_tags_filter4_type = 'exclude'
-            self.mylib_include_color = 'rgba(128,255,128,0.2)'
-            self.mylib_exclude_color = 'rgba(255,128,128,0.2)'
-
-
             self.config_parser.add_section('mylib gui preferences')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'scale_level'):
+            self.mylib_scale_level = 0.5
             self.config_parser.set('mylib gui preferences', 'scale_level', self.mylib_scale_level)
-            self.config_parser.set('mylib gui preferences', 'status_filter', self.mylib_status_filter)
-            self.config_parser.set('mylib gui preferences', 'tag_filters', self.mylib_tf_number)
-            self.config_parser.set('mylib gui preferences', 'tags_filter1', self.mylib_tags_filter1)
-            self.config_parser.set('mylib gui preferences', 'tags_filter2', self.mylib_tags_filter2)
-            self.config_parser.set('mylib gui preferences', 'tags_filter3', self.mylib_tags_filter3)
-            self.config_parser.set('mylib gui preferences', 'tags_filter4', self.mylib_tags_filter4)
-
-            self.config_parser.set('mylib gui preferences', 'filter_color_indication', self.mylib_filter_color_indication)
-            self.config_parser.set('mylib gui preferences', 'status_filter_type', self.mylib_status_filter_type)
-            self.config_parser.set('mylib gui preferences', 'tags_filter1_type', self.mylib_tags_filter1_type)
-            self.config_parser.set('mylib gui preferences', 'tags_filter2_type', self.mylib_tags_filter2_type)
-            self.config_parser.set('mylib gui preferences', 'tags_filter3_type', self.mylib_tags_filter3_type)
-            self.config_parser.set('mylib gui preferences', 'tags_filter4_type', self.mylib_tags_filter4_type)
-            self.config_parser.set('mylib gui preferences', 'mylib_include_color', self.mylib_include_color)
-            self.config_parser.set('mylib gui preferences', 'mylib_exclude_color', self.mylib_exclude_color)
-
-            config_file = open(config_dir + '/config.ini', 'w')
-            self.config_parser.write(config_file)
-            config_file.close()
-
         else:
-
             self.mylib_scale_level = self.config_parser.getfloat('mylib gui preferences', 'scale_level')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'status_filter'):
+            self.mylib_status_filter = _("No filter")
+            self.config_parser.set('mylib gui preferences', 'status_filter', self.mylib_status_filter)
+        else:
             self.mylib_status_filter = self.config_parser.get('mylib gui preferences', 'status_filter')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'tag_filters'):
+            self.mylib_tf_number = 1
+            self.config_parser.set('mylib gui preferences', 'tag_filters', self.mylib_tf_number)
+        else:
             self.mylib_tf_number = self.config_parser.getint('mylib gui preferences', 'tag_filters')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'tags_filter1'):
+            self.mylib_tags_filter1 = _("No filter")
+            self.config_parser.set('mylib gui preferences', 'tags_filter1', self.mylib_tags_filter1)
+        else:
             self.mylib_tags_filter1 = self.config_parser.get('mylib gui preferences', 'tags_filter1')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'tags_filter2'):
+            self.mylib_tags_filter2 = _("No filter")
+            self.config_parser.set('mylib gui preferences', 'tags_filter2', self.mylib_tags_filter2)
+        else:
             self.mylib_tags_filter2 = self.config_parser.get('mylib gui preferences', 'tags_filter2')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'tags_filter3'):
+            self.mylib_tags_filter3 = _("No filter")
+            self.config_parser.set('mylib gui preferences', 'tags_filter3', self.mylib_tags_filter3)
+        else:
             self.mylib_tags_filter3 = self.config_parser.get('mylib gui preferences', 'tags_filter3')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'tags_filter4'):
+            self.mylib_tags_filter4 = _("No filter")
+            self.config_parser.set('mylib gui preferences', 'tags_filter4', self.mylib_tags_filter4)
+        else:
             self.mylib_tags_filter4 = self.config_parser.get('mylib gui preferences', 'tags_filter4')
 
+        if not self.config_parser.has_option('mylib gui preferences', 'filter_color_indication'):
+            self.mylib_filter_color_indication = True
+            self.config_parser.set('mylib gui preferences', 'filter_color_indication', self.mylib_filter_color_indication)
+        else:
             self.mylib_filter_color_indication = self.config_parser.getboolean('mylib gui preferences', 'filter_color_indication')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'status_filter_type'):
+            self.mylib_status_filter_type = 'include'
+            self.config_parser.set('mylib gui preferences', 'status_filter_type', self.mylib_status_filter_type)
+        else:
             self.mylib_status_filter_type = self.config_parser.get('mylib gui preferences', 'status_filter_type')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'tags_filter1_type'):
+            self.mylib_tags_filter1_type = 'include'
+            self.config_parser.set('mylib gui preferences', 'tags_filter1_type', self.mylib_tags_filter1_type)
+        else:
             self.mylib_tags_filter1_type = self.config_parser.get('mylib gui preferences', 'tags_filter1_type')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'tags_filter2_type'):
+            self.mylib_tags_filter2_type = 'include'
+            self.config_parser.set('mylib gui preferences', 'tags_filter2_type', self.mylib_tags_filter2_type)
+        else:
             self.mylib_tags_filter2_type = self.config_parser.get('mylib gui preferences', 'tags_filter2_type')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'tags_filter3_type'):
+            self.mylib_tags_filter3_type = 'exclude'
+            self.config_parser.set('mylib gui preferences', 'tags_filter3_type', self.mylib_tags_filter3_type)
+        else:
             self.mylib_tags_filter3_type = self.config_parser.get('mylib gui preferences', 'tags_filter3_type')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'tags_filter4_type'):
+            self.mylib_tags_filter4_type = 'exclude'
+            self.config_parser.set('mylib gui preferences', 'tags_filter4_type', self.mylib_tags_filter4_type)
+        else:
             self.mylib_tags_filter4_type = self.config_parser.get('mylib gui preferences', 'tags_filter4_type')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'mylib_include_color'):
+            self.mylib_include_color = 'rgba(128,255,128,0.2)'
+            self.config_parser.set('mylib gui preferences', 'mylib_include_color', self.mylib_include_color)
+        else:
             self.mylib_include_color = self.config_parser.get('mylib gui preferences', 'mylib_include_color')
+
+        if not self.config_parser.has_option('mylib gui preferences', 'mylib_exclude_color'):
+            self.mylib_exclude_color = 'rgba(255,128,128,0.2)'
+            self.config_parser.set('mylib gui preferences', 'mylib_exclude_color', self.mylib_exclude_color)
+        else:
             self.mylib_exclude_color = self.config_parser.get('mylib gui preferences', 'mylib_exclude_color')
 
         # gog languages
@@ -3182,10 +3257,6 @@ class GUI:
             self.config_parser.set('gog languages', 'Dansk', 131072)
             self.config_parser.set('gog languages', 'Suomi', 262144)
             self.config_parser.set('gog languages', 'Slovenčina', 1048576)
-
-            config_file = open(config_dir + '/config.ini', 'w')
-            self.config_parser.write(config_file)
-            config_file.close()
 
             self.lang_index = {
                 'English' : '1',
@@ -3227,54 +3298,70 @@ class GUI:
 
         # gog library preferences
         if not self.config_parser.has_section('goglib preferences'):
-
-            self.goglib_lang = 'English'
-            self.goglib_keep_installers = True
-            self.goglib_download_extras = False
-            self.goglib_download_dir = data_dir + '/games/goglib/downloads'
-            self.goglib_install_dir = data_dir + '/games/goglib/installed'
-            self.goglib_scripts_overwrite = False
-
             self.config_parser.add_section('goglib preferences')
-            self.config_parser.set('goglib preferences', 'goglib_lang', self.goglib_lang)
-            self.config_parser.set('goglib preferences', 'goglib_keep_installers', self.goglib_keep_installers)
-            self.config_parser.set('goglib preferences', 'goglib_download_extras', self.goglib_download_extras)
-            self.config_parser.set('goglib preferences', 'goglib_download_dir', self.goglib_download_dir)
-            self.config_parser.set('goglib preferences', 'goglib_install_dir', self.goglib_install_dir)
-            self.config_parser.set('goglib preferences', 'goglib_scripts_overwrite', self.goglib_scripts_overwrite)
 
-            config_file = open(config_dir + '/config.ini', 'w')
-            self.config_parser.write(config_file)
-            config_file.close()
+        if not self.config_parser.has_option('goglib preferences', 'goglib_lang'):
+            self.goglib_lang = 'English'
+            self.config_parser.set('goglib preferences', 'goglib_lang', self.goglib_lang)
         else:
             self.goglib_lang =  self.config_parser.get('goglib preferences', 'goglib_lang')
+
+        if not self.config_parser.has_option('goglib preferences', 'goglib_keep_installers'):
+            self.goglib_keep_installers = True
+            self.config_parser.set('goglib preferences', 'goglib_keep_installers', self.goglib_keep_installers)
+        else:
             self.goglib_keep_installers = self.config_parser.getboolean('goglib preferences', 'goglib_keep_installers')
+
+        if not self.config_parser.has_option('goglib preferences', 'goglib_download_extras'):
+            self.goglib_download_extras = False
+            self.config_parser.set('goglib preferences', 'goglib_download_extras', self.goglib_download_extras)
+        else:
             self.goglib_download_extras = self.config_parser.getboolean('goglib preferences', 'goglib_download_extras')
+
+        if not self.config_parser.has_option('goglib preferences', 'goglib_download_dir'):
+            self.goglib_download_dir = data_dir + '/games/goglib/downloads'
+            self.config_parser.set('goglib preferences', 'goglib_download_dir', self.goglib_download_dir)
+        else:
             self.goglib_download_dir = self.config_parser.get('goglib preferences', 'goglib_download_dir')
+
+        if not self.config_parser.has_option('goglib preferences', 'goglib_install_dir'):
+            self.goglib_install_dir = data_dir + '/games/goglib/installed'
+            self.config_parser.set('goglib preferences', 'goglib_install_dir', self.goglib_install_dir)
+        else:
             self.goglib_install_dir = self.config_parser.get('goglib preferences', 'goglib_install_dir')
+
+        if not self.config_parser.has_option('goglib preferences', 'goglib_scripts_overwrite'):
+            self.goglib_scripts_overwrite = False
+            self.config_parser.set('goglib preferences', 'goglib_scripts_overwrite', self.goglib_scripts_overwrite)
+        else:
             self.goglib_scripts_overwrite = self.config_parser.getboolean('goglib preferences', 'goglib_scripts_overwrite')
 
         # mylib library preferences
         if not self.config_parser.has_section('mylib preferences'):
-
-            self.mylib_keep_installers = True
-            self.mylib_download_dir = data_dir + '/games/mylib/downloads'
-            self.mylib_install_dir = data_dir + '/games/mylib/installed'
-            self.mylib_scripts_overwrite = False
-
             self.config_parser.add_section('mylib preferences')
-            self.config_parser.set('mylib preferences', 'mylib_keep_installers', self.mylib_keep_installers)
-            self.config_parser.set('mylib preferences', 'mylib_download_dir', self.mylib_download_dir)
-            self.config_parser.set('mylib preferences', 'mylib_install_dir', self.mylib_install_dir)
-            self.config_parser.set('mylib preferences', 'mylib_scripts_overwrite', self.mylib_scripts_overwrite)
 
-            config_file = open(config_dir + '/config.ini', 'w')
-            self.config_parser.write(config_file)
-            config_file.close()
+        if not self.config_parser.has_option('mylib preferences', 'mylib_keep_installers'):
+            self.mylib_keep_installers = True
+            self.config_parser.set('mylib preferences', 'mylib_keep_installers', self.mylib_keep_installers)
         else:
             self.mylib_keep_installers = self.config_parser.getboolean('mylib preferences', 'mylib_keep_installers')
+
+        if not self.config_parser.has_option('mylib preferences', 'mylib_download_dir'):
+            self.mylib_download_dir = data_dir + '/games/mylib/downloads'
+            self.config_parser.set('mylib preferences', 'mylib_download_dir', self.mylib_download_dir)
+        else:
             self.mylib_download_dir = self.config_parser.get('mylib preferences', 'mylib_download_dir')
+
+        if not self.config_parser.has_option('mylib preferences', 'mylib_install_dir'):
+            self.mylib_install_dir = data_dir + '/games/mylib/installed'
+            self.config_parser.set('mylib preferences', 'mylib_install_dir', self.mylib_install_dir)
+        else:
             self.mylib_install_dir = self.config_parser.get('mylib preferences', 'mylib_install_dir')
+
+        if not self.config_parser.has_option('mylib preferences', 'mylib_scripts_overwrite'):
+            self.mylib_scripts_overwrite = False
+            self.config_parser.set('mylib preferences', 'mylib_scripts_overwrite', self.mylib_scripts_overwrite)
+        else:
             self.mylib_scripts_overwrite = self.config_parser.getboolean('mylib preferences', 'mylib_scripts_overwrite')
 
         # visuals
@@ -3285,9 +3372,6 @@ class GUI:
             self.config_parser.set('visuals', 'gtk_dark', self.gtk_dark)
             self.config_parser.set('visuals', 'icon_theme', self.icon_theme)
             self.config_parser.set('visuals', 'font', self.font)
-            config_file = open(config_dir + '/config.ini', 'w')
-            self.config_parser.write(config_file)
-            config_file.close()
         else:
             self.gtk_theme = self.config_parser.get('visuals', 'gtk_theme')
             self.gtk_dark = self.config_parser.getboolean('visuals', 'gtk_dark')
@@ -3296,45 +3380,72 @@ class GUI:
 
         # emulation settings
         if not self.config_parser.has_section('emulation settings'):
-
-            self.monitor = 0
-            self.wine = 'system'
-            self.wine_path = ''
-            self.wine_version = ''
-            self.dosbox = 'system'
-            self.dosbox_path = ''
-            self.dosbox_version = ''
-            self.scummvm = 'system'
-            self.scummvm_path = ''
-            self.scummvm_version = ''
-
             self.config_parser.add_section('emulation settings')
-            self.config_parser.set('emulation settings', 'monitor', self.monitor)
-            self.config_parser.set('emulation settings', 'wine', self.wine)
-            self.config_parser.set('emulation settings', 'wine_path', self.wine_path)
-            self.config_parser.set('emulation settings', 'wine_version', self.wine_version)
-            self.config_parser.set('emulation settings', 'dosbox', self.dosbox)
-            self.config_parser.set('emulation settings', 'dosbox_path', self.dosbox_path)
-            self.config_parser.set('emulation settings', 'dosbox_version', self.dosbox_version)
-            self.config_parser.set('emulation settings', 'scummvm', self.scummvm)
-            self.config_parser.set('emulation settings', 'scummvm_path', self.scummvm_path)
-            self.config_parser.set('emulation settings', 'scummvm_version', self.scummvm_version)
 
-            config_file = open(config_dir + '/config.ini', 'w')
-            self.config_parser.write(config_file)
-            config_file.close()
+        if not self.config_parser.has_option('emulation settings', 'monitor'):
+            self.monitor = 0
+            self.config_parser.set('emulation settings', 'monitor', self.monitor)
         else:
             self.monitor = self.config_parser.getint('emulation settings', 'monitor')
+
+        if not self.config_parser.has_option('emulation settings', 'wine'):
+            self.wine = 'system'
+            self.config_parser.set('emulation settings', 'wine', self.wine)
+        else:
             self.wine =  self.config_parser.get('emulation settings', 'wine')
+
+        if not self.config_parser.has_option('emulation settings', 'wine_path'):
+            self.wine_path = ''
+            self.config_parser.set('emulation settings', 'wine_path', self.wine_path)
+        else:
             self.wine_path = self.config_parser.get('emulation settings', 'wine_path')
+
+        if not self.config_parser.has_option('emulation settings', 'wine_version'):
+            self.wine_version = ''
+            self.config_parser.set('emulation settings', 'wine_version', self.wine_version)
+        else:
             self.wine_version = self.config_parser.get('emulation settings', 'wine_version')
+
+        if not self.config_parser.has_option('emulation settings', 'dosbox'):
+            self.dosbox = 'system'
+            self.config_parser.set('emulation settings', 'dosbox', self.dosbox)
+        else:
             self.dosbox =  self.config_parser.get('emulation settings', 'dosbox')
+
+        if not self.config_parser.has_option('emulation settings', 'dosbox_path'):
+            self.dosbox_path = ''
+            self.config_parser.set('emulation settings', 'dosbox_path', self.dosbox_path)
+        else:
             self.dosbox_path = self.config_parser.get('emulation settings', 'dosbox_path')
+
+        if not self.config_parser.has_option('emulation settings', 'dosbox_version'):
+            self.dosbox_version = ''
+            self.config_parser.set('emulation settings', 'dosbox_version', self.dosbox_version)
+        else:
             self.dosbox_version = self.config_parser.get('emulation settings', 'dosbox_version')
+
+        if not self.config_parser.has_option('emulation settings', 'scummvm'):
+            self.scummvm = 'system'
+            self.config_parser.set('emulation settings', 'scummvm', self.scummvm)
+        else:
             self.scummvm =  self.config_parser.get('emulation settings', 'scummvm')
+
+        if not self.config_parser.has_option('emulation settings', 'scummvm_path'):
+            self.scummvm_path = ''
+            self.config_parser.set('emulation settings', 'scummvm_path', self.scummvm_path)
+        else:
             self.scummvm_path = self.config_parser.get('emulation settings', 'scummvm_path')
+
+        if not self.config_parser.has_option('emulation settings', 'scummvm_version'):
+            self.scummvm_version = ''
+            self.config_parser.set('emulation settings', 'scummvm_version', self.scummvm_version)
+        else:
             self.scummvm_version = self.config_parser.get('emulation settings', 'scummvm_version')
 
+        config_file = open(config_dir + '/config.ini', 'w')
+        self.config_parser.write(config_file)
+        config_file.close()
+        
         if self.wine == 'path':
             self.wine_dir = self.wine_path + '/' + self.wine_version
         if self.wine == 'system':
@@ -4803,8 +4914,8 @@ class GUI:
                         Gtk.ButtonsType.OK,
                         _("No new games in library")
                         )
-                message.run()
-                message.destroy()
+                    message.run()
+                    message.destroy()
 
                 if goglib_check_connection.goglib_available() and (self.goglib_offline_mode == True):
                     os.execl(sys.executable, sys.executable, *sys.argv)
