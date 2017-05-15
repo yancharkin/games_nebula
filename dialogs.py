@@ -79,7 +79,7 @@ class GUI:
             0,
             Gtk.MessageType.QUESTION,
             Gtk.ButtonsType.OK,
-            _("Version:")
+            _("Choose version:")
             )
         message_dialog.set_default_size(360, 0)
 
