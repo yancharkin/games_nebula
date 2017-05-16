@@ -590,7 +590,7 @@ class GUI:
         for line in start_file_content:
             if 'launcher_wine.py' in line:
                 command_list = line.split(' ')
-        
+
         del command_list[0:3]
         exe_path = ' '.join(command_list)
 
@@ -657,28 +657,45 @@ class GUI:
             mouse_capture_command = "$WINELOADER reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v 'GrabFullscreen' /t REG_SZ /d 'Y' /f"
         else:
             mouse_capture_command = "$WINELOADER reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v 'GrabFullscreen' /t REG_SZ /d 'N' /f"
-        
+
         arg = ''
         if ' ' in exe_name:
             exe = exe_name.split('.exe ')[0] + '.exe'
             arg = exe_name.split('.exe ')[1]
             exe_name = exe
 
-        if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
-        and (self.virtual_desktop_height != ''):
-            launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
-            "Background" /t REG_SZ /d "0 0 0" /f' + \
-            ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
-            self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
-            ' ' + '"' + exe_name + '" "' + arg + '"'
-            
-        elif self.virtual_desktop == True:
-            launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
-            "Background" /t REG_SZ /d "0 0 0" /f' + \
-            ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
-            '640x480 ' + '"' + exe_name + '" "' + arg + '"'
+        if arg != '':
+            if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
+            and (self.virtual_desktop_height != ''):
+                launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                "Background" /t REG_SZ /d "0 0 0" /f' + \
+                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
+                ' ' + '"' + exe_name + '" ' + arg
+
+            elif self.virtual_desktop == True:
+                launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                "Background" /t REG_SZ /d "0 0 0" /f' + \
+                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                '640x480 ' + '"' + exe_name + '" ' + arg
+            else:
+                launch_command = '$WINELOADER "' + exe_name + '" ' + arg
         else:
-            launch_command = '$WINELOADER "' + exe_name + '" "' + arg + '"'
+            if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
+            and (self.virtual_desktop_height != ''):
+                launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                "Background" /t REG_SZ /d "0 0 0" /f' + \
+                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
+                ' ' + '"' + exe_name + '"'
+
+            elif self.virtual_desktop == True:
+                launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                "Background" /t REG_SZ /d "0 0 0" /f' + \
+                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                '640x480 ' + '"' + exe_name + '"'
+            else:
+                launch_command = '$WINELOADER "' + exe_name + '"'
 
         if (self.wine == 'path') or (self.wine == 'global' and global_wine == 'path'):
 
