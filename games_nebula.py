@@ -3027,19 +3027,19 @@ class GUI:
             self.config_parser.set('tabs at startup', 'gogcom', self.gogcom_tab_at_start)
         else:
             self.gogcom_tab_at_start = self.config_parser.getboolean('tabs at startup', 'gogcom')
-            
+
         if not self.config_parser.has_option('tabs at startup', 'queue'):
             self.queue_tab_at_start = False
             self.config_parser.set('tabs at startup', 'queue', self.queue_tab_at_start)
         else:
             self.queue_tab_at_start = self.config_parser.getboolean('tabs at startup', 'queue')
-            
+
         if not self.config_parser.has_option('tabs at startup', 'settings'):
             self.settings_tab_at_start = True
             self.config_parser.set('tabs at startup', 'settings', self.settings_tab_at_start)
         else:
             self.settings_tab_at_start = self.config_parser.getboolean('tabs at startup', 'settings')
-            
+
         if not self.config_parser.has_option('tabs at startup', 'show_tabs'):
             self.show_tabs = True
             self.config_parser.set('tabs at startup', 'show_tabs', self.show_tabs)
@@ -3056,37 +3056,37 @@ class GUI:
             self.config_parser.set('goglib gui preferences', 'scale_level', self.scale_level)
         else:
             self.scale_level = self.config_parser.getfloat('goglib gui preferences', 'scale_level')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'status_filter'):
             self.status_filter = _("No filter")
             self.config_parser.set('goglib gui preferences', 'status_filter', self.status_filter)
         else:
             self.status_filter = self.config_parser.get('goglib gui preferences', 'status_filter')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'tag_filters'):
             self.tf_number = 1
             self.config_parser.set('goglib gui preferences', 'tag_filters', self.tf_number)
         else:
             self.tf_number = self.config_parser.getint('goglib gui preferences', 'tag_filters')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter1'):
             self.tags_filter1 = _("No filter")
             self.config_parser.set('goglib gui preferences', 'tags_filter1', self.tags_filter1)
         else:
             self.tags_filter1 = self.config_parser.get('goglib gui preferences', 'tags_filter1')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter2'):
             self.tags_filter2 = _("No filter")
             self.config_parser.set('goglib gui preferences', 'tags_filter2', self.tags_filter2)
         else:
             self.tags_filter2 = self.config_parser.get('goglib gui preferences', 'tags_filter2')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter3'):
             self.tags_filter3 = _("No filter")
             self.config_parser.set('goglib gui preferences', 'tags_filter3', self.tags_filter3)
         else:
             self.tags_filter3 = self.config_parser.get('goglib gui preferences', 'tags_filter3')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter4'):
             self.tags_filter4 = _("No filter")
             self.config_parser.set('goglib gui preferences', 'tags_filter4', self.tags_filter4)
@@ -3098,7 +3098,7 @@ class GUI:
             self.config_parser.set('goglib gui preferences', 'filter_color_indication', self.goglib_filter_color_indication)
         else:
             self.goglib_filter_color_indication = self.config_parser.getboolean('goglib gui preferences', 'filter_color_indication')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'status_filter_type'):
             self.goglib_status_filter_type = 'include'
             self.config_parser.set('goglib gui preferences', 'status_filter_type', self.goglib_status_filter_type)
@@ -3110,7 +3110,7 @@ class GUI:
             self.config_parser.set('goglib gui preferences', 'tags_filter1_type', self.goglib_tags_filter1_type)
         else:
             self.goglib_tags_filter1_type = self.config_parser.get('goglib gui preferences', 'tags_filter1_type')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter2_type'):
             self.goglib_tags_filter2_type = 'include'
             self.config_parser.set('goglib gui preferences', 'tags_filter2_type', self.goglib_tags_filter2_type)
@@ -3122,19 +3122,19 @@ class GUI:
             self.config_parser.set('goglib gui preferences', 'tags_filter3_type', self.goglib_tags_filter3_type)
         else:
             self.goglib_tags_filter3_type = self.config_parser.get('goglib gui preferences', 'tags_filter3_type')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter4_type'):
             self.goglib_tags_filter4_type = 'exclude'
             self.config_parser.set('goglib gui preferences', 'tags_filter4_type', self.goglib_tags_filter4_type)
         else:
             self.goglib_tags_filter4_type = self.config_parser.get('goglib gui preferences', 'tags_filter4_type')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'goglib_include_color'):
             self.goglib_include_color = 'rgba(128,255,128,0.2)'
             self.config_parser.set('goglib gui preferences', 'goglib_include_color', self.goglib_include_color)
         else:
             self.goglib_include_color = self.config_parser.get('goglib gui preferences', 'goglib_include_color')
-            
+
         if not self.config_parser.has_option('goglib gui preferences', 'goglib_exclude_color'):
             self.goglib_exclude_color = 'rgba(255,128,128,0.2)'
             self.config_parser.set('goglib gui preferences', 'goglib_exclude_color', self.goglib_exclude_color)
@@ -3446,7 +3446,7 @@ class GUI:
         config_file = open(config_dir + '/config.ini', 'w')
         self.config_parser.write(config_file)
         config_file.close()
-        
+
         if self.wine == 'path':
             self.wine_dir = self.wine_path + '/' + self.wine_version
         if self.wine == 'system':
@@ -4751,24 +4751,37 @@ class GUI:
         self.progressbar_goglib.set_text(_("Installing..."))
 
         files_list = os.listdir(self.goglib_download_dir + '/' + game_name)
+        files_list = sorted(files_list)
 
         number_of_installers = 0
+        versions = []
 
         for line in files_list:
 
-            if '.exe' in line:
-                command = ['innoextract', '--gog', '--exclude-temp', \
-                            self.goglib_download_dir + '/' + game_name + '/' + line, \
-                            '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
-                number_of_installers += 1
-
             if '.sh' in line:
-                command = ['unzip', '-o', \
-                            self.goglib_download_dir + '/' + game_name + '/' + line, \
-                            '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
+                installer_type = 'sh'
+                versions.append(line)
+                number_of_installers += 1
+            elif '.exe' in line:
+                installer_type = 'exe'
+                versions.append(line)
                 number_of_installers += 1
 
-        if number_of_installers == 0:
+        versions = sorted(versions)
+
+        if number_of_installers > 0:
+
+            if installer_type == 'sh':
+                command = ['unzip', '-o', \
+                        self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
+                        '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
+
+            elif installer_type == 'exe':
+                command = ['innoextract', '--gog', '--exclude-temp', \
+                        self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
+                        '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
+
+        elif number_of_installers == 0:
             self.install_game(goglib_installation_queue[0])
             return
 
@@ -4790,7 +4803,7 @@ class GUI:
             wine_path = 'wine'
         elif self.wine == 'path':
             wine_path = self.wine_path + '/' + self.wine_version
-            
+
         if not os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup'):
             game_dir = self.goglib_install_dir + '/' + game_name
             files_path = self.goglib_install_dir + '/' + game_name + '/tmp/data/noarch/'
@@ -4802,7 +4815,7 @@ class GUI:
         else:
             command = [data_dir + '/scripts/goglib/' + game_name + '/setup', \
             self.goglib_download_dir, self.goglib_install_dir, nebula_dir, wine_path]
-            
+
         print command
 
         goglib_name_to_pid_install_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
@@ -4877,7 +4890,7 @@ class GUI:
                    #~ if frame.get_name() == goglib_installation_queue[0]:
                        #~ frame.destroy()
                 os.system('rm -R -f ' + self.goglib_install_dir + '/' + goglib_installation_queue[0] + '/tmp')
-                
+
                 if self.goglib_keep_installers == False:
                     os.system('rm -R -f ' + self.goglib_download_dir + '/' + goglib_installation_queue[0])
 
@@ -5100,7 +5113,7 @@ class GUI:
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.hide()
-        
+
         while Gtk.events_pending():
             Gtk.main_iteration()
 
