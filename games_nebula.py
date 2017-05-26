@@ -454,7 +454,8 @@ class GUI:
 
     def create_goglib_tab_content(self):
 
-        if not os.path.exists(config_dir + '/games_list'):
+        if (not os.path.exists(config_dir + '/games_list')) or \
+                (not os.path.exists(config_dir + '/linux_games_list')):
 
             returncode = goglib_get_games_list.goglib_get_games_list()
 
@@ -4789,9 +4790,20 @@ class GUI:
             wine_path = 'wine'
         elif self.wine == 'path':
             wine_path = self.wine_path + '/' + self.wine_version
-
-        command = [data_dir + '/scripts/goglib/' + game_name + '/setup', \
-                    self.goglib_download_dir, self.goglib_install_dir, nebula_dir, wine_path]
+            
+        if not os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup'):
+            game_dir = self.goglib_install_dir + '/' + game_name
+            files_path = self.goglib_install_dir + '/' + game_name + '/tmp/data/noarch/'
+            files_to_move = os.listdir(files_path)
+            command = []
+            for f in files_to_move:
+                command.extend(('mv', files_path + f, game_dir, '&&'))
+            del command[-1]
+        else:
+            command = [data_dir + '/scripts/goglib/' + game_name + '/setup', \
+            self.goglib_download_dir, self.goglib_install_dir, nebula_dir, wine_path]
+            
+        print command
 
         goglib_name_to_pid_install_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
                 flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
@@ -4864,7 +4876,8 @@ class GUI:
                 #~ for frame in queue_game_frame_list:
                    #~ if frame.get_name() == goglib_installation_queue[0]:
                        #~ frame.destroy()
-
+                os.system('rm -R -f ' + self.goglib_install_dir + '/' + goglib_installation_queue[0] + '/tmp')
+                
                 if self.goglib_keep_installers == False:
                     os.system('rm -R -f ' + self.goglib_download_dir + '/' + goglib_installation_queue[0])
 

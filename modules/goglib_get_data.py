@@ -41,6 +41,17 @@ def games_info(data_dir):
             goglib_get_banner.goglib_get_banner(list_names[i], data_dir + '/images/goglib_icons/', data_dir + '/images/goglib_banners/')
 
     available_scripts = os.listdir(data_dir + '/scripts/goglib/')
+    
+    
+    linux_games_list_file = open(os.path.abspath(data_dir + '/config/linux_games_list'), 'r')
+    linux_games_list = linux_games_list_file.read().splitlines()
+    linux_games_list_file.close()
+    
+    for game in linux_games_list:
+        if game not in available_scripts:
+            available_scripts.append(game)
+    
+    available_scripts = sorted(available_scripts)
 
     return (number_of_games, list_names, list_titles, list_icons, available_scripts)
 
