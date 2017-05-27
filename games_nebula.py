@@ -4962,6 +4962,8 @@ class GUI:
 
                     updated_file.close()
 
+                    goglib_get_games_list.get_linux_games()
+
                     os.execl(sys.executable, sys.executable, *sys.argv)
 
                 return False
