@@ -64,6 +64,93 @@ class GUI:
 
     def __init__(self, game_name, exe_path):
 
+        if exe_path == 'NOEXE':
+
+            game_dir = goglib_install_dir + '/' + game_name
+
+            message_dialog = Gtk.MessageDialog(
+                None,
+                0,
+                Gtk.MessageType.OTHER,
+                Gtk.ButtonsType.OK_CANCEL,
+                _("Select the correct '.exe' file:")
+                )
+            content_area = message_dialog.get_content_area()
+            content_area.set_property('margin-left', 10)
+            content_area.set_property('margin-right', 10)
+            content_area.set_property('margin-top', 10)
+            content_area.set_property('margin-bottom', 10)
+            action_area = message_dialog.get_action_area()
+            action_area.set_property('spacing', 10)
+
+            file_dialog = Gtk.FileChooserDialog(
+            _("Select the correct '.exe' file"),
+            None,
+            Gtk.FileChooserAction.OPEN,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+
+            file_dialog.set_current_folder(game_dir + '/game')
+
+            file_filter = Gtk.FileFilter()
+            file_filter.set_name(_("DOS/Windows executable"))
+            file_filter.add_pattern("*.exe")
+            file_filter.add_pattern("*.Exe")
+            file_filter.add_pattern("*.EXE")
+            file_dialog.add_filter(file_filter)
+
+            filechooserbutton = Gtk.FileChooserButton(
+                dialog = file_dialog
+                )
+
+            content_area.pack_start(filechooserbutton, True, True, 0)
+            content_area.show_all()
+
+            response = message_dialog.run()
+
+            if response == Gtk.ResponseType.OK:
+
+                file_path = file_dialog.get_current_folder()
+                exe_name = file_dialog.get_filename().split('/')[-1]
+
+                if file_path != '':
+
+                    if file_path == game_dir + '/game':
+                        new_exe_path = exe_name
+                    else:
+                        path1_list = (game_dir + '/game').split('/')
+                        path2_list = file_path.split('/')
+
+                        new_exe_path_list = []
+                        for directory in path2_list:
+                            if directory not in path1_list:
+                                new_exe_path_list.append(directory)
+                        new_exe_path_list.append(exe_name)
+
+                        new_exe_path = '/'.join(new_exe_path_list)
+
+                    message_dialog.destroy()
+
+                    start_lines = ['#!/bin/bash\n', 'NEBULA_DIR="$2"\n', \
+                    'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
+                    new_exe_path + '"']
+
+                    start_file = open(game_dir + '/start.sh', 'w')
+                    for line in start_lines:
+                        start_file.write(line)
+                    start_file.close()
+
+                    os.execl(sys.executable, 'python', __file__, game_name, new_exe_path)
+
+                else:
+                    message_dialog.destroy()
+                    sys.exit()
+
+            else:
+
+                message_dialog.destroy()
+                sys.exit()
+
         self.game_name = game_name
         self.exe_path = exe_path
 
