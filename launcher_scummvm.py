@@ -61,9 +61,13 @@ class GUI:
         config_parser = ConfigParser.ConfigParser()
         config_parser.read(config_file)
 
-        game_path = self.install_dir + '/' + self.game_name + '/game'
-        config_parser.set(self.scummvm_game_name, 'path', game_path)
-        config_parser.set(self.scummvm_game_name, 'savepath', game_path)
+        sections = config_parser.sections()
+
+        for section in sections:
+            if section != 'scummvm':
+                game_path = self.install_dir + '/' + self.game_name + '/game'
+                config_parser.set(section, 'path', game_path)
+                config_parser.set(section, 'savepath', game_path)
 
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)

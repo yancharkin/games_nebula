@@ -1890,29 +1890,17 @@ class GUI:
         self.notebook.append_page(self.scrolled_window_dos, self.label_dos)
         self.notebook.append_page(self.scrolled_window_ipx, self.label_ipx)
 #################################################################
-        self.box2 = Gtk.Box(
-            orientation = Gtk.Orientation.HORIZONTAL,
-            margin_left = 5,
-            margin_right = 5,
-            margin_top = 5,
-            margin_bottom = 5,
-            spacing = 5
-            )
 
         self.button_save = Gtk.Button(
-            label = _("Save")
+            label = _("Save and quit"),
+            margin_left = 10,
+            margin_right = 10,
+            margin_top = 10,
+            margin_bottom = 10,
             )
 
         self.button_save.connect('clicked', self.cb_button_save)
 
-        self.button_quit = Gtk.Button(
-            label = _("Quit")
-            )
-
-        self.button_quit.connect('clicked', Gtk.main_quit)
-
-        self.box2.pack_start(self.button_save, True, True, 0)
-        self.box2.pack_start(self.button_quit, True, True, 0)
 #################################################################
 
         self.box1 = Gtk.Box(
@@ -1921,7 +1909,7 @@ class GUI:
             )
 
         self.box1.pack_start(self.notebook, True, True, 0)
-        self.box1.pack_start(self.box2, False, True, 0)
+        self.box1.pack_start(self.button_save, False, True, 0)
 
         self.main_window.add(self.box1)
 
@@ -3820,6 +3808,7 @@ class GUI:
 
     def cb_button_save(self, button):
         self.dosbox_config_save()
+        Gtk.main_quit()
 
     def dosbox_config_to_bool(self, dosbox_bool):
         if dosbox_bool == 'true':

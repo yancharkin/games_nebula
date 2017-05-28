@@ -129,7 +129,7 @@ class GUI:
             Gtk.main_iteration()
 
         dialog = Gtk.FileChooserDialog(
-            "Choose a file to execute",
+            _("Choose a file to execute"),
             self.main_window,
             Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
