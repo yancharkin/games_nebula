@@ -57,6 +57,9 @@ transparent_rgba = Gdk.RGBA(
     alpha = 0,
     )
 
+predefined_tags = ['Action', 'Adventure', 'Demo', 'Indie', 'Racing',
+                'Role-playing', 'Shooter', 'Simulation', 'Sports', 'Strategy']
+
 goglib_game_grids_full_list = []
 goglib_game_grids_current_list = []
 goglib_games_banners_list = []
@@ -123,7 +126,6 @@ class GUI:
         self.config_load()
         self.parse_goglib_colors()
         self.parse_mylib_colors()
-        self.set_icon()
 
         if self.goglib_tab_at_start and not self.goglib_offline_mode_at_start:
             self.goglib_authorized = goglib_check_authorization.goglib_authorized()
@@ -166,11 +168,6 @@ class GUI:
             self.goglib_offline_mode = True
             self.create_main_window()
             self.timer()
-
-    def set_icon(self):
-        self.icon_network_offline = Gtk.Image.new_from_icon_name("network-offline", Gtk.IconSize.SMALL_TOOLBAR)
-        self.icon_network_idle = Gtk.Image.new_from_icon_name("network-idle", Gtk.IconSize.SMALL_TOOLBAR)
-        self.icon_view_refresh = Gtk.Image.new_from_icon_name("view-refresh", Gtk.IconSize.SMALL_TOOLBAR)
 
     def create_loading_window(self):
 
@@ -301,10 +298,12 @@ class GUI:
         self.notebook.set_action_widget(self.button_add_tab, Gtk.PackType.START)
 
         if self.goglib_offline_mode:
-            online_status_icon = self.icon_network_offline
+            img = Gtk.Image.new_from_icon_name("network-offline", Gtk.IconSize.SMALL_TOOLBAR)
+            online_status_icon = img
             online_tooltip = _("Offline - click to go online")
         else:
-            online_status_icon = self.icon_network_idle
+            img = Gtk.Image.new_from_icon_name("network-idle", Gtk.IconSize.SMALL_TOOLBAR)
+            online_status_icon = img
             online_tooltip = _("Online - click to go offline")
 
         self.button_online_status = Gtk.Button(
@@ -316,8 +315,9 @@ class GUI:
             )
         self.button_online_status.connect('clicked', self.cb_button_online_status)
 
+        img = Gtk.Image.new_from_icon_name("view-refresh", Gtk.IconSize.SMALL_TOOLBAR)
         self.button_update_goglib = Gtk.Button(
-            image = self.icon_view_refresh,
+            image = img,
             visible = False,
             no_show_all = True,
             relief = Gtk.ReliefStyle.NONE,
@@ -4345,24 +4345,142 @@ class GUI:
                 0,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK_CANCEL,
-                _("Add/modify tags:"),
+                '"' + self.dict_name_title[game_name] + '" ' + _("tags:"),
                 )
-            message_dialog.format_secondary_text(_("Use commas to separate tags."))
+            message_dialog.set_property('default-width', 480)
             content_area = message_dialog.get_content_area()
             content_area.set_property('margin-left', 10)
             content_area.set_property('margin-right', 10)
             content_area.set_property('margin-top', 10)
             content_area.set_property('margin-bottom', 10)
+            content_area.set_property('spacing', 10)
             action_area = message_dialog.get_action_area()
+            action_area.set_property('margin_top', 10)
             action_area.set_property('spacing', 10)
 
             entry = Gtk.Entry(
                 text = current_tags_str,
-                placeholder_text = _("Empty"),
-                width_request = 100
+                placeholder_text = _("Use commas to separate tags."),
+                width_request = 100,
+                sensitive = False
                 )
 
-            content_area.pack_start(entry, True, True, 0)
+            def cb_button_edit_tags(button):
+                if entry.get_sensitive():
+                    entry.set_sensitive(False)
+                else:
+                    entry.set_sensitive(True)
+
+            img = Gtk.Image.new_from_icon_name("document-new", Gtk.IconSize.SMALL_TOOLBAR)
+            button_edit_tags = Gtk.Button(image=img)
+            button_edit_tags.connect('clicked', cb_button_edit_tags)
+
+            box0 = Gtk.Box(spacing = 5)
+
+            box0.pack_start(entry, True, True, 0)
+            box0.pack_start(button_edit_tags, False, False, 0)
+
+            combobox_existing_tags = Gtk.ComboBoxText(no_show_all=True)
+            for tag in self.all_tags:
+                if tag not in predefined_tags:
+                    combobox_existing_tags.append_text(tag)
+            combobox_existing_tags.set_active(0)
+
+            def cb_button_remove_existing_tags(button):
+                current_tags = entry.get_text()
+                tag_to_remove = combobox_existing_tags.get_active_text()
+                if tag_to_remove in current_tags:
+                    tmp_list = current_tags.split(',')
+                    tmp_list.remove(tag_to_remove)
+                    net_tags_string = ','.join(tmp_list)
+                    entry.set_text(net_tags_string)
+
+            img = Gtk.Image.new_from_icon_name("list-remove", Gtk.IconSize.SMALL_TOOLBAR)
+            button_remove_existing_tags = Gtk.Button(image=img, no_show_all=True)
+            button_remove_existing_tags.connect('clicked', cb_button_remove_existing_tags)
+
+            def cb_button_add_existing_tags(button):
+                current_tags = entry.get_text()
+                new_tag = combobox_existing_tags.get_active_text()
+                if new_tag not in current_tags:
+                    if len(current_tags) == 0:
+                        entry.set_text(new_tag)
+                    else:
+                        entry.set_text(current_tags + ',' + new_tag)
+
+            img = Gtk.Image.new_from_icon_name("list-add", Gtk.IconSize.SMALL_TOOLBAR)
+            button_add_existing_tags = Gtk.Button(image=img, no_show_all=True)
+            button_add_existing_tags.connect('clicked', cb_button_add_existing_tags)
+
+            label_existing_tags = Gtk.Label(
+                label=_("Add existing tag:"),
+                xalign = 0,
+                no_show_all = True
+                )
+            box1 = Gtk.Box(spacing = 5)
+
+            if len(self.all_tags) == 0:
+                label_existing_tags.set_visible(False)
+                combobox_existing_tags.set_visible(False)
+                button_remove_existing_tags.set_visible(False)
+                button_add_existing_tags.set_visible(False)
+            else:
+                label_existing_tags.set_visible(True)
+                combobox_existing_tags.set_visible(True)
+                button_remove_existing_tags.set_visible(True)
+                button_add_existing_tags.set_visible(True)
+
+            box1.pack_start(combobox_existing_tags, True, True, 0)
+            box1.pack_start(button_remove_existing_tags, False, False, 0)
+            box1.pack_start(button_add_existing_tags, False, False, 0)
+
+            combobox_predefined_tags = Gtk.ComboBoxText()
+            for tag in predefined_tags:
+                combobox_predefined_tags.append_text(tag)
+            combobox_predefined_tags.set_active(0)
+
+            def cb_button_remove_predefined_tags(button):
+                current_tags = entry.get_text()
+                tag_to_remove = combobox_predefined_tags.get_active_text()
+                if tag_to_remove in current_tags:
+                    tmp_list = current_tags.split(',')
+                    tmp_list.remove(tag_to_remove)
+                    net_tags_string = ','.join(tmp_list)
+                    entry.set_text(net_tags_string)
+
+            img = Gtk.Image.new_from_icon_name("list-remove", Gtk.IconSize.SMALL_TOOLBAR)
+            button_remove_predefined_tags = Gtk.Button(image=img)
+            button_remove_predefined_tags.connect('clicked', cb_button_remove_predefined_tags)
+
+            def cb_button_add_predefined_tags(button):
+                current_tags = entry.get_text()
+                new_tag = combobox_predefined_tags.get_active_text()
+                if new_tag not in current_tags:
+                    if len(current_tags) == 0:
+                        entry.set_text(new_tag)
+                    else:
+                        entry.set_text(current_tags + ',' + new_tag)
+
+            img = Gtk.Image.new_from_icon_name("list-add", Gtk.IconSize.SMALL_TOOLBAR)
+            button_add_predefined_tags = Gtk.Button(image=img)
+            button_add_predefined_tags.connect('clicked', cb_button_add_predefined_tags)
+
+            label_predefined_tags = Gtk.Label(
+                label=_("Add predefined tag:"),
+                xalign = 0
+                )
+            box2 = Gtk.Box(spacing=5)
+            box2.pack_start(combobox_predefined_tags, True, True, 0)
+            box2.pack_start(button_remove_predefined_tags, False, False, 0)
+            box2.pack_start(button_add_predefined_tags, False, False, 0)
+
+            content_area.pack_start(box0, True, True, 0)
+            content_area.pack_start(label_existing_tags, True, True, 0)
+            content_area.pack_start(box1, True, True, 0)
+            content_area.pack_start(label_predefined_tags, True, True, 0)
+            content_area.pack_start(box2, True, True, 0)
+
+            self.main_window.hide()
             message_dialog.show_all()
             message_dialog_response = message_dialog.run()
 
@@ -4422,6 +4540,7 @@ class GUI:
                     self.cb_combobox_goglib_tags4(self.combobox_goglib_tags4)
 
             message_dialog.destroy()
+            self.main_window.show()
 
     def mylib_banner_clicked(self, widget, event):
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
@@ -4436,24 +4555,143 @@ class GUI:
                 0,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK_CANCEL,
-                _("Add/modify tags:"),
+                '"' + self.mylib_dict_name_to_title[game_name] + '" ' + _("tags:"),
                 )
-            message_dialog.format_secondary_text(_("Use commas to separate tags."))
+            message_dialog.set_property('default-width', 480)
             content_area = message_dialog.get_content_area()
             content_area.set_property('margin-left', 10)
             content_area.set_property('margin-right', 10)
             content_area.set_property('margin-top', 10)
             content_area.set_property('margin-bottom', 10)
+            content_area.set_property('spacing', 10)
             action_area = message_dialog.get_action_area()
+            action_area.set_property('margin_top', 10)
             action_area.set_property('spacing', 10)
 
             entry = Gtk.Entry(
                 text = current_tags_str,
-                placeholder_text = _("Empty"),
-                width_request = 100
+                placeholder_text = _("Use comma to separate tags."),
+                width_request = 100,
+                sensitive = False
                 )
 
-            content_area.pack_start(entry, True, True, 0)
+            def cb_button_edit_tags(button):
+                if entry.get_sensitive():
+                    entry.set_sensitive(False)
+                else:
+                    entry.set_sensitive(True)
+
+            img = Gtk.Image.new_from_icon_name("document-new", Gtk.IconSize.SMALL_TOOLBAR)
+            button_edit_tags = Gtk.Button(image=img)
+            button_edit_tags.connect('clicked', cb_button_edit_tags)
+
+            box0 = Gtk.Box(spacing = 5)
+
+            box0.pack_start(entry, True, True, 0)
+            box0.pack_start(button_edit_tags, False, False, 0)
+
+            combobox_existing_tags = Gtk.ComboBoxText(no_show_all=True)
+            for tag in self.mylib_all_tags:
+                if tag not in predefined_tags:
+                    combobox_existing_tags.append_text(tag)
+            combobox_existing_tags.set_active(0)
+
+            def cb_button_remove_existing_tags(button):
+                current_tags = entry.get_text()
+                tag_to_remove = combobox_existing_tags.get_active_text()
+                if tag_to_remove in current_tags:
+                    tmp_list = current_tags.split(',')
+                    tmp_list.remove(tag_to_remove)
+                    net_tags_string = ','.join(tmp_list)
+                    entry.set_text(net_tags_string)
+
+            img = Gtk.Image.new_from_icon_name("list-remove", Gtk.IconSize.SMALL_TOOLBAR)
+            button_remove_existing_tags = Gtk.Button(image=img, no_show_all=True)
+            button_remove_existing_tags.connect('clicked', cb_button_remove_existing_tags)
+
+            def cb_button_add_existing_tags(button):
+                current_tags = entry.get_text()
+                new_tag = combobox_existing_tags.get_active_text()
+                if new_tag not in current_tags:
+                    if len(current_tags) == 0:
+                        entry.set_text(new_tag)
+                    else:
+                        entry.set_text(current_tags + ',' + new_tag)
+
+            img = Gtk.Image.new_from_icon_name("list-add", Gtk.IconSize.SMALL_TOOLBAR)
+            button_add_existing_tags = Gtk.Button(image=img, no_show_all=True)
+            button_add_existing_tags.connect('clicked', cb_button_add_existing_tags)
+
+            label_existing_tags = Gtk.Label(
+                label=_("Add existing tag:"),
+                xalign = 0,
+                no_show_all = True
+                )
+            box1 = Gtk.Box(spacing = 5)
+
+            if len(self.mylib_all_tags) == 0:
+                label_existing_tags.set_visible(False)
+                combobox_existing_tags.set_visible(False)
+                button_remove_existing_tags.set_visible(False)
+                button_add_existing_tags.set_visible(False)
+            else:
+                label_existing_tags.set_visible(True)
+                combobox_existing_tags.set_visible(True)
+                button_remove_existing_tags.set_visible(True)
+                button_add_existing_tags.set_visible(True)
+
+            box1.pack_start(combobox_existing_tags, True, True, 0)
+            box1.pack_start(button_remove_existing_tags, False, False, 0)
+            box1.pack_start(button_add_existing_tags, False, False, 0)
+
+            combobox_predefined_tags = Gtk.ComboBoxText()
+            for tag in predefined_tags:
+                combobox_predefined_tags.append_text(tag)
+            combobox_predefined_tags.set_active(0)
+
+            def cb_button_remove_predefined_tags(button):
+                current_tags = entry.get_text()
+                tag_to_remove = combobox_predefined_tags.get_active_text()
+                if tag_to_remove in current_tags:
+                    tmp_list = current_tags.split(',')
+                    tmp_list.remove(tag_to_remove)
+                    net_tags_string = ','.join(tmp_list)
+                    entry.set_text(net_tags_string)
+
+            img = Gtk.Image.new_from_icon_name("list-remove", Gtk.IconSize.SMALL_TOOLBAR)
+            button_remove_predefined_tags = Gtk.Button(image=img)
+            button_remove_predefined_tags.connect('clicked', cb_button_remove_predefined_tags)
+
+            def cb_button_add_predefined_tags(button):
+                current_tags = entry.get_text()
+                new_tag = combobox_predefined_tags.get_active_text()
+                if new_tag not in current_tags:
+                    if len(current_tags) == 0:
+                        entry.set_text(new_tag)
+                    else:
+                        entry.set_text(current_tags + ',' + new_tag)
+
+
+            img = Gtk.Image.new_from_icon_name("list-add", Gtk.IconSize.SMALL_TOOLBAR)
+            button_add_predefined_tags = Gtk.Button(image=img)
+            button_add_predefined_tags.connect('clicked', cb_button_add_predefined_tags)
+
+            label_predefined_tags = Gtk.Label(
+                label=_("Add predefined tag:"),
+                xalign = 0
+                )
+            box2 = Gtk.Box(spacing=5)
+            box2.pack_start(combobox_predefined_tags, True, True, 0)
+            box2.pack_start(button_remove_predefined_tags, False, False, 0)
+            box2.pack_start(button_add_predefined_tags, False, False, 0)
+
+            content_area.pack_start(box0, True, True, 0)
+            content_area.pack_start(label_existing_tags, True, True, 0)
+            content_area.pack_start(box1, True, True, 0)
+            content_area.pack_start(label_predefined_tags, True, True, 0)
+            content_area.pack_start(box2, True, True, 0)
+
+            self.main_window.hide()
             message_dialog.show_all()
             message_dialog_response = message_dialog.run()
 
@@ -4513,6 +4751,7 @@ class GUI:
                     self.cb_combobox_mylib_tags4(self.combobox_mylib_tags4)
 
             message_dialog.destroy()
+            self.main_window.show()
 
     def remove_from_installation_queue(self, button):
 
