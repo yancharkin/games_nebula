@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-29 22:11+0300\n"
-"PO-Revision-Date: 2017-05-29 22:33+0300\n"
+"POT-Creation-Date: 2017-05-29 22:52+0300\n"
+"PO-Revision-Date: 2017-05-29 22:52+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -43,6 +43,38 @@ msgstr "Скачивается..."
 #: ../games_nebula.py:5750 ../games_nebula.py:5757 ../games_nebula.py:5763
 msgid "Installing..."
 msgstr "Устанавливается..."
+
+#: ../games_nebula.py:98
+msgid "Action"
+msgstr "Экшн"
+
+#: ../games_nebula.py:98
+msgid "Adventure"
+msgstr "Приключения"
+
+#: ../games_nebula.py:98
+msgid "Demo"
+msgstr "Демо"
+
+#: ../games_nebula.py:98
+msgid "Indie"
+msgstr "Инди"
+
+#: ../games_nebula.py:99
+msgid "Role-playing"
+msgstr "Ролевая игра"
+
+#: ../games_nebula.py:99
+msgid "Shooter"
+msgstr "Шутер"
+
+#: ../games_nebula.py:99
+msgid "Simulation"
+msgstr "Симулятор"
+
+#: ../games_nebula.py:99
+msgid "Strategy"
+msgstr "Стратегия"
 
 #: ../games_nebula.py:148
 msgid "GOG.com unavailable"

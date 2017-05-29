@@ -57,9 +57,6 @@ transparent_rgba = Gdk.RGBA(
     alpha = 0,
     )
 
-predefined_tags = ['Action', 'Adventure', 'Demo', 'Indie', 'Racing',
-                'Role-playing', 'Shooter', 'Simulation', 'Sports', 'Strategy']
-
 goglib_game_grids_full_list = []
 goglib_game_grids_current_list = []
 goglib_games_banners_list = []
@@ -97,6 +94,10 @@ app_icon = GdkPixbuf.Pixbuf.new_from_file(nebula_dir + '/images/icon.png')
 gettext.bindtextdomain('games_nebula', nebula_dir + '/locale')
 gettext.textdomain('games_nebula')
 _ = gettext.gettext
+
+predefined_tags = [_("Action"), _("Adventure"), _("Demo"), _("Indie"),
+                _("Role-playing"), _("Shooter"), _("Simulation"), _("Strategy")]
+predefined_tags = sorted(predefined_tags)
 
 def file_exist_in_dir(path):
     return any(isfile(join(path, i)) for i in os.listdir(path))
