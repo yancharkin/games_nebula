@@ -4362,7 +4362,8 @@ class GUI:
                 text = current_tags_str,
                 placeholder_text = _("Use commas to separate tags."),
                 width_request = 100,
-                sensitive = False
+                sensitive = False,
+                tooltip_text = _("Current tags")
                 )
 
             def cb_button_edit_tags(button):
@@ -4372,7 +4373,10 @@ class GUI:
                     entry.set_sensitive(True)
 
             img = Gtk.Image.new_from_icon_name("document-new", Gtk.IconSize.SMALL_TOOLBAR)
-            button_edit_tags = Gtk.Button(image=img)
+            button_edit_tags = Gtk.Button(
+                image = img,
+                tooltip_text = _("Edit")
+                )
             button_edit_tags.connect('clicked', cb_button_edit_tags)
 
             box0 = Gtk.Box(spacing = 5)
@@ -4395,8 +4399,12 @@ class GUI:
                     net_tags_string = ','.join(tmp_list)
                     entry.set_text(net_tags_string)
 
-            img = Gtk.Image.new_from_icon_name("list-remove", Gtk.IconSize.SMALL_TOOLBAR)
-            button_remove_existing_tags = Gtk.Button(image=img, no_show_all=True)
+            img = Gtk.Image.new_from_icon_name("edit-delete", Gtk.IconSize.SMALL_TOOLBAR)
+            button_remove_existing_tags = Gtk.Button(
+                image = img,
+                no_show_all = True,
+                tooltip_text = _("Remove from current tags")
+                )
             button_remove_existing_tags.connect('clicked', cb_button_remove_existing_tags)
 
             def cb_button_add_existing_tags(button):
@@ -4408,12 +4416,16 @@ class GUI:
                     else:
                         entry.set_text(current_tags + ',' + new_tag)
 
-            img = Gtk.Image.new_from_icon_name("list-add", Gtk.IconSize.SMALL_TOOLBAR)
-            button_add_existing_tags = Gtk.Button(image=img, no_show_all=True)
+            img = Gtk.Image.new_from_icon_name("go-up", Gtk.IconSize.SMALL_TOOLBAR)
+            button_add_existing_tags = Gtk.Button(
+                image = img,
+                no_show_all = True,
+                tooltip_text = _("Add to current tags")
+                )
             button_add_existing_tags.connect('clicked', cb_button_add_existing_tags)
 
             label_existing_tags = Gtk.Label(
-                label=_("Add existing tag:"),
+                label=_("Existing tags:"),
                 xalign = 0,
                 no_show_all = True
                 )
@@ -4448,8 +4460,11 @@ class GUI:
                     net_tags_string = ','.join(tmp_list)
                     entry.set_text(net_tags_string)
 
-            img = Gtk.Image.new_from_icon_name("list-remove", Gtk.IconSize.SMALL_TOOLBAR)
-            button_remove_predefined_tags = Gtk.Button(image=img)
+            img = Gtk.Image.new_from_icon_name("edit-delete", Gtk.IconSize.SMALL_TOOLBAR)
+            button_remove_predefined_tags = Gtk.Button(
+                image = img,
+                tooltip_text = _("Remove from current tags")
+                )
             button_remove_predefined_tags.connect('clicked', cb_button_remove_predefined_tags)
 
             def cb_button_add_predefined_tags(button):
@@ -4461,12 +4476,15 @@ class GUI:
                     else:
                         entry.set_text(current_tags + ',' + new_tag)
 
-            img = Gtk.Image.new_from_icon_name("list-add", Gtk.IconSize.SMALL_TOOLBAR)
-            button_add_predefined_tags = Gtk.Button(image=img)
+            img = Gtk.Image.new_from_icon_name("go-up", Gtk.IconSize.SMALL_TOOLBAR)
+            button_add_predefined_tags = Gtk.Button(
+                image = img,
+                tooltip_text = _("Add to current tags")
+                )
             button_add_predefined_tags.connect('clicked', cb_button_add_predefined_tags)
 
             label_predefined_tags = Gtk.Label(
-                label=_("Add predefined tag:"),
+                label=_("Predefined tags:"),
                 xalign = 0
                 )
             box2 = Gtk.Box(spacing=5)
@@ -4572,7 +4590,8 @@ class GUI:
                 text = current_tags_str,
                 placeholder_text = _("Use comma to separate tags."),
                 width_request = 100,
-                sensitive = False
+                sensitive = False,
+                tooltip_text = _("Current tags")
                 )
 
             def cb_button_edit_tags(button):
@@ -4582,7 +4601,10 @@ class GUI:
                     entry.set_sensitive(True)
 
             img = Gtk.Image.new_from_icon_name("document-new", Gtk.IconSize.SMALL_TOOLBAR)
-            button_edit_tags = Gtk.Button(image=img)
+            button_edit_tags = Gtk.Button(
+                image = img,
+                tooltip_text = _("Edit")
+                )
             button_edit_tags.connect('clicked', cb_button_edit_tags)
 
             box0 = Gtk.Box(spacing = 5)
@@ -4605,8 +4627,12 @@ class GUI:
                     net_tags_string = ','.join(tmp_list)
                     entry.set_text(net_tags_string)
 
-            img = Gtk.Image.new_from_icon_name("list-remove", Gtk.IconSize.SMALL_TOOLBAR)
-            button_remove_existing_tags = Gtk.Button(image=img, no_show_all=True)
+            img = Gtk.Image.new_from_icon_name("edit-delete", Gtk.IconSize.SMALL_TOOLBAR)
+            button_remove_existing_tags = Gtk.Button(
+                image = img,
+                no_show_all = True,
+                tooltip_text = _("Remove from current tags")
+                )
             button_remove_existing_tags.connect('clicked', cb_button_remove_existing_tags)
 
             def cb_button_add_existing_tags(button):
@@ -4618,12 +4644,16 @@ class GUI:
                     else:
                         entry.set_text(current_tags + ',' + new_tag)
 
-            img = Gtk.Image.new_from_icon_name("list-add", Gtk.IconSize.SMALL_TOOLBAR)
-            button_add_existing_tags = Gtk.Button(image=img, no_show_all=True)
+            img = Gtk.Image.new_from_icon_name("go-up", Gtk.IconSize.SMALL_TOOLBAR)
+            button_add_existing_tags = Gtk.Button(
+                image = img,
+                no_show_all = True,
+                tooltip_text = _("Add to current tags")
+                )
             button_add_existing_tags.connect('clicked', cb_button_add_existing_tags)
 
             label_existing_tags = Gtk.Label(
-                label=_("Add existing tag:"),
+                label=_("Existing tags:"),
                 xalign = 0,
                 no_show_all = True
                 )
@@ -4658,8 +4688,11 @@ class GUI:
                     net_tags_string = ','.join(tmp_list)
                     entry.set_text(net_tags_string)
 
-            img = Gtk.Image.new_from_icon_name("list-remove", Gtk.IconSize.SMALL_TOOLBAR)
-            button_remove_predefined_tags = Gtk.Button(image=img)
+            img = Gtk.Image.new_from_icon_name("edit-delete", Gtk.IconSize.SMALL_TOOLBAR)
+            button_remove_predefined_tags = Gtk.Button(
+                image = img,
+                tooltip_text = _("Remove from current tags")
+                )
             button_remove_predefined_tags.connect('clicked', cb_button_remove_predefined_tags)
 
             def cb_button_add_predefined_tags(button):
@@ -4672,12 +4705,15 @@ class GUI:
                         entry.set_text(current_tags + ',' + new_tag)
 
 
-            img = Gtk.Image.new_from_icon_name("list-add", Gtk.IconSize.SMALL_TOOLBAR)
-            button_add_predefined_tags = Gtk.Button(image=img)
+            img = Gtk.Image.new_from_icon_name("go-up", Gtk.IconSize.SMALL_TOOLBAR)
+            button_add_predefined_tags = Gtk.Button(
+                image = img,
+                tooltip_text = _("Add to current tags")
+                )
             button_add_predefined_tags.connect('clicked', cb_button_add_predefined_tags)
 
             label_predefined_tags = Gtk.Label(
-                label=_("Add predefined tag:"),
+                label=_("Predefined tags:"),
                 xalign = 0
                 )
             box2 = Gtk.Box(spacing=5)

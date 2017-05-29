@@ -157,6 +157,7 @@ class GUI:
             _("Completed successfully"),
             )
         message_dialog.set_property('window_position', Gtk.WindowPosition.CENTER_ALWAYS)
+        message_dialog.set_property('default-width', 480)
         
         if len(new_scripts) != 0:
             message_dialog.format_secondary_text(_("New scripts downloaded"))
@@ -164,9 +165,12 @@ class GUI:
             message_dialog.format_secondary_text(_("No new scripts in repository"))
         
         content_area = message_dialog.get_content_area()
-        content_area.set_property('margin_left', 5)
-        content_area.set_property('margin_right', 5)
-        content_area.set_property('margin_bottom', 5)
+        content_area.set_property('margin-left', 10)
+        content_area.set_property('margin-right', 10)
+        content_area.set_property('margin-top', 10)
+        content_area.set_property('margin-bottom', 10)
+        action_area = message_dialog.get_action_area()
+        action_area.set_property('spacing', 10)
         
         expander_new_all = Gtk.Expander(
             label = _("All new scripts (" + str(len(new_scripts)) + "):")
@@ -176,7 +180,7 @@ class GUI:
             expander_new_all.set_property('no-show-all', True)
             
         scrolled_window1 = Gtk.ScrolledWindow(
-            height_request = 120
+            height_request = 240
             )
         
         textbuffer1 = Gtk.TextBuffer()
@@ -206,7 +210,7 @@ class GUI:
                 expander_new_own.set_property('no-show-all', True)
             
             scrolled_window_new_own = Gtk.ScrolledWindow(
-                height_request = 120
+                height_request = 240
                 )
             
             textbuffer_new_own = Gtk.TextBuffer()
