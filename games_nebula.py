@@ -529,7 +529,8 @@ class GUI:
         self.goglib_tab_search_entry.connect('search-changed', self.goglib_search_filter)
 
         self.combobox_goglib_status = Gtk.ComboBoxText(
-            tooltip_text = _("Status filter")
+            tooltip_text = _("Status filter"),
+            name = 'combobox_goglib_status'
             )
 
         self.status_list = [_("No filter"), _("Installed"), _("Unavailable")]
@@ -539,6 +540,7 @@ class GUI:
             if self.status_list[i] == self.status_filter:
                 self.combobox_goglib_status.set_active(i)
         self.combobox_goglib_status.connect('changed', self.cb_combobox_goglib_status)
+        self.combobox_goglib_status.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.goglib_filter_color_indication == True:
             goglib_combobox_status_cell_view = self.combobox_goglib_status.get_child()
@@ -548,7 +550,8 @@ class GUI:
                 goglib_combobox_status_cell_view.set_background_rgba(self.goglib_exclude_rgba)
 
         self.combobox_goglib_tags1 = Gtk.ComboBoxText(
-            tooltip_text = _("Tags filter 1")
+            tooltip_text = _("Tags filter 1"),
+            name = 'combobox_goglib_tags1'
             )
         self.combobox_goglib_tags1.append_text(_("No filter"))
         for i in range(len(self.all_tags)):
@@ -563,6 +566,7 @@ class GUI:
         self.combobox_goglib_tags1.append_text(_("No tags"))
 
         self.combobox_goglib_tags1.connect('changed', self.cb_combobox_goglib_tags1)
+        self.combobox_goglib_tags1.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.goglib_filter_color_indication == True:
             goglib_combobox_tags1_cell_view = self.combobox_goglib_tags1.get_child()
@@ -574,6 +578,7 @@ class GUI:
         self.combobox_goglib_tags2 = Gtk.ComboBoxText(
             tooltip_text = _("Tags filter 2"),
             no_show_all = True,
+            name = 'combobox_goglib_tags2'
             )
         self.combobox_goglib_tags2.append_text(_("No filter"))
         for i in range(len(self.all_tags)):
@@ -588,6 +593,7 @@ class GUI:
         self.combobox_goglib_tags2.append_text(_("No tags"))
 
         self.combobox_goglib_tags2.connect('changed', self.cb_combobox_goglib_tags2)
+        self.combobox_goglib_tags2.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.goglib_filter_color_indication == True:
             goglib_combobox_tags2_cell_view = self.combobox_goglib_tags2.get_child()
@@ -599,6 +605,7 @@ class GUI:
         self.combobox_goglib_tags3 = Gtk.ComboBoxText(
             tooltip_text = _("Tags filter 3"),
             no_show_all = True,
+            name = 'combobox_goglib_tags3'
             )
         self.combobox_goglib_tags3.append_text(_("No filter"))
         for i in range(len(self.all_tags)):
@@ -613,6 +620,7 @@ class GUI:
         self.combobox_goglib_tags3.append_text(_("No tags"))
 
         self.combobox_goglib_tags3.connect('changed', self.cb_combobox_goglib_tags3)
+        self.combobox_goglib_tags3.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.goglib_filter_color_indication == True:
             goglib_combobox_tags3_cell_view = self.combobox_goglib_tags3.get_child()
@@ -624,6 +632,7 @@ class GUI:
         self.combobox_goglib_tags4 = Gtk.ComboBoxText(
             tooltip_text = _("Tags filter 4"),
             no_show_all = True,
+            name = 'combobox_goglib_tags4'
             )
         self.combobox_goglib_tags4.append_text(_("No filter"))
         for i in range(len(self.all_tags)):
@@ -638,6 +647,7 @@ class GUI:
         self.combobox_goglib_tags4.append_text(_("No tags"))
 
         self.combobox_goglib_tags4.connect('changed', self.cb_combobox_goglib_tags4)
+        self.combobox_goglib_tags4.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.goglib_filter_color_indication == True:
             goglib_combobox_tags4_cell_view = self.combobox_goglib_tags4.get_child()
@@ -873,7 +883,8 @@ class GUI:
         self.mylib_tab_search_entry.connect('search-changed', self.mylib_search_filter)
 
         self.combobox_mylib_status = Gtk.ComboBoxText(
-            tooltip_text = _("Status filter")
+            tooltip_text = _("Status filter"),
+            name = 'combobox_mylib_status'
             )
 
         self.mylib_status_list = [_("No filter"), _("Installed")]
@@ -884,6 +895,7 @@ class GUI:
                 self.combobox_mylib_status.set_active(i)
 
         self.combobox_mylib_status.connect('changed', self.cb_combobox_mylib_status)
+        self.combobox_mylib_status.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.mylib_filter_color_indication == True:
             mylib_combobox_status_cell_view = self.combobox_mylib_status.get_child()
@@ -893,7 +905,8 @@ class GUI:
                 mylib_combobox_status_cell_view.set_background_rgba(self.mylib_exclude_rgba)
 
         self.combobox_mylib_tags1 = Gtk.ComboBoxText(
-            tooltip_text = _("Tags filter 1")
+            tooltip_text = _("Tags filter 1"),
+            name = 'combobox_mylib_tags1'
             )
         self.combobox_mylib_tags1.append_text(_("No filter"))
 
@@ -909,6 +922,7 @@ class GUI:
         self.combobox_mylib_tags1.append_text(_("No tags"))
 
         self.combobox_mylib_tags1.connect('changed', self.cb_combobox_mylib_tags1)
+        self.combobox_mylib_tags1.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.mylib_filter_color_indication == True:
             mylib_combobox_tags1_cell_view = self.combobox_mylib_tags1.get_child()
@@ -920,6 +934,7 @@ class GUI:
         self.combobox_mylib_tags2 = Gtk.ComboBoxText(
             tooltip_text = _("Tags filter 2"),
             no_show_all = True,
+            name = 'combobox_mylib_tags2'
             )
         self.combobox_mylib_tags2.append_text(_("No filter"))
 
@@ -935,6 +950,7 @@ class GUI:
         self.combobox_mylib_tags2.append_text(_("No tags"))
 
         self.combobox_mylib_tags2.connect('changed', self.cb_combobox_mylib_tags2)
+        self.combobox_mylib_tags2.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.mylib_filter_color_indication == True:
             mylib_combobox_tags2_cell_view = self.combobox_mylib_tags2.get_child()
@@ -946,6 +962,7 @@ class GUI:
         self.combobox_mylib_tags3 = Gtk.ComboBoxText(
             tooltip_text = _("Tags filter 3"),
             no_show_all = True,
+            name = 'combobox_mylib_tags3'
             )
         self.combobox_mylib_tags3.append_text(_("No filter"))
 
@@ -961,6 +978,7 @@ class GUI:
         self.combobox_mylib_tags3.append_text(_("No tags"))
 
         self.combobox_mylib_tags3.connect('changed', self.cb_combobox_mylib_tags3)
+        self.combobox_mylib_tags3.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.mylib_filter_color_indication == True:
             mylib_combobox_tags3_cell_view = self.combobox_mylib_tags3.get_child()
@@ -972,6 +990,7 @@ class GUI:
         self.combobox_mylib_tags4 = Gtk.ComboBoxText(
             tooltip_text = _("Tags filter 4"),
             no_show_all = True,
+            name = 'combobox_mylib_tags4'
             )
         self.combobox_mylib_tags4.append_text(_("No filter"))
 
@@ -987,6 +1006,7 @@ class GUI:
         self.combobox_mylib_tags4.append_text(_("No tags"))
 
         self.combobox_mylib_tags4.connect('changed', self.cb_combobox_mylib_tags4)
+        self.combobox_mylib_tags4.connect('button-press-event', self.cb2_comboboxes_filters)
 
         if self.mylib_filter_color_indication == True:
             mylib_combobox_tags4_cell_view = self.combobox_mylib_tags4.get_child()
@@ -4735,10 +4755,10 @@ class GUI:
                 self.update_goglib_grid()
 
     def download_game(self, game_name):
-        
+
         if self.goglib_offline_mode:
             self.unpack_game(goglib_installation_queue[0])
-        
+
         else:
 
             if not self.queue_tab_exists():
@@ -4918,7 +4938,7 @@ class GUI:
                         for i in range(len(file_content)):
                             if 'mount c' in file_content[i].lower():
                                 file_content[i] = c_mount_command + 'c:\n'
-                            
+
                             if 'imgmount d' in file_content[i].lower():
                                 imgmount_letter_case = file_content[i].split(' ')[0] + ' '
                                 tmp_list = file_content[i].split(imgmount_letter_case)[1].split(' ')
@@ -5069,7 +5089,7 @@ class GUI:
                         for i in range(len(file_content)):
                             if 'mount c' in file_content[i].lower():
                                 file_content[i] = c_mount_command + 'c:\n'
-                            
+
                             if 'imgmount d' in file_content[i].lower():
                                 imgmount_letter_case = file_content[i].split(' ')[0] + ' '
                                 tmp_list = file_content[i].split(imgmount_letter_case)[1].translate(None, '"\\').split(' ')
@@ -6081,6 +6101,141 @@ class GUI:
             return
 
         GObject.timeout_add(100, self.set_new_page_active)
+
+    # Switch behavior and reset filters by RMB and LMB
+
+    def cb2_comboboxes_filters(self, combobox, event):
+        if event.type == Gdk.EventType.BUTTON_PRESS:
+
+            if combobox.get_name() == 'combobox_goglib_status':
+                if event.button == 3:
+                    if self.goglib_status_filter_type == 'include':
+                        self.goglib_status_filter_type = 'exclude'
+                        self.radiobutton_goglib_status_filter_exclude.set_active(True)
+                    elif self.goglib_status_filter_type == 'exclude':
+                        self.goglib_status_filter_type = 'include'
+                        self.radiobutton_goglib_status_filter_include.set_active(True)
+                    self.set_goglib_filters_color_indication()
+                    self.cb_combobox_goglib_status(self.combobox_goglib_status)
+                elif event.button == 2:
+                    self.combobox_goglib_status.set_active(0)
+
+            if combobox.get_name() == 'combobox_goglib_tags1':
+                if event.button == 3:
+                    if self.goglib_tags_filter1_type == 'include':
+                        self.goglib_tags_filter1_type = 'exclude'
+                        self.radiobutton_goglib_tag1_exclude.set_active(True)
+                    elif self.goglib_tags_filter1_type == 'exclude':
+                        self.goglib_tags_filter1_type = 'include'
+                        self.radiobutton_goglib_tag1_include.set_active(True)
+                    self.set_goglib_filters_color_indication()
+                    self.cb_combobox_goglib_tags1(self.combobox_goglib_tags1)
+                elif event.button == 2:
+                    self.combobox_goglib_tags1.set_active(0)
+
+            if combobox.get_name() == 'combobox_goglib_tags2':
+                if event.button == 3:
+                    if self.goglib_tags_filter2_type == 'include':
+                        self.goglib_tags_filter2_type = 'exclude'
+                        self.radiobutton_goglib_tag2_exclude.set_active(True)
+                    elif self.goglib_tags_filter2_type == 'exclude':
+                        self.goglib_tags_filter2_type = 'include'
+                        self.radiobutton_goglib_tag2_include.set_active(True)
+                    self.set_goglib_filters_color_indication()
+                    self.cb_combobox_goglib_tags2(self.combobox_goglib_tags2)
+                elif event.button == 2:
+                    self.combobox_goglib_tags2.set_active(0)
+
+            if combobox.get_name() == 'combobox_goglib_tags3':
+                if event.button == 3:
+                    if self.goglib_tags_filter3_type == 'include':
+                        self.goglib_tags_filter3_type = 'exclude'
+                        self.radiobutton_goglib_tag3_exclude.set_active(True)
+                    elif self.goglib_tags_filter3_type == 'exclude':
+                        self.goglib_tags_filter3_type = 'include'
+                        self.radiobutton_goglib_tag3_include.set_active(True)
+                    self.set_goglib_filters_color_indication()
+                    self.cb_combobox_goglib_tags3(self.combobox_goglib_tags3)
+                elif event.button == 2:
+                    self.combobox_goglib_tags3.set_active(0)
+
+            if combobox.get_name() == 'combobox_goglib_tags4':
+                if event.button == 3:
+                    if self.goglib_tags_filter4_type == 'include':
+                        self.goglib_tags_filter4_type = 'exclude'
+                        self.radiobutton_goglib_tag4_exclude.set_active(True)
+                    elif self.goglib_tags_filter4_type == 'exclude':
+                        self.goglib_tags_filter4_type = 'include'
+                        self.radiobutton_goglib_tag4_include.set_active(True)
+                    self.set_goglib_filters_color_indication()
+                    self.cb_combobox_goglib_tags4(self.combobox_goglib_tags4)
+                elif event.button == 2:
+                    self.combobox_goglib_tags4.set_active(0)
+
+            if combobox.get_name() == 'combobox_mylib_status':
+                if event.button == 3:
+                    if self.mylib_status_filter_type == 'include':
+                        self.mylib_status_filter_type = 'exclude'
+                        self.radiobutton_mylib_status_filter_exclude.set_active(True)
+                    elif self.mylib_status_filter_type == 'exclude':
+                        self.mylib_status_filter_type = 'include'
+                        self.radiobutton_mylib_status_filter_include.set_active(True)
+                    self.set_mylib_filters_color_indication()
+                    self.cb_combobox_mylib_status(self.combobox_mylib_status)
+                elif event.button == 2:
+                    self.combobox_mylib_status.set_active(0)
+
+            if combobox.get_name() == 'combobox_mylib_tags1':
+                if event.button == 3:
+                    if self.mylib_tags_filter1_type == 'include':
+                        self.mylib_tags_filter1_type = 'exclude'
+                        self.radiobutton_mylib_tag1_exclude.set_active(True)
+                    elif self.mylib_tags_filter1_type == 'exclude':
+                        self.mylib_tags_filter1_type = 'include'
+                        self.radiobutton_mylib_tag1_include.set_active(True)
+                    self.set_mylib_filters_color_indication()
+                    self.cb_combobox_mylib_tags1(self.combobox_mylib_tags1)
+                elif event.button == 2:
+                    self.combobox_mylib_tags1.set_active(0)
+
+            if combobox.get_name() == 'combobox_mylib_tags2':
+                if event.button == 3:
+                    if self.mylib_tags_filter2_type == 'include':
+                        self.mylib_tags_filter2_type = 'exclude'
+                        self.radiobutton_mylib_tag2_exclude.set_active(True)
+                    elif self.mylib_tags_filter2_type == 'exclude':
+                        self.mylib_tags_filter2_type = 'include'
+                        self.radiobutton_mylib_tag2_include.set_active(True)
+                    self.set_mylib_filters_color_indication()
+                    self.cb_combobox_mylib_tags2(self.combobox_mylib_tags2)
+                elif event.button == 2:
+                    self.combobox_mylib_tags2.set_active(0)
+
+            if combobox.get_name() == 'combobox_mylib_tags3':
+                if event.button == 3:
+                    if self.mylib_tags_filter3_type == 'include':
+                        self.mylib_tags_filter3_type = 'exclude'
+                        self.radiobutton_mylib_tag3_exclude.set_active(True)
+                    elif self.mylib_tags_filter3_type == 'exclude':
+                        self.mylib_tags_filter3_type = 'include'
+                        self.radiobutton_mylib_tag3_include.set_active(True)
+                    self.set_mylib_filters_color_indication()
+                    self.cb_combobox_mylib_tags3(self.combobox_mylib_tags3)
+                elif event.button == 2:
+                    self.combobox_mylib_tags3.set_active(0)
+
+            if combobox.get_name() == 'combobox_mylib_tags4':
+                if event.button == 3:
+                    if self.mylib_tags_filter4_type == 'include':
+                        self.mylib_tags_filter4_type = 'exclude'
+                        self.radiobutton_mylib_tag4_exclude.set_active(True)
+                    elif self.mylib_tags_filter4_type == 'exclude':
+                        self.mylib_tags_filter4_type = 'include'
+                        self.radiobutton_mylib_tag4_include.set_active(True)
+                    self.set_mylib_filters_color_indication()
+                    self.cb_combobox_mylib_tags4(self.combobox_mylib_tags4)
+                elif event.button == 2:
+                    self.combobox_mylib_tags4.set_active(0)
 
     def shortcuts(self, current_window, event):
 
