@@ -123,17 +123,54 @@ class GUI:
         self.config_load()
         self.parse_goglib_colors()
         self.parse_mylib_colors()
+        self.set_icon()
 
-        if self.goglib_tab_at_start and not self.goglib_offline_mode:
+        if self.goglib_tab_at_start and not self.goglib_offline_mode_at_start:
             self.goglib_authorized = goglib_check_authorization.goglib_authorized()
             if self.goglib_authorized == False:
-                self.create_login_window()
+                self.goglib_offline_mode = True
+                if goglib_check_connection.goglib_available():
+                    self.create_login_window()
+                else:
+
+                    self.loading_window.hide()
+
+                    while Gtk.events_pending():
+                        Gtk.main_iteration()
+
+                    message_dialog = Gtk.MessageDialog(
+                        None,
+                        0,
+                        Gtk.MessageType.ERROR,
+                        Gtk.ButtonsType.OK,
+                        _("GOG.com unavailable")
+                        )
+                    message_dialog.format_secondary_text(_("Check your internet connection.\nStarting in offline mode."))
+                    content_area = message_dialog.get_content_area()
+                    content_area.set_property('margin-left', 10)
+                    content_area.set_property('margin-right', 10)
+                    content_area.set_property('margin-top', 10)
+                    content_area.set_property('margin-bottom', 10)
+
+                    message_dialog.run()
+                    message_dialog.destroy()
+
+                    self.goglib_offline_mode = True
+                    self.create_main_window()
+                    self.timer()
             else:
+                self.goglib_offline_mode = False
                 self.create_main_window()
                 self.timer()
         else:
+            self.goglib_offline_mode = True
             self.create_main_window()
             self.timer()
+
+    def set_icon(self):
+        self.icon_network_offline = Gtk.Image.new_from_icon_name("network-offline", Gtk.IconSize.SMALL_TOOLBAR)
+        self.icon_network_idle = Gtk.Image.new_from_icon_name("network-idle", Gtk.IconSize.SMALL_TOOLBAR)
+        self.icon_view_refresh = Gtk.Image.new_from_icon_name("view-refresh", Gtk.IconSize.SMALL_TOOLBAR)
 
     def create_loading_window(self):
 
@@ -263,22 +300,43 @@ class GUI:
         self.button_add_tab.connect('clicked', self.cb_button_add_tab)
         self.notebook.set_action_widget(self.button_add_tab, Gtk.PackType.START)
 
-        self.button_update_goglib = Gtk.Button(
-            image = Gtk.Image(stock=Gtk.STOCK_REFRESH),
+        if self.goglib_offline_mode:
+            online_status_icon = self.icon_network_offline
+            online_tooltip = _("Offline - click to go online")
+        else:
+            online_status_icon = self.icon_network_idle
+            online_tooltip = _("Online - click to go offline")
+
+        self.button_online_status = Gtk.Button(
+            image = online_status_icon,
             visible = False,
+            no_show_all = True,
+            relief = Gtk.ReliefStyle.NONE,
+            tooltip_text = online_tooltip
+            )
+        self.button_online_status.connect('clicked', self.cb_button_online_status)
+
+        self.button_update_goglib = Gtk.Button(
+            image = self.icon_view_refresh,
+            visible = False,
+            no_show_all = True,
             relief = Gtk.ReliefStyle.NONE,
             tooltip_text = _("Update GOG library")
             )
-
         self.button_update_goglib.connect('clicked', self.cb_button_update_goglib)
-        self.notebook.set_action_widget(self.button_update_goglib, Gtk.PackType.END)
+
+        self.box_action_widgets_end = Gtk.Box()
+        self.box_action_widgets_end.pack_start(self.button_online_status, True, True, 0)
+        self.box_action_widgets_end.pack_start(self.button_update_goglib, True, True, 0)
+        self.box_action_widgets_end.show_all()
+        self.notebook.set_action_widget(self.box_action_widgets_end, Gtk.PackType.END)
 
         self.spinner_update = Gtk.Spinner(
             active = True,
             visible = True,
             margin_left = 10,
             margin_right = 10,
-        )
+            )
 
         self.notebook.show_all()
 
@@ -286,7 +344,7 @@ class GUI:
             self.create_gogcom_tab()
 
         if self.goglib_tab_at_start == True:
-            self.create_goglib_tab()
+            self.create_goglib_tab_content()
 
         if self.mylib_tab_at_start == True:
             self.create_mylib_tab()
@@ -324,8 +382,11 @@ class GUI:
 
         if widget.get_name() != 'goglib_tab':
             self.button_update_goglib.set_visible(False)
+            self.button_online_status.set_visible(False)
         else:
-            self.button_update_goglib.set_visible(True)
+            self.button_online_status.set_visible(True)
+            if not self.goglib_offline_mode:
+                self.button_update_goglib.set_visible(True)
 
         self.last_active_tab = widget.get_name()
 
@@ -355,24 +416,6 @@ class GUI:
     def quit_app(self, window, event):
         self.config_save()
         Gtk.main_quit()
-
-    def create_goglib_tab(self):
-
-        if self.goglib_offline_mode == False:
-
-            if self.goglib_tab_at_start == False:
-                self.goglib_authorized = goglib_check_authorization.goglib_authorized()
-
-            if self.goglib_authorized == True:
-                self.goglib_offline_mode = False
-                self.create_goglib_tab_content()
-            else:
-                self.goglib_offline_mode = True
-                self.create_goglib_tab_empty()
-
-        else:
-            self.create_goglib_tab_content()
-
 
     def create_goglib_tab_empty(self):
 
@@ -431,6 +474,9 @@ class GUI:
         self.notebook.set_tab_detachable(self.unauthorized_grid, True)
 
     def goglib_start_offline_mode(self, button):
+        self.goglib_offline_mode = True
+        self.button_online_status.set_property('tooltip_text', _("Offline - click to go online"))
+        self.button_online_status.set_property('image', self.icon_network_offline)
         self.notebook.detach_tab(self.unauthorized_grid)
         self.create_goglib_tab_content()
         self.main_window.show_all()
@@ -453,9 +499,11 @@ class GUI:
 
         if not os.path.exists(config_dir + '/games_list'):
 
-            returncode = goglib_get_games_list.goglib_get_games_list()
+            if not self.goglib_offline_mode:
 
-            if returncode != 0:
+                goglib_get_games_list.goglib_get_games_list()
+
+            elif self.goglib_offline_mode:
 
                 message_dialog = Gtk.MessageDialog(
                     self.main_window,
@@ -464,7 +512,10 @@ class GUI:
                     Gtk.ButtonsType.OK,
                     _("Error"),
                     )
-                message_dialog.format_secondary_text(_("Can't get games list."))
+                message_dialog.format_secondary_text(_("File '") +
+                os.getenv('HOME') + '/.games_nebula/config/games_list' + _("' is missing.\n") +
+                _("'GOG LIBRARY' tab will be disabled."))
+
                 content_area = message_dialog.get_content_area()
                 content_area.set_property('margin-left', 10)
                 content_area.set_property('margin-right', 10)
@@ -476,7 +527,16 @@ class GUI:
                 message_dialog.run()
                 message_dialog.destroy()
 
-                self.create_goglib_tab_empty()
+                if (self.mylib_tab_at_start == False) and \
+                        (self.gogcom_tab_at_start == False) and \
+                        (self.queue_tab_at_start == False) and \
+                        (self.settings_tab_at_start == False):
+
+                    self.create_settings_tab()
+                    self.notebook.append_page(self.scrolledwindow_settings, self.box_settings_tab)
+                    self.notebook.set_tab_detachable(self.scrolledwindow_settings, True)
+                    self.notebook.set_tab_reorderable(self.scrolledwindow_settings, True)
+                    self.notebook.set_tab_detachable(self.scrolledwindow_settings, True)
 
                 return
 
@@ -789,7 +849,6 @@ class GUI:
             text = ' ',
             pulse_step = 0.05
             )
-
 
         self.box_goglib_installation_status.pack_start(self.progressbar_goglib, False, False, 0)
 
@@ -1189,7 +1248,8 @@ class GUI:
         self.add_tab()
 
     def cb_button_update_goglib(self, button):
-        self.notebook.set_action_widget(self.spinner_update, Gtk.PackType.END)
+        self.box_action_widgets_end.remove(self.button_update_goglib)
+        self.box_action_widgets_end.pack_end(self.spinner_update, True, True, 0)
         self.check_for_new_games()
 
     def add_tab(self):
@@ -1256,7 +1316,7 @@ class GUI:
                                     self.notebook.set_tab_reorderable(self.box_goglib_page, True)
                                     self.notebook.set_tab_detachable(self.box_goglib_page, True)
                                 except:
-                                    self.create_goglib_tab()
+                                    self.create_goglib_tab_content()
 
                         if button.get_name() == 'mylib_tab':
                             try:
@@ -3366,11 +3426,11 @@ class GUI:
         else:
             self.goglib_download_extras = self.config_parser.getboolean('goglib preferences', 'goglib_download_extras')
 
-        if not self.config_parser.has_option('goglib preferences', 'goglib_offline_mode'):
-            self.goglib_offline_mode = False
-            self.config_parser.set('goglib preferences', 'goglib_offline_mode', self.goglib_offline_mode)
+        if not self.config_parser.has_option('goglib preferences', 'goglib_offline_mode_at_start'):
+            self.goglib_offline_mode_at_start = False
+            self.config_parser.set('goglib preferences', 'goglib_offline_mode_at_start', self.goglib_offline_mode_at_start)
         else:
-            self.goglib_offline_mode = self.config_parser.getboolean('goglib preferences', 'goglib_offline_mode')
+            self.goglib_offline_mode_at_start = self.config_parser.getboolean('goglib preferences', 'goglib_offline_mode_at_start')
 
         if not self.config_parser.has_option('goglib preferences', 'goglib_download_dir'):
             self.goglib_download_dir = data_dir + '/games/goglib/downloads'
@@ -3568,7 +3628,7 @@ class GUI:
         self.config_parser.set('goglib preferences', 'goglib_lang', self.goglib_lang)
         self.config_parser.set('goglib preferences', 'goglib_keep_installers', self.goglib_keep_installers)
         self.config_parser.set('goglib preferences', 'goglib_download_extras', self.goglib_download_extras)
-        self.config_parser.set('goglib preferences', 'goglib_offline_mode', self.goglib_offline_mode)
+        self.config_parser.set('goglib preferences', 'goglib_offline_mode_at_start', self.goglib_offline_mode_at_start)
         self.config_parser.set('goglib preferences', 'goglib_download_dir', self.goglib_download_dir)
         self.config_parser.set('goglib preferences', 'goglib_install_dir', self.goglib_install_dir)
         self.config_parser.set('goglib preferences', 'goglib_scripts_overwrite', self.goglib_scripts_overwrite)
@@ -4234,6 +4294,7 @@ class GUI:
                     message_dialog.destroy()
                     self.login_window.show()
                 else:
+                    self.goglib_offline_mode = False
                     self.login_window.hide()
                     self.loading_window.show()
 
@@ -4243,7 +4304,7 @@ class GUI:
                     self.create_main_window()
                     self.timer()
         else:
-
+            self.goglib_offline_mode = True
             self.login_window.hide()
             self.loading_window.show()
 
@@ -5197,7 +5258,7 @@ class GUI:
                     Gtk.ButtonsType.OK,
                     _("Error")
                     )
-                message_dialog.format_secondary_text(_("Impossible to install"))
+                message_dialog.format_secondary_text(_("Impossible to install."))
                 content_area = message_dialog.get_content_area()
                 content_area.set_property('margin-left', 10)
                 content_area.set_property('margin-right', 10)
@@ -5328,21 +5389,32 @@ class GUI:
 
             if process_name == 'check_for_new_games':
 
-                self.notebook.set_action_widget(self.button_update_goglib, Gtk.PackType.END)
+                self.box_action_widgets_end.remove(self.spinner_update)
+                self.box_action_widgets_end.pack_end(self.button_update_goglib, True, True, 0)
 
                 if len(self.goglib_new_games_list) == 0:
-                    message = Gtk.MessageDialog(
+
+                    self.main_window.hide()
+
+                    while Gtk.events_pending():
+                        Gtk.main_iteration_do(False)
+
+                    message_dialog = Gtk.MessageDialog(
                         self.main_window,
                         0,
                         Gtk.MessageType.INFO,
                         Gtk.ButtonsType.OK,
-                        _("No new games in library")
+                        _("No new games in library.")
                         )
-                    message.run()
-                    message.destroy()
+                    content_area = message_dialog.get_content_area()
+                    content_area.set_property('margin-left', 10)
+                    content_area.set_property('margin-right', 10)
+                    content_area.set_property('margin-top', 10)
+                    content_area.set_property('margin-bottom', 10)
+                    message_dialog.run()
+                    message_dialog.destroy()
 
-                if goglib_check_connection.goglib_available() and (self.goglib_offline_mode == True):
-                    os.execl(sys.executable, sys.executable, *sys.argv)
+                    self.main_window.show()
 
                 GLib.source_remove(self.source_id_out)
                 return False
@@ -5640,7 +5712,7 @@ class GUI:
                 _("Installation directory changed")
                 )
             message_dialog.format_secondary_text(_("Do you really want to change installation directory?\n" + \
-                "All your installed games will be moved to new location.\nProceed?"))
+                "All your installed games will be moved to the new location.\nProceed?"))
             content_area = message_dialog.get_content_area()
             content_area.set_property('margin-left', 10)
             content_area.set_property('margin-right', 10)
@@ -5689,7 +5761,7 @@ class GUI:
                 _("Installation directory changed")
                 )
             message_dialog.format_secondary_text(_("Do you really want to change installation directory?\n" + \
-                "All your installed games will be moved to new location.\nProceed?"))
+                "All your installed games will be moved to the new location.\nProceed?"))
             content_area = message_dialog.get_content_area()
             content_area.set_property('margin-left', 10)
             content_area.set_property('margin-right', 10)
@@ -5722,7 +5794,7 @@ class GUI:
         self.goglib_keep_installers = switch.get_active()
 
     def cb_switch_goglib_offline_mode(self, switch, event):
-        self.goglib_offline_mode = switch.get_active()
+        self.goglib_start_offline_mode = switch.get_active()
 
     def cb_switch_goglib_download_extras(self, switch, event):
 
@@ -5916,6 +5988,17 @@ class GUI:
 
         self.mylib_filter_color_indication = switch.get_active()
         self.set_mylib_filters_color_indication()
+
+    def cb_button_online_status(self, button):
+
+        if self.goglib_offline_mode:
+            self.goglib_offline_mode_at_start = False
+        else:
+            self.goglib_offline_mode_at_start = True
+
+        self.config_save()
+
+        os.execl(sys.executable, sys.executable, *sys.argv)
 
     def set_mylib_filters_color_indication(self):
 
