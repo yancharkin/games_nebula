@@ -75,6 +75,7 @@ class GUI:
                 Gtk.ButtonsType.OK_CANCEL,
                 _("Select the correct '.exe' file:")
                 )
+            message_dialog.set_property('default-width', 480)
             content_area = message_dialog.get_content_area()
             content_area.set_property('margin-left', 10)
             content_area.set_property('margin-right', 10)
@@ -102,8 +103,13 @@ class GUI:
             filechooserbutton = Gtk.FileChooserButton(
                 dialog = file_dialog
                 )
+            
+            entry = Gtk.Entry(
+                placeholder_text = _("Arguments (optional)")
+                )
 
             content_area.pack_start(filechooserbutton, True, True, 0)
+            content_area.pack_start(entry, True, True, 0)
             content_area.show_all()
 
             response = message_dialog.run()
@@ -112,6 +118,7 @@ class GUI:
 
                 file_path = file_dialog.get_current_folder()
                 exe_name = file_dialog.get_filename().split('/')[-1]
+                arguments = entry.get_text()
 
                 if file_path != '':
 
@@ -130,10 +137,15 @@ class GUI:
                         new_exe_path = '/'.join(new_exe_path_list)
 
                     message_dialog.destroy()
-
-                    start_lines = ['#!/bin/bash\n', 'NEBULA_DIR="$2"\n', \
-                    'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
-                    new_exe_path + '"']
+                    
+                    if arguments != '':
+                        start_lines = ['#!/bin/bash\n', 'NEBULA_DIR="$2"\n', \
+                        'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
+                        new_exe_path + ' ' + arguments + '"']
+                    else:
+                        start_lines = ['#!/bin/bash\n', 'NEBULA_DIR="$2"\n', \
+                        'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
+                        new_exe_path + '"']
 
                     start_file = open(game_dir + '/start.sh', 'w')
                     for line in start_lines:
