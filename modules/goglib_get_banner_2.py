@@ -1,14 +1,18 @@
+import os
 import urllib2
 import PIL
 from PIL import Image
 
 import goglib_recreate_banner
 
-def goglib_get_banner_2(game_name, url, banner_path):
+def goglib_get_banner_2(game_name, url, banner_path, lib):
 
     banner_req = urllib2.Request(url)
 
     try:
+
+        if not os.path.exists(banner_path):
+            os.makedirs(banner_path)
 
         banner_data = urllib2.urlopen(banner_req).read()
         banner_file = open(banner_path + '/' + game_name + '.jpg', 'wb')
@@ -16,14 +20,17 @@ def goglib_get_banner_2(game_name, url, banner_path):
         banner_file.close()
 
         pic_src = Image.open(banner_path + '/' + game_name + '.jpg')
-        scale_lvl = 240/float(pic_src.size[1])
-        scaled_width = int(float(pic_src.size[0])*scale_lvl)
-        pic = pic_src.resize((scaled_width, 240), PIL.Image.ANTIALIAS)
+        pic = pic_src.resize((518, 240), PIL.Image.ANTIALIAS)
         pic.save(banner_path + '/' + game_name + '.jpg')
+        
+        if lib == 'goglib':
 
-        new_pic = Image.open(banner_path + '/' + game_name + '.jpg')
-        pic_grey = new_pic.convert('L')
-        pic_grey.save(banner_path + '/unavailable/' + game_name + '.jpg')
+            if not os.path.exists(banner_path + '/unavailable/'):
+                os.makedirs(banner_path + '/unavailable/')
+
+            new_pic = Image.open(banner_path + '/' + game_name + '.jpg')
+            pic_grey = new_pic.convert('L')
+            pic_grey.save(banner_path + '/unavailable/' + game_name + '.jpg')
 
     except urllib2.URLError as e:
         print e.reason
@@ -33,4 +40,4 @@ def goglib_get_banner_2(game_name, url, banner_path):
 
 if __name__ == "__main__":
     import sys
-    goglib_get_banner_2(sys.argv[1], sys.argv[2], sys.argv[3])
+    goglib_get_banner_2(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
