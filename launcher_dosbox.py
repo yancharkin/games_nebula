@@ -373,6 +373,8 @@ class GUI:
         dosbox_bin = self.set_dosbox_bin()
 
         dosbox_version = self.check_dosbox_version(dosbox_bin)
+        
+        self.create_link()
 
         os.system('python ' + nebula_dir + '/settings_dosbox.py ' + \
         self.install_dir + '/' + self.game_name + '/dosbox.conf local ' + dosbox_version)
@@ -400,6 +402,8 @@ class GUI:
             Gtk.main_iteration()
 
         dosbox_bin = self.set_dosbox_bin()
+        
+        self.create_link()
 
         launch_command = dosbox_bin + ' -conf ' + \
         os.getenv('HOME') + '/.games_nebula/config/dosbox.conf' + \
@@ -427,6 +431,8 @@ class GUI:
             Gtk.main_iteration()
 
         dosbox_bin = self.set_dosbox_bin()
+        
+        self.create_link()
 
         launch_command = dosbox_bin + ' -conf ' + \
         os.getenv('HOME') + '/.games_nebula/config/dosbox.conf' + \
@@ -483,6 +489,14 @@ class GUI:
             dosbox_bin = self.dosbox_path + '/' + self.dosbox_version + '/bin/dosbox'
 
         return dosbox_bin
+    
+    def create_link(self):
+        link_dir = os.getenv('HOME') + '/.games_nebula/games/.dosbox/'
+        link = link_dir + self.game_name
+        game_dir = self.install_dir + '/' + self.game_name + '/game'
+        os.system('mkdir -p ' + link_dir)
+        os.system('rm ' + link + ' > /dev/null 2>&1')
+        os.system('ln -s ' + game_dir + ' ' + link)
 
 def main():
     import sys

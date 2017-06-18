@@ -50,10 +50,39 @@ class GUI:
             self.install_dir = mylib_install_dir
 
         self.config_load()
-
+        
+        self.update_from_main_config()
         self.set_game_path()
 
         self.create_main_window()
+
+    def update_from_main_config(self):
+
+        scummvmrc_main_path = os.getenv('HOME') + '/.games_nebula/config/scummvmrc'
+        
+        if os.path.exists(scummvmrc_main_path):
+            
+            scummvmrc_path = self.install_dir + '/' + self.game_name + '/scummvmrc'
+            name_line = '[' + self.scummvm_game_name + ']'
+
+            scummvmrc_file = open(scummvmrc_path, 'r')
+            scummvmrc_content = scummvmrc_file.readlines()
+            scummvmrc_file.close()
+
+            for i in range(len(scummvmrc_content)):
+                if name_line in scummvmrc_content[i]:
+                    name_line_index = i
+
+            os.system('cp ' + scummvmrc_main_path + ' ' + scummvmrc_path)
+
+            scummvmrc_file = open(scummvmrc_path, 'a')
+
+            scummvmrc_file.write('\n')
+
+            for i in range(name_line_index, len(scummvmrc_content)):
+                scummvmrc_file.write(scummvmrc_content[i])
+
+            scummvmrc_file.close()
 
     def set_game_path(self):
 

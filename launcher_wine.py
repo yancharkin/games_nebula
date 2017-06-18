@@ -103,7 +103,7 @@ class GUI:
             filechooserbutton = Gtk.FileChooserButton(
                 dialog = file_dialog
                 )
-            
+
             entry = Gtk.Entry(
                 placeholder_text = _("Arguments (optional)")
                 )
@@ -137,13 +137,13 @@ class GUI:
                         new_exe_path = '/'.join(new_exe_path_list)
 
                     message_dialog.destroy()
-                    
+
                     if arguments != '':
-                        start_lines = ['#!/bin/bash\n', 'NEBULA_DIR="$2"\n', \
+                        start_lines = ['#!/bin/bash\n', \
                         'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
                         new_exe_path + ' ' + arguments + '"']
                     else:
-                        start_lines = ['#!/bin/bash\n', 'NEBULA_DIR="$2"\n', \
+                        start_lines = ['#!/bin/bash\n', \
                         'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
                         new_exe_path + '"']
 
@@ -182,9 +182,10 @@ class GUI:
 
         self.own_prefix_path = self.install_dir + '/' + self.game_name + '/wine_prefix'
         self.common_prefix_path = os.getenv('HOME') + '/.games_nebula/wine_prefix'
+        self.set_wineprefix()
+        self.create_link()
 
         self.create_main_window()
-
 
     def config_load(self):
 
@@ -193,49 +194,83 @@ class GUI:
         config_parser.read(config_file)
 
         if not config_parser.has_section('Settings'):
-            self.wine = 'global'
-            self.wine_path = global_wine_path
-            self.wine_version = global_wine_version
-            self.monitor = global_monitor
-            self.launcher = True
-            self.show_banner = True
-            self.win_ver = 0
-            self.virtual_desktop = False
-            self.virtual_desktop_width = ''
-            self.virtual_desktop_height = ''
-            self.mouse_capture = False
-            self.own_prefix = False
-
             config_parser.add_section('Settings')
+
+        if not config_parser.has_option('Settings', 'wine'):
+            self.wine = 'global'
             config_parser.set('Settings', 'wine', self.wine)
-            config_parser.set('Settings', 'wine_path', self.wine_path)
-            config_parser.set('Settings', 'wine_version', self.wine_version)
-            config_parser.set('Settings', 'monitor', self.monitor)
-            config_parser.set('Settings', 'launcher', self.launcher)
-            config_parser.set('Settings', 'show_banner', self.show_banner)
-            config_parser.set('Settings', 'win_ver', self.win_ver)
-            config_parser.set('Settings', 'virtual_desktop', self.virtual_desktop)
-            config_parser.set('Settings', 'virtual_desktop_width', self.virtual_desktop_width)
-            config_parser.set('Settings', 'virtual_desktop_height', self.virtual_desktop_height)
-            config_parser.set('Settings', 'own_prefix', self.own_prefix)
-
-            new_config_file = open(config_file, 'w')
-            config_parser.write(new_config_file)
-            new_config_file.close()
-
         else:
             self.wine = config_parser.get('Settings', 'wine')
+
+        if not config_parser.has_option('Settings', 'wine_path'):
+            self.wine_path = global_wine_path
+            config_parser.set('Settings', 'wine_path', self.wine_path)
+        else:
             self.wine_path = config_parser.get('Settings', 'wine_path')
+
+        if not config_parser.has_option('Settings', 'wine_version'):
+            self.wine_version = global_wine_version
+            config_parser.set('Settings', 'wine_version', self.wine_version)
+        else:
             self.wine_version = config_parser.get('Settings', 'wine_version')
+
+        if not config_parser.has_option('Settings', 'monitor'):
+            self.monitor = global_monitor
+            config_parser.set('Settings', 'monitor', self.monitor)
+        else:
             self.monitor = config_parser.getint('Settings', 'monitor')
+
+        if not config_parser.has_option('Settings', 'launcher'):
+            self.launcher = True
+            config_parser.set('Settings', 'launcher', self.launcher)
+        else:
             self.launcher = config_parser.getboolean('Settings', 'launcher')
+
+        if not config_parser.has_option('Settings', 'show_banner'):
+            self.show_banner = True
+            config_parser.set('Settings', 'show_banner', self.show_banner)
+        else:
             self.show_banner = config_parser.getboolean('Settings', 'show_banner')
+
+        if not config_parser.has_option('Settings', 'win_ver'):
+            self.win_ver = 0
+            config_parser.set('Settings', 'win_ver', self.win_ver)
+        else:
             self.win_ver = config_parser.getint('Settings', 'win_ver')
+
+        if not config_parser.has_option('Settings', 'virtual_desktop'):
+            self.virtual_desktop = False
+            config_parser.set('Settings', 'virtual_desktop', self.virtual_desktop)
+        else:
             self.virtual_desktop = config_parser.getboolean('Settings', 'virtual_desktop')
+
+        if not config_parser.has_option('Settings', 'virtual_desktop_width'):
+            self.virtual_desktop_width = ''
+            config_parser.set('Settings', 'virtual_desktop_width', self.virtual_desktop_width)
+        else:
             self.virtual_desktop_width = config_parser.get('Settings', 'virtual_desktop_width')
+
+        if not config_parser.has_option('Settings', 'virtual_desktop_height'):
+            self.virtual_desktop_height = ''
+            config_parser.set('Settings', 'virtual_desktop_height', self.virtual_desktop_height)
+        else:
             self.virtual_desktop_height = config_parser.get('Settings', 'virtual_desktop_height')
+
+        if not config_parser.has_option('Settings', 'mouse_capture'):
+            self.mouse_capture = False
+            config_parser.set('Settings', 'mouse_capture', self.mouse_capture)
+        else:
             self.mouse_capture = config_parser.getboolean('Settings', 'mouse_capture')
+
+        if not config_parser.has_option('Settings', 'own_prefix'):
+            self.own_prefix = False
+            config_parser.set('Settings', 'own_prefix', self.own_prefix)
+        else:
             self.own_prefix = config_parser.getboolean('Settings', 'own_prefix')
+
+        new_config_file = open(config_file, 'w')
+        config_parser.write(new_config_file)
+        new_config_file.close()
 
     def config_save(self):
 
@@ -625,25 +660,20 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        if self.own_prefix == True:
-            wineprefix_path = self.own_prefix_path
-        else:
-            wineprefix_path = self.common_prefix_path
+        self.set_wineprefix()
+        self.create_link()
 
-        if self.wine == 'global':
-            if global_wine == 'system':
-                wine_path = 'wine'
-            if global_wine == 'path':
-                wine_path = global_wine_path + '/' + global_wine_version
-        elif self.wine == 'system':
-            wine_path = 'wine'
-        elif self.wine == 'path':
-            wine_path = self.wine_path + '/' + self.wine_version
+        self.set_environ()
+        self.set_win_ver_command()
+        self.set_additions_command()
 
-        self.additions_setup(wine_path, wineprefix_path)
+        launch_command = 'python2 ' + nebula_dir + '/settings_wine.py'
 
-        os.system('python ' + nebula_dir + '/settings_wine.py ' + \
-        wine_path + ' ' + wineprefix_path)
+        full_command = self.win_ver_command + '\n' + \
+        self.additions_command + '\n' + \
+        launch_command
+
+        os.system(full_command)
 
         self.main_window.show()
 
@@ -654,25 +684,20 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        if self.own_prefix == True:
-            wineprefix_path = self.own_prefix_path
-        else:
-            wineprefix_path = self.common_prefix_path
+        self.set_wineprefix()
+        self.create_link()
 
-        if self.wine == 'global':
-            if global_wine == 'system':
-                wine_path = 'wine'
-            if global_wine == 'path':
-                wine_path = global_wine_path + '/' + global_wine_version
-        elif self.wine == 'system':
-            wine_path = 'wine'
-        elif self.wine == 'path':
-            wine_path = self.wine_path + '/' + self.wine_version
+        self.set_environ()
+        self.set_win_ver_command()
+        self.set_additions_command()
 
-        self.additions_setup(wine_path, wineprefix_path)
+        launch_command = self.install_dir + '/' + self.game_name + '/settings.sh'
 
-        os.system(self.install_dir + '/' + self.game_name + '/settings.sh ' + \
-        self.install_dir + ' ' + wine_path + ' ' + wineprefix_path + ' ' + nebula_dir)
+        full_command = self.win_ver_command + '\n' + \
+        self.additions_command + '\n' + \
+        launch_command
+
+        os.system(full_command)
 
         self.config_save()
 
@@ -695,46 +720,177 @@ class GUI:
 
         return exe_path.translate(None, '"\n')
 
+    def get_wine_bin_path(self):
+
+        if self.wine == 'global':
+            if global_wine == 'system':
+                wine_bin = 'wine'
+                wineserver_bin = ''
+                wine_lib = ''
+            if global_wine == 'path':
+                wine_path = global_wine_path + '/' + global_wine_version
+                wine_bin = wine_path + '/bin/wine'
+                wineserver_bin = wine_path + '/bin/wineserver'
+                wine_lib = wine_path + '/lib'
+        elif self.wine == 'system':
+            wine_bin = 'wine'
+            wineserver_bin = ''
+            wine_lib = ''
+        elif self.wine == 'path':
+            wine_path = self.wine_path + '/' + self.wine_version
+            wine_bin = wine_path + '/bin/wine'
+            wineserver_bin = wine_path + '/bin/wineserver'
+            wine_lib = wine_path + '/lib'
+
+        return wine_bin, wineserver_bin, wine_lib
+
     def cb_button_game(self, button):
         self.config_save()
         self.launch_game()
 
     def launch_game(self):
 
-        if self.own_prefix == True:
-            wineprefix_path = self.own_prefix_path
-        else:
-            wineprefix_path = self.common_prefix_path
-
-        output = self.combobox_monitor.get_active_text().split()[0]
-        os.system('xrandr --output '+ output + ' --primary')
+        self.switch_monitor('ON')
 
         self.main_window.hide()
 
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        if self.wine == 'global':
-            if global_wine == 'system':
-                wine_bin = 'wine'
-                wine_path = 'wine'
-            if global_wine == 'path':
-                wine_bin = global_wine_path + '/' + global_wine_version + '/bin/wine'
-                wineserver_bin = global_wine_path + '/' + global_wine_version + '/bin/wineserver'
-                wine_lib = global_wine_path + '/' + global_wine_version + '/lib'
-                wine_path = global_wine_path + '/' + global_wine_version
+        self.set_environ()
+        self.set_win_ver_command()
+        self.set_mouse_capture_command()
+        self.set_additions_command()
+        self.set_launch_command()
 
-        elif self.wine == 'system':
-            wine_bin = 'wine'
-            wine_path = 'wine'
+        exe_name, exe_path_no_exe = self.get_exe_path()
+        cd_command =    'cd "' + self.install_dir + '/' + self.game_name + \
+                        '/game/' + exe_path_no_exe + '"'
 
-        elif self.wine == 'path':
-            wine_bin = self.wine_path + '/' + self.wine_version + '/bin/wine'
-            wineserver_bin = self.wine_path + '/' + self.wine_version + '/bin/wineserver'
-            wine_lib = self.wine_path + '/' + self.wine_version + '/lib'
-            wine_path = self.wine_path + '/' + self.wine_version
+        full_command = cd_command + '\n' + \
+        self.win_ver_command + '\n' + \
+        self.mouse_capture_command + '\n' + \
+        self.additions_command + '\n' + \
+        self.launch_command
+
+        os.system(full_command)
+
+        self.switch_monitor('OFF')
+
+        sys.exit()
+
+    def set_additions_command(self):
+
+        self.set_wineprefix()
+        self.create_link()
+
+        self.set_environ()
+
+        if (os.path.exists(self.install_dir + '/' + self.game_name + '/additions.sh')) and \
+                (not os.path.exists(self.install_dir + '/' + self.game_name + '/.configured')):
+
+            os.system('touch ' + self.install_dir + '/' + self.game_name + '/.configured')
+            self.additions_command = self.install_dir + '/' + self.game_name + '/additions.sh'
+
+        else:
+            self.additions_command = ''
+
+    def set_environ(self):
+
+        self.set_wineprefix()
+        self.create_link()
+
+        wine_bin, \
+        wineserver_bin, \
+        wine_lib = self.get_wine_bin_path()
+
+        os.environ['WINE'] = wine_bin
+        os.environ['WINELOADER'] = wine_bin
+        os.environ['WINEPREFIX'] = self.wineprefix
+
+        if (self.wine == 'path') or (self.wine == 'global' and global_wine == 'path'):
+            os.environ['WINESERVER'] = wineserver_bin
+            os.environ['WINEDLLPATH'] = wine_lib
+
+    def set_win_ver_command(self):
 
         win_ver = self.combobox_win_ver.get_active_text()
+
+        exe_name, exe_path_no_exe = self.get_exe_path()
+
+        if self.combobox_win_ver.get_active_text() != _("Global settings"):
+            self.win_ver_command = '$WINELOADER reg add "HKEY_CURRENT_USER\Software\Wine\AppDefaults\\' + \
+                exe_name + '" /v "Version" /t REG_SZ /d ' + win_ver_dict[win_ver] + ' /f'
+        else:
+            self.win_ver_command = '$WINELOADER reg delete "HKEY_CURRENT_USER\Software\Wine\AppDefaults\\' + \
+                exe_name + '" /f'
+
+    def set_launch_command(self):
+
+        exe_name, exe_path_no_exe = self.get_exe_path()
+
+        arg = ''
+        if ' ' in exe_name:
+            tmp_list = exe_name.split('.exe ')
+            if len(tmp_list) > 1:
+                exe = exe_name.split('.exe ')[0] + '.exe'
+                arg = exe_name.split('.exe ')[1]
+                exe_name = exe
+
+        if arg != '':
+            if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
+            and (self.virtual_desktop_height != ''):
+                self.launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                "Background" /t REG_SZ /d "0 0 0" /f' + \
+                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
+                ' ' + '"' + exe_name + '" ' + arg
+
+            elif self.virtual_desktop == True:
+                self.launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                "Background" /t REG_SZ /d "0 0 0" /f' + \
+                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                '640x480 ' + '"' + exe_name + '" ' + arg
+            else:
+                self.launch_command = '$WINELOADER "' + exe_name + '" ' + arg
+        else:
+            if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
+            and (self.virtual_desktop_height != ''):
+                self.launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                "Background" /t REG_SZ /d "0 0 0" /f' + \
+                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
+                ' ' + '"' + exe_name + '"'
+
+            elif self.virtual_desktop == True:
+                self.launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                "Background" /t REG_SZ /d "0 0 0" /f' + \
+                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                '640x480 ' + '"' + exe_name + '"'
+            else:
+                self.launch_command = '$WINELOADER "' + exe_name + '"'
+
+    def set_mouse_capture_command(self):
+        if self.mouse_capture == True:
+            self.mouse_capture_command = "$WINELOADER reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v 'GrabFullscreen' /t REG_SZ /d 'Y' /f"
+        else:
+            self.mouse_capture_command = "$WINELOADER reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v 'GrabFullscreen' /t REG_SZ /d 'N' /f"
+
+    def set_wineprefix(self):
+        if self.own_prefix == True:
+            self.wineprefix = self.own_prefix_path
+        else:
+            self.wineprefix = self.common_prefix_path
+
+    def create_link(self):
+        link_dir = self.wineprefix + '/drive_c/Games/'
+        link = link_dir + self.game_name
+        game_dir = self.install_dir + '/' + self.game_name + '/game'
+        os.system('mkdir -p ' + link_dir)
+        os.system('rm ' + link + ' > /dev/null 2>&1')
+        os.system('ln -s ' + game_dir + ' ' + link)
+
+    def get_exe_path(self):
 
         if '/' in self.exe_path:
             path_list = list(self.exe_path.split('/'))
@@ -745,89 +901,15 @@ class GUI:
             exe_name = self.exe_path
             exe_path_no_exe = ''
 
-        if self.combobox_win_ver.get_active_text() != _("Global settings"):
-            win_ver_command = '$WINELOADER reg add "HKEY_CURRENT_USER\Software\Wine\AppDefaults\\' + \
-                exe_name + '" /v "Version" /t REG_SZ /d ' + win_ver_dict[win_ver] + ' /f'
-        else:
-            win_ver_command = '$WINELOADER reg delete "HKEY_CURRENT_USER\Software\Wine\AppDefaults\\' + \
-                exe_name + '" /f'
+        return exe_name, exe_path_no_exe
 
-        if self.mouse_capture == True:
-            mouse_capture_command = "$WINELOADER reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v 'GrabFullscreen' /t REG_SZ /d 'Y' /f"
-        else:
-            mouse_capture_command = "$WINELOADER reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v 'GrabFullscreen' /t REG_SZ /d 'N' /f"
-
-        arg = ''
-        if ' ' in exe_name:
-            exe = exe_name.split('.exe ')[0] + '.exe'
-            arg = exe_name.split('.exe ')[1]
-            exe_name = exe
-
-        if arg != '':
-            if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
-            and (self.virtual_desktop_height != ''):
-                launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
-                "Background" /t REG_SZ /d "0 0 0" /f' + \
-                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
-                self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
-                ' ' + '"' + exe_name + '" ' + arg
-
-            elif self.virtual_desktop == True:
-                launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
-                "Background" /t REG_SZ /d "0 0 0" /f' + \
-                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
-                '640x480 ' + '"' + exe_name + '" ' + arg
-            else:
-                launch_command = '$WINELOADER "' + exe_name + '" ' + arg
-        else:
-            if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
-            and (self.virtual_desktop_height != ''):
-                launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
-                "Background" /t REG_SZ /d "0 0 0" /f' + \
-                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
-                self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
-                ' ' + '"' + exe_name + '"'
-
-            elif self.virtual_desktop == True:
-                launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
-                "Background" /t REG_SZ /d "0 0 0" /f' + \
-                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
-                '640x480 ' + '"' + exe_name + '"'
-            else:
-                launch_command = '$WINELOADER "' + exe_name + '"'
-
-        if (self.wine == 'path') or (self.wine == 'global' and global_wine == 'path'):
-
-            full_command = 'export WINE=' + wine_bin + ' && ' + \
-                'export WINELOADER=' + wine_bin + ' && ' + \
-                'export WINESERVER=' + wineserver_bin + ' && ' + \
-                'export WINEDLLPATH=' + wine_lib + ' && ' + \
-                'export WINEPREFIX=' + wineprefix_path + ' && ' + \
-                'cd "' + self.install_dir + '/' + self.game_name + '/game/' + exe_path_no_exe + '" && ' + \
-                win_ver_command + '\n' + mouse_capture_command + '\n' + launch_command
-
-        else:
-
-            full_command = 'export WINELOADER=wine && ' + \
-                'export WINEPREFIX=' + wineprefix_path + ' && ' + \
-                'cd "' + self.install_dir + '/' + self.game_name + '/game/' + exe_path_no_exe + '" && ' + \
-                win_ver_command + '\n' + mouse_capture_command + '\n' + launch_command
-
-        self.additions_setup(wine_path, wineprefix_path)
-
-        os.system(full_command)
-
-        output = self.monitor_primary.split()[0]
-        os.system('xrandr --output '+ output + ' --primary')
-
-        sys.exit()
-
-    def additions_setup(self, wine_path, wineprefix_path):
-        if (os.path.exists(self.install_dir + '/' + self.game_name + '/additions.sh')) and \
-         (not os.path.exists(self.install_dir + '/' + self.game_name + '/.configured')):
-            os.system(self.install_dir + '/' + self.game_name + '/additions.sh ' + \
-            self.install_dir + ' ' + wine_path + ' ' + wineprefix_path + ' ' + self.download_dir)
-            os.system('touch ' + self.install_dir + '/' + self.game_name + '/.configured')
+    def switch_monitor(self, switch):
+        if switch == 'ON':
+            output = self.combobox_monitor.get_active_text().split()[0]
+            os.system('xrandr --output '+ output + ' --primary')
+        elif switch == 'OFF':
+            output = self.monitor_primary.split()[0]
+            os.system('xrandr --output '+ output + ' --primary')
 
     def cb_checkbutton_show_launcher(self, button):
         if button.get_active() == False:
@@ -845,7 +927,7 @@ class GUI:
 
     def cb_checkbutton_prefix(self, button):
 
-        os.system('rm ' + self.install_dir + '/' + self.game_name + '/.configured')
+        os.system('rm ' + self.install_dir + '/' + self.game_name + '/.configured' + ' > /dev/null 2>&1')
 
         if button.get_active() == False:
             self.own_prefix = False
