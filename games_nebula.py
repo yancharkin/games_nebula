@@ -32,7 +32,7 @@ import gettext
 
 from modules import mylib_create_banner, mylib_get_data, mylib_tags_create, mylib_tags_get_all, \
 mylib_tags_get, goglib_check_authorization, goglib_check_connection, goglib_get_data, \
-goglib_get_games_list, goglib_tags_create, goglib_tags_get_all, goglib_tags_get
+goglib_get_games_list, goglib_tags_create, goglib_tags_get_all, goglib_tags_get, autosetup
 
 style_provider_1 = Gtk.CssProvider()
 
@@ -101,6 +101,9 @@ predefined_tags = sorted(predefined_tags)
 
 def file_exist_in_dir(path):
     return any(isfile(join(path, i)) for i in os.listdir(path))
+
+os.environ['NEBULA_DIR'] = nebula_dir
+os.environ['WINEARCH'] = 'win32'
 
 class GUI:
 
@@ -273,7 +276,7 @@ class GUI:
         self.main_window = Gtk.Window(
             title = "Games Nebula",
             type = Gtk.WindowType.TOPLEVEL,
-            window_position = Gtk.WindowPosition.CENTER_ALWAYS,
+            window_position = Gtk.WindowPosition.CENTER,
             icon = app_icon,
             )
         self.main_window.connect('delete-event', self.quit_app)
@@ -516,7 +519,6 @@ class GUI:
                 message_dialog.format_secondary_text(_("File '") +
                 os.getenv('HOME') + '/.games_nebula/config/games_list' + _("' is missing.\n") +
                 _("'GOG LIBRARY' tab will be disabled."))
-
                 content_area = message_dialog.get_content_area()
                 content_area.set_property('margin-left', 10)
                 content_area.set_property('margin-right', 10)
@@ -525,6 +527,7 @@ class GUI:
                 action_area = message_dialog.get_action_area()
                 action_area.set_property('spacing', 10)
 
+                self.loading_window.hide()
                 message_dialog.run()
                 message_dialog.destroy()
 
@@ -554,18 +557,18 @@ class GUI:
 
         self.goglib_number_of_games_to_show = self.number_of_games
         self.goglib_shown_games_list = list(self.goglib_games_list)
-        self.status_filter_list = list(self.goglib_games_list)
-        self.tags1_filter_list = list(self.goglib_games_list)
-        self.tags2_filter_list = list(self.goglib_games_list)
-        self.tags3_filter_list = list(self.goglib_games_list)
-        self.tags4_filter_list = list(self.goglib_games_list)
+        self.goglib_status_filter_list = list(self.goglib_games_list)
+        self.goglib_tags1_filter_list = list(self.goglib_games_list)
+        self.goglib_tags2_filter_list = list(self.goglib_games_list)
+        self.goglib_tags3_filter_list = list(self.goglib_games_list)
+        self.goglib_tags4_filter_list = list(self.goglib_games_list)
         self.goglib_search_filter_list = list(self.goglib_games_list)
 
         self.all_tags = goglib_tags_get_all.goglib_tags_get_all(goglib_tags_file)
 
-        self.dict_name_title = {}
+        self.goglib_dict_name_to_title = {}
         for i in range(self.number_of_games):
-            self.dict_name_title[self.goglib_games_list[i]] = self.list_titles[i]
+            self.goglib_dict_name_to_title[self.goglib_games_list[i]] = self.list_titles[i]
 
         self.box_goglib_page = Gtk.Box(
             orientation = Gtk.Orientation.VERTICAL,
@@ -618,10 +621,10 @@ class GUI:
         for i in range(len(self.all_tags)):
             if self.all_tags[i] != '':
                 self.combobox_goglib_tags1.append_text(self.all_tags[i])
-            if self.all_tags[i] == self.tags_filter1:
+            if self.all_tags[i] == self.goglib_tags_filter1:
                 self.combobox_goglib_tags1.set_active(i + 1)
 
-        if self.tags_filter1 not in self.all_tags:
+        if self.goglib_tags_filter1 not in self.all_tags:
             self.combobox_goglib_tags1.set_active(0)
 
         self.combobox_goglib_tags1.append_text(_("No tags"))
@@ -645,10 +648,10 @@ class GUI:
         for i in range(len(self.all_tags)):
             if self.all_tags[i] != '':
                 self.combobox_goglib_tags2.append_text(self.all_tags[i])
-            if self.all_tags[i] == self.tags_filter2:
+            if self.all_tags[i] == self.goglib_tags_filter2:
                 self.combobox_goglib_tags2.set_active(i + 1)
 
-        if self.tags_filter2 not in self.all_tags:
+        if self.goglib_tags_filter2 not in self.all_tags:
             self.combobox_goglib_tags2.set_active(0)
 
         self.combobox_goglib_tags2.append_text(_("No tags"))
@@ -672,10 +675,10 @@ class GUI:
         for i in range(len(self.all_tags)):
             if self.all_tags[i] != '':
                 self.combobox_goglib_tags3.append_text(self.all_tags[i])
-            if self.all_tags[i] == self.tags_filter3:
+            if self.all_tags[i] == self.goglib_tags_filter3:
                 self.combobox_goglib_tags3.set_active(i + 1)
 
-        if self.tags_filter3 not in self.all_tags:
+        if self.goglib_tags_filter3 not in self.all_tags:
             self.combobox_goglib_tags3.set_active(0)
 
         self.combobox_goglib_tags3.append_text(_("No tags"))
@@ -699,10 +702,10 @@ class GUI:
         for i in range(len(self.all_tags)):
             if self.all_tags[i] != '':
                 self.combobox_goglib_tags4.append_text(self.all_tags[i])
-            if self.all_tags[i] == self.tags_filter4:
+            if self.all_tags[i] == self.goglib_tags_filter4:
                 self.combobox_goglib_tags4.set_active(i + 1)
 
-        if self.tags_filter4 not in self.all_tags:
+        if self.goglib_tags_filter4 not in self.all_tags:
             self.combobox_goglib_tags4.set_active(0)
 
         self.combobox_goglib_tags4.append_text(_("No tags"))
@@ -786,19 +789,7 @@ class GUI:
                 label = _("Install")
                 )
             goglib_setup_buttons_list.append(gtk_button_setup)
-            gtk_button_setup.connect('clicked', self.setup_game)
-
-            # Not needed (?) images updated in update function (job done twice).
-            # FIX Or create pixbufs here and use later everywhere (do not read from file)
-            #~ if self.goglib_shown_games_list[i] not in self.available_scripts:
-                #~ pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/unavailable/' + self.goglib_shown_games_list[i] + '.jpg')
-                #~ pixbuf = pixbuf.scale_simple(518 * self.scale_level, 240 * self.scale_level, InterpType.BILINEAR)
-                #~ gtk_button_setup.set_sensitive(False)
-            #~ else:
-                #~ pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/' + self.goglib_shown_games_list[i] + '.jpg')
-                #~ pixbuf = pixbuf.scale_simple(518 * self.scale_level, 240 * self.scale_level, InterpType.BILINEAR)
-                #~ gtk_button_setup.set_sensitive(True)
-            #~ goglib_pixbufs_list.append(pixbuf)
+            gtk_button_setup.connect('clicked', self.goglib_setup_game)
 
             image_goglib_banner = Gtk.Image(
                 name = self.goglib_shown_games_list[i],
@@ -816,7 +807,7 @@ class GUI:
                 name = self.goglib_shown_games_list[i],
                 label = _("Launch")
                 )
-            gtk_button_launch.connect('clicked', self.launch_game)
+            gtk_button_launch.connect('clicked', self.goglib_launch_game)
             goglib_launch_buttons_list.append(gtk_button_launch)
 
             if os.path.exists(self.goglib_install_dir + '/' + self.goglib_shown_games_list[i] + '/start.sh'):
@@ -891,7 +882,7 @@ class GUI:
         self.cb_combobox_goglib_tags2(self.combobox_goglib_tags2)
         self.cb_combobox_goglib_tags3(self.combobox_goglib_tags3)
         self.cb_combobox_goglib_tags4(self.combobox_goglib_tags4)
-        self.tag_filters_visibility()
+        self.goglib_tags_visibility()
         self.update_goglib_interface()
 
         # Automatically check for new games (not a good idea for now)
@@ -2664,7 +2655,7 @@ class GUI:
             wrap = True,
             margin_left = 20,
             #wrap_mode = Pango.WrapMode.WORD,
-            label = self.dict_name_title[game_name],
+            label = self.goglib_dict_name_to_title[game_name],
             )
 
         queue_game_progress_bar = Gtk.ProgressBar(
@@ -2720,6 +2711,14 @@ class GUI:
                 return True
 
         return False
+
+    def append_queue_tab(self):
+        self.notebook.append_page(self.queue_tab_scrolled_window, self.queue_tab)
+        self.notebook.set_tab_reorderable(self.queue_tab_scrolled_window, True)
+        self.notebook.set_tab_detachable(self.queue_tab_scrolled_window, True)
+        self.notebook.show_all()
+        while Gtk.events_pending():
+            Gtk.main_iteration_do(False)
 
     def goglib_page_exists(self):
 
@@ -2814,7 +2813,9 @@ class GUI:
 
         for i in range(0, self.mylib_number_of_games_to_show):
 
-            if os.path.exists(self.mylib_install_dir + '/' + self.mylib_shown_games_list[i] + '/start.sh'):
+            if (os.path.exists(self.mylib_install_dir + '/' + self.mylib_shown_games_list[i] + '/start.sh')) and \
+                    (mylib_setup_buttons_list[i].get_name() not in mylib_installation_queue):
+
                 mylib_setup_buttons_list[i].set_label(_("Remove"))
                 mylib_setup_buttons_list[i].set_sensitive(True)
                 mylib_launch_buttons_list[i].set_sensitive(True)
@@ -2870,7 +2871,7 @@ class GUI:
         for i in range(0, self.goglib_number_of_games_to_show):
 
             if self.goglib_shown_games_list[i] not in self.goglib_available_games:
-                # FIX Do not read images from file everytime, use pixbuf (create at start)
+                # TODO (?) Do not read images from file everytime, use pixbuf (create at start)
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/unavailable/' + self.goglib_shown_games_list[i] + '.jpg')
                 goglib_setup_buttons_list[i].set_sensitive(False)
                 goglib_launch_buttons_list[i].set_sensitive(False)
@@ -2910,7 +2911,7 @@ class GUI:
                     goglib_setup_buttons_list[i].set_sensitive(False)
 
             goglib_games_banners_list[i].set_property('tooltip_text', \
-                                    self.dict_name_title[self.goglib_shown_games_list[i]])
+                                    self.goglib_dict_name_to_title[self.goglib_shown_games_list[i]])
 
         if self.goglib_number_of_games_to_show < number_of_columns:
             self.grid_goglib.set_property('halign', Gtk.Align.START)
@@ -3020,7 +3021,7 @@ class GUI:
 
         if (len(goglib_installation_queue) > 0) and (goglib_installation_queue[0] != self.goglib_now_installing):
             self.goglib_now_installing = goglib_installation_queue[0]
-            self.download_game(goglib_installation_queue[0])
+            self.goglib_download_game(goglib_installation_queue[0])
 
             for button in goglib_setup_buttons_list:
                 if button.get_name() == self.goglib_now_installing:
@@ -3172,34 +3173,34 @@ class GUI:
             self.status_filter = self.config_parser.get('goglib gui preferences', 'status_filter')
 
         if not self.config_parser.has_option('goglib gui preferences', 'tag_filters'):
-            self.tf_number = 1
-            self.config_parser.set('goglib gui preferences', 'tag_filters', self.tf_number)
+            self.goglib_tf_number = 1
+            self.config_parser.set('goglib gui preferences', 'tag_filters', self.goglib_tf_number)
         else:
-            self.tf_number = self.config_parser.getint('goglib gui preferences', 'tag_filters')
+            self.goglib_tf_number = self.config_parser.getint('goglib gui preferences', 'tag_filters')
 
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter1'):
-            self.tags_filter1 = _("No filter")
-            self.config_parser.set('goglib gui preferences', 'tags_filter1', self.tags_filter1)
+            self.goglib_tags_filter1 = _("No filter")
+            self.config_parser.set('goglib gui preferences', 'tags_filter1', self.goglib_tags_filter1)
         else:
-            self.tags_filter1 = self.config_parser.get('goglib gui preferences', 'tags_filter1')
+            self.goglib_tags_filter1 = self.config_parser.get('goglib gui preferences', 'tags_filter1')
 
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter2'):
-            self.tags_filter2 = _("No filter")
-            self.config_parser.set('goglib gui preferences', 'tags_filter2', self.tags_filter2)
+            self.goglib_tags_filter2 = _("No filter")
+            self.config_parser.set('goglib gui preferences', 'tags_filter2', self.goglib_tags_filter2)
         else:
-            self.tags_filter2 = self.config_parser.get('goglib gui preferences', 'tags_filter2')
+            self.goglib_tags_filter2 = self.config_parser.get('goglib gui preferences', 'tags_filter2')
 
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter3'):
-            self.tags_filter3 = _("No filter")
-            self.config_parser.set('goglib gui preferences', 'tags_filter3', self.tags_filter3)
+            self.goglib_tags_filter3 = _("No filter")
+            self.config_parser.set('goglib gui preferences', 'tags_filter3', self.goglib_tags_filter3)
         else:
-            self.tags_filter3 = self.config_parser.get('goglib gui preferences', 'tags_filter3')
+            self.goglib_tags_filter3 = self.config_parser.get('goglib gui preferences', 'tags_filter3')
 
         if not self.config_parser.has_option('goglib gui preferences', 'tags_filter4'):
-            self.tags_filter4 = _("No filter")
-            self.config_parser.set('goglib gui preferences', 'tags_filter4', self.tags_filter4)
+            self.goglib_tags_filter4 = _("No filter")
+            self.config_parser.set('goglib gui preferences', 'tags_filter4', self.goglib_tags_filter4)
         else:
-            self.tags_filter4 = self.config_parser.get('goglib gui preferences', 'tags_filter4')
+            self.goglib_tags_filter4 = self.config_parser.get('goglib gui preferences', 'tags_filter4')
 
         if not self.config_parser.has_option('goglib gui preferences', 'filter_color_indication'):
             self.goglib_filter_color_indication = True
@@ -3590,11 +3591,11 @@ class GUI:
 
         self.config_parser.set('goglib gui preferences', 'scale_level', self.scale_level)
         self.config_parser.set('goglib gui preferences', 'status_filter', self.status_filter)
-        self.config_parser.set('goglib gui preferences', 'tag_filters', self.tf_number)
-        self.config_parser.set('goglib gui preferences', 'tags_filter1', self.tags_filter1)
-        self.config_parser.set('goglib gui preferences', 'tags_filter2', self.tags_filter2)
-        self.config_parser.set('goglib gui preferences', 'tags_filter3', self.tags_filter3)
-        self.config_parser.set('goglib gui preferences', 'tags_filter4', self.tags_filter4)
+        self.config_parser.set('goglib gui preferences', 'tag_filters', self.goglib_tf_number)
+        self.config_parser.set('goglib gui preferences', 'tags_filter1', self.goglib_tags_filter1)
+        self.config_parser.set('goglib gui preferences', 'tags_filter2', self.goglib_tags_filter2)
+        self.config_parser.set('goglib gui preferences', 'tags_filter3', self.goglib_tags_filter3)
+        self.config_parser.set('goglib gui preferences', 'tags_filter4', self.goglib_tags_filter4)
 
         self.config_parser.set('goglib gui preferences', 'filter_color_indication', self.goglib_filter_color_indication)
         self.config_parser.set('goglib gui preferences', 'status_filter_type', self.goglib_status_filter_type)
@@ -3768,14 +3769,14 @@ class GUI:
 
     def cb_combobox_goglib_tags1(self, combobox):
 
-        self.tags_filter1 = combobox.get_active_text()
+        self.goglib_tags_filter1 = combobox.get_active_text()
 
-        self.tags1_filter_list = []
+        self.goglib_tags1_filter_list = []
 
         filter = combobox.get_active_text()
 
         if filter == _("No filter"):
-            self.tags1_filter_list = list(self.goglib_games_list)
+            self.goglib_tags1_filter_list = list(self.goglib_games_list)
         else:
             for game_name in self.goglib_games_list:
                 game_tags = goglib_tags_get.goglib_tags_get(game_name, goglib_tags_file)
@@ -3783,17 +3784,17 @@ class GUI:
                 if filter == _("No tags"):
                     if self.goglib_tags_filter1_type == 'include':
                         if len(game_tags) == 0:
-                            self.tags1_filter_list.append(game_name)
+                            self.goglib_tags1_filter_list.append(game_name)
                     elif self.goglib_tags_filter1_type == 'exclude':
                         if len(game_tags) != 0:
-                            self.tags1_filter_list.append(game_name)
+                            self.goglib_tags1_filter_list.append(game_name)
                 else:
                     if self.goglib_tags_filter1_type == 'include':
                         if filter in game_tags:
-                            self.tags1_filter_list.append(game_name)
+                            self.goglib_tags1_filter_list.append(game_name)
                     elif self.goglib_tags_filter1_type == 'exclude':
                         if filter not in game_tags:
-                            self.tags1_filter_list.append(game_name)
+                            self.goglib_tags1_filter_list.append(game_name)
 
         self.goglib_apply_filters()
 
@@ -3830,14 +3831,14 @@ class GUI:
 
     def cb_combobox_goglib_tags2(self, combobox):
 
-        self.tags_filter2 = combobox.get_active_text()
+        self.goglib_tags_filter2 = combobox.get_active_text()
 
-        self.tags2_filter_list = []
+        self.goglib_tags2_filter_list = []
 
         filter = combobox.get_active_text()
 
         if filter == _("No filter"):
-            self.tags2_filter_list = list(self.goglib_games_list)
+            self.goglib_tags2_filter_list = list(self.goglib_games_list)
         else:
             for game_name in self.goglib_games_list:
                 game_tags = goglib_tags_get.goglib_tags_get(game_name, goglib_tags_file)
@@ -3845,17 +3846,17 @@ class GUI:
                 if filter == _("No tags"):
                     if self.goglib_tags_filter2_type == 'include':
                         if len(game_tags) == 0:
-                            self.tags2_filter_list.append(game_name)
+                            self.goglib_tags2_filter_list.append(game_name)
                     elif self.goglib_tags_filter2_type == 'exclude':
                         if len(game_tags) != 0:
-                            self.tags2_filter_list.append(game_name)
+                            self.goglib_tags2_filter_list.append(game_name)
                 else:
                     if self.goglib_tags_filter2_type == 'include':
                         if filter in game_tags:
-                            self.tags2_filter_list.append(game_name)
+                            self.goglib_tags2_filter_list.append(game_name)
                     elif self.goglib_tags_filter2_type == 'exclude':
                         if filter not in game_tags:
-                            self.tags2_filter_list.append(game_name)
+                            self.goglib_tags2_filter_list.append(game_name)
 
         self.goglib_apply_filters()
 
@@ -3892,14 +3893,14 @@ class GUI:
 
     def cb_combobox_goglib_tags3(self, combobox):
 
-        self.tags_filter3 = combobox.get_active_text()
+        self.goglib_tags_filter3 = combobox.get_active_text()
 
-        self.tags3_filter_list = []
+        self.goglib_tags3_filter_list = []
 
         filter = combobox.get_active_text()
 
         if filter == _("No filter"):
-            self.tags3_filter_list = list(self.goglib_games_list)
+            self.goglib_tags3_filter_list = list(self.goglib_games_list)
         else:
             for game_name in self.goglib_games_list:
                 game_tags = goglib_tags_get.goglib_tags_get(game_name, goglib_tags_file)
@@ -3907,17 +3908,17 @@ class GUI:
                 if filter == _("No tags"):
                     if self.goglib_tags_filter3_type == 'include':
                         if len(game_tags) == 0:
-                            self.tags3_filter_list.append(game_name)
+                            self.goglib_tags3_filter_list.append(game_name)
                     elif self.goglib_tags_filter3_type == 'exclude':
                         if len(game_tags) != 0:
-                            self.tags3_filter_list.append(game_name)
+                            self.goglib_tags3_filter_list.append(game_name)
                 else:
                     if self.goglib_tags_filter3_type == 'include':
                         if filter in game_tags:
-                            self.tags3_filter_list.append(game_name)
+                            self.goglib_tags3_filter_list.append(game_name)
                     elif self.goglib_tags_filter3_type == 'exclude':
                         if filter not in game_tags:
-                            self.tags3_filter_list.append(game_name)
+                            self.goglib_tags3_filter_list.append(game_name)
 
         self.goglib_apply_filters()
 
@@ -3954,14 +3955,14 @@ class GUI:
 
     def cb_combobox_goglib_tags4(self, combobox):
 
-        self.tags_filter4 = combobox.get_active_text()
+        self.goglib_tags_filter4 = combobox.get_active_text()
 
-        self.tags4_filter_list = []
+        self.goglib_tags4_filter_list = []
 
         filter = combobox.get_active_text()
 
         if filter == _("No filter"):
-            self.tags4_filter_list = list(self.goglib_games_list)
+            self.goglib_tags4_filter_list = list(self.goglib_games_list)
         else:
             for game_name in self.goglib_games_list:
                 game_tags = goglib_tags_get.goglib_tags_get(game_name, goglib_tags_file)
@@ -3969,17 +3970,17 @@ class GUI:
                 if filter == _("No tags"):
                     if self.goglib_tags_filter4_type == 'include':
                         if len(game_tags) == 0:
-                            self.tags4_filter_list.append(game_name)
+                            self.goglib_tags4_filter_list.append(game_name)
                     elif self.goglib_tags_filter4_type == 'exclude':
                         if len(game_tags) != 0:
-                            self.tags4_filter_list.append(game_name)
+                            self.goglib_tags4_filter_list.append(game_name)
                 else:
                     if self.goglib_tags_filter4_type == 'include':
                         if filter in game_tags:
-                            self.tags4_filter_list.append(game_name)
+                            self.goglib_tags4_filter_list.append(game_name)
                     elif self.goglib_tags_filter4_type == 'exclude':
                         if filter not in game_tags:
-                            self.tags4_filter_list.append(game_name)
+                            self.goglib_tags4_filter_list.append(game_name)
 
         self.goglib_apply_filters()
 
@@ -4023,11 +4024,11 @@ class GUI:
         for game_name in self.goglib_games_list:
 
             # Find sequence of characters in the beggining of the string
-            if bool(re.match(filter, self.dict_name_title[game_name], re.I)):
+            if bool(re.match(filter, self.goglib_dict_name_to_title[game_name], re.I)):
                 self.goglib_search_filter_list.append(game_name)
             # Find sequence of characters anywere in the string
             if len(filter) > 1:
-                if filter.lower() in self.dict_name_title[game_name].lower():
+                if filter.lower() in self.goglib_dict_name_to_title[game_name].lower():
                     self.goglib_search_filter_list.append(game_name)
 
         self.goglib_apply_filters()
@@ -4054,28 +4055,36 @@ class GUI:
 
         self.status_filter = combobox.get_active_text()
 
-        self.status_filter_list = []
+        self.goglib_status_filter_list = []
 
         filter = combobox.get_active_text()
 
         if filter == _("No filter"):
-            self.status_filter_list = list(self.goglib_games_list)
+            self.goglib_status_filter_list = list(self.goglib_games_list)
         if filter == _("Installed"):
             for game_name in self.goglib_games_list:
+
                 if self.goglib_status_filter_type == 'include':
-                    if os.path.exists(self.goglib_install_dir + '/' + game_name + '/start.sh'):
-                        self.status_filter_list.append(game_name)
+
+                    if os.path.exists(self.goglib_install_dir + '/' + game_name + '/start.sh') and \
+                            (game_name not in goglib_installation_queue):
+
+                        self.goglib_status_filter_list.append(game_name)
+
                 elif self.goglib_status_filter_type == 'exclude':
-                    if not os.path.exists(self.goglib_install_dir + '/' + game_name + '/start.sh'):
-                        self.status_filter_list.append(game_name)
+                    if not os.path.exists(self.goglib_install_dir + '/' + game_name + '/start.sh')  and \
+                            (game_name not in goglib_installation_queue):
+
+                        self.goglib_status_filter_list.append(game_name)
+
         if filter == _("Unavailable"):
             for game_name in self.goglib_games_list:
                 if self.goglib_status_filter_type == 'include':
                     if game_name not in self.goglib_available_games:
-                        self.status_filter_list.append(game_name)
+                        self.goglib_status_filter_list.append(game_name)
                 elif self.goglib_status_filter_type == 'exclude':
                     if game_name in self.goglib_available_games:
-                        self.status_filter_list.append(game_name)
+                        self.goglib_status_filter_list.append(game_name)
 
         self.goglib_apply_filters()
 
@@ -4092,9 +4101,14 @@ class GUI:
             self.mylib_status_filter_list = list(self.mylib_games_list)
         if filter == _("Installed"):
             for game_name in self.mylib_games_list:
+
                 if self.mylib_status_filter_type == 'include':
-                    if os.path.exists(self.mylib_install_dir + '/' + game_name + '/start.sh'):
+
+                    if (os.path.exists(self.mylib_install_dir + '/' + game_name + '/start.sh')) and \
+                            (game_name not in mylib_installation_queue):
+
                         self.mylib_status_filter_list.append(game_name)
+
                 elif self.mylib_status_filter_type == 'exclude':
                     if not os.path.exists(self.mylib_install_dir + '/' + game_name + '/start.sh'):
                         self.mylib_status_filter_list.append(game_name)
@@ -4106,11 +4120,11 @@ class GUI:
         self.final_list = []
 
         for game_name in self.goglib_games_list:
-            if (game_name in self.tags1_filter_list) and \
-                    (game_name in self.tags2_filter_list) and \
-                    (game_name in self.tags3_filter_list) and \
-                    (game_name in self.tags4_filter_list) and \
-                    (game_name in self.status_filter_list) and \
+            if (game_name in self.goglib_tags1_filter_list) and \
+                    (game_name in self.goglib_tags2_filter_list) and \
+                    (game_name in self.goglib_tags3_filter_list) and \
+                    (game_name in self.goglib_tags4_filter_list) and \
+                    (game_name in self.goglib_status_filter_list) and \
                     (game_name in self.goglib_search_filter_list):
                 self.final_list.append(game_name)
 
@@ -4159,11 +4173,11 @@ class GUI:
         action = button.get_name()
 
         if action == 'add':
-            self.tf_number += 1
+            self.goglib_tf_number += 1
         if action == 'remove':
-            self.tf_number -= 1
+            self.goglib_tf_number -= 1
 
-        self.tag_filters_visibility()
+        self.goglib_tags_visibility()
 
     def mylib_tagfilters_number_changed(self, button):
 
@@ -4176,8 +4190,8 @@ class GUI:
 
         self.mylib_tags_visibility()
 
-    def tag_filters_visibility(self):
-        if self.tf_number == 1:
+    def goglib_tags_visibility(self):
+        if self.goglib_tf_number == 1:
             self.button_goglib_remove_tag_filter.set_visible(False)
             self.button_goglib_add_tag_filter.set_visible(True)
             self.combobox_goglib_tags2.set_visible(False)
@@ -4186,7 +4200,7 @@ class GUI:
             self.combobox_goglib_tags3.set_active(0)
             self.combobox_goglib_tags4.set_visible(False)
             self.combobox_goglib_tags4.set_active(0)
-        if self.tf_number == 2:
+        if self.goglib_tf_number == 2:
             self.button_goglib_remove_tag_filter.set_visible(True)
             self.button_goglib_add_tag_filter.set_visible(True)
             self.combobox_goglib_tags2.set_visible(True)
@@ -4194,14 +4208,14 @@ class GUI:
             self.combobox_goglib_tags3.set_active(0)
             self.combobox_goglib_tags4.set_visible(False)
             self.combobox_goglib_tags4.set_active(0)
-        if self.tf_number == 3:
+        if self.goglib_tf_number == 3:
             self.button_goglib_remove_tag_filter.set_visible(True)
             self.button_goglib_add_tag_filter.set_visible(True)
             self.combobox_goglib_tags2.set_visible(True)
             self.combobox_goglib_tags3.set_visible(True)
             self.combobox_goglib_tags4.set_visible(False)
             self.combobox_goglib_tags4.set_active(0)
-        if self.tf_number == 4:
+        if self.goglib_tf_number == 4:
             self.button_goglib_remove_tag_filter.set_visible(True)
             self.button_goglib_add_tag_filter.set_visible(False)
             self.combobox_goglib_tags2.set_visible(True)
@@ -4265,7 +4279,6 @@ class GUI:
                 self.login_window.hide()
                 message_dialog.run()
                 message_dialog.destroy()
-                self.login_window.show()
             else:
                 os.system('lgogdownloader --login-email ' + email
                 + ' --login-password ' + password)
@@ -4293,7 +4306,6 @@ class GUI:
                     self.login_window.hide()
                     message_dialog.run()
                     message_dialog.destroy()
-                    self.login_window.show()
                 else:
                     self.goglib_offline_mode = False
                     self.login_window.hide()
@@ -4346,7 +4358,7 @@ class GUI:
                 0,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK_CANCEL,
-                '"' + self.dict_name_title[game_name] + '" ' + _("tags:"),
+                '"' + self.goglib_dict_name_to_title[game_name] + '" ' + _("tags:"),
                 )
             message_dialog.set_property('default-width', 480)
             content_area = message_dialog.get_content_area()
@@ -4499,7 +4511,6 @@ class GUI:
             content_area.pack_start(label_predefined_tags, True, True, 0)
             content_area.pack_start(box2, True, True, 0)
 
-            self.main_window.hide()
             message_dialog.show_all()
             message_dialog_response = message_dialog.run()
 
@@ -4559,7 +4570,6 @@ class GUI:
                     self.cb_combobox_goglib_tags4(self.combobox_goglib_tags4)
 
             message_dialog.destroy()
-            self.main_window.show()
 
     def mylib_banner_clicked(self, widget, event):
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
@@ -4728,7 +4738,6 @@ class GUI:
             content_area.pack_start(label_predefined_tags, True, True, 0)
             content_area.pack_start(box2, True, True, 0)
 
-            self.main_window.hide()
             message_dialog.show_all()
             message_dialog_response = message_dialog.run()
 
@@ -4788,7 +4797,6 @@ class GUI:
                     self.cb_combobox_mylib_tags4(self.combobox_mylib_tags4)
 
             message_dialog.destroy()
-            self.main_window.show()
 
     def remove_from_installation_queue(self, button):
 
@@ -4823,8 +4831,6 @@ class GUI:
                     os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
 
             if os.path.exists(self.goglib_install_dir + '/' + game_name):
-                if os.path.exists(self.goglib_install_dir + '/' + game_name + '/uninstall'):
-                    os.system(self.goglib_install_dir + '/' + game_name + '/uninstall')
                 os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
 
             for i in range(self.goglib_number_of_games_to_show):
@@ -4840,8 +4846,6 @@ class GUI:
                     os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
 
             if os.path.exists(self.goglib_install_dir + '/' + game_name):
-                if os.path.exists(self.goglib_install_dir + '/' + game_name + '/uninstall'):
-                    os.system(self.goglib_install_dir + '/' + game_name + '/uninstall')
                 os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
 
             for i in range(self.goglib_number_of_games_to_show):
@@ -4871,8 +4875,6 @@ class GUI:
                     os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
 
             if os.path.exists(self.mylib_install_dir + '/' + game_name):
-                if os.path.exists(self.mylib_install_dir + '/' + game_name + '/uninstall'):
-                    os.system(self.mylib_install_dir + '/' + game_name + '/uninstall')
                 os.system('rm -R -f ' + self.mylib_install_dir + '/' + game_name)
 
             for i in range(self.mylib_number_of_games_to_show):
@@ -4899,10 +4901,7 @@ class GUI:
 
     def mylib_launch_game(self, button):
 
-        # Set primary monitor
-        output = self.combobox_monitor.get_active_text().split()[0]
-        #mode = self.combobox_monitor.get_active_text().split()[1]
-        os.system('xrandr --output '+ output + ' --primary')
+        self.switch_monitor('ON')
 
         self.main_window.hide()
         if len(self.additional_windows_list) != 0:
@@ -4914,31 +4913,22 @@ class GUI:
 
         game_name = button.get_name()
 
-        if self.wine == 'system':
-            wine_path = 'wine'
-        elif self.wine == 'path':
-            wine_path = self.wine_path + '/' + self.wine_version
+        self.set_environ(game_name, self.mylib_download_dir, self.mylib_install_dir)
 
-        os.system(self.mylib_install_dir + '/' + game_name + '/start.sh ' + \
-        self.mylib_install_dir + ' ' + nebula_dir)
-        #os.system('xrandr --output '+ output + ' --mode ' + mode)
-        #os.system('xgamma -quiet -gamma 1')
+        start_path = self.mylib_install_dir + '/' + game_name + '/start.sh'
+        os.system('chmod +x ' + start_path)
+        os.system(start_path)
 
-        # Set old primary monitor
-        output = self.monitor_primary.split()[0]
-        os.system('xrandr --output '+ output + ' --primary')
+        self.switch_monitor('OFF')
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
             for window in self.additional_windows_list:
                 window.show()
 
-    def launch_game(self, button):
+    def goglib_launch_game(self, button):
 
-        # Set primary monitor
-        output = self.combobox_monitor.get_active_text().split()[0]
-        #mode = self.combobox_monitor.get_active_text().split()[1]
-        os.system('xrandr --output '+ output + ' --primary')
+        self.switch_monitor('ON')
 
         self.main_window.hide()
         if len(self.additional_windows_list) != 0:
@@ -4950,20 +4940,13 @@ class GUI:
 
         game_name = button.get_name()
 
-        if self.wine == 'system':
-            wine_path = 'wine'
-        elif self.wine == 'path':
-            wine_path = self.wine_path + '/' + self.wine_version
+        self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
 
-        os.system(self.goglib_install_dir + '/' + game_name + '/start.sh ' + \
-        self.goglib_install_dir + ' ' + nebula_dir)
+        start_file_path = self.goglib_install_dir + '/' + game_name + '/start.sh'
+        os.system('chmod +x ' + start_file_path)
+        os.system(start_file_path)
 
-        #os.system('xrandr --output '+ output + ' --mode ' + mode)
-        #os.system('xgamma -quiet -gamma 1')
-
-        # Set old primary monitor
-        output = self.monitor_primary.split()[0]
-        os.system('xrandr --output '+ output + ' --primary')
+        self.switch_monitor('OFF')
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
@@ -4998,7 +4981,8 @@ class GUI:
                 Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.YES_NO
                 )
-            message_dialog.format_secondary_text(_("Are you sure you want to remove this game?"))
+            message_dialog.format_secondary_text(_("Are you sure you want to remove\n'" +
+            self.mylib_dict_name_to_title[game_name] + "'?"))
             content_area = message_dialog.get_content_area()
             content_area.set_property('margin-left', 10)
             content_area.set_property('margin-right', 10)
@@ -5007,15 +4991,25 @@ class GUI:
             action_area = message_dialog.get_action_area()
             action_area.set_property('spacing', 10)
 
+            content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
+            content_area_label.set_property('justify', Gtk.Justification.CENTER)
+
             message_dialog_response = message_dialog.run()
 
             if message_dialog_response == Gtk.ResponseType.YES:
 
+                os.system('rm -R -f ' + self.mylib_install_dir + '/' + game_name)
+
+                dosbox_game_path = os.getenv('HOME') + '/.games_nebula/games/.dosbox/' + game_name
+                os.system('rm -R -f ' + dosbox_game_path)
+                wine_game_path = os.getenv('HOME') + '/.games_nebula/wine_prefix/drive_c/Games/' + game_name
+                os.system('rm -R -f ' + wine_game_path)
+
                 if os.path.exists(data_dir + '/scripts/mylib/' + game_name + '/uninstall'):
-                    uninstall_command = (data_dir + '/scripts/mylib/' + game_name + '/uninstall ' + self.mylib_install_dir)
+                    self.set_environ(game_name, self.mylib_download_dir, self.mylib_install_dir)
+                    uninstall_command = (data_dir + '/scripts/mylib/' + game_name + '/uninstall')
                     os.system(uninstall_command)
 
-                os.system('rm -R -f ' + self.mylib_install_dir + '/' + game_name)
                 button.set_label(_("Install"))
 
                 for button in mylib_launch_buttons_list:
@@ -5026,7 +5020,7 @@ class GUI:
 
             message_dialog.destroy()
 
-    def setup_game(self, button):
+    def goglib_setup_game(self, button):
 
         game_name = button.get_name()
 
@@ -5052,9 +5046,10 @@ class GUI:
                 self.main_window,
                 0,
                 Gtk.MessageType.QUESTION,
-                Gtk.ButtonsType.YES_NO
+                Gtk.ButtonsType.YES_NO,
                 )
-            message_dialog.format_secondary_text(_("Are you sure you want to remove this game?"))
+            message_dialog.format_secondary_text(_("Are you sure you want to remove\n'" +
+            self.goglib_dict_name_to_title[game_name] + "'?"))
             content_area = message_dialog.get_content_area()
             content_area.set_property('margin-left', 10)
             content_area.set_property('margin-right', 10)
@@ -5063,15 +5058,27 @@ class GUI:
             action_area = message_dialog.get_action_area()
             action_area.set_property('spacing', 10)
 
+            content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
+            content_area_label.set_property('justify', Gtk.Justification.CENTER)
+
             message_dialog_response = message_dialog.run()
 
             if message_dialog_response == Gtk.ResponseType.YES:
 
+                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
+
+                dosbox_game_path = os.getenv('HOME') + '/.games_nebula/games/.dosbox/' + game_name
+                os.system('rm -R -f ' + dosbox_game_path)
+                wine_game_path = os.getenv('HOME') + '/.games_nebula/wine_prefix/drive_c/Games/' + game_name
+                os.system('rm -R -f ' + wine_game_path)
+
                 if os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/uninstall'):
-                    uninstall_command = (data_dir + '/scripts/goglib/' + game_name + '/uninstall ' + self.goglib_install_dir)
+
+                    self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
+
+                    uninstall_command = (data_dir + '/scripts/goglib/' + game_name + '/uninstall')
                     os.system(uninstall_command)
 
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
                 button.set_label(_("Install"))
 
                 for button in goglib_launch_buttons_list:
@@ -5091,19 +5098,15 @@ class GUI:
 
                 self.update_goglib_grid()
 
-    def download_game(self, game_name):
+    def goglib_download_game(self, game_name):
 
         if self.goglib_offline_mode:
-            self.unpack_game(goglib_installation_queue[0])
+            self.goglib_unpack_game(goglib_installation_queue[0])
 
         else:
 
             if not self.queue_tab_exists():
-                self.notebook.append_page(self.queue_tab_scrolled_window, self.queue_tab)
-                self.notebook.set_tab_reorderable(self.queue_tab_scrolled_window, True)
-                self.notebook.set_tab_detachable(self.queue_tab_scrolled_window, True)
-
-                self.notebook.show_all()
+                self.append_queue_tab()
 
             self.progressbar_goglib.set_text(_("Downloading..."))
 
@@ -5130,33 +5133,41 @@ class GUI:
 
             self.source_id_out = io.add_watch(GLib.IO_IN|GLib.IO_HUP,
                                     self.watch_process,
-                                    'download_game',
+                                    'goglib_download_game',
                                     priority=GLib.PRIORITY_HIGH)
 
     def mylib_install_game(self, game_name):
 
         if not self.queue_tab_exists():
-            self.notebook.append_page(self.queue_tab_scrolled_window, self.queue_tab)
-            self.notebook.set_tab_reorderable(self.queue_tab_scrolled_window, True)
-            self.notebook.set_tab_detachable(self.queue_tab_scrolled_window, True)
-
-            self.notebook.show_all()
+            self.append_queue_tab()
 
         if not os.path.exists(self.mylib_install_dir):
             os.makedirs(self.mylib_install_dir)
 
-        if not os.path.exists(self.mylib_install_dir + '/' + game_name):
-            os.makedirs(self.mylib_install_dir + '/' + game_name)
+        game_dir = self.mylib_install_dir + '/' + game_name
+
+        if not os.path.exists(game_dir):
+            os.makedirs(game_dir)
 
         self.mylib_tab_progressbar.set_text(_("Installing..."))
 
-        if self.wine == 'system':
-            wine_path = 'wine'
-        elif self.wine == 'path':
-            wine_path = self.wine_path + '/' + self.wine_version
+        self.set_environ(game_name, self.mylib_download_dir, self.mylib_install_dir)
+        os.environ['KEEP_INSTALLERS'] = str(self.mylib_keep_installers)
+        autosetup.autosetup('mylib', self.mylib_install_dir, game_name)
 
-        command = [data_dir + '/scripts/mylib/' + game_name + '/setup', self.mylib_download_dir, \
-                    self.mylib_install_dir, wine_path, str(self.mylib_keep_installers)]
+        settings_py_path = os.getenv('HOME') + '/.games_nebula/scripts/mylib/' + game_name + '/settings.py'
+        if os.path.exists(settings_py_path):
+            os.system('cp ' + settings_py_path + ' ' + game_dir)
+            os.system('echo "Writing settings.sh"')
+            settings_lines = ['#!/bin/bash\n',
+            'python2 "$INSTALL_DIR/' + game_name + '/settings.py"']
+            settings_file = open(game_dir + '/settings.sh', 'w')
+            for line in settings_lines:
+                settings_file.write(line)
+            settings_file.close()
+            os.system('chmod +x ' + game_dir + '/settings.sh')
+
+        command = [data_dir + '/scripts/mylib/' + game_name + '/setup']
 
         mylib_name_to_pid_install_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
                 flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
@@ -5170,7 +5181,10 @@ class GUI:
                                  'mylib_install_game',
                                  priority=GLib.PRIORITY_HIGH)
 
-    def unpack_game(self, game_name):
+    def goglib_unpack_game(self, game_name):
+
+        if not self.queue_tab_exists():
+            self.append_queue_tab()
 
         if not os.path.exists(self.goglib_install_dir):
             os.makedirs(self.goglib_install_dir)
@@ -5208,12 +5222,12 @@ class GUI:
                         '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
 
             elif self.installer_type == 'exe':
-                command = ['innoextract', '--gog', '--exclude-temp', \
+                command = ['innoextract', '--gog', \
                         self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
                         '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
 
         elif number_of_installers == 0:
-            self.install_game(goglib_installation_queue[0])
+            self.goglib_install_game(goglib_installation_queue[0])
             return
 
         goglib_name_to_pid_unpack_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
@@ -5225,307 +5239,259 @@ class GUI:
 
         self.source_id_out = io.add_watch(GLib.IO_IN|GLib.IO_HUP,
                                  self.watch_process,
-                                 'unpack_game',
+                                 'goglib_unpack_game',
                                  priority=GLib.PRIORITY_HIGH)
 
-    def install_game(self, game_name):
+    def goglib_install_game(self, game_name):
 
-        if self.wine == 'system':
-            wine_path = 'wine'
-        elif self.wine == 'path':
-            wine_path = self.wine_path + '/' + self.wine_version
+        setup_sctipt_exists = os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup')
 
-        if not os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup'):
+        if not self.queue_tab_exists():
+            self.append_queue_tab()
 
-            if self.installer_type == 'sh':
+        if self.installer_type == 'sh':
 
-                game_dir = self.goglib_install_dir + '/' + game_name
-                files_path = game_dir + '/tmp/data/noarch/'
+            game_dir = self.goglib_install_dir + '/' + game_name
+            files_path = game_dir + '/tmp/data/noarch/'
+            files_to_move = os.listdir(files_path)
+
+            files_to_move_lower = [file_name.lower() for file_name in files_to_move]
+
+            if 'dosbox' in files_to_move_lower:
+
+                files_path = game_dir + '/tmp/data/noarch/data/'
                 files_to_move = os.listdir(files_path)
+                os.system('mv ' + game_dir + '/tmp/data/noarch/*_single.conf ' +
+                game_dir + '/dosbox_game.conf')
 
-                files_to_move_lower = [file_name.lower() for file_name in files_to_move]
-
-                if 'dosbox' in files_to_move_lower:
-
-                    files_path = game_dir + '/tmp/data/noarch/data/'
-                    files_to_move = os.listdir(files_path)
-                    os.system('mv ' + game_dir + '/tmp/data/noarch/*_single.conf ' +
-                    game_dir + '/dosbox_game.conf')
-
-                    if '_settings.conf' in ' '.join(files_to_move):
-                        settings_conf_exists = True
-                        os.system('mv ' + game_dir + '/tmp/data/noarch/*_settings.conf ' +
-                        game_dir + '/dosbox_settings.conf')
-                    else:
-                        settings_conf_exists = False
-
-                    def update_conf_file(file_path):
-
-                        file_to_change = open(file_path, 'r')
-                        file_content = file_to_change.readlines()
-                        file_to_change.close()
-
-                        c_mount_command = 'mount c ' + os.getenv('HOME') + \
-                        '/.games_nebula/games/.dosbox/' + game_name + '\n'
-                        d_imgmount_command = 'imgmount d ' + os.getenv('HOME') + \
-                        '/.games_nebula/games/.dosbox/' + game_name + '/'
-                        d_mount_command = 'mount d ' + os.getenv('HOME') + \
-                        '/.games_nebula/games/.dosbox/' + game_name + '/'
-
-                        for i in range(len(file_content)):
-                            if 'mount c' in file_content[i].lower():
-                                file_content[i] = c_mount_command + 'c:\n'
-
-                            if 'imgmount d' in file_content[i].lower():
-                                imgmount_letter_case = file_content[i].split(' ')[0] + ' '
-                                tmp_list = file_content[i].split(imgmount_letter_case)[1].split(' ')
-                                del tmp_list[0]
-                                iso = ' '.join(tmp_list)
-                                if tmp_list[0] not in files_to_move:
-                                    iso = iso.lower()
-                                file_content[i] = d_imgmount_command + iso + 'cls\n'
-                            elif 'mount d' in file_content[i].lower():
-                                mount_letter_case = file_content[i].split(' ')[0] + ' '
-                                tmp_list = file_content[i].split(mount_letter_case)[1].split(' ')
-                                del tmp_list[0]
-                                data_dir = ' '.join(tmp_list)
-                                if tmp_list[0] not in files_to_move:
-                                    data_dir = data_dir.lower()
-                                file_content[i] = d_mount_command + data_dir + 'cls\n'
-
-                        file_to_change = open(file_path, 'w')
-                        for line in file_content:
-                            file_to_change.write(line)
-                        file_to_change.close()
-
-                    update_conf_file(game_dir + '/dosbox_game.conf')
-                    if settings_conf_exists:
-                        update_conf_file(game_dir + '/dosbox_settings.conf')
-
-                    start_lines = ['#!/bin/bash\n',
-                    'INSTALL_DIR="$1"\n',
-                    'NEBULA_DIR="$2"\n',
-                    'rm "$HOME/.games_nebula/games/.dosbox/' + game_name + '"\n',
-                    'mkdir -p "$HOME/.games_nebula/games/.dosbox"\n',
-                    'ln -s "$INSTALL_DIR/' + game_name + '/game" \\\n',
-                    '"$HOME/.games_nebula/games/.dosbox/' + game_name + '"\n',
-                    'python2 "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
-
-                    start_file = open(game_dir + '/start.sh', 'w')
-                    for line in start_lines:
-                        start_file.write(line)
-                    start_file.close()
-                    os.system('chmod +x ' + game_dir + '/start.sh')
-
-                    os.system('mkdir -p ' + game_dir + '/game')
-                    command = []
-                    for f in files_to_move:
-                        command.extend(('mv', files_path + f, game_dir + '/game', '&&'))
-                    del command[-1]
-
-                elif 'scummvm' in files_to_move_lower:
-
-                    for file_name in files_to_move:
-                        if '.ini' in file_name.lower():
-                            ini_file = file_name
-                            scummvm_name = file_name.split('.')[0].lower()
-
-                    files_path = game_dir + '/tmp/data/noarch/data/'
-                    files_to_move = os.listdir(files_path)
-
-                    os.system('mv ' + game_dir + '/tmp/data/noarch/' + ini_file +
-                    ' ' + game_dir + '/scummvmrc')
-
-                    start_lines = ['#!/bin/bash\n',
-                    'INSTALL_DIR="$1"\n',
-                    'NEBULA_DIR="$2"\n',
-                    'SCUMMVMRC="$INSTALL_DIR/' + game_name + '/scummvmrc"\n',
-                    'readarray -t ARRAY <<<"$(cat "$SCUMMVMRC")"\n',
-                    'LENGHT=${#ARRAY[@]}\n',
-                    'for i in $(seq 1 $LENGHT); do\n',
-                    'if [[ ${ARRAY[i]} == "[' + scummvm_name + ']" ]]; then\n',
-                    'FIRST_LINE=$i\n',
-                    'fi\n',
-                    'done\n',
-                    'cp "$HOME/.games_nebula/config/scummvmrc" "$SCUMMVMRC"\n',
-                    'for i in $(seq $FIRST_LINE $LENGHT); do\n',
-                    'echo ${ARRAY[i]} >> "$SCUMMVMRC"\n',
-                    'done\n',
-                    'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
-
-                    start_file = open(game_dir + '/start.sh', 'w')
-                    for line in start_lines:
-                        start_file.write(line)
-                    start_file.close()
-                    os.system('chmod +x ' + game_dir + '/start.sh')
-
-                    os.system('mkdir -p ' + game_dir + '/game')
-                    command = []
-                    for f in files_to_move:
-                        command.extend(('mv', files_path + f, game_dir + '/game', '&&'))
-                    del command[-1]
-
+                if '_settings.conf' in ' '.join(files_to_move):
+                    settings_conf_exists = True
+                    os.system('mv ' + game_dir + '/tmp/data/noarch/*_settings.conf ' +
+                    game_dir + '/dosbox_settings.conf')
                 else:
+                    settings_conf_exists = False
 
-                    command = []
-                    for f in files_to_move:
-                        command.extend(('mv', files_path + f, game_dir, '&&'))
-                    del command[-1]
+                def update_conf_file(file_path):
 
-            elif self.installer_type == 'exe':
+                    file_to_change = open(file_path, 'r')
+                    file_content = file_to_change.readlines()
+                    file_to_change.close()
 
-                game_dir = self.goglib_install_dir + '/' + game_name
-                tmp_game_path = game_dir + '/tmp/game/'
-                tmp_app_path = game_dir + '/tmp/app/'
+                    c_mount_command = 'mount c ' + os.getenv('HOME') + \
+                    '/.games_nebula/games/.dosbox/' + game_name + '\n'
+                    d_imgmount_command = 'imgmount d ' + os.getenv('HOME') + \
+                    '/.games_nebula/games/.dosbox/' + game_name + '/'
+                    d_mount_command = 'mount d ' + os.getenv('HOME') + \
+                    '/.games_nebula/games/.dosbox/' + game_name + '/'
 
-                tmp_game_files_n = 0
-                if os.path.exists(tmp_game_path):
-                    tmp_game_files = os.listdir(tmp_game_path)
-                    tmp_game_files_n = len(tmp_game_files)
+                    for i in range(len(file_content)):
+                        if 'mount c' in file_content[i].lower():
+                            file_content[i] = c_mount_command + 'c:\n'
 
-                tmp_app_files_n = 0
-                if os.path.exists(tmp_app_path):
-                    tmp_app_files = os.listdir(tmp_app_path)
-                    tmp_app_files_n = len(tmp_app_files)
+                        if 'imgmount d' in file_content[i].lower():
+                            tmp_list = file_content[i].split(' ')[2:]
+                            tmp_list[0] = tmp_list[0].strip('"\\.')
+                            iso = ' '.join(tmp_list)
+                            if tmp_list[0] not in files_to_move:
+                                iso = iso.lower()
+                            file_content[i] = d_imgmount_command + iso + 'cls\n'
+                        elif 'mount d' in file_content[i].lower():
+                            tmp_list = file_content[i].split(' ')[2:]
+                            tmp_list[0] = tmp_list[0].strip('"\\.')
+                            data_dir = ' '.join(tmp_list)
+                            if tmp_list[0] not in files_to_move:
+                                data_dir = data_dir.lower()
+                            file_content[i] = d_mount_command + data_dir + 'cls\n'
 
-                if tmp_game_files_n > tmp_app_files_n:
-                    files_path = tmp_game_path
-                    files_to_move = list(tmp_game_files)
-                    game_data_dir = '/tmp/game/'
-                else:
-                    files_path = tmp_app_path
-                    files_to_move = list(tmp_app_files)
-                    game_data_dir = '/tmp/app/'
+                    file_to_change = open(file_path, 'w')
+                    for line in file_content:
+                        file_to_change.write(line)
+                    file_to_change.close()
 
-                files_to_move_lower = [file_name.lower() for file_name in files_to_move]
+                update_conf_file(game_dir + '/dosbox_game.conf')
+                if settings_conf_exists:
+                    update_conf_file(game_dir + '/dosbox_settings.conf')
 
-                if 'dosbox' in files_to_move_lower:
-                    os.system('mv ' + game_dir + game_data_dir + '*_single.conf ' +
-                    game_dir + '/dosbox_game.conf')
+                start_lines = ['#!/bin/bash\n',
+                'python2 "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
 
-                    if '_settings.conf' in ' '.join(files_to_move):
-                        settings_conf_exists = True
-                        os.system('mv ' + game_dir + game_data_dir + '*_settings.conf ' +
-                        game_dir + '/dosbox_settings.conf')
-                    else:
-                        settings_conf_exists = False
-
-                    def update_conf_file(file_path):
-
-                        file_to_change = open(file_path, 'r')
-                        file_content = file_to_change.readlines()
-                        file_to_change.close()
-
-                        c_mount_command = 'mount c ' + os.getenv('HOME') + \
-                        '/.games_nebula/games/.dosbox/' + game_name + '\n'
-                        d_imgmount_command = 'imgmount d ' + os.getenv('HOME') + \
-                        '/.games_nebula/games/.dosbox/' + game_name + '/'
-                        d_mount_command = 'mount d ' + os.getenv('HOME') + \
-                        '/.games_nebula/games/.dosbox/' + game_name + '/'
-
-                        for i in range(len(file_content)):
-                            if 'mount c' in file_content[i].lower():
-                                file_content[i] = c_mount_command + 'c:\n'
-
-                            if 'imgmount d' in file_content[i].lower():
-                                imgmount_letter_case = file_content[i].split(' ')[0] + ' '
-                                tmp_list = file_content[i].split(imgmount_letter_case)[1].translate(None, '"\\').split(' ')
-                                del tmp_list[0]
-                                tmp = ' '.join(tmp_list)
-                                if tmp.startswith('..'):
-                                    iso = tmp.split('..')[1]
-                                else:
-                                    iso = tmp
-                                if iso.split(' ')[0] not in files_to_move:
-                                    iso = iso.lower()
-                                file_content[i] = d_imgmount_command + iso + 'cls\n'
-                            elif 'mount d' in file_content[i].lower():
-                                mount_letter_case = file_content[i].split(' ')[0] + ' '
-                                tmp_list = file_content[i].split(mount_letter_case)[1].translate(None, '"\\').split(' ')
-                                del tmp_list[0]
-                                tmp = ' '.join(tmp_list)
-                                if tmp.startswith('..'):
-                                    data_dir = tmp.split('..')[1]
-                                else:
-                                    data_dir = tmp
-                                if data_dir.split(' ')[0] not in files_to_move:
-                                    data_dir = data_dir.lower()
-                                file_content[i] = d_mount_command + data_dir + 'cls\n'
-
-                        file_to_change = open(file_path, 'w')
-                        for line in file_content:
-                            file_to_change.write(line)
-                        file_to_change.close()
-
-                    update_conf_file(game_dir + '/dosbox_game.conf')
-                    if settings_conf_exists:
-                        update_conf_file(game_dir + '/dosbox_settings.conf')
-
-                    start_lines = ['#!/bin/bash\n',
-                    'INSTALL_DIR="$1"\n',
-                    'NEBULA_DIR="$2"\n',
-                    'rm "$HOME/.games_nebula/games/.dosbox/' + game_name + '"\n',
-                    'mkdir -p "$HOME/.games_nebula/games/.dosbox"\n',
-                    'ln -s "$INSTALL_DIR/' + game_name + '/game" \\\n',
-                    '"$HOME/.games_nebula/games/.dosbox/' + game_name + '"\n',
-                    'python2 "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
-
-                    start_file = open(game_dir + '/start.sh', 'w')
-                    for line in start_lines:
-                        start_file.write(line)
-                    start_file.close()
-                    os.system('chmod +x ' + game_dir + '/start.sh')
-
-                elif 'scummvm' in files_to_move_lower:
-
-                    for file_name in files_to_move:
-                        if '.ini' in file_name.lower():
-                            ini_file = file_name
-                            scummvm_name = file_name.split('.')[0].lower()
-
-                    os.system('mv ' + game_dir + game_data_dir + ini_file + ' ' +
-                    game_dir + '/scummvmrc')
-
-                    start_lines = ['#!/bin/bash\n',
-                    'INSTALL_DIR="$1"\n',
-                    'NEBULA_DIR="$2"\n',
-                    'SCUMMVMRC="$INSTALL_DIR/' + game_name + '/scummvmrc"\n',
-                    'readarray -t ARRAY <<<"$(cat "$SCUMMVMRC")"\n',
-                    'LENGHT=${#ARRAY[@]}\n',
-                    'for i in $(seq 1 $LENGHT); do\n',
-                    'if [[ ${ARRAY[i]} == "[' + scummvm_name + ']" ]]; then\n',
-                    'FIRST_LINE=$i\n',
-                    'fi\n',
-                    'done\n',
-                    'cp "$HOME/.games_nebula/config/scummvmrc" "$SCUMMVMRC"\n',
-                    'for i in $(seq $FIRST_LINE $LENGHT); do\n',
-                    'echo ${ARRAY[i]} >> "$SCUMMVMRC"\n',
-                    'done\n',
-                    'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
-
-                    start_file = open(game_dir + '/start.sh', 'w')
-                    for line in start_lines:
-                        start_file.write(line)
-                    start_file.close()
-                    os.system('chmod +x ' + game_dir + '/start.sh')
-
-                else:
-
-                    start_lines = ['#!/bin/bash\n', 'NEBULA_DIR="$2"\n', \
-                    'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' NOEXE']
-                    start_file = open(game_dir + '/start.sh', 'w')
-                    for line in start_lines:
-                        start_file.write(line)
-                    start_file.close()
-                    os.system('chmod +x ' + game_dir + '/start.sh')
+                start_file = open(game_dir + '/start.sh', 'w')
+                for line in start_lines:
+                    start_file.write(line)
+                start_file.close()
+                os.system('chmod +x ' + game_dir + '/start.sh')
 
                 os.system('mkdir -p ' + game_dir + '/game')
                 command = []
                 for f in files_to_move:
-                    command.extend(('mv', files_path + f, game_dir + '/game', '&&'))
-                del command[-1]
+                    command.extend(('mv', files_path + f, game_dir + '/game'))
+
+            elif 'scummvm' in files_to_move_lower:
+
+                for file_name in files_to_move:
+                    if '.ini' in file_name.lower():
+                        ini_file = file_name
+                        scummvm_name = file_name.split('.')[0].lower()
+
+                files_path = game_dir + '/tmp/data/noarch/data/'
+                files_to_move = os.listdir(files_path)
+
+                os.system('mv ' + game_dir + '/tmp/data/noarch/' + ini_file +
+                ' ' + game_dir + '/scummvmrc')
+
+                start_lines = ['#!/bin/bash\n',
+                'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
+
+                start_file = open(game_dir + '/start.sh', 'w')
+                for line in start_lines:
+                    start_file.write(line)
+                start_file.close()
+                os.system('chmod +x ' + game_dir + '/start.sh')
+
+                os.system('mkdir -p ' + game_dir + '/game')
+                command = []
+                for f in files_to_move:
+                    command.extend(('mv', files_path + f, game_dir + '/game'))
 
             else:
+
+                command = []
+                for f in files_to_move:
+                    command.extend(('mv', files_path + f, game_dir))
+
+        elif self.installer_type == 'exe':
+
+            game_dir = self.goglib_install_dir + '/' + game_name
+            tmp_game_path = game_dir + '/tmp/game/'
+            tmp_app_path = game_dir + '/tmp/app/'
+
+            tmp_game_files_n = 0
+            if os.path.exists(tmp_game_path):
+                tmp_game_files = os.listdir(tmp_game_path)
+                tmp_game_files_n = len(tmp_game_files)
+
+            tmp_app_files_n = 0
+            if os.path.exists(tmp_app_path):
+                tmp_app_files = os.listdir(tmp_app_path)
+                tmp_app_files_n = len(tmp_app_files)
+
+            if tmp_game_files_n > tmp_app_files_n:
+                files_path = tmp_game_path
+                files_to_move = list(tmp_game_files)
+                game_data_dir = '/tmp/game/'
+            else:
+                files_path = tmp_app_path
+                files_to_move = list(tmp_app_files)
+                game_data_dir = '/tmp/app/'
+
+            files_to_move_lower = [file_name.lower() for file_name in files_to_move]
+
+            if 'dosbox' in files_to_move_lower:
+                os.system('mv ' + game_dir + game_data_dir + '*_single.conf ' +
+                game_dir + '/dosbox_game.conf')
+
+                if '_settings.conf' in ' '.join(files_to_move):
+                    settings_conf_exists = True
+                    os.system('mv ' + game_dir + game_data_dir + '*_settings.conf ' +
+                    game_dir + '/dosbox_settings.conf')
+                else:
+                    settings_conf_exists = False
+
+                def update_conf_file(file_path):
+
+                    file_to_change = open(file_path, 'r')
+                    file_content = file_to_change.readlines()
+                    file_to_change.close()
+
+                    c_mount_command = 'mount c ' + os.getenv('HOME') + \
+                    '/.games_nebula/games/.dosbox/' + game_name + '\n'
+                    d_imgmount_command = 'imgmount d ' + os.getenv('HOME') + \
+                    '/.games_nebula/games/.dosbox/' + game_name + '/'
+                    d_mount_command = 'mount d ' + os.getenv('HOME') + \
+                    '/.games_nebula/games/.dosbox/' + game_name + '/'
+
+                    for i in range(len(file_content)):
+                        if 'mount c' in file_content[i].lower():
+                            file_content[i] = c_mount_command + 'c:\n'
+
+                        if 'imgmount d' in file_content[i].lower():
+                            tmp_list = file_content[i].split(' ')[2:]
+                            tmp_list[0] = tmp_list[0].strip('"\\.')
+                            iso = ' '.join(tmp_list)
+                            if tmp_list[0] not in files_to_move:
+                                iso = iso.lower()
+                            file_content[i] = d_imgmount_command + iso + 'cls\n'
+                        elif 'mount d' in file_content[i].lower():
+                            tmp_list = file_content[i].split(' ')[2:]
+                            tmp_list[0] = tmp_list[0].strip('"\\.')
+                            data_dir = ' '.join(tmp_list)
+                            if tmp_list[0] not in files_to_move:
+                                data_dir = data_dir.lower()
+                            file_content[i] = d_mount_command + data_dir + 'cls\n'
+
+                    file_to_change = open(file_path, 'w')
+                    for line in file_content:
+                        file_to_change.write(line)
+                    file_to_change.close()
+
+                update_conf_file(game_dir + '/dosbox_game.conf')
+                if settings_conf_exists:
+                    update_conf_file(game_dir + '/dosbox_settings.conf')
+
+                start_lines = ['#!/bin/bash\n',
+                'python2 "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
+
+                start_file = open(game_dir + '/start.sh', 'w')
+                for line in start_lines:
+                    start_file.write(line)
+                start_file.close()
+                os.system('chmod +x ' + game_dir + '/start.sh')
+
+            elif 'scummvm' in files_to_move_lower:
+
+                for file_name in files_to_move:
+                    if '.ini' in file_name.lower():
+                        ini_file = file_name
+                        scummvm_name = file_name.split('.')[0].lower()
+
+                os.system('mv ' + game_dir + game_data_dir + ini_file + ' ' +
+                game_dir + '/scummvmrc')
+
+                start_lines = ['#!/bin/bash\n',
+                'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
+
+                start_file = open(game_dir + '/start.sh', 'w')
+                for line in start_lines:
+                    start_file.write(line)
+                start_file.close()
+                os.system('chmod +x ' + game_dir + '/start.sh')
+
+            else:
+
+                files_in_game_dir = os.listdir(game_dir + game_data_dir)
+                n_exe = 0
+                for file_name in files_in_game_dir:
+                    if '.exe' in file_name.lower():
+                        exe_name =  '"' + file_name + '"'
+                        n_exe += 1
+                if n_exe != 1:
+                    exe_name = 'NOEXE'
+
+                start_lines = ['#!/bin/bash\n',
+                'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' ' + exe_name]
+                start_file = open(game_dir + '/start.sh', 'w')
+                for line in start_lines:
+                    start_file.write(line)
+                start_file.close()
+                os.system('chmod +x ' + game_dir + '/start.sh')
+
+            os.system('mkdir -p ' + game_dir + '/game')
+            command = []
+            for f in files_to_move:
+                command.extend(('mv', files_path + f, game_dir + '/game'))
+
+        else:
+            if not os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup'):
 
                 message_dialog = Gtk.MessageDialog(
                     self.main_window,
@@ -5535,6 +5501,7 @@ class GUI:
                     _("Error")
                     )
                 message_dialog.format_secondary_text(_("Impossible to install."))
+                message_dialog.set_property('default-width', 480)
                 content_area = message_dialog.get_content_area()
                 content_area.set_property('margin-left', 10)
                 content_area.set_property('margin-right', 10)
@@ -5546,12 +5513,23 @@ class GUI:
                 message_dialog.run()
                 message_dialog.destroy()
 
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + goglib_installation_queue[0])
+                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
                 command = ['echo', 'Impossible to install']
 
-        else:
-            command = [data_dir + '/scripts/goglib/' + game_name + '/setup', \
-            self.goglib_download_dir, self.goglib_install_dir, nebula_dir, wine_path]
+            else:
+                command = ['echo', 'Running script...']
+
+        settings_py_path = os.getenv('HOME') + '/.games_nebula/scripts/goglib/' + game_name + '/settings.py'
+        if os.path.exists(settings_py_path):
+            os.system('cp ' + settings_py_path + ' ' + game_dir)
+            os.system('echo "Writing settings.sh"')
+            settings_lines = ['#!/bin/bash\n',
+            'python2 "$INSTALL_DIR/' + game_name + '/settings.py"']
+            settings_file = open(game_dir + '/settings.sh', 'w')
+            for line in settings_lines:
+                settings_file.write(line)
+            settings_file.close()
+            os.system('chmod +x ' + game_dir + '/settings.sh')
 
         goglib_name_to_pid_install_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
                 flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
@@ -5562,102 +5540,195 @@ class GUI:
 
         self.source_id_out = io.add_watch(GLib.IO_IN|GLib.IO_HUP,
                                  self.watch_process,
-                                 'install_game',
+                                 'goglib_install_game',
+                                 priority=GLib.PRIORITY_HIGH)
+
+    def run_goglib_setup_script(self, game_name):
+
+        self.progressbar_goglib.set_text(_("Executing script..."))
+
+        self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
+
+        command = [data_dir + '/scripts/goglib/' + game_name + '/setup']
+
+        goglib_name_to_pid_install_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
+                flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+                standard_output=True,
+                standard_error=True)
+
+        io = GLib.IOChannel(stdout)
+
+        self.source_id_out = io.add_watch(GLib.IO_IN|GLib.IO_HUP,
+                                 self.watch_process,
+                                 'run_goglib_setup_script',
                                  priority=GLib.PRIORITY_HIGH)
 
     def watch_process(self, io, condition, process_name):
 
         if condition is GLib.IO_HUP:
 
-            if process_name == 'download_game':
+            if process_name == 'goglib_download_game':
+                game_name = goglib_installation_queue[0]
                 GLib.source_remove(self.source_id_out)
                 #GLib.source_remove(self.source_id_err)
 
                 if self.download_canceled == False:
 
-                    self.unpack_game(goglib_installation_queue[0])
+                    self.goglib_unpack_game(game_name)
 
                     for downloads_game_status in queue_game_status_list:
-                        if downloads_game_status.get_name() == goglib_installation_queue[0]:
+                        if downloads_game_status.get_name() == game_name:
                             downloads_game_status.set_label(' ')
 
-                    del goglib_name_to_pid_download_dict[goglib_installation_queue[0]]
+                    del goglib_name_to_pid_download_dict[game_name]
 
                 else:
-                    del goglib_name_to_pid_download_dict[goglib_installation_queue[0]]
+                    del goglib_name_to_pid_download_dict[game_name]
                     del goglib_installation_queue[0]
                     self.goglib_now_installing = None
                     self.download_canceled = False
 
                 return False
 
-            if process_name == 'unpack_game':
+            if process_name == 'goglib_unpack_game':
+                game_name = goglib_installation_queue[0]
                 GLib.source_remove(self.source_id_out)
 
                 if self.unpack_canceled == False:
 
-                    GLib.source_remove(self.source_id_out)
+                    #GLib.source_remove(self.source_id_out)
                     #GLib.source_remove(self.source_id_err)
 
-                    self.install_game(goglib_installation_queue[0])
+                    self.goglib_install_game(game_name)
 
-                    del goglib_name_to_pid_unpack_dict[goglib_installation_queue[0]]
+                    del goglib_name_to_pid_unpack_dict[game_name]
 
                 else:
-                    del goglib_name_to_pid_unpack_dict[goglib_installation_queue[0]]
+                    del goglib_name_to_pid_unpack_dict[game_name]
                     del goglib_installation_queue[0]
                     self.goglib_now_installing = None
                     self.unpack_canceled = False
 
                 return False
 
-            if process_name == 'install_game':
+            if process_name == 'goglib_install_game':
+                game_name = goglib_installation_queue[0]
+                GLib.source_remove(self.source_id_out)
+                #GLib.source_remove(self.source_id_err)
+
+                self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
+                autosetup.autosetup('goglib', self.goglib_install_dir, game_name)
+
+                if os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup'):
+                    self.run_goglib_setup_script(game_name)
+                else:
+                    game_dir = self.goglib_install_dir + '/' + game_name
+                    start_file_path = game_dir + '/start.sh'
+                    dosbox_game_conf_path = game_dir + '/dosbox_game.conf'
+                    scummvmrc_path = game_dir + '/scummvmrc'
+
+                    if (self.installer_type == 'sh') and \
+                            (not os.path.exists(dosbox_game_conf_path)) and \
+                            (not os.path.exists(scummvmrc_path)):
+
+                        is_wine_wrapper = False
+                        game_dir_content = os.listdir(game_dir + '/game')
+                        for file_name in game_dir_content:
+                            if '.exe' in file_name.lower():
+                                is_wine_wrapper = True
+
+                        if not is_wine_wrapper:
+
+                            start_gog_path = game_dir + '/start_gog.sh'
+                            if not os.path.exists(start_gog_path):
+                                os.system('mv ' + start_file_path + ' ' + start_gog_path)
+
+                            start_lines = ['#!/bin/bash\n',
+                            'python2 "$NEBULA_DIR/launcher_native.py" ' + game_name]
+
+                            start_file = open(start_file_path, 'w')
+                            for line in start_lines:
+                                start_file.write(line)
+                            start_file.close()
+                            os.system('chmod +x ' + start_file_path)
+
+                    for progress_bar in queue_progress_bars_list:
+                        if progress_bar.get_name() == game_name:
+                            progress_bar.set_fraction(1)
+                            progress_bar.set_text(_("Done"))
+
+                    #Destroy frame when finished
+                    #~ for frame in queue_game_frame_list:
+                       #~ if frame.get_name() == game_name:
+                           #~ frame.destroy()
+
+                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/tmp')
+
+                    if self.goglib_keep_installers == False:
+                        os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
+
+                    self.update_queue_banners()
+
+                    del goglib_name_to_pid_install_dict[game_name]
+                    del goglib_installation_queue[0]
+
+                    self.cb_combobox_goglib_status(self.combobox_goglib_status)
+
+                    self.goglib_now_installing = None
+
+                return False
+
+            if process_name == 'run_goglib_setup_script':
+                game_name = goglib_installation_queue[0]
                 GLib.source_remove(self.source_id_out)
                 #GLib.source_remove(self.source_id_err)
 
                 for progress_bar in queue_progress_bars_list:
-                    if progress_bar.get_name() == goglib_installation_queue[0]:
+                    if progress_bar.get_name() == game_name:
                         progress_bar.set_fraction(1)
                         progress_bar.set_text(_("Done"))
 
                 #Destroy frame when finished
                 #~ for frame in queue_game_frame_list:
-                   #~ if frame.get_name() == goglib_installation_queue[0]:
+                   #~ if frame.get_name() == game_name:
                        #~ frame.destroy()
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + goglib_installation_queue[0] + '/tmp')
+
+                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/tmp')
 
                 if self.goglib_keep_installers == False:
-                    os.system('rm -R -f ' + self.goglib_download_dir + '/' + goglib_installation_queue[0])
+                    os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
 
                 self.update_queue_banners()
 
-                del goglib_name_to_pid_install_dict[goglib_installation_queue[0]]
+                del goglib_name_to_pid_install_dict[game_name]
                 del goglib_installation_queue[0]
 
-                self.update_goglib_grid()
+                self.cb_combobox_goglib_status(self.combobox_goglib_status)
 
                 self.goglib_now_installing = None
 
                 return False
 
             if process_name == 'mylib_install_game':
-
+                game_name = mylib_installation_queue[0]
                 GLib.source_remove(self.source_id_out)
                 #GLib.source_remove(self.source_id_err)
 
                 for progress_bar in queue_progress_bars_list:
-                    if progress_bar.get_name() == mylib_installation_queue[0]:
+                    if progress_bar.get_name() == game_name:
                         progress_bar.set_fraction(1)
                         progress_bar.set_text(_("Done"))
 
                 if self.mylib_keep_installers == False:
-                    if os.path.exists(self.mylib_download_dir + '/' + mylib_installation_queue[0]):
-                        os.system('rm -R -f ' + self.mylib_download_dir + '/' + mylib_installation_queue[0])
+                    if os.path.exists(self.mylib_download_dir + '/' + game_name):
+                        os.system('rm -R -f ' + self.mylib_download_dir + '/' + game_name)
 
-                del mylib_name_to_pid_install_dict[mylib_installation_queue[0]]
+                self.update_queue_banners()
+
+                del mylib_name_to_pid_install_dict[game_name]
                 del mylib_installation_queue[0]
 
-                self.update_mylib_grid()
+                self.cb_combobox_mylib_status(self.combobox_mylib_status)
 
                 self.mylib_now_installing = None
 
@@ -5669,11 +5740,6 @@ class GUI:
                 self.box_action_widgets_end.pack_end(self.button_update_goglib, True, True, 0)
 
                 if len(self.goglib_new_games_list) == 0:
-
-                    self.main_window.hide()
-
-                    while Gtk.events_pending():
-                        Gtk.main_iteration_do(False)
 
                     message_dialog = Gtk.MessageDialog(
                         self.main_window,
@@ -5689,8 +5755,6 @@ class GUI:
                     content_area.set_property('margin-bottom', 10)
                     message_dialog.run()
                     message_dialog.destroy()
-
-                    self.main_window.show()
 
                 GLib.source_remove(self.source_id_out)
                 return False
@@ -5721,7 +5785,7 @@ class GUI:
         if self.mylib_page_exists():
             self.mylib_tab_progressbar.pulse()
 
-        if process_name == 'download_game':
+        if process_name == 'goglib_download_game':
 
             if '%' in line:
                 mb_downloaded = line.split('@')[0].split(' ')[-2]
@@ -5743,19 +5807,26 @@ class GUI:
                         " ETA: " + eta.translate(None, '\n')
                         )
 
-        if process_name == 'unpack_game':
+        if process_name == 'goglib_unpack_game':
 
             for progress_bar in queue_progress_bars_list:
                     if progress_bar.get_name() == goglib_installation_queue[0]:
                         progress_bar.pulse()
                         progress_bar.set_text(_("Installing..."))
 
-        if process_name == 'install_game':
+        if process_name == 'goglib_install_game':
 
             for progress_bar in queue_progress_bars_list:
                     if progress_bar.get_name() == goglib_installation_queue[0]:
                         progress_bar.pulse()
                         progress_bar.set_text(_("Installing..."))
+
+        if process_name == 'run_goglib_setup_script':
+
+            for progress_bar in queue_progress_bars_list:
+                    if progress_bar.get_name() == goglib_installation_queue[0]:
+                        progress_bar.pulse()
+                        progress_bar.set_text(_("Executing script..."))
 
         if process_name == 'mylib_install_game':
 
@@ -5888,7 +5959,7 @@ class GUI:
         os.system('python ' + nebula_dir + '/settings_dosbox.py ' \
         + dosbox_global_config + ' global ' + dosbox_version)
 
-        # TODO Use if special config tool for svn-daum build created (settings_dosbox_svn_daum.py)
+        # TODO Use if special config tool for svn-daum build exists (settings_dosbox_svn_daum.py)
         #~ if (dosbox_version == 'stable') or (dosbox_version == 'svn'):
             #~ os.system('python ' + nebula_dir + '/settings_dosbox.py ' + \
             #~ dosbox_global_config + ' global ' + dosbox_version)
@@ -6004,7 +6075,7 @@ class GUI:
                 os.system('mv -f ' + self.goglib_install_dir + '/* ' + \
                 new_goglib_install_dir + ' && rmdir ' + self.goglib_install_dir)
 
-                os.system('rm ' + new_goglib_install_dir + '/*/.configured')
+                os.system('rm ' + new_goglib_install_dir + '/*/.configured > /dev/null 2>&1')
 
                 self.goglib_install_dir = new_goglib_install_dir
 
@@ -6014,10 +6085,10 @@ class GUI:
 
             message_dialog.destroy()
 
-        #~ self.status_filter_list = []
+        #~ self.goglib_status_filter_list = []
         #~ for game_name in self.goglib_games_list:
            #~ if os.path.exists(self.goglib_install_dir + '/' + game_name + '/start.sh'):
-               #~ self.status_filter_list.append(game_name)
+               #~ self.goglib_status_filter_list.append(game_name)
         #~ self.goglib_apply_filters()
 
     def cb_filechooserbutton_mylib_download_dir(self, button):
@@ -6053,7 +6124,7 @@ class GUI:
                 os.system('mv -f ' + self.mylib_install_dir + '/* ' + \
                 new_mylib_install_dir + ' && rmdir ' + self.mylib_install_dir)
 
-                os.system('rm ' + new_mylib_install_dir + '/*/.configured')
+                os.system('rm ' + new_mylib_install_dir + '/*/.configured > /dev/null 2>&1')
 
                 self.mylib_install_dir = new_mylib_install_dir
 
@@ -6367,6 +6438,14 @@ class GUI:
             if 'primary' in line:
                 self.monitor_primary = line.split(' ')[0] + ' ' + line.split(' ')[3].split('+')[0]
 
+    def switch_monitor(self, switch):
+        if switch == 'ON':
+            output = self.combobox_monitor.get_active_text().split()[0]
+            os.system('xrandr --output '+ output + ' --primary')
+        elif switch == 'OFF':
+            output = self.monitor_primary.split()[0]
+            os.system('xrandr --output '+ output + ' --primary')
+
     def detach_tab(self, notebook, page_content, x, y):
 
         def remove_additional_page(notebook, page_content, page_num, window):
@@ -6679,11 +6758,33 @@ class GUI:
             action_area = message_dialog.get_action_area()
             action_area.set_property('spacing', 10)
 
+            self.main_window.hide()
             response = message_dialog.run()
             message_dialog.destroy()
+            self.main_window.show()
 
             if response == Gtk.ResponseType.OK:
                 Gtk.main_quit()
+
+    def set_environ(self, game_name, download_dir, install_dir):
+
+        if self.wine == 'system':
+            wine_path = 'wine'
+        elif self.wine == 'path':
+            wine_path = self.wine_path + '/' + self.wine_version
+
+        os.environ['DOWNLOAD_DIR'] = download_dir
+        os.environ['INSTALL_DIR'] = install_dir
+        os.environ['WINE_PATH'] = wine_path
+        os.environ['GAME_NAME'] = game_name
+        os.environ['START_FILE'] = install_dir + '/' + game_name + '/start.sh'
+        os.environ['START_GOG_FILE'] = install_dir + '/' + game_name + '/start_gog.sh'
+        os.environ['START_GN_FILE'] = install_dir + '/' + game_name + '/start_gn.sh'
+        os.environ['SETTINGS_FILE'] = install_dir + '/' + game_name + '/settings.sh'
+        os.environ['ADDITIONS_FILE'] = install_dir + '/' + game_name + '/additions.sh'
+        os.environ['DOSBOX_GAME_CONF'] = install_dir + '/' + game_name + '/dosbox_game.conf'
+        os.environ['DOSBOX_SETTINGS_CONF'] = install_dir + '/' + game_name + '/dosbox_settings.conf'
+
 def main():
     app = GUI()
     Gtk.main()

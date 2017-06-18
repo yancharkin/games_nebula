@@ -28,21 +28,8 @@ _ = gettext.gettext
 
 class GUI:
 
-    def __init__(self, wine_path, wineprefix_path):
-
-        self.wine_path = wine_path
-        self.wineprefix_path = wineprefix_path
-
-        if self.wine_path == 'wine':
-            self.export_command = 'export WINELOADER=wine && ' + \
-            'export WINEPREFIX=' + self.wineprefix_path
-        else:
-            self.export_command = 'export WINE=' + self.wine_path + '/bin/wine && ' + \
-            'export WINELOADER=' + self.wine_path + '/bin/wine && ' + \
-            'export WINESERVER=' + self.wine_path + '/bin/wineserver && ' + \
-            'export WINEDLLPATH=' + self.wine_path + '/lib && ' + \
-            'export WINEPREFIX=' + self.wineprefix_path
-
+    def __init__(self):
+        self.wineprefix_path = os.getenv('WINEPREFIX')
         self.create_main_window()
 
     def create_main_window(self):
@@ -116,7 +103,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        command = self.export_command + '\n$WINELOADER uninstaller'
+        command = '$WINELOADER uninstaller'
         os.system(command)
 
         self.main_window.show()
@@ -156,11 +143,11 @@ class GUI:
             file_path = dialog.get_current_folder()
 
             if '.exe' in dialog.get_filename().split('/')[-1]:
-                command = self.export_command + '\n$WINELOADER "' + dialog.get_filename() + '"'
+                command = '$WINELOADER "' + dialog.get_filename() + '"'
             elif '.msi' in dialog.get_filename().split('/')[-1]:
-                command = self.export_command + '\n$WINELOADER msiexec /i "' + dialog.get_filename() + '"'
+                command = '$WINELOADER msiexec /i "' + dialog.get_filename() + '"'
             elif '.bat' in dialog.get_filename().split('/')[-1]:
-                command = self.export_command + '\n$WINELOADER start /unix "' + dialog.get_filename() + '"'
+                command = '$WINELOADER start /unix "' + dialog.get_filename() + '"'
 
             dialog.destroy()
 
@@ -185,7 +172,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        command = self.export_command + '\n$WINELOADER control joy.cpl'
+        command = '$WINELOADER control joy.cpl'
         os.system(command)
 
         self.main_window.show()
@@ -197,7 +184,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        command = self.export_command + '\n$WINELOADER winecfg'
+        command = '$WINELOADER winecfg'
         os.system(command)
 
         self.main_window.show()
@@ -209,14 +196,14 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        command = self.export_command + '\nwinetricks --gui'
+        command = 'winetricks --gui'
         os.system(command)
 
         self.main_window.show()
 
 def main():
     import sys
-    app = GUI(sys.argv[1], sys.argv[2])
+    app = GUI()
     Gtk.main()
 
 if __name__ == '__main__':
