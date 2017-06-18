@@ -3,9 +3,7 @@ import urllib2
 import PIL
 from PIL import Image
 
-import goglib_recreate_banner
-
-def goglib_get_banner_2(game_name, url, banner_path, lib):
+def get_banner(game_name, url, banner_path, lib):
 
     banner_req = urllib2.Request(url)
 
@@ -40,4 +38,4 @@ def goglib_get_banner_2(game_name, url, banner_path, lib):
 
 if __name__ == "__main__":
     import sys
-    goglib_get_banner_2(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    get_banner(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])

@@ -100,7 +100,7 @@ class GUI:
 
     def unpack(self, archive_path):
         os.system('7z x -aoa -o' + tmp + ' ' + archive_path)
-        os.system('rm ' + tmp + '/games_nebula_' + self.lib + '_scripts-master/LICENSE')
+        os.system('rm ' + tmp + '/games_nebula_' + self.lib + '_scripts-master/LICENSE > /dev/null 2>&1')
         
         if not os.path.exists(self.scripts_dir):
             os.makedirs(self.scripts_dir)
@@ -119,7 +119,7 @@ class GUI:
             os.system('cp -r ' + tmp + '/games_nebula_' + self.lib + '_scripts-master/* ' + self.scripts_dir)
                   
         os.system('rm -r ' + tmp + '/games_nebula_' + self.lib + '_scripts-master')
-        os.system('rm ' + tmp + '/' + self.lib + '_scripts.zip')
+        os.system('rm ' + tmp + '/' + self.lib + '_scripts.zip > /dev/null 2>&1')
         
         new_scripts = sorted(new_scripts)
         n_new_scripts = len(new_scripts)
