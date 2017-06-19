@@ -41,7 +41,7 @@ sample_commands = {
     _("Reset gamma"):'xgamma -gamma 1'
 }
 
-sample_commands = sorted(sample_commands)
+sample_commands_list = sorted(sample_commands)
 
 class GUI:
 
@@ -280,7 +280,7 @@ class GUI:
             tooltip_text = _("Commands templates")
             )
 
-        for command in sample_commands:
+        for command in sample_commands_list:
             combobox_before.append_text(command)
         combobox_before.set_active(0)
 
@@ -339,7 +339,7 @@ class GUI:
             tooltip_text = _("Commands templates")
             )
 
-        for command in sample_commands:
+        for command in sample_commands_list:
             combobox_after.append_text(command)
         combobox_after.set_active(0)
 

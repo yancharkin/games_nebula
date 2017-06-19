@@ -60,6 +60,15 @@ win_ver_dict = {
     'Windows 2.0' : 'win20'
 }
 
+sample_commands = {
+    _("Disable output"):'xrandr --output <OUTPUT HERE> --off',
+    _("Enable output"):'xrandr --output <OUTPUT HERE> --auto',
+    _("Output position"):'xrandr --output <OUTPUT HERE> --auto <--left-of | --right-of | --above | --below> <ANOTHER OUTPUT HERE>',
+    _("Reset gamma"):'xgamma -gamma 1'
+}
+
+sample_commands_list = sorted(sample_commands)
+
 class GUI:
 
     def __init__(self, game_name, exe_path):
@@ -268,6 +277,18 @@ class GUI:
         else:
             self.own_prefix = config_parser.getboolean('Settings', 'own_prefix')
 
+        if not config_parser.has_option('Settings', 'command_before'):
+            self.command_before = ''
+            config_parser.set('Settings', 'command_before', self.command_before)
+        else:
+            self.command_before = config_parser.get('Settings', 'command_before')
+
+        if not config_parser.has_option('Settings', 'command_after'):
+            self.command_after = ''
+            config_parser.set('Settings', 'command_after', self.command_after)
+        else:
+            self.command_after = config_parser.get('Settings', 'command_after')
+
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)
         new_config_file.close()
@@ -290,6 +311,8 @@ class GUI:
         config_parser.set('Settings', 'virtual_desktop_height', self.virtual_desktop_height)
         config_parser.set('Settings', 'mouse_capture', self.mouse_capture)
         config_parser.set('Settings', 'own_prefix', self.own_prefix)
+        config_parser.set('Settings', 'command_before', self.command_before)
+        config_parser.set('Settings', 'command_after', self.command_after)
 
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)
@@ -534,6 +557,125 @@ class GUI:
 
         self.button_settings.connect('clicked', self.cb_button_settings)
 
+        expander_before = Gtk.Expander(
+            label = _("Execute before launching the game")
+            )
+        grid_before = Gtk.Grid(
+            margin_top = 10,
+            row_spacing = 10,
+            column_spacing = 5,
+            )
+
+        entry_before = Gtk.Entry(
+            name = 'command_before',
+            hexpand = True,
+            text = self.command_before,
+            sensitive = False
+            )
+        entry_before.connect('changed', self.cb_entries)
+
+        def cb_button_edit_before(button):
+            if entry_before.get_sensitive():
+                entry_before.set_sensitive(False)
+            else:
+                entry_before.set_sensitive(True)
+
+        img = Gtk.Image.new_from_icon_name("document-new", Gtk.IconSize.SMALL_TOOLBAR)
+        button_edit_before = Gtk.Button(
+            image = img,
+            tooltip_text = _("Edit")
+            )
+        button_edit_before.connect('clicked', cb_button_edit_before)
+
+        combobox_before = Gtk.ComboBoxText(
+            hexpand = True,
+            tooltip_text = _("Commands templates")
+            )
+
+        for command in sample_commands_list:
+            combobox_before.append_text(command)
+        combobox_before.set_active(0)
+
+        def cb_button_add_before(button):
+            new_command = sample_commands[combobox_before.get_active_text()]
+            current_command = entry_before.get_text()
+            if current_command == '':
+                entry_before.set_text(new_command)
+            else:
+                entry_before.set_text(current_command + ' && ' + new_command)
+
+        img = Gtk.Image.new_from_icon_name("go-up", Gtk.IconSize.SMALL_TOOLBAR)
+        button_add_before = Gtk.Button(
+            image = img,
+            tooltip_text = _("Add command template")
+            )
+        button_add_before.connect('clicked', cb_button_add_before)
+
+        grid_before.attach(entry_before, 0, 0, 1, 1)
+        grid_before.attach(button_edit_before, 1, 0, 1, 1)
+        grid_before.attach(combobox_before, 0, 1, 1, 1)
+        grid_before.attach(button_add_before, 1, 1, 1, 1)
+        expander_before.add(grid_before)
+
+        expander_after = Gtk.Expander(
+            label = _("Execute after exiting the game")
+            )
+        grid_after = Gtk.Grid(
+            margin_top = 10,
+            row_spacing = 10,
+            column_spacing = 5,
+            )
+        entry_after = Gtk.Entry(
+            name = 'command_after',
+            hexpand = True,
+            text = self.command_after,
+            sensitive = False
+            )
+        entry_after.connect('changed', self.cb_entries)
+
+        def cb_button_edit_after(button):
+            if entry_after.get_sensitive():
+                entry_after.set_sensitive(False)
+            else:
+                entry_after.set_sensitive(True)
+
+        img = Gtk.Image.new_from_icon_name("document-new", Gtk.IconSize.SMALL_TOOLBAR)
+        button_edit_after = Gtk.Button(
+            image = img,
+            tooltip_text = _("Edit")
+            )
+        button_edit_after.connect('clicked', cb_button_edit_after)
+
+        combobox_after = Gtk.ComboBoxText(
+            hexpand = True,
+            tooltip_text = _("Commands templates")
+            )
+
+        for command in sample_commands_list:
+            combobox_after.append_text(command)
+        combobox_after.set_active(0)
+
+        def cb_button_add_after(button):
+            new_command = sample_commands[combobox_after.get_active_text()]
+            current_command = entry_after.get_text()
+            if current_command == '':
+                entry_after.set_text(new_command)
+            else:
+                entry_after.set_text(current_command + ' && ' + new_command)
+
+        img = Gtk.Image.new_from_icon_name("go-up", Gtk.IconSize.SMALL_TOOLBAR)
+        button_add_after = Gtk.Button(
+            image = img,
+            tooltip_text = _("Add command template")
+            )
+        button_add_after.connect('clicked', cb_button_add_after)
+
+        grid_after.attach(entry_after, 0, 0, 1, 1)
+        grid_after.attach(button_edit_after, 1, 0, 1, 1)
+        grid_after.attach(combobox_after, 0, 1, 1, 1)
+        grid_after.attach(button_add_after, 1, 1, 1, 1)
+        expander_after.add(grid_after)
+
         self.button_game = Gtk.Button(
             label = _("Launch game")
             )
@@ -559,11 +701,13 @@ class GUI:
         self.grid.attach(self.checkbutton_show_banner, 0, 0, 2, 1)
         self.grid.attach(self.banner, 0, 0, 2, 1)
         self.grid.attach(self.expander, 0, 1, 2, 1)
-        self.grid.attach(self.label_monitor, 0, 2, 1, 1)
-        self.grid.attach(self.combobox_monitor, 1, 2, 1, 1)
-        self.grid.attach(self.button_settings, 0, 3, 2, 1)
-        self.grid.attach(self.button_game, 0, 4, 2, 1)
-        self.grid.attach(self.checkbutton_show_launcher, 0, 5, 2, 1)
+        self.grid.attach(expander_before, 0, 2, 2, 1)
+        self.grid.attach(expander_after, 0, 3, 2, 1)
+        self.grid.attach(self.label_monitor, 0, 4, 1, 1)
+        self.grid.attach(self.combobox_monitor, 1, 4, 1, 1)
+        self.grid.attach(self.button_settings, 0, 5, 2, 1)
+        self.grid.attach(self.button_game, 0, 6, 2, 1)
+        self.grid.attach(self.checkbutton_show_launcher, 0, 7, 2, 1)
         self.main_window.add(self.grid)
 
         if self.launcher == True:
@@ -773,7 +917,9 @@ class GUI:
         self.additions_command + '\n' + \
         self.launch_command
 
+        os.system(self.command_before)
         os.system(full_command)
+        os.system(self.command_after)
 
         self.switch_monitor('OFF')
 
@@ -953,6 +1099,12 @@ class GUI:
         new_text = (''.join([i for i in text if i in '0123456789']))
         entry.set_text(new_text)
         self.virtual_desktop_height = new_text
+
+    def cb_entries(self, entry):
+        if entry.get_name() == 'command_before':
+            self.command_before = entry.get_text()
+        if entry.get_name() == 'command_after':
+            self.command_after = entry.get_text()
 
 def main():
     import sys
