@@ -277,6 +277,12 @@ class GUI:
         else:
             self.own_prefix = config_parser.getboolean('Settings', 'own_prefix')
 
+        if not config_parser.has_option('Settings', 'winearch'):
+            self.winearch = 'win32'
+            config_parser.set('Settings', 'winearch', self.winearch)
+        else:
+            self.winearch = config_parser.get('Settings', 'winearch')
+
         if not config_parser.has_option('Settings', 'command_before'):
             self.command_before = ''
             config_parser.set('Settings', 'command_before', self.command_before)
@@ -313,6 +319,7 @@ class GUI:
         config_parser.set('Settings', 'own_prefix', self.own_prefix)
         config_parser.set('Settings', 'command_before', self.command_before)
         config_parser.set('Settings', 'command_after', self.command_after)
+        config_parser.set('Settings', 'winearch', self.winearch)
 
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)
@@ -456,6 +463,22 @@ class GUI:
             )
         self.checkbutton_prefix.connect('toggled', self.cb_checkbutton_prefix)
 
+        self.combobox_winearch = Gtk.ComboBoxText(
+            tooltip_text = _("WINEARCH"),
+            no_show_all = True
+            )
+        self.combobox_winearch.connect('changed', self.cb_combobox_winearch)
+
+        self.win64_available()
+
+        self.combobox_winearch.append_text('win32')
+        self.combobox_winearch.append_text('win64')
+
+        if self.winearch == 'win32':
+            self.combobox_winearch.set_active(0)
+        elif self.winearch == 'win64':
+            self.combobox_winearch.set_active(1)
+
         self.checkbutton_mouse = Gtk.CheckButton(
             label = _("Capture the mouse in fullscreen windows"),
             active = self.mouse_capture
@@ -512,7 +535,8 @@ class GUI:
         self.frame_grid.attach(self.filechooser_button, 0, 4, 1, 1)
         self.frame_grid.attach(self.combobox_version, 1, 4, 1, 1)
         self.frame_grid.attach(self.label_specific_settings, 0, 5, 2, 1)
-        self.frame_grid.attach(self.checkbutton_prefix, 0, 6, 2, 1)
+        self.frame_grid.attach(self.checkbutton_prefix, 0, 6, 1, 1)
+        self.frame_grid.attach(self.combobox_winearch, 1, 6, 1, 1)
         self.frame_grid.attach(self.checkbutton_mouse, 0, 7, 2, 1)
         self.frame_grid.attach(self.checkbutton_virtual_desktop, 0, 8, 2, 1)
         self.frame_grid.attach(self.entry_virt_width, 0, 9, 1, 1)
@@ -754,10 +778,12 @@ class GUI:
 
         ver_list = sorted(ver_list)
 
+        ver_index = 0
         for i in range(len(ver_list)):
             self.combobox_version.append_text(ver_list[i])
             if ver_list[i] == self.wine_version:
-                self.combobox_version.set_active(i)
+                ver_index = i
+        self.combobox_version.set_active(i)
 
     def wine_prefix_arch(self):
         if not os.path.exists(os.getenv('HOME') + '/.games_nebula/wine_prefix/drive_c/windows/syswow64'):
@@ -769,9 +795,11 @@ class GUI:
         self.wine_path = button.get_filename()
         self.combobox_version.get_model().clear()
         self.populate_wine_versions_combobox()
+        self.win64_available()
 
     def cb_combobox_version(self, combobox):
-        self.wine_version = combobox.get_active_text()
+        #self.wine_version = combobox.get_active_text()
+        self.win64_available()
 
     def cb_rbuttons(self, button):
         if button.get_name() == 'global':
@@ -789,6 +817,7 @@ class GUI:
             self.filechooser_button.set_visible(True)
             self.combobox_version.set_visible(True)
             self.wine = 'path'
+        self.win64_available()
 
     def cb_combobox_monitor(self, combobox):
         self.monitor = combobox.get_active()
@@ -958,6 +987,13 @@ class GUI:
             os.environ['WINESERVER'] = wineserver_bin
             os.environ['WINEDLLPATH'] = wine_lib
 
+        if (self.winearch == 'win64') and self.win64_available():
+            os.environ['WINEARCH'] = 'win64'
+        else:
+            os.environ['WINEARCH'] = 'win32'
+
+        print os.getenv('WINEARCH')
+
     def set_win_ver_command(self):
 
         win_ver = self.combobox_win_ver.get_active_text()
@@ -1077,8 +1113,10 @@ class GUI:
 
         if button.get_active() == False:
             self.own_prefix = False
+            self.combobox_winearch.set_visible(False)
         else:
             self.own_prefix = True
+            self.win64_available()
 
     def cb_checkbutton_virtual_desktop(self, button):
         self.virtual_desktop = button.get_active()
@@ -1105,6 +1143,31 @@ class GUI:
             self.command_before = entry.get_text()
         if entry.get_name() == 'command_after':
             self.command_after = entry.get_text()
+
+    def cb_combobox_winearch(self, combobox):
+        self.winearch = combobox.get_active_text()
+
+    def win64_available(self):
+
+        wine_bin, \
+        wineserver_bin, \
+        wine_lib = self.get_wine_bin_path()
+        
+        dev_null = open(os.devnull, 'w')
+        try:
+            proc = subprocess.Popen([wine_bin + '64'], stdout=dev_null, \
+                stdin=subprocess.PIPE, stderr=subprocess.STDOUT)
+            dev_null.close()
+            stdoutdata, stderrdata = proc.communicate()
+            if proc.returncode == 1:
+                self.combobox_winearch.set_visible(True)
+                return True
+            else:
+                self.combobox_winearch.set_visible(False)
+                return False
+        except:
+            self.combobox_winearch.set_visible(False)
+            return False
 
 def main():
     import sys
