@@ -103,7 +103,7 @@ def file_exist_in_dir(path):
     return any(isfile(join(path, i)) for i in os.listdir(path))
 
 os.environ['NEBULA_DIR'] = nebula_dir
-os.environ['WINEARCH'] = 'win32'
+#~ os.environ['WINEARCH'] = 'win32'
 
 class GUI:
 
@@ -2257,23 +2257,50 @@ class GUI:
         self.combobox_wine_version = Gtk.ComboBoxText(
             no_show_all = True,
             )
-        self.combobox_wine_version.connect('changed', self.cb_combobox_wine_version)
-
         self.populate_wine_version_combobox()
+        self.combobox_wine_version.connect('changed', self.cb_combobox_wine_version)
 
         self.button_wine_settings = Gtk.Button(
             label = _("Wine settings")
             )
         self.button_wine_settings.connect('clicked', self.cb_button_wine_settings)
 
+        checkbutton_own_prefix = Gtk.CheckButton(
+            label = _("Own wineprefix for every game"),
+            active = self.own_prefix
+            )
+        checkbutton_own_prefix.connect('clicked', self.cb_checkbutton_own_prefix)
+
+        self.label_winearch = Gtk.Label(
+            label = _("Winearch:"),
+            no_show_all = True
+            )
+
+        self.combobox_winearch = Gtk.ComboBoxText(
+            no_show_all = True
+            )
+        self.combobox_winearch.connect('changed', self.cb_combobox_winearch)
+
+        self.win64_available()
+
+        self.combobox_winearch.append_text('win32')
+        self.combobox_winearch.append_text('win64')
+
+        if self.winearch == 'win32':
+            self.combobox_winearch.set_active(0)
+        elif self.winearch == 'win64':
+            self.combobox_winearch.set_active(1)
+
         self.grid_wine_settings.attach(self.radiobutton_wine_settings_sys, 0, 0, 4, 1)
         self.grid_wine_settings.attach(self.radiobutton_wine_settings_dir, 0, 1, 4, 1)
         self.grid_wine_settings.attach(self.filechooserbutton_wine, 0, 2, 2, 1)
         self.grid_wine_settings.attach(self.combobox_wine_version, 2, 2, 2, 1)
-        self.grid_wine_settings.attach(self.button_wine_settings, 0, 3, 4, 1)
+        self.grid_wine_settings.attach(self.label_winearch, 0, 3, 2, 1)
+        self.grid_wine_settings.attach(self.combobox_winearch, 2, 3, 2, 1)
+        self.grid_wine_settings.attach(checkbutton_own_prefix, 0, 4, 4, 1)
+        self.grid_wine_settings.attach(self.button_wine_settings, 0, 5, 4, 1)
 
         self.frame_wine_settings.add(self.grid_wine_settings)
-
         self.radiobutton_wine_settings_sys.connect('toggled', self.cb_radiobutton_wine_settings)
         self.radiobutton_wine_settings_dir.connect('toggled', self.cb_radiobutton_wine_settings)
 
@@ -3522,6 +3549,18 @@ class GUI:
         else:
             self.wine_version = self.config_parser.get('emulation settings', 'wine_version')
 
+        if not self.config_parser.has_option('emulation settings', 'own_prefix'):
+            self.own_prefix = False
+            self.config_parser.set('emulation settings', 'own_prefix', self.own_prefix)
+        else:
+            self.own_prefix = self.config_parser.getboolean('emulation settings', 'own_prefix')
+
+        if not self.config_parser.has_option('emulation settings', 'winearch'):
+            self.winearch = 'win32'
+            self.config_parser.set('emulation settings', 'winearch', self.winearch)
+        else:
+            self.winearch = self.config_parser.get('emulation settings', 'winearch')
+
         if not self.config_parser.has_option('emulation settings', 'dosbox'):
             self.dosbox = 'system'
             self.config_parser.set('emulation settings', 'dosbox', self.dosbox)
@@ -3653,6 +3692,8 @@ class GUI:
         self.config_parser.set('emulation settings', 'wine', self.wine)
         self.config_parser.set('emulation settings', 'wine_path', self.wine_path)
         self.config_parser.set('emulation settings', 'wine_version', self.wine_version)
+        self.config_parser.set('emulation settings', 'own_prefix', self.own_prefix)
+        self.config_parser.set('emulation settings', 'winearch', self.winearch)
         self.config_parser.set('emulation settings', 'dosbox', self.dosbox)
         self.config_parser.set('emulation settings', 'dosbox_path', self.dosbox_path)
         self.config_parser.set('emulation settings', 'dosbox_version', self.dosbox_version)
@@ -3699,10 +3740,12 @@ class GUI:
 
         ver_list = sorted(ver_list)
 
+        ver_index = 0
         for i in range(len(ver_list)):
             self.combobox_wine_version.append_text(ver_list[i])
             if ver_list[i] == self.wine_version:
-                self.combobox_wine_version.set_active(i)
+                ver_index = i
+        self.combobox_wine_version.set_active(i)
 
     def populate_dosbox_version_combobox(self):
 
@@ -5468,6 +5511,12 @@ class GUI:
 
             else:
 
+                if self.own_prefix:
+                    config_file = open(game_dir + '/config.ini', 'w')
+                    config_file.write('[Settings]\n')
+                    config_file.write('own_prefix = True')
+                    config_file.close()
+
                 files_in_game_dir = os.listdir(game_dir + game_data_dir)
                 n_exe = 0
                 for file_name in files_in_game_dir:
@@ -5860,6 +5909,10 @@ class GUI:
             self.filechooserbutton_wine.set_visible(True)
             self.combobox_wine_version.set_visible(True)
             self.wine = 'path'
+        self.win64_available()
+
+    def cb_checkbutton_own_prefix(self, checkbutton):
+        self.own_prefix = checkbutton.get_active()
 
     def cb_button_wine_settings(self, button):
 
@@ -6011,7 +6064,8 @@ class GUI:
             self.scummvm = 'path'
 
     def cb_combobox_wine_version(self, combobox):
-        self.wine_version = combobox.get_active_text()
+        #self.wine_version = combobox.get_active_text()
+        self.win64_available()
 
     def cb_combobox_dosbox_version(self, combobox):
         self.dosbox_version = combobox.get_active_text()
@@ -6179,6 +6233,7 @@ class GUI:
         self.wine_path = button.get_filename()
         self.combobox_wine_version.get_model().clear()
         self.populate_wine_version_combobox()
+        self.win64_available()
 
     def cb_filechooserbutton_dosbox(self, button):
         self.dosbox_path = button.get_filename()
@@ -6423,6 +6478,37 @@ class GUI:
         self.mylib_include_rgba.parse(self.mylib_include_color)
         self.mylib_exclude_rgba = Gdk.RGBA()
         self.mylib_exclude_rgba.parse(self.mylib_exclude_color)
+
+    def win64_available(self):
+
+        if self.wine == 'system':
+            wine_bin = 'wine64'
+        elif self.wine == 'path':
+            wine_bin = self.wine_path + '/' + self.wine_version + '/bin/wine64'
+
+        dev_null = open(os.devnull, 'w')
+        try:
+            proc = subprocess.Popen([wine_bin], stdout=dev_null, \
+                stdin=subprocess.PIPE, stderr=subprocess.STDOUT)
+            dev_null.close()
+            stdoutdata, stderrdata = proc.communicate()
+            if proc.returncode == 1:
+                self.label_winearch.set_visible(True)
+                self.combobox_winearch.set_visible(True)
+                return True
+            else:
+                self.label_winearch.set_visible(False)
+                self.combobox_winearch.set_visible(False)
+                self.winearch = 'win32'
+                return False
+        except:
+            self.label_winearch.set_visible(False)
+            self.combobox_winearch.set_visible(False)
+            self.winearch = 'win32'
+            return False
+
+    def cb_combobox_winearch(self, combobox):
+        self.winearch = combobox.get_active_text()
 
     def get_monitors(self):
 
@@ -6773,6 +6859,7 @@ class GUI:
         elif self.wine == 'path':
             wine_path = self.wine_path + '/' + self.wine_version
 
+        os.environ['WINEARCH'] = self.winearch
         os.environ['DOWNLOAD_DIR'] = download_dir
         os.environ['INSTALL_DIR'] = install_dir
         os.environ['WINE_PATH'] = wine_path
