@@ -987,12 +987,7 @@ class GUI:
             os.environ['WINESERVER'] = wineserver_bin
             os.environ['WINEDLLPATH'] = wine_lib
 
-        if (self.winearch == 'win64') and self.win64_available():
-            os.environ['WINEARCH'] = 'win64'
-        else:
-            os.environ['WINEARCH'] = 'win32'
-
-        print os.getenv('WINEARCH')
+        os.environ['WINEARCH'] = self.winearch
 
     def set_win_ver_command(self):
 
@@ -1152,7 +1147,7 @@ class GUI:
         wine_bin, \
         wineserver_bin, \
         wine_lib = self.get_wine_bin_path()
-        
+
         dev_null = open(os.devnull, 'w')
         try:
             proc = subprocess.Popen([wine_bin + '64'], stdout=dev_null, \
@@ -1164,9 +1159,11 @@ class GUI:
                 return True
             else:
                 self.combobox_winearch.set_visible(False)
+                self.winearch = 'win32'
                 return False
         except:
             self.combobox_winearch.set_visible(False)
+            self.winearch = 'win32'
             return False
 
 def main():
