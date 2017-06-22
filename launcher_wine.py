@@ -783,7 +783,7 @@ class GUI:
             self.combobox_version.append_text(ver_list[i])
             if ver_list[i] == self.wine_version:
                 ver_index = i
-        self.combobox_version.set_active(i)
+        self.combobox_version.set_active(ver_index)
 
     def wine_prefix_arch(self):
         if not os.path.exists(os.getenv('HOME') + '/.games_nebula/wine_prefix/drive_c/windows/syswow64'):
@@ -798,7 +798,7 @@ class GUI:
         self.win64_available()
 
     def cb_combobox_version(self, combobox):
-        #self.wine_version = combobox.get_active_text()
+        self.wine_version = combobox.get_active_text()
         self.win64_available()
 
     def cb_rbuttons(self, button):
