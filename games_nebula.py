@@ -2260,16 +2260,21 @@ class GUI:
         self.populate_wine_version_combobox()
         self.combobox_wine_version.connect('changed', self.cb_combobox_wine_version)
 
-        self.button_wine_settings = Gtk.Button(
-            label = _("Wine settings")
-            )
-        self.button_wine_settings.connect('clicked', self.cb_button_wine_settings)
-
         checkbutton_own_prefix = Gtk.CheckButton(
             label = _("Own wineprefix for every game"),
             active = self.own_prefix
             )
         checkbutton_own_prefix.connect('clicked', self.cb_checkbutton_own_prefix)
+
+        self.button_winetricks_cache = Gtk.Button(
+            label = _("Backup/Restore winetricks cache")
+            )
+        self.button_winetricks_cache.connect('clicked', self.cb_button_winetricks_cache)
+
+        self.button_wine_settings = Gtk.Button(
+            label = _("Wine settings")
+            )
+        self.button_wine_settings.connect('clicked', self.cb_button_wine_settings)
 
         self.label_winearch = Gtk.Label(
             label = _("Winearch:"),
@@ -2298,7 +2303,8 @@ class GUI:
         self.grid_wine_settings.attach(self.label_winearch, 0, 3, 2, 1)
         self.grid_wine_settings.attach(self.combobox_winearch, 2, 3, 2, 1)
         self.grid_wine_settings.attach(checkbutton_own_prefix, 0, 4, 4, 1)
-        self.grid_wine_settings.attach(self.button_wine_settings, 0, 5, 4, 1)
+        self.grid_wine_settings.attach(self.button_winetricks_cache, 0, 5, 4, 1)
+        self.grid_wine_settings.attach(self.button_wine_settings, 0, 6, 4, 1)
 
         self.frame_wine_settings.add(self.grid_wine_settings)
         self.radiobutton_wine_settings_sys.connect('toggled', self.cb_radiobutton_wine_settings)
@@ -5933,6 +5939,23 @@ class GUI:
 
         os.system('python ' + nebula_dir + '/settings_wine.py ' + \
         wine_path + ' ' + wineprefix_path)
+
+        self.main_window.show()
+        if len(self.additional_windows_list) != 0:
+            for window in self.additional_windows_list:
+                window.show()
+
+    def cb_button_winetricks_cache(self, button):
+
+        self.main_window.hide()
+        if len(self.additional_windows_list) != 0:
+            for window in self.additional_windows_list:
+                window.hide()
+
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
+        os.system('python ' + nebula_dir + '/winetricks_cache_backup.py')
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
