@@ -24,9 +24,6 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GLib, GObject, GdkPixbuf
 from gi.repository.GdkPixbuf import Pixbuf, InterpType
 import ConfigParser
-gi.require_version('WebKit', '3.0')
-from gi.repository import WebKit
-from gi.repository import Soup
 import webbrowser
 import gettext
 
@@ -1340,12 +1337,18 @@ class GUI:
 
             self.main_window.show_all()
 
-
     def create_gogcom_tab(self):
+
+        gi.require_version('WebKit', '3.0')
+        from gi.repository import WebKit
+        from gi.repository import Soup
+
+        self.WebKit = WebKit
+        self.Soup = Soup
 
         self.setup_cookies()
 
-        self.webpage = WebKit.WebView()
+        self.webpage = self.WebKit.WebView()
         self.webpage.load_uri('http://www.gog.com')
 
         self.gogcom_tab_scrolled_window = Gtk.ScrolledWindow(
@@ -2514,9 +2517,9 @@ class GUI:
         if not os.path.exists(os.getenv('HOME') + '/.config/lgogdownloader'):
             os.makedirs(os.getenv('HOME') + '/.config/lgogdownloader')
 
-        self.cookiejar = Soup.CookieJarText.new(os.getenv('HOME') + '/.config/lgogdownloader/cookies.txt', False)
-        self.cookiejar.set_accept_policy(Soup.CookieJarAcceptPolicy.ALWAYS)
-        self.webkit_session = WebKit.get_default_session()
+        self.cookiejar = self.Soup.CookieJarText.new(os.getenv('HOME') + '/.config/lgogdownloader/cookies.txt', False)
+        self.cookiejar.set_accept_policy(self.Soup.CookieJarAcceptPolicy.ALWAYS)
+        self.webkit_session = self.WebKit.get_default_session()
         self.webkit_session.add_feature(self.cookiejar)
 
     def create_queue_tab(self):
