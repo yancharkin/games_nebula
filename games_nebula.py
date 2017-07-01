@@ -24,7 +24,6 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GLib, GObject, GdkPixbuf
 from gi.repository.GdkPixbuf import Pixbuf, InterpType
 import ConfigParser
-import webbrowser
 import gettext
 
 from modules import mylib_create_banner, mylib_get_data, mylib_tags_create, mylib_tags_get_all, \
@@ -1339,17 +1338,19 @@ class GUI:
 
     def create_gogcom_tab(self):
 
-        gi.require_version('WebKit', '3.0')
-        from gi.repository import WebKit
+        gi.require_version('WebKit2', '4.0')
+        from gi.repository import WebKit2
         from gi.repository import Soup
+        import webbrowser
 
-        self.WebKit = WebKit
-        self.Soup = Soup
+        self.webkit = WebKit2
+        self.soup = Soup
+        self.webbrowser = webbrowser
 
         self.setup_cookies()
 
-        self.webpage = self.WebKit.WebView()
-        self.webpage.load_uri('http://www.gog.com')
+        self.webpage = self.webkit.WebView()
+        self.webpage.load_uri('https://www.gog.com')
 
         self.gogcom_tab_scrolled_window = Gtk.ScrolledWindow(
             name = 'gogcom_tab'
@@ -2517,10 +2518,10 @@ class GUI:
         if not os.path.exists(os.getenv('HOME') + '/.config/lgogdownloader'):
             os.makedirs(os.getenv('HOME') + '/.config/lgogdownloader')
 
-        self.cookiejar = self.Soup.CookieJarText.new(os.getenv('HOME') + '/.config/lgogdownloader/cookies.txt', False)
-        self.cookiejar.set_accept_policy(self.Soup.CookieJarAcceptPolicy.ALWAYS)
-        self.webkit_session = self.WebKit.get_default_session()
-        self.webkit_session.add_feature(self.cookiejar)
+        cookiejar = os.getenv('HOME') + '/.config/lgogdownloader/cookies.txt'
+        context = self.webkit.WebContext.get_default()
+        cookie_manager = context.get_cookie_manager();
+        cookie_manager.set_persistent_storage(cookiejar, self.webkit.CookiePersistentStorage.TEXT);
 
     def create_queue_tab(self):
 
@@ -2787,14 +2788,11 @@ class GUI:
 
     def check_gogcom_tab(self):
 
-        current_uri = self.webpage.get_main_frame().get_uri()
+        current_uri = self.webpage.get_uri()
 
-        if self.webpage.get_main_frame().get_uri() != None and \
-                    not current_uri.startswith('https://www.gog.com'):
-
-            self.webpage.load_uri('http://www.gog.com')
-
-            webbrowser.open_new(current_uri)
+        if (current_uri != None) and not (current_uri.startswith('https://www.gog.com')):
+            self.webpage.go_back()
+            self.webbrowser.open_new(current_uri)
 
         GObject.timeout_add(1000, self.check_gogcom_tab)
 
