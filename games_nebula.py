@@ -3128,18 +3128,25 @@ class GUI:
 
         if not os.path.exists(data_dir):
             os.makedirs(data_dir)
+        if not os.path.exists(data_dir + '/games'):
             os.makedirs(data_dir + '/games')
+        if not os.path.exists(data_dir + '/games/mylib'):
             os.makedirs(data_dir + '/games/mylib')
+        if not os.path.exists(data_dir + '/games/mylib/downloads'):
             os.makedirs(data_dir + '/games/mylib/downloads')
+        if not os.path.exists(data_dir + '/games/mylib/installed'):
             os.makedirs(data_dir + '/games/mylib/installed')
+        if not os.path.exists(data_dir + '/games/goglib'):
             os.makedirs(data_dir + '/games/goglib')
+        if not os.path.exists(data_dir + '/games/goglib/downloads'):
             os.makedirs(data_dir + '/games/goglib/downloads')
+        if not os.path.exists(data_dir + '/games/goglib/installed'):
             os.makedirs(data_dir + '/games/goglib/installed')
+        if not os.path.exists(data_dir + '/config'):
             os.makedirs(data_dir + '/config')
-            os.makedirs(data_dir + '/scripts/')
-
-            if os.path.exists(nebula_dir + '/scripts'):
-                os.system('cp -R ' + nebula_dir + '/scripts/* ' + data_dir + '/scripts/')
+        if not os.path.exists(data_dir + '/scripts'):
+            os.makedirs(data_dir + '/scripts')
+            os.system('cp -R ' + nebula_dir + '/scripts/* ' + data_dir + '/scripts/')
 
         if not os.path.exists(data_dir + '/scripts/goglib'):
             os.makedirs(data_dir + '/scripts/goglib')
