@@ -535,14 +535,14 @@ class GUI:
 
         self.create_link()
 
-        os.system('python ' + nebula_dir + '/settings_dosbox.py ' + \
+        os.system('python2 ' + nebula_dir + '/settings_dosbox.py ' + \
         self.install_dir + '/' + self.game_name + '/dosbox.conf local ' + dosbox_version)
 
         #~ if (dosbox_version == 'stable') or (dosbox_version == 'svn'):
-            #~ os.system('python ' + nebula_dir + '/settings_dosbox.py ' + \
+            #~ os.system('python2 ' + nebula_dir + '/settings_dosbox.py ' + \
             #~ self.install_dir + '/' + self.game_name + '/dosbox.conf local ' + dosbox_version)
         #~ elif dosbox_version == 'svn_daum':
-            #~ os.system('python ' + nebula_dir + '/settings_dosbox_svn_daum.py ' + \
+            #~ os.system('python2 ' + nebula_dir + '/settings_dosbox_svn_daum.py ' + \
             #~ self.install_dir + '/' + self.game_name + '/dosbox.conf local ' + dosbox_version)
 
         self.main_window.show()

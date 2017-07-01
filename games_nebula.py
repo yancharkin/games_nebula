@@ -5938,7 +5938,7 @@ class GUI:
 
         wineprefix_path = os.getenv('HOME') + '/.games_nebula/wine_prefix'
 
-        os.system('python ' + nebula_dir + '/settings_wine.py ' + \
+        os.system('python2 ' + nebula_dir + '/settings_wine.py ' + \
         wine_path + ' ' + wineprefix_path)
 
         self.main_window.show()
@@ -5956,7 +5956,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        os.system('python ' + nebula_dir + '/winetricks_cache_backup.py')
+        os.system('python2 ' + nebula_dir + '/winetricks_cache_backup.py')
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
@@ -6007,7 +6007,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        os.system('python ' + nebula_dir + '/get_scripts.py ' + lib + ' ' + str(overwrite))
+        os.system('python2 ' + nebula_dir + '/get_scripts.py ' + lib + ' ' + str(overwrite))
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
@@ -6033,15 +6033,15 @@ class GUI:
 
         dosbox_global_config = os.getenv('HOME') + '/.games_nebula/config/dosbox.conf'
 
-        os.system('python ' + nebula_dir + '/settings_dosbox.py ' \
+        os.system('python2 ' + nebula_dir + '/settings_dosbox.py ' \
         + dosbox_global_config + ' global ' + dosbox_version)
 
         # TODO Use if special config tool for svn-daum build exists (settings_dosbox_svn_daum.py)
         #~ if (dosbox_version == 'stable') or (dosbox_version == 'svn'):
-            #~ os.system('python ' + nebula_dir + '/settings_dosbox.py ' + \
+            #~ os.system('python2 ' + nebula_dir + '/settings_dosbox.py ' + \
             #~ dosbox_global_config + ' global ' + dosbox_version)
         #~ elif dosbox_version == 'svn_daum':
-            #~ os.system('python ' + nebula_dir + '/dosbox_settings_svn_daum.py ' + \
+            #~ os.system('python2 ' + nebula_dir + '/dosbox_settings_svn_daum.py ' + \
             #~ dosbox_global_config + ' global ' + dosbox_version)
 
         self.main_window.show()
