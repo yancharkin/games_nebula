@@ -1,4 +1,4 @@
-## Games Nebula
+# Games Nebula
 Unofficial Linux client for GOG.
 
 #### Important notes
