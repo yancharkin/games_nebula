@@ -5401,7 +5401,7 @@ class GUI:
                 ' ' + game_dir + '/scummvmrc')
 
                 start_lines = ['#!/bin/bash\n',
-                'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
+                'python2 "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
 
                 start_file = open(game_dir + '/start.sh', 'w')
                 for line in start_lines:
