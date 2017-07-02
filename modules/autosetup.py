@@ -122,7 +122,7 @@ def autosetup(lib, install_dir, game_name):
                 print "Writing additions.sh, winetricks"
 
                 additions_lines = ['#!/bin/bash\n',
-                'winetricks --gui ' + winetricks + '\n']
+                'python2 "$NEBULA_DIR/dialogs.py" "progress" "' + 'winetricks --gui ' + winetricks + '"\n']
 
                 additions_file_path = install_dir + '/' + game_name + '/additions.sh'
                 additions_file = open(additions_file_path, 'w')
