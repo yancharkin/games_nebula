@@ -171,7 +171,7 @@ def autosetup(lib, install_dir, game_name):
                     del game_conf_lines[4]
                     if exe_dir == '':
                         del game_conf_lines[5]
-                if exe_dir == '':
+                elif exe_dir == '':
                     del game_conf_lines[6]
 
                 dosbox_game_conf_path = install_dir + '/' + game_name + '/dosbox_game.conf'
