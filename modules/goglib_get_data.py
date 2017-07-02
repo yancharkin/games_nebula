@@ -1,7 +1,7 @@
 import os
 
 import goglib_get_banner
-import goglib_get_icon
+#~ import goglib_get_icon
 
 def games_info(data_dir):
 
@@ -29,13 +29,13 @@ def games_info(data_dir):
         os.makedirs(data_dir + '/images/goglib_banners')
     if not os.path.exists(data_dir + '/images/goglib_banners/unavailable'):
         os.makedirs(data_dir + '/images/goglib_banners/unavailable')
-    if not os.path.exists(data_dir + '/images/goglib_icons'):
-        os.makedirs(data_dir + '/images/goglib_icons')
+    #~ if not os.path.exists(data_dir + '/images/goglib_icons'):
+        #~ os.makedirs(data_dir + '/images/goglib_icons')
 
     for i in range(0, number_of_games):
 
-        if not os.path.exists(data_dir + '/images/goglib_icons/' + list_names[i] + '.jpg'):
-            goglib_get_icon.goglib_get_icon(list_names[i], list_icons[i], data_dir + '/images/goglib_icons/')
+        #~ if not os.path.exists(data_dir + '/images/goglib_icons/' + list_names[i] + '.jpg'):
+            #~ goglib_get_icon.goglib_get_icon(list_names[i], list_icons[i], data_dir + '/images/goglib_icons/')
         if not os.path.exists(data_dir + '/images/goglib_banners/' + list_names[i] + '.jpg'):
             goglib_get_banner.goglib_get_banner(list_names[i], data_dir + '/images/goglib_icons/', data_dir + '/images/goglib_banners/')
             goglib_get_banner.goglib_get_banner(list_names[i], data_dir + '/images/goglib_icons/', data_dir + '/images/goglib_banners/')

@@ -4,7 +4,7 @@ import lxml
 import PIL
 from PIL import Image
 
-import goglib_recreate_banner
+#~ import goglib_recreate_banner
 
 def goglib_get_banner(game_name, icon_path, banner_path):
 
@@ -33,8 +33,8 @@ def goglib_get_banner(game_name, icon_path, banner_path):
         pic = pic_src.resize((scaled_width, 240), PIL.Image.ANTIALIAS)
         pic.save(banner_path + '/' + game_name + '.jpg')
 
-        if banner_url.startswith('http'):
-            goglib_recreate_banner.goglib_recreate_banner(game_name, icon_path, banner_path)
+        #~ if banner_url.startswith('http'):
+            #~ goglib_recreate_banner.goglib_recreate_banner(game_name, icon_path, banner_path)
 
         new_pic = Image.open(banner_path + '/' + game_name + '.jpg')
         pic_grey = new_pic.convert('L')
