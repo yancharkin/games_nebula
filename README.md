@@ -47,8 +47,7 @@ For the reasons stated above there is no "proper" packages for the application (
 
     sudo pacman -S python-gobject python2-beautifulsoup4 python2-lxml python2-pillow
 
-*AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/), [innoextract](https://aur.archlinux.org/packages/innoextract/)
-*
+*AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/), [innoextract](https://aur.archlinux.org/packages/innoextract/)*
 
 **Fedora**
 
@@ -82,4 +81,4 @@ For the reasons stated above there is no "proper" packages for the application (
 - If you have a lot of games in your library and/or slow CPU, first launch can take some time
 - [Scripts repository for gog games](https://github.com/yancharkin/games_nebula_goglib_scripts)
 - [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
-- [If anyone wants to make a donation](paypal.me/yancharkin)
+- [If anyone wants to make a donation](https://www.paypal.me/yancharkin)
