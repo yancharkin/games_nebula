@@ -3147,6 +3147,10 @@ class GUI:
         if not os.path.exists(data_dir + '/scripts'):
             os.makedirs(data_dir + '/scripts')
             os.system('cp -R ' + nebula_dir + '/scripts/* ' + data_dir + '/scripts/')
+        if not os.path.exists(data_dir + '/images'):
+            os.makedirs(data_dir + '/images')
+            os.system('cp -R ' + nebula_dir + '/images/goglib_banners ' + data_dir + '/images/')
+            os.system('cp -R ' + nebula_dir + '/images/mylib_banners ' + data_dir + '/images/')
 
         if not os.path.exists(data_dir + '/scripts/goglib'):
             os.makedirs(data_dir + '/scripts/goglib')
