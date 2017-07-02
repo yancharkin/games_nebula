@@ -4,7 +4,8 @@
 import sys, os, subprocess, re
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GLib, GdkPixbuf
+from gi.repository.GdkPixbuf import Pixbuf, InterpType
 import ConfigParser
 import gettext
 
@@ -24,13 +25,15 @@ gsettings.set_property('gtk-font-name', font)
 
 nebula_dir = sys.path[0]
 
+app_icon = GdkPixbuf.Pixbuf.new_from_file(nebula_dir + '/images/icon.png')
+
 gettext.bindtextdomain('games_nebula', nebula_dir + '/locale')
 gettext.textdomain('games_nebula')
 _ = gettext.gettext
 
 class GUI:
 
-    def __init__(self, dialog_type, argument1, argument2):
+    def __init__(self, dialog_type, argument1):
 
         if dialog_type == 'question':
             print self.create_question(argument1)
@@ -39,7 +42,7 @@ class GUI:
             print self.create_list(argument1)
             sys.exit()
         elif dialog_type == 'progress':
-            self.create_progress(argument1, argument2)
+            self.create_progress(argument1)
         else:
             print _("Unknown dialog type: ") + dialog_type
             sys.exit()
@@ -123,18 +126,17 @@ class GUI:
 
         return self.option
 
-    def create_progress(self, process_name, command_string):
+    def create_progress(self, command_string):
 
-        if process_name == 'downloading':
-           message_text = _("Downloading...")
-        elif process_name == 'installing':
-           message_text = _("Installing...")
+        message_text = _("Processing...")
 
         window_progress = Gtk.Window(
+            title = "Games Nebula",
+            icon = app_icon,
             title = message_text,
-            type = Gtk.WindowType.POPUP,
+            type = Gtk.WindowType.TOPLEVEL,
             window_position = Gtk.WindowPosition.CENTER_ALWAYS,
-            resizable = False,
+            resizable = False
             )
 
         box = Gtk.Box(
@@ -142,11 +144,12 @@ class GUI:
             spacing = 10
             )
 
-        spinner = Gtk.Spinner(
-            active = True,
-            visible = True,
-            width_request = 48,
-            height_request = 48,
+        pic = app_icon.scale_simple(32, 32, InterpType.BILINEAR)
+
+        image = Gtk.Image(
+            pixbuf = pic,
+            margin_left = 10,
+            margin_right = 10
             )
 
         label = Gtk.Label(
@@ -156,7 +159,7 @@ class GUI:
             margin_bottom = 20
             )
 
-        box.pack_start(spinner, True, True, 0)
+        box.pack_start(image, True, True, 0)
         box.pack_start(label, True, True, 0)
 
         window_progress.add(box)
@@ -170,6 +173,9 @@ class GUI:
 
             while Gtk.events_pending():
                 Gtk.main_iteration_do(False)
+
+            line = io.readline()
+            print line.translate(None, '\n')
 
             return True
 
@@ -193,14 +199,7 @@ class GUI:
 
 def main():
     import sys
-
-    if len(sys.argv) == 3:
-        app = GUI(sys.argv[1], sys.argv[2], None)
-    elif len(sys.argv) == 4:
-        app = GUI(sys.argv[1], sys.argv[2], sys.argv[3])
-    else:
-        print "Wrong number of arguments."
-        sys.exit()
+    app = GUI(sys.argv[1], sys.argv[2])
 
     Gtk.main()
 
