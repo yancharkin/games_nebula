@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-29 22:52+0300\n"
-"PO-Revision-Date: 2017-05-29 22:52+0300\n"
+"POT-Creation-Date: 2017-07-02 18:55+0300\n"
+"PO-Revision-Date: 2017-07-02 19:00+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -19,60 +19,69 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../dialogs.py:44
+#: ../dialogs.py:47
 msgid "Unknown dialog type: "
 msgstr "Неизвестный тип диалога:"
 
-#: ../dialogs.py:54 ../games_nebula.py:785 ../games_nebula.py:825
-#: ../games_nebula.py:1144 ../games_nebula.py:1178 ../games_nebula.py:2826
-#: ../games_nebula.py:2899 ../games_nebula.py:4811 ../games_nebula.py:4831
-#: ../games_nebula.py:4848 ../games_nebula.py:4858 ../games_nebula.py:4879
-#: ../games_nebula.py:4891 ../games_nebula.py:5018 ../games_nebula.py:5074
+#: ../dialogs.py:57 ../games_nebula.py:785 ../games_nebula.py:813
+#: ../games_nebula.py:1132 ../games_nebula.py:1166 ../games_nebula.py:2862
+#: ../games_nebula.py:2935 ../games_nebula.py:4881 ../games_nebula.py:4899
+#: ../games_nebula.py:4914 ../games_nebula.py:4924 ../games_nebula.py:4943
+#: ../games_nebula.py:4955 ../games_nebula.py:5074 ../games_nebula.py:5143
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:162
+#: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:94
+#: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:94
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:174
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:221
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:276
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:331
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:396
 msgid "Install"
 msgstr "Установить"
 
-#: ../dialogs.py:82
+#: ../dialogs.py:85
 msgid "Choose version:"
 msgstr "Выберите версию:"
 
-#: ../dialogs.py:129 ../games_nebula.py:5107 ../games_nebula.py:5735
-msgid "Downloading..."
-msgstr "Скачивается..."
+#: ../dialogs.py:131 ../winetricks_cache_backup.py:144
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:102
+#: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:90
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:236
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:291
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:346
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:408
+msgid "Processing..."
+msgstr "Обработка"
 
-#: ../dialogs.py:131 ../games_nebula.py:5150 ../games_nebula.py:5180
-#: ../games_nebula.py:5750 ../games_nebula.py:5757 ../games_nebula.py:5763
-msgid "Installing..."
-msgstr "Устанавливается..."
-
-#: ../games_nebula.py:98
+#: ../games_nebula.py:94
 msgid "Action"
 msgstr "Экшн"
 
-#: ../games_nebula.py:98
+#: ../games_nebula.py:94
 msgid "Adventure"
 msgstr "Приключения"
 
-#: ../games_nebula.py:98
+#: ../games_nebula.py:94
 msgid "Demo"
 msgstr "Демо"
 
-#: ../games_nebula.py:98
+#: ../games_nebula.py:94
 msgid "Indie"
 msgstr "Инди"
 
-#: ../games_nebula.py:99
+#: ../games_nebula.py:95
 msgid "Role-playing"
 msgstr "Ролевая игра"
 
-#: ../games_nebula.py:99
+#: ../games_nebula.py:95
 msgid "Shooter"
 msgstr "Шутер"
 
-#: ../games_nebula.py:99
+#: ../games_nebula.py:95
 msgid "Simulation"
 msgstr "Симулятор"
 
-#: ../games_nebula.py:99
+#: ../games_nebula.py:95
 msgid "Strategy"
 msgstr "Стратегия"
 
@@ -108,8 +117,8 @@ msgstr "Пароль"
 msgid "Show password"
 msgstr "Показывать пароль"
 
-#: ../games_nebula.py:249 ../games_nebula.py:4243
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:166
+#: ../games_nebula.py:249 ../games_nebula.py:4319
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:152
 msgid "OK"
 msgstr "OK"
 
@@ -117,7 +126,7 @@ msgstr "OK"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: ../games_nebula.py:295 ../games_nebula.py:1281
+#: ../games_nebula.py:295 ../games_nebula.py:1269
 msgid "Add tabs"
 msgstr "Добавить вкладки"
 
@@ -137,18 +146,28 @@ msgstr "Обновить библиотеку GOG"
 msgid "You are not authorized on GOG.COM and can't download games."
 msgstr "Вы не авторизованы на GOG.COM и не можете скачивать игры."
 
-#: ../games_nebula.py:443 ../games_nebula.py:1581
+#: ../games_nebula.py:443 ../games_nebula.py:1577
 msgid "Start in offline mode"
 msgstr "Запустить в режиме \"оффлайн\""
 
-#: ../games_nebula.py:456 ../games_nebula.py:868 ../games_nebula.py:1260
-#: ../games_nebula.py:1425
+#: ../games_nebula.py:456 ../games_nebula.py:856 ../games_nebula.py:1248
+#: ../games_nebula.py:1421
 msgid "GOG LIBRARY"
 msgstr "БИБЛИОТЕКА GOG"
 
-#: ../games_nebula.py:513 ../games_nebula.py:5534 ../get_scripts.py:76
+#: ../games_nebula.py:513 ../games_nebula.py:5568 ../get_scripts.py:76
 #: ../get_scripts.py:92
-#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:162
+#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:151
+#: ../../games_nebula_goglib_scripts/desperados_2/settings.py:136
+#: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:158
+#: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:196
+#: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:158
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:255
+#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:155
+#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:154
+#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:154
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:508
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:667
 msgid "Error"
 msgstr "Ошибка"
 
@@ -164,369 +183,401 @@ msgstr "' отсутствует.\n"
 msgid "'GOG LIBRARY' tab will be disabled."
 msgstr "Вкладка 'БИБЛИОТЕКА GOG' будет отключена."
 
-#: ../games_nebula.py:586 ../games_nebula.py:939
+#: ../games_nebula.py:586 ../games_nebula.py:927
 msgid "Search"
 msgstr "Поиск"
 
-#: ../games_nebula.py:592 ../games_nebula.py:945
+#: ../games_nebula.py:592 ../games_nebula.py:933
 msgid "Status filter"
 msgstr "Фильтр статуса"
 
 #: ../games_nebula.py:596 ../games_nebula.py:616 ../games_nebula.py:643
-#: ../games_nebula.py:670 ../games_nebula.py:697 ../games_nebula.py:949
-#: ../games_nebula.py:970 ../games_nebula.py:998 ../games_nebula.py:1026
-#: ../games_nebula.py:1054 ../games_nebula.py:3168 ../games_nebula.py:3180
-#: ../games_nebula.py:3186 ../games_nebula.py:3192 ../games_nebula.py:3198
-#: ../games_nebula.py:3262 ../games_nebula.py:3274 ../games_nebula.py:3280
-#: ../games_nebula.py:3286 ../games_nebula.py:3292 ../games_nebula.py:3776
-#: ../games_nebula.py:3807 ../games_nebula.py:3838 ../games_nebula.py:3869
-#: ../games_nebula.py:3900 ../games_nebula.py:3931 ../games_nebula.py:3962
-#: ../games_nebula.py:3993 ../games_nebula.py:4060 ../games_nebula.py:4090
-#: ../games_nebula.py:4529 ../games_nebula.py:4530 ../games_nebula.py:4531
-#: ../games_nebula.py:4532 ../games_nebula.py:4758 ../games_nebula.py:4759
-#: ../games_nebula.py:4760 ../games_nebula.py:4761
+#: ../games_nebula.py:670 ../games_nebula.py:697 ../games_nebula.py:937
+#: ../games_nebula.py:958 ../games_nebula.py:986 ../games_nebula.py:1014
+#: ../games_nebula.py:1042 ../games_nebula.py:3215 ../games_nebula.py:3227
+#: ../games_nebula.py:3233 ../games_nebula.py:3239 ../games_nebula.py:3245
+#: ../games_nebula.py:3309 ../games_nebula.py:3321 ../games_nebula.py:3327
+#: ../games_nebula.py:3333 ../games_nebula.py:3339 ../games_nebula.py:3839
+#: ../games_nebula.py:3870 ../games_nebula.py:3901 ../games_nebula.py:3932
+#: ../games_nebula.py:3963 ../games_nebula.py:3994 ../games_nebula.py:4025
+#: ../games_nebula.py:4056 ../games_nebula.py:4123 ../games_nebula.py:4161
+#: ../games_nebula.py:4602 ../games_nebula.py:4603 ../games_nebula.py:4604
+#: ../games_nebula.py:4605 ../games_nebula.py:4829 ../games_nebula.py:4830
+#: ../games_nebula.py:4831 ../games_nebula.py:4832
 msgid "No filter"
 msgstr "Нет фильтра"
 
-#: ../games_nebula.py:596 ../games_nebula.py:949 ../games_nebula.py:4062
-#: ../games_nebula.py:4092
+#: ../games_nebula.py:596 ../games_nebula.py:937 ../games_nebula.py:4125
+#: ../games_nebula.py:4163
 msgid "Installed"
 msgstr "Установлено"
 
-#: ../games_nebula.py:596 ../games_nebula.py:4070
+#: ../games_nebula.py:596 ../games_nebula.py:4141
 msgid "Unavailable"
 msgstr "Недоступно"
 
-#: ../games_nebula.py:613 ../games_nebula.py:967
+#: ../games_nebula.py:613 ../games_nebula.py:955
 msgid "Tags filter 1"
 msgstr "Фильтр тегов 1"
 
 #: ../games_nebula.py:626 ../games_nebula.py:653 ../games_nebula.py:680
-#: ../games_nebula.py:707 ../games_nebula.py:981 ../games_nebula.py:1009
-#: ../games_nebula.py:1037 ../games_nebula.py:1065 ../games_nebula.py:3782
-#: ../games_nebula.py:3813 ../games_nebula.py:3844 ../games_nebula.py:3875
-#: ../games_nebula.py:3906 ../games_nebula.py:3937 ../games_nebula.py:3968
-#: ../games_nebula.py:3999 ../games_nebula.py:4543 ../games_nebula.py:4544
-#: ../games_nebula.py:4545 ../games_nebula.py:4546 ../games_nebula.py:4772
-#: ../games_nebula.py:4773 ../games_nebula.py:4774 ../games_nebula.py:4775
+#: ../games_nebula.py:707 ../games_nebula.py:969 ../games_nebula.py:997
+#: ../games_nebula.py:1025 ../games_nebula.py:1053 ../games_nebula.py:3845
+#: ../games_nebula.py:3876 ../games_nebula.py:3907 ../games_nebula.py:3938
+#: ../games_nebula.py:3969 ../games_nebula.py:4000 ../games_nebula.py:4031
+#: ../games_nebula.py:4062 ../games_nebula.py:4616 ../games_nebula.py:4617
+#: ../games_nebula.py:4618 ../games_nebula.py:4619 ../games_nebula.py:4843
+#: ../games_nebula.py:4844 ../games_nebula.py:4845 ../games_nebula.py:4846
 msgid "No tags"
 msgstr "Нет тегов"
 
-#: ../games_nebula.py:639 ../games_nebula.py:994
+#: ../games_nebula.py:639 ../games_nebula.py:982
 msgid "Tags filter 2"
 msgstr "Фильтр тегов 2"
 
-#: ../games_nebula.py:666 ../games_nebula.py:1022
+#: ../games_nebula.py:666 ../games_nebula.py:1010
 msgid "Tags filter 3"
 msgstr "Фильтр тегов 3"
 
-#: ../games_nebula.py:693 ../games_nebula.py:1050
+#: ../games_nebula.py:693 ../games_nebula.py:1038
 msgid "Tags filter 4"
 msgstr "Фильтр тегов 4"
 
-#: ../games_nebula.py:723 ../games_nebula.py:1081
+#: ../games_nebula.py:723 ../games_nebula.py:1069
 msgid "Add tags filter"
 msgstr "Добавить фильтр тегов"
 
-#: ../games_nebula.py:730 ../games_nebula.py:1088
+#: ../games_nebula.py:730 ../games_nebula.py:1076
 msgid "Remove tags filter"
 msgstr "Удалить фильтр тегов"
 
-#: ../games_nebula.py:738 ../games_nebula.py:1096
+#: ../games_nebula.py:738 ../games_nebula.py:1084
 msgid "Scale"
 msgstr "Масштаб"
 
-#: ../games_nebula.py:816 ../games_nebula.py:1169
+#: ../games_nebula.py:804 ../games_nebula.py:1157
 msgid "Launch"
 msgstr "Запустить"
 
-#: ../games_nebula.py:822 ../games_nebula.py:1175 ../games_nebula.py:2817
-#: ../games_nebula.py:2888
+#: ../games_nebula.py:810 ../games_nebula.py:1163 ../games_nebula.py:2853
+#: ../games_nebula.py:2924
 msgid "Remove"
 msgstr "Удалить"
 
-#: ../games_nebula.py:1221 ../games_nebula.py:1261 ../games_nebula.py:1442
+#: ../games_nebula.py:1209 ../games_nebula.py:1249 ../games_nebula.py:1438
 msgid "MY LIBRARY"
 msgstr "МОЯ БИБЛИОТЕКА"
 
-#: ../games_nebula.py:1262 ../games_nebula.py:1372 ../games_nebula.py:1459
+#: ../games_nebula.py:1250 ../games_nebula.py:1368 ../games_nebula.py:1455
 msgid "GOG.COM"
 msgstr "GOG.COM"
 
-#: ../games_nebula.py:1263 ../games_nebula.py:1472 ../games_nebula.py:2518
+#: ../games_nebula.py:1251 ../games_nebula.py:1468 ../games_nebula.py:2547
 msgid "QUEUE"
 msgstr "ОЧЕРЕДЬ"
 
-#: ../games_nebula.py:1264 ../games_nebula.py:1485 ../games_nebula.py:2464
+#: ../games_nebula.py:1252 ../games_nebula.py:1481 ../games_nebula.py:2493
 msgid "SETTINGS"
 msgstr "НАСТРОЙКИ"
 
-#: ../games_nebula.py:1283
+#: ../games_nebula.py:1271
 msgid "Choose tabs you want to add:"
 msgstr "Выберите вкладки, которые хотите добавить:"
 
-#: ../games_nebula.py:1420
+#: ../games_nebula.py:1416
 msgid "Tabs at startup"
 msgstr "Вкладки при запуске"
 
-#: ../games_nebula.py:1522
+#: ../games_nebula.py:1518
 msgid "GOG library preferences"
 msgstr "Настройки библиотеки GOG"
 
-#: ../games_nebula.py:1528
+#: ../games_nebula.py:1524
 msgid "Preferred language"
 msgstr "Предпочтительный язык"
 
-#: ../games_nebula.py:1549 ../games_nebula.py:1859
+#: ../games_nebula.py:1545 ../games_nebula.py:1855
 msgid "Keep installers"
 msgstr "Оставлять установочные файлы"
 
-#: ../games_nebula.py:1568
+#: ../games_nebula.py:1564
 msgid "Download extras"
 msgstr "Скачивать дополнительные материалы"
 
-#: ../games_nebula.py:1594 ../games_nebula.py:1874
+#: ../games_nebula.py:1590 ../games_nebula.py:1870
 msgid "Downloads directory"
 msgstr "Загрузочная директория"
 
-#: ../games_nebula.py:1599 ../games_nebula.py:1614 ../games_nebula.py:1879
-#: ../games_nebula.py:1894 ../games_nebula.py:2258 ../games_nebula.py:2329
-#: ../games_nebula.py:2402 ../launcher_dosbox.py:215 ../launcher_scummvm.py:234
-#: ../launcher_wine.py:358
+#: ../games_nebula.py:1595 ../games_nebula.py:1610 ../games_nebula.py:1875
+#: ../games_nebula.py:1890 ../games_nebula.py:2254 ../games_nebula.py:2358
+#: ../games_nebula.py:2431 ../launcher_dosbox.py:253 ../launcher_scummvm.py:301
+#: ../launcher_wine.py:435
 msgid "Select a directory"
 msgstr "Выбрать директорию"
 
-#: ../games_nebula.py:1608 ../games_nebula.py:1888
+#: ../games_nebula.py:1604 ../games_nebula.py:1884
 msgid "Installation directory"
 msgstr "Установочная директория"
 
-#: ../games_nebula.py:1622 ../games_nebula.py:1903
+#: ../games_nebula.py:1618 ../games_nebula.py:1899
 msgid "Download"
 msgstr "Скачать"
 
-#: ../games_nebula.py:1628 ../games_nebula.py:1909
+#: ../games_nebula.py:1624 ../games_nebula.py:1905
 msgid "Overwrite existing scripts"
 msgstr "Перезаписывать существующие скрипты"
 
-#: ../games_nebula.py:1648 ../games_nebula.py:1929
+#: ../games_nebula.py:1644 ../games_nebula.py:1925
 msgid "Installation scripts"
 msgstr "Установочные скрипты"
 
-#: ../games_nebula.py:1657 ../games_nebula.py:1938
+#: ../games_nebula.py:1653 ../games_nebula.py:1934
 msgid "Status filter behaivior:"
 msgstr "Поведения фильтра статуса:"
 
-#: ../games_nebula.py:1661 ../games_nebula.py:1681 ../games_nebula.py:1701
-#: ../games_nebula.py:1721 ../games_nebula.py:1741 ../games_nebula.py:1772
-#: ../games_nebula.py:1942 ../games_nebula.py:1962 ../games_nebula.py:1982
-#: ../games_nebula.py:2002 ../games_nebula.py:2022 ../games_nebula.py:2053
+#: ../games_nebula.py:1657 ../games_nebula.py:1677 ../games_nebula.py:1697
+#: ../games_nebula.py:1717 ../games_nebula.py:1737 ../games_nebula.py:1768
+#: ../games_nebula.py:1938 ../games_nebula.py:1958 ../games_nebula.py:1978
+#: ../games_nebula.py:1998 ../games_nebula.py:2018 ../games_nebula.py:2049
 msgid "Include"
 msgstr "Включать"
 
-#: ../games_nebula.py:1665 ../games_nebula.py:1685 ../games_nebula.py:1705
-#: ../games_nebula.py:1725 ../games_nebula.py:1745 ../games_nebula.py:1779
-#: ../games_nebula.py:1946 ../games_nebula.py:1966 ../games_nebula.py:1986
-#: ../games_nebula.py:2006 ../games_nebula.py:2026 ../games_nebula.py:2060
+#: ../games_nebula.py:1661 ../games_nebula.py:1681 ../games_nebula.py:1701
+#: ../games_nebula.py:1721 ../games_nebula.py:1741 ../games_nebula.py:1775
+#: ../games_nebula.py:1942 ../games_nebula.py:1962 ../games_nebula.py:1982
+#: ../games_nebula.py:2002 ../games_nebula.py:2022 ../games_nebula.py:2056
 msgid "Exclude"
 msgstr "Исключать"
 
-#: ../games_nebula.py:1677 ../games_nebula.py:1958
+#: ../games_nebula.py:1673 ../games_nebula.py:1954
 msgid "Tags filter 1 behaivior:"
 msgstr "Поведения фильтра тегов 1:"
 
-#: ../games_nebula.py:1697 ../games_nebula.py:1978
+#: ../games_nebula.py:1693 ../games_nebula.py:1974
 msgid "Tags filter 2 behaivior:"
 msgstr "Поведения фильтра тегов 2:"
 
-#: ../games_nebula.py:1717 ../games_nebula.py:1998
+#: ../games_nebula.py:1713 ../games_nebula.py:1994
 msgid "Tags filter 3 behaivior:"
 msgstr "Поведения фильтра тегов 3:"
 
-#: ../games_nebula.py:1737 ../games_nebula.py:2018
+#: ../games_nebula.py:1733 ../games_nebula.py:2014
 msgid "Tags filter 4 behaivior:"
 msgstr "Поведения фильтра тегов 4:"
 
-#: ../games_nebula.py:1758 ../games_nebula.py:2039
+#: ../games_nebula.py:1754 ../games_nebula.py:2035
 msgid "Filters color indication"
 msgstr "Цветовая индикация фильтров"
 
-#: ../games_nebula.py:1768 ../games_nebula.py:2049
+#: ../games_nebula.py:1764 ../games_nebula.py:2045
 msgid "Include/exclude colors:"
 msgstr "Цвета (включить/исключить):"
 
-#: ../games_nebula.py:1816 ../games_nebula.py:2097
+#: ../games_nebula.py:1812 ../games_nebula.py:2093
 msgid "Filters"
 msgstr "Фильтры"
 
-#: ../games_nebula.py:1853
+#: ../games_nebula.py:1849
 msgid "My library preferences"
 msgstr "Настройки моей библиотеки"
 
-#: ../games_nebula.py:2128
+#: ../games_nebula.py:2124
 msgid "Visuals"
 msgstr "Внешний вид"
 
-#: ../games_nebula.py:2133
+#: ../games_nebula.py:2129
 msgid "GTK+ theme"
 msgstr "Тема GTK+"
 
-#: ../games_nebula.py:2145
+#: ../games_nebula.py:2141
 msgid "Dark variant"
 msgstr "Тёмный вариант"
 
-#: ../games_nebula.py:2158
+#: ../games_nebula.py:2154
 msgid "Icon theme"
 msgstr "Тема иконок"
 
-#: ../games_nebula.py:2168
+#: ../games_nebula.py:2164
 msgid "Font"
 msgstr "Шрифт"
 
-#: ../games_nebula.py:2206
+#: ../games_nebula.py:2202
 msgid "Emulators settings"
 msgstr "Настройка эмуляторов"
 
-#: ../games_nebula.py:2211 ../launcher_dosbox.py:262 ../launcher_native.py:154
-#: ../launcher_scummvm.py:281 ../launcher_wine.py:468
+#: ../games_nebula.py:2207 ../launcher_dosbox.py:300 ../launcher_scummvm.py:348
+#: ../launcher_wine.py:562
 msgid "Monitor"
 msgstr "Монитор"
 
-#: ../games_nebula.py:2229 ../launcher_wine.py:310
+#: ../games_nebula.py:2225 ../launcher_wine.py:387
 msgid "Wine"
 msgstr "Wine"
 
-#: ../games_nebula.py:2247 ../games_nebula.py:2318 ../games_nebula.py:2391
-#: ../launcher_dosbox.py:196 ../launcher_scummvm.py:215 ../launcher_wine.py:339
+#: ../games_nebula.py:2243 ../games_nebula.py:2347 ../games_nebula.py:2420
+#: ../launcher_dosbox.py:234 ../launcher_scummvm.py:282 ../launcher_wine.py:416
 msgid "System version"
 msgstr "Системная версия"
 
-#: ../games_nebula.py:2252 ../games_nebula.py:2290 ../games_nebula.py:2323
-#: ../games_nebula.py:2361 ../games_nebula.py:2434 ../games_nebula.py:5782
-#: ../games_nebula.py:5919 ../games_nebula.py:5931 ../launcher_dosbox.py:202
-#: ../launcher_dosbox.py:348 ../launcher_dosbox.py:353
-#: ../launcher_scummvm.py:221 ../launcher_scummvm.py:358
-#: ../launcher_scummvm.py:363 ../launcher_wine.py:345 ../launcher_wine.py:587
-#: ../launcher_wine.py:592
+#: ../games_nebula.py:2248 ../games_nebula.py:2319 ../games_nebula.py:2352
+#: ../games_nebula.py:2390 ../games_nebula.py:2463 ../games_nebula.py:5921
+#: ../games_nebula.py:6079 ../games_nebula.py:6091 ../launcher_dosbox.py:240
+#: ../launcher_dosbox.py:507 ../launcher_dosbox.py:512
+#: ../launcher_scummvm.py:288 ../launcher_scummvm.py:546
+#: ../launcher_scummvm.py:551 ../launcher_wine.py:422 ../launcher_wine.py:806
+#: ../launcher_wine.py:811
 msgid "From directory"
 msgstr "Из директории"
 
-#: ../games_nebula.py:2273
+#: ../games_nebula.py:2268
+msgid "Own wineprefix for every game"
+msgstr "Собственный wineprefix для каждой игры"
+
+#: ../games_nebula.py:2274
+msgid "Backup/Restore winetricks cache"
+msgstr "Бэкап/восстановление кэша winetricks"
+
+#: ../games_nebula.py:2279
 msgid "Wine settings"
 msgstr "Настройки Wine"
 
-#: ../games_nebula.py:2295 ../games_nebula.py:2366 ../games_nebula.py:2396
-#: ../games_nebula.py:2439 ../games_nebula.py:5787 ../games_nebula.py:5924
-#: ../games_nebula.py:5936 ../launcher_dosbox.py:211 ../launcher_dosbox.py:358
-#: ../launcher_scummvm.py:230 ../launcher_scummvm.py:368
-#: ../launcher_wine.py:354 ../launcher_wine.py:597
+#: ../games_nebula.py:2284
+msgid "Winearch:"
+msgstr "Архитектура wine:"
+
+#: ../games_nebula.py:2324 ../games_nebula.py:2395 ../games_nebula.py:2425
+#: ../games_nebula.py:2468 ../games_nebula.py:5926 ../games_nebula.py:6084
+#: ../games_nebula.py:6096 ../launcher_dosbox.py:249 ../launcher_dosbox.py:517
+#: ../launcher_scummvm.py:297 ../launcher_scummvm.py:556
+#: ../launcher_wine.py:431 ../launcher_wine.py:816
 msgid "From directory:"
 msgstr "Из директории:"
 
-#: ../games_nebula.py:2300 ../launcher_dosbox.py:167
+#: ../games_nebula.py:2329 ../launcher_dosbox.py:205
 msgid "DOSBox"
 msgstr "DOSBox"
 
-#: ../games_nebula.py:2344
+#: ../games_nebula.py:2373
 msgid "DOSBox settings"
 msgstr "Настройки DOSBox"
 
-#: ../games_nebula.py:2372 ../launcher_scummvm.py:186
+#: ../games_nebula.py:2401 ../launcher_scummvm.py:253
 msgid "ScummVM"
 msgstr "ScummVM"
 
-#: ../games_nebula.py:2417
+#: ../games_nebula.py:2446
 msgid "ScummVM settings"
 msgstr "Настройки ScummVM"
 
-#: ../games_nebula.py:2829 ../games_nebula.py:2906 ../games_nebula.py:4981
-#: ../games_nebula.py:5037
+#: ../games_nebula.py:2865 ../games_nebula.py:2942 ../games_nebula.py:5026
+#: ../games_nebula.py:5093
 msgid "In queue"
 msgstr "В очереди"
 
-#: ../games_nebula.py:2832 ../games_nebula.py:2908 ../games_nebula.py:2993
-#: ../games_nebula.py:3026 ../games_nebula.py:4979 ../games_nebula.py:5035
+#: ../games_nebula.py:2868 ../games_nebula.py:2944 ../games_nebula.py:3029
+#: ../games_nebula.py:3062 ../games_nebula.py:5024 ../games_nebula.py:5091
 msgid "Installing"
 msgstr "Установка"
 
-#: ../games_nebula.py:2930
+#: ../games_nebula.py:2966
 msgid "Changes in library"
 msgstr "Изменения в библиотеке"
 
-#: ../games_nebula.py:2942
+#: ../games_nebula.py:2978
 msgid "Updating GOG library..."
 msgstr "Обновление библиотеки GOG..."
 
-#: ../games_nebula.py:4253 ../games_nebula.py:4281
+#: ../games_nebula.py:4329 ../games_nebula.py:4356
 msgid "Error!"
 msgstr "Ошибка!"
 
-#: ../games_nebula.py:4255
+#: ../games_nebula.py:4331
 msgid "The password/e-mail field is empty."
 msgstr "The password/email field is empty."
 
-#: ../games_nebula.py:4283
+#: ../games_nebula.py:4358
 msgid "Authorization failed."
 msgstr "Авторизация не удалась."
 
-#: ../games_nebula.py:4348 ../games_nebula.py:4576
+#: ../games_nebula.py:4422 ../games_nebula.py:4648
 msgid "tags:"
 msgstr "теги:"
 
-#: ../games_nebula.py:4363
+#: ../games_nebula.py:4437
 msgid "Use commas to separate tags."
 msgstr "Используйте запятые для разделения тегов."
 
-#: ../games_nebula.py:4366 ../games_nebula.py:4594
+#: ../games_nebula.py:4440 ../games_nebula.py:4666
 msgid "Current tags"
 msgstr "Текущие теги"
 
-#: ../games_nebula.py:4378 ../games_nebula.py:4606
+#: ../games_nebula.py:4452 ../games_nebula.py:4678 ../launcher_dosbox.py:346
+#: ../launcher_dosbox.py:405 ../launcher_native.py:274
+#: ../launcher_native.py:333 ../launcher_scummvm.py:384
+#: ../launcher_scummvm.py:443 ../launcher_wine.py:610 ../launcher_wine.py:669
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ../games_nebula.py:4406 ../games_nebula.py:4466 ../games_nebula.py:4634
-#: ../games_nebula.py:4694
+#: ../games_nebula.py:4480 ../games_nebula.py:4540 ../games_nebula.py:4706
+#: ../games_nebula.py:4766
 msgid "Remove from current tags"
 msgstr "Удалить из текущих тегов"
 
-#: ../games_nebula.py:4423 ../games_nebula.py:4482 ../games_nebula.py:4651
-#: ../games_nebula.py:4711
+#: ../games_nebula.py:4497 ../games_nebula.py:4556 ../games_nebula.py:4723
+#: ../games_nebula.py:4783
 msgid "Add to current tags"
 msgstr "Добавить в текущие теги"
 
-#: ../games_nebula.py:4428 ../games_nebula.py:4656
+#: ../games_nebula.py:4502 ../games_nebula.py:4728
 msgid "Existing tags:"
 msgstr "Существующие теги:"
 
-#: ../games_nebula.py:4487 ../games_nebula.py:4716
+#: ../games_nebula.py:4561 ../games_nebula.py:4788
 msgid "Predefined tags:"
 msgstr "Предопределённые теги:"
 
-#: ../games_nebula.py:4591
+#: ../games_nebula.py:4663
 msgid "Use comma to separate tags."
 msgstr "Используйте запятую для разделения тегов."
 
-#: ../games_nebula.py:5000 ../games_nebula.py:5056
-msgid "Are you sure you want to remove this game?"
-msgstr "Вы уверены, что хотите удалить эту игру?"
+#: ../games_nebula.py:5045 ../games_nebula.py:5112
+msgid ""
+"Are you sure you want to remove\n"
+"'"
+msgstr ""
+"Вы уверены, что хотите удалить\n"
+"'"
 
-#: ../games_nebula.py:5536
+#: ../games_nebula.py:5172 ../games_nebula.py:5867
+msgid "Downloading..."
+msgstr "Скачивается..."
+
+#: ../games_nebula.py:5213 ../games_nebula.py:5256 ../games_nebula.py:5882
+#: ../games_nebula.py:5889 ../games_nebula.py:5902
+msgid "Installing..."
+msgstr "Устанавливается..."
+
+#: ../games_nebula.py:5570
 msgid "Impossible to install."
 msgstr "Невозможно установить."
 
-#: ../games_nebula.py:5620 ../games_nebula.py:5650
+#: ../games_nebula.py:5615 ../games_nebula.py:5896
+msgid "Executing script..."
+msgstr "Выполняется скрипт..."
+
+#: ../games_nebula.py:5725 ../games_nebula.py:5756 ../games_nebula.py:5787
 msgid "Done"
 msgstr "Завершено"
 
-#: ../games_nebula.py:5682
+#: ../games_nebula.py:5816
 msgid "No new games in library."
 msgstr "Нет новых игр в библиотеке."
 
-#: ../games_nebula.py:5987 ../games_nebula.py:6036
+#: ../games_nebula.py:6148 ../games_nebula.py:6197
 msgid "Installation directory changed"
 msgstr "Установочная директория изменена"
 
-#: ../games_nebula.py:5989 ../games_nebula.py:6038
+#: ../games_nebula.py:6150 ../games_nebula.py:6199
 msgid ""
 "Do you really want to change installation directory?\n"
 "All your installed games will be moved to the new location.\n"
@@ -536,7 +587,7 @@ msgstr ""
 "Все установленные игры будут перемещены в новое местоположение\n"
 "Продолжить?"
 
-#: ../games_nebula.py:6671
+#: ../games_nebula.py:6872
 msgid "Quit application?"
 msgstr "Выйти из приложения?"
 
@@ -560,117 +611,199 @@ msgstr "Все новые скрипты ("
 msgid "Scripts for games you own ("
 msgstr "Скрипты для игр, которые у вас есть ("
 
-#: ../launcher_dosbox.py:142 ../launcher_native.py:128
-#: ../launcher_scummvm.py:160 ../launcher_wine.py:284 ../settings_dosbox.py:42
+#: ../launcher_dosbox.py:43 ../launcher_native.py:38 ../launcher_scummvm.py:41
+#: ../launcher_wine.py:64
+msgid "Disable output"
+msgstr "Выключить монитор"
+
+#: ../launcher_dosbox.py:44 ../launcher_native.py:39 ../launcher_scummvm.py:42
+#: ../launcher_wine.py:65
+msgid "Enable output"
+msgstr "Включить  монитор"
+
+#: ../launcher_dosbox.py:45 ../launcher_native.py:40 ../launcher_scummvm.py:43
+#: ../launcher_wine.py:66
+msgid "Output position"
+msgstr "Позиция  монитора"
+
+#: ../launcher_dosbox.py:46 ../launcher_native.py:41 ../launcher_scummvm.py:44
+#: ../launcher_wine.py:67
+msgid "Reset gamma"
+msgstr "Сбросить гамму"
+
+#: ../launcher_dosbox.py:180 ../launcher_native.py:166
+#: ../launcher_scummvm.py:227 ../launcher_wine.py:361 ../settings_dosbox.py:42
 msgid "Games Nebula"
 msgstr "Games Nebula"
 
-#: ../launcher_dosbox.py:191 ../launcher_scummvm.py:210 ../launcher_wine.py:334
-#: ../launcher_wine.py:529 ../launcher_wine.py:736
+#: ../launcher_dosbox.py:229 ../launcher_scummvm.py:277 ../launcher_wine.py:411
+#: ../launcher_wine.py:744 ../launcher_wine.py:998
 msgid "Global settings"
 msgstr "Глобальные настройки"
 
-#: ../launcher_dosbox.py:231
+#: ../launcher_dosbox.py:269
 msgid "Game specific DOSBox settings"
 msgstr "Настройки DOSBox для этой игры"
 
-#: ../launcher_dosbox.py:236 ../launcher_scummvm.py:250 ../launcher_wine.py:424
+#: ../launcher_dosbox.py:274 ../launcher_scummvm.py:317 ../launcher_wine.py:517
 msgid "Version:"
 msgstr "Версия:"
 
-#: ../launcher_dosbox.py:273 ../launcher_wine.py:479
+#: ../launcher_dosbox.py:311 ../launcher_native.py:203 ../launcher_wine.py:573
 msgid "Game settings"
 msgstr "Настройки игры"
 
-#: ../launcher_dosbox.py:283 ../launcher_native.py:187
-#: ../launcher_scummvm.py:292 ../launcher_wine.py:491
+#: ../launcher_dosbox.py:321 ../launcher_native.py:249
+#: ../launcher_scummvm.py:359 ../launcher_wine.py:585
+msgid "Execute before launching the game"
+msgstr "Выполнять перед запуском игры"
+
+#: ../launcher_dosbox.py:352 ../launcher_dosbox.py:411
+#: ../launcher_native.py:280 ../launcher_native.py:339
+#: ../launcher_scummvm.py:390 ../launcher_scummvm.py:449
+#: ../launcher_wine.py:616 ../launcher_wine.py:675
+msgid "Commands templates"
+msgstr "Шаблоны команд"
+
+#: ../launcher_dosbox.py:370 ../launcher_dosbox.py:429
+#: ../launcher_native.py:298 ../launcher_native.py:357
+#: ../launcher_scummvm.py:408 ../launcher_scummvm.py:467
+#: ../launcher_wine.py:634 ../launcher_wine.py:693
+msgid "Add command template"
+msgstr "Добавить шаблон команды"
+
+#: ../launcher_dosbox.py:381 ../launcher_native.py:309
+#: ../launcher_scummvm.py:419 ../launcher_wine.py:645
+msgid "Execute after exiting the game"
+msgstr "Выполнять после выхода из игры"
+
+#: ../launcher_dosbox.py:440 ../launcher_native.py:368
+#: ../launcher_scummvm.py:478 ../launcher_wine.py:704
 msgid "Launch game"
 msgstr "Запустить игру"
 
-#: ../launcher_dosbox.py:291 ../launcher_native.py:192
-#: ../launcher_scummvm.py:298 ../launcher_wine.py:497
+#: ../launcher_dosbox.py:448 ../launcher_native.py:373
+#: ../launcher_scummvm.py:484 ../launcher_wine.py:710
 msgid "Always show launcher"
 msgstr "Всегда показывать лаунчер "
 
-#: ../launcher_native.py:165
+#: ../launcher_native.py:192
+msgid "Primary output:"
+msgstr "Основной монитор:"
+
+#: ../launcher_native.py:215
 msgid "Use:"
 msgstr "Использовать:"
 
-#: ../launcher_native.py:169
+#: ../launcher_native.py:220
 msgid "GOG launcher"
 msgstr "Лаунчер GOG"
 
-#: ../launcher_native.py:173
+#: ../launcher_native.py:225
 msgid "Games Nebula launcher"
 msgstr "Лаунчер Games Nebula"
 
-#: ../launcher_scummvm.py:255
+#: ../launcher_scummvm.py:322
 msgid "Game specific ScummVM settings"
 msgstr "Настройки ScummVM для этой игры"
 
-#: ../launcher_wine.py:76
+#: ../launcher_wine.py:85
 msgid "Select the correct '.exe' file:"
 msgstr "Выберите верный '.exe' файл:"
 
-#: ../launcher_wine.py:87
+#: ../launcher_wine.py:97
 msgid "Select the correct '.exe' file"
 msgstr "Выберите верный '.exe' файл"
 
-#: ../launcher_wine.py:96
+#: ../launcher_wine.py:106
 msgid "DOS/Windows executable"
 msgstr "Исполняемый файл DOS/Windows"
 
-#: ../launcher_wine.py:374
+#: ../launcher_wine.py:117
+msgid "Arguments (optional)"
+msgstr "Аргументы (необязательно)"
+
+#: ../launcher_wine.py:451
 msgid "Windows version"
 msgstr "Версия Windows"
 
-#: ../launcher_wine.py:384
+#: ../launcher_wine.py:461
 msgid "Use own wine prefix"
 msgstr "Использовать свой префикс wine"
 
-#: ../launcher_wine.py:390
+#: ../launcher_wine.py:467
+msgid "WINEARCH"
+msgstr "WINEARCH"
+
+#: ../launcher_wine.py:483
 msgid "Capture the mouse in fullscreen windows"
 msgstr "Удерживать мышь в полноэкранных окнах"
 
-#: ../launcher_wine.py:396
+#: ../launcher_wine.py:489
 msgid "Emulate a virtual desktop"
 msgstr "Эмулировать виртуальный рабочий стол"
 
-#: ../launcher_wine.py:402 ../settings_dosbox.py:108 ../settings_dosbox.py:158
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:492
-#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:113
-#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:93
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:77
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:98
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:119
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:140
-#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:148
+#: ../launcher_wine.py:495 ../settings_dosbox.py:108 ../settings_dosbox.py:158
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:477
+#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:102
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:124
+#: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:56
+#: ../../games_nebula_goglib_scripts/desperados_2/settings.py:88
+#: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:119
+#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:94
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:80
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:101
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:122
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:143
+#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:86
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:361
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:156
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:149
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:156
+#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:136
+#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:89
+#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:89
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:113
 msgid "Width"
 msgstr "Ширина"
 
-#: ../launcher_wine.py:413 ../settings_dosbox.py:117 ../settings_dosbox.py:167
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:500
-#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:121
-#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:102
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:85
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:106
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:127
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:148
-#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:158
+#: ../launcher_wine.py:506 ../settings_dosbox.py:117 ../settings_dosbox.py:167
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:485
+#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:110
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:133
+#: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:65
+#: ../../games_nebula_goglib_scripts/desperados_2/settings.py:96
+#: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:127
+#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:103
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:88
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:109
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:130
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:151
+#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:94
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:369
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:165
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:158
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:165
+#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:146
+#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:97
+#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:97
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:121
 msgid "Height"
 msgstr "Высота"
 
-#: ../launcher_wine.py:429
+#: ../launcher_wine.py:522
 msgid "Game specific Wine settings:"
 msgstr "Настройки Wine для этой игры:"
 
-#: ../launcher_wine.py:434
+#: ../launcher_wine.py:527
 msgid "Current wine prefix settings"
 msgstr "Настройки текущего префикса Wine"
 
 #: ../settings_dosbox.py:68
+#: ../../games_nebula_goglib_scripts/eador_genesis/settings.py:104
+#: ../../games_nebula_goglib_scripts/robin_hood/settings.py:107
 msgid "Fullscreen"
-msgstr "Полноэкранный режим"
+msgstr "Полноэкранный"
 
 #: ../settings_dosbox.py:70 ../settings_dosbox.py:76
 msgid "Start dosbox directly in fullscreen. (Press ALT-Enter to go back)"
@@ -730,7 +863,7 @@ msgstr ""
 "в окне DOSBox (CTRL-F10 чтобы освободить)"
 
 #: ../settings_dosbox.py:235
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:174
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:177
 msgid "Mouse sensitivity"
 msgstr "Чувствительность мыши"
 
@@ -942,7 +1075,7 @@ msgid "CPU"
 msgstr "ЦП"
 
 #: ../settings_dosbox.py:757
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:352
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:337
 msgid "No sound"
 msgstr "Без звука"
 
@@ -1394,271 +1527,966 @@ msgid "Enable ipx over UDP/IP emulation."
 msgstr "Включить эмуляцию ipx поверх UDP/IP."
 
 #: ../settings_dosbox.py:1895
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:433
-#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:115
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:271
-#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:168
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:418
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:193
+#: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:84
+#: ../../games_nebula_goglib_scripts/desperados_2/settings.py:104
+#: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:137
+#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:116
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:274
+#: ../../games_nebula_goglib_scripts/eador_genesis/settings.py:116
+#: ../../games_nebula_goglib_scripts/edna_harvey_the_breakout/settings.py:185
+#: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:137
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:123
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:217
+#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:107
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:241
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:220
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:241
+#: ../../games_nebula_goglib_scripts/robin_hood/settings.py:165
+#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:156
+#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:110
+#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:110
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:174
 msgid "Save and quit"
 msgstr "Сохранить и выйти"
 
-#: ../settings_wine.py:72
+#: ../settings_wine.py:59
 msgid "Add/remove programs"
 msgstr "Добавить/удалить программы"
 
-#: ../settings_wine.py:77
+#: ../settings_wine.py:64
 msgid "Run in current prefix..."
 msgstr "Запустить в текущем префиксе"
 
-#: ../settings_wine.py:82
+#: ../settings_wine.py:69
 msgid "Open prefix in file manager"
 msgstr "Открыть префикс в файловом менеджере"
 
-#: ../settings_wine.py:87
+#: ../settings_wine.py:74
 msgid "Configure game controllers"
 msgstr "Настроить игровые контроллеры"
 
-#: ../settings_wine.py:92
+#: ../settings_wine.py:79
 msgid "Wine configuration"
 msgstr "Настройки Wine"
 
-#: ../settings_wine.py:132
+#: ../settings_wine.py:119
 msgid "Choose a file to execute"
 msgstr "Выберите файл для запуска"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:148
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:513
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:677
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:700
+#: ../winetricks_cache_backup.py:110 ../winetricks_cache_backup.py:114
+msgid "Winetricks cache"
+msgstr "Кэш winetricks"
+
+#: ../winetricks_cache_backup.py:121 ../winetricks_cache_backup.py:125
+msgid "Winetricks cache backup"
+msgstr "Бэкап кэша winetricks"
+
+#: ../winetricks_cache_backup.py:132
+msgid "Make backup"
+msgstr "Сделать бэкап"
+
+#: ../winetricks_cache_backup.py:137
+msgid "Restore from backup"
+msgstr "Восстановить из бэкапа"
+
+#: ../winetricks_cache_backup.py:184
+msgid "Backup is up to date"
+msgstr "Бэкап актуален"
+
+#: ../winetricks_cache_backup.py:226
+msgid "All files from backup exists in cache"
+msgstr "Все файлы из бэкапа существуют в кэше"
+
+#: ../winetricks_cache_backup.py:285
+msgid "Done!"
+msgstr "Завершено!"
+
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:133
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:498
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:655
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:678
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:382
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:527
 msgid "default"
 msgstr "по умолчанию"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:274
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:471
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:259
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:456
 msgid "Arcanum"
 msgstr "Arcanum"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:284
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:269
 msgid "Module to run at startup:"
 msgstr "Модуль при запуске:"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:294
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:279
 msgid "Scrolling distance:"
 msgstr "Дистанция прокрутки:"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:313
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:298
 msgid "Scrolling speed:"
 msgstr "Скорость прокрутки:"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:331
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:316
 msgid "Software rendering mode"
 msgstr "Программный рендеринг"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:338
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:323
 msgid "Compact UI"
 msgstr "Компактный интерфейс"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:345
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:330
 msgid "Doublebuffer"
 msgstr "Двойная буферизация"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:359
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:344
 msgid "No random encounters"
 msgstr "Без случайных встреч"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:366
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:351
 msgid "Show FPS"
 msgstr "Показывать FPS"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:373
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:358
 msgid "Alternative mouse wheel behavior"
 msgstr "Альтернативное поведение колеса мыши"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:380
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:365
 msgid "Multiplayer - AutoJoin"
 msgstr "Мультиплеер - Автоприсоединение"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:387
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:372
 msgid "Multiplayer - NoBroadcast"
 msgstr "Мультиплеер - Не оповещать"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:409
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:394
 msgid "More options"
 msgstr "Больше опций"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:439
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:424
 msgid "Unofficial Patch"
 msgstr "Неофициальный патч"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:445
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:430
 msgid "High Resolution Patch"
 msgstr "Патч высокого разрешения"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:488
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:473
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:357
 msgid "Resolution: "
 msgstr "Разрешение:"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:508
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:493
 msgid "Dialog font: "
 msgstr "Шрифт в диалогах:"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:525
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:510
 msgid "Larger logbook font"
 msgstr "Более крупный шрифт в журнале"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:531
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:516
 msgid "Compact options screen"
 msgstr "Компактный экран опций"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:537
-#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:129
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:522
+#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:118
 msgid "Patch"
 msgstr "Пропатчить"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:620
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:595
 msgid "Attention"
 msgstr "Внимание"
 
-#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:622
+#: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:597
 msgid "Do not change default installation path"
 msgstr "Не меняйте путь установки по умолчанию"
 
-#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:91
+#: ../../games_nebula_goglib_scripts/baldurs_gate_2_complete/settings.py:35
+msgid "Baldur's Gate 2 Complete"
+msgstr "Baldur's Gate 2 Complete"
+
+#: ../../games_nebula_goglib_scripts/baldurs_gate_2_complete/settings.py:53
+msgid ""
+"Install Baldur's Gate Trilogy\n"
+"(Unmodified BG1 needed)"
+msgstr ""
+"Установить Baldur's Gate Trilogy\n"
+"(Нужна немодифицированная BG1)"
+
+#: ../../games_nebula_goglib_scripts/baldurs_gate_2_complete/settings.py:58
+msgid "Install BG1 Unfinished Business"
+msgstr "Установить BG1 Незаконченные дела"
+
+#: ../../games_nebula_goglib_scripts/baldurs_gate_2_complete/settings.py:63
+#: ../../games_nebula_goglib_scripts/baldurs_gate_the_original_saga/settings.py:53
+msgid "Install Widescreen Mod"
+msgstr "Установить Widescreen Mod"
+
+#: ../../games_nebula_goglib_scripts/baldurs_gate_2_complete/settings.py:68
+msgid "Install Fixpack"
+msgstr "Установить Fixpack"
+
+#: ../../games_nebula_goglib_scripts/baldurs_gate_2_complete/settings.py:73
+#: ../../games_nebula_goglib_scripts/baldurs_gate_the_original_saga/settings.py:63
+msgid "Install Unfinished Business"
+msgstr "Установить 'Незаконченные дела'"
+
+#: ../../games_nebula_goglib_scripts/baldurs_gate_2_complete/settings.py:78
+#: ../../games_nebula_goglib_scripts/baldurs_gate_the_original_saga/settings.py:68
+msgid "Install Tweaks"
+msgstr "Установить Tweaks"
+
+#: ../../games_nebula_goglib_scripts/baldurs_gate_2_complete/settings.py:83
+msgid "Install Bigger Fonts"
+msgstr "Установить Bigger Fonts"
+
+#: ../../games_nebula_goglib_scripts/baldurs_gate_the_original_saga/settings.py:35
+msgid "Baldur's Gate: The Original Saga"
+msgstr "Baldur's Gate: The Original Saga"
+
+#: ../../games_nebula_goglib_scripts/baldurs_gate_the_original_saga/settings.py:58
+msgid "Install TWM GUI"
+msgstr "Установить TWM GUI"
+
+#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:80
 msgid "Battle Realms: Winter of the Wolf"
 msgstr "Battle Realms: Winter of the Wolf"
 
-#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:109
+#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:98
 msgid "Set custom resolution:"
 msgstr "Установить нестандартное разрешение:"
 
-#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:164
+#: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:153
+#: ../../games_nebula_goglib_scripts/desperados_2/settings.py:138
+#: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:198
+#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:157
+#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:156
+#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:156
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:510
 msgid "You have to set width and height."
 msgstr "Вы должны установить ширину и высоту."
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:31
-msgid "Dungeon Keeper 2"
-msgstr "Dungeon Keeper 2"
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:100
+msgid "Beyond Good & Evil"
+msgstr "Beyond Good & Evil"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:48
-msgid "Rendering"
-msgstr "Рендеринг"
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:117
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:149
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:142
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:149
+msgid "Resolution:"
+msgstr "Разрешение:"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:62
-msgid "GOG HW Patch"
-msgstr "GOG HW патч"
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:140
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:172
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:165
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:172
+msgid "HUD auto position:"
+msgstr "Авто позиция HUD"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:67
-msgid "Hardware rendering"
-msgstr "Аппаратный рендеринг"
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:154
+msgid "Pillarbox:"
+msgstr "Пилларбоксинг:"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:73
-msgid "Software rendering"
-msgstr "Программный рендеринг"
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:160
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:248
+msgid "Off"
+msgstr "Выкл."
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:89
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:161
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:250
+msgid "On"
+msgstr "Вкл."
+
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:162
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:252
+msgid "Advanced pillarboxing"
+msgstr "Продвинутый пилларбоксинг:"
+
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:173
+msgid "FOV:"
+msgstr "FOV:"
+
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:180
+msgid "FOV"
+msgstr "FOV"
+
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:187
+#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:102
+#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:105
+#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:105
+msgid "More settings"
+msgstr "Больше настроек"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:59
+msgid "Blood Rayne 2"
+msgstr "Blood Rayne 2"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:77
+#: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:74
+msgid "Crop videos (FFmpeg)"
+msgstr "Обрезать видео (FFmpeg)"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:91
+#: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:79
+msgid "4:3 (no cropping)"
+msgstr "4:3 (без обрезки)"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:96
+msgid "Start"
+msgstr "Начать"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:114
+msgid "FSAA Patch"
+msgstr "FSAA патч"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:127
+#: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:85
+msgid "Download patch"
+msgstr "Скачать патч"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:133
+#: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:90
+#: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:90
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:170
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:217
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:272
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:327
+msgid "Put it here"
+msgstr "Поместите сюда"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:158
+msgid "FSAA Patch settings"
+msgstr "Настройки FSAA патча"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:179
+#: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:160
+#: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:160
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:257
+msgid "Patch not found in download directory."
+msgstr "Патч не найден в загрузочной директории."
+
+#: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:34
+msgid "Blood Rayne"
+msgstr "Blood Rayne"
+
+#: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:51
+#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:90
 msgid "Resolution"
 msgstr "Разрешение"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:55
+#: ../../games_nebula_goglib_scripts/desperados_2/settings.py:66
+msgid "Desperados 2: Cooper's Revenge"
+msgstr "Desperados 2: Cooper's Revenge"
+
+#: ../../games_nebula_goglib_scripts/desperados_2/settings.py:84
+#: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:125
+#: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:115
+#: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:125
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:205
+#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:82
+#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:85
+#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:85
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:109
+msgid "Custom resolution:"
+msgstr "Нестандартное разрешение:"
+
+#: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:67
+#: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:106
+msgid "Desperados: Wanted Dead or Alive"
+msgstr "Desperados: Wanted Dead or Alive"
+
+#: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:51
+msgid "Launch the game at least once before using this utility."
+msgstr "Запустите игру хотя бы раз перед тем, как использовать утилиту."
+
+#: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:97
+msgid "Deus Ex 2: Invisible War"
+msgstr "Deus Ex 2: Invisible War"
+
+#: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:140
+msgid "Set"
+msgstr "Задать"
+
+#: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:146
+msgid "Protect settings file from overwriting (root)"
+msgstr "Защитить файл настроек от перезаписи (root)"
+
+#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:32
+msgid "Dungeon Keeper 2"
+msgstr "Dungeon Keeper 2"
+
+#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:49
+msgid "Rendering"
+msgstr "Рендеринг"
+
+#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:63
+msgid "GOG HW Patch"
+msgstr "GOG HW патч"
+
+#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:68
+msgid "Hardware rendering"
+msgstr "Аппаратный рендеринг"
+
+#: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:74
+msgid "Software rendering"
+msgstr "Программный рендеринг"
+
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:58
 msgid "Dungeon Keeper"
 msgstr "Dungeon Keeper"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:73
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:76
 msgid "In-game resolution"
 msgstr "Разрешение в игре"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:94
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:97
 msgid "Menu resolution"
 msgstr "Разрешение в меню"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:115
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:118
 msgid "Movies resolution"
 msgstr "Разрешение видео роликов"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:136
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:139
 msgid "Failure resolution"
 msgstr "Разрешение при сбое"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:157
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:160
 msgid "Game speed"
 msgstr "Скорость игры"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:191
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:194
 msgid "Skip intro animation"
 msgstr "Пропустить анимацию в начале"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:201
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:204
 msgid "Smoothen video"
 msgstr "Сглаженное видео"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:211
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:214
 msgid "Disable sound"
 msgstr "Отключить звук"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:221
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:224
 msgid "Censorship"
 msgstr "Цензура"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:231
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:234
 msgid "Screenshots format"
 msgstr "Формат скриншотов"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:246
-#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:126
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:249
+#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:114
 msgid "Language"
 msgstr "Язык"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:262
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:265
 msgid "TCP/IP sessions"
 msgstr "Язык"
 
-#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:266
+#: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:269
 msgid "IP address"
 msgstr "IP адрес"
 
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:68
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:99
-msgid "Populous: The Beginning"
-msgstr "Populous: The Beginning"
+#: ../../games_nebula_goglib_scripts/eador_genesis/settings.py:83
+msgid "Eador: Genesis"
+msgstr "Эадор. Сотворение"
 
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:85
+#: ../../games_nebula_goglib_scripts/eador_genesis/settings.py:94
+#: ../../games_nebula_goglib_scripts/robin_hood/settings.py:103
+msgid "Mode:"
+msgstr "Режим:"
+
+#: ../../games_nebula_goglib_scripts/eador_genesis/settings.py:98
+msgid "Windowed"
+msgstr "Оконный"
+
+#: ../../games_nebula_goglib_scripts/edna_harvey_the_breakout/settings.py:101
+msgid "Edna & Harvey: The Breakout"
+msgstr "Edna & Harvey: The Breakout"
+
+#: ../../games_nebula_goglib_scripts/edna_harvey_the_breakout/settings.py:111
+msgid "Language:"
+msgstr "Язык:"
+
+#: ../../games_nebula_goglib_scripts/edna_harvey_the_breakout/settings.py:127
+msgid "Fullscreen:"
+msgstr "На весь экран:"
+
+#: ../../games_nebula_goglib_scripts/edna_harvey_the_breakout/settings.py:137
+msgid "Music:"
+msgstr "Музыка:"
+
+#: ../../games_nebula_goglib_scripts/edna_harvey_the_breakout/settings.py:147
+msgid "Speech:"
+msgstr "Речь:"
+
+#: ../../games_nebula_goglib_scripts/edna_harvey_the_breakout/settings.py:157
+msgid "Subtitles:"
+msgstr "Субтитры:"
+
+#: ../../games_nebula_goglib_scripts/edna_harvey_the_breakout/settings.py:167
+msgid "Comments:"
+msgstr "Комментарии:"
+
+#: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:67
+#: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:106
+msgid "Konung 2: Blood of Titans"
+msgstr "Князь 2: Кровь Титанов"
+
+#: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:85
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:165
+msgid "Download resolution patch"
+msgstr "Скачать патч для изменения разрешения"
+
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:79
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:147
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:186
+msgid "Konung: Legends of the North"
+msgstr "Князь: Легенды Лесной страны"
+
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:88
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:71
 msgid "Launch options"
 msgstr "Опции запуска"
 
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:104
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:106
+msgid "Singleplayer"
+msgstr "Одиночная игра"
+
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:111
+msgid "LAN multiplayer"
+msgstr "LAN игра"
+
+#: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:117
+msgid "Tutorial"
+msgstr "Обучение"
+
+#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:64
+msgid "Leisure Suit Larry: Magna Cum Laude: Uncut and Uncensored!"
+msgstr "Leisure Suit Larry: Magna Cum Laude: Uncut and Uncensored!"
+
+#: ../../games_nebula_goglib_scripts/omikron_the_nomad_soul/settings.py:36
+msgid "Omikron: The Nomad Soul"
+msgstr "Omikron: The Nomad Soul"
+
+#: ../../games_nebula_goglib_scripts/omikron_the_nomad_soul/settings.py:44
+msgid "Old Games Widescreen Patch"
+msgstr "Old Games Widescreen Patch"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:319
+msgid "Patching..."
+msgstr "Применение патча..."
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:332
+msgid "Planescape: Torment"
+msgstr "Planescape: Torment"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:340
+msgid "Widescreen mod and GhostDog's PS:T UI mod"
+msgstr "Модпак не найден в загрузочной директории и GhostDog's PS:T UI мод"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:377
+msgid "Fonts size: "
+msgstr "Размер шрифта:"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:383
+msgid "20% bigger for English, French, German, Spanish and Italian"
+msgstr ""
+"на 20% больше для Английского, французского, немецкого, испанского и "
+"итальянского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:384
+msgid "40% bigger for English, French, German, Spanish and Italian"
+msgstr ""
+"на 40% больше для Английского, французского, немецкого, испанского и "
+"итальянского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:385
+msgid "80% bigger for English, French, German, Spanish and Italian"
+msgstr ""
+"на 80% больше для Английского, французского, немецкого, испанского и "
+"итальянского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:386
+msgid "120% bigger for English, French, German, Spanish and Italian"
+msgstr ""
+"на 120% больше для Английского, французского, немецкого, испанского и "
+"итальянского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:387
+msgid "20% bigger for Hungarian"
+msgstr "на 20% больше для  венгерского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:388
+msgid "40% bigger for Hungarian"
+msgstr "на 40% больше для  венгерского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:389
+msgid "80% bigger for Hungarian"
+msgstr "на 80% больше для  венгерского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:390
+msgid "120% bigger for Hungarian"
+msgstr "на 120% больше для  венгерского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:391
+msgid "20% bigger for the Polish and Czech"
+msgstr "на 20% больше для  польского и чешского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:392
+msgid "40% bigger for the Polish and Czech"
+msgstr "на 40% больше для  польского и чешского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:393
+msgid "80% bigger for the Polish and Czech"
+msgstr "на 80% больше для  польского и чешского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:394
+msgid "120% bigger for the Polish and Czech"
+msgstr "на 120% больше для  польского и чешского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:395
+msgid "20% bigger for Russian"
+msgstr "на 20% больше для  русского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:396
+msgid "40% bigger for Russian"
+msgstr "на 40% больше для  русского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:397
+msgid "80% bigger for Russian"
+msgstr "на 80% больше для  русского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:398
+msgid "120% bigger for Russian"
+msgstr "на 120% больше для  русского"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:416
+msgid "PS:T Ultimate WeiDU Fixpack"
+msgstr "PS:T Ultimate WeiDU Fixpack"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:434
+msgid "Dialogue Spelling/Grammar Corrections (English Only)"
+msgstr "Коррекция грамматики (только английский)"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:440
+msgid "Subtitled Cutscenes"
+msgstr "Субтитры в видео"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:460
+msgid "PS:T Unfinished Business"
+msgstr "PS:T Незаконченные дела"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:478
+msgid "All Recommended PS:T Unfinished Business Components"
+msgstr "Все рекомендованные компоненты из 'PS:T Незаконченные дела'"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:484
+msgid "Expanded Deionarra's Truth Mod"
+msgstr "Мод 'Правда о Дейонарре'"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:491
+msgid "Restored Cheat Items (Not Recommended)"
+msgstr "Восстановление читерских предметов (не рекомендуется)"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:503
+msgid "Qwinn's PS:T Tweak Pack"
+msgstr "Набор модов и фиксов от Qwinn'а"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:521
+msgid "Interparty Banter:"
+msgstr "Разговоры сопартийцев:"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:528
+msgid "Interparty Banter Every 4 game hours (20 minutes)"
+msgstr "Разговоры сопартийцев каждые 4 игровых часа (20 минут)"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:529
+msgid "Interparty Banter Every 6 game hours (30 minutes)"
+msgstr "Разговоры сопартийцев каждые 6 игровых часов (30 минут)"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:530
+msgid "Interparty Banter Every 10 game hours (50 minutes)"
+msgstr "Разговоры сопартийцев каждые 10 игровых часов (50 минут)"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:531
+msgid "Interparty Banter Every 15 game hours (75 minutes)"
+msgstr "Разговоры сопартийцев каждые 15 игровых часа (75 минут)"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:532
+msgid "Interparty Banter Every 20 game hours (100 minutes)"
+msgstr "Разговоры сопартийцев каждые 20 игровых часов (100 минут)"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:542
+msgid "Dustman Robes Area Restriction Removal"
+msgstr "Нет ограничения на ношение робы Пыльных"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:548
+msgid "BG2-Style THAC0 Display"
+msgstr "THAC0 как в BG2"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:554
+msgid "Stackable Rings, Charms, Bracelets, Scrolls"
+msgstr "Можно складывать в пачку кольца, амулеты, браслеты, свитки"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:560
+msgid "Explore City Areas"
+msgstr "Городские локации уже исследованы"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:566
+msgid "Scale of Souls"
+msgstr "Шкала душ"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:572
+msgid "Save Nordom! Tweak"
+msgstr "Твик 'Спасти Нордома!'"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:578
+msgid "Disabled Stat Minimums"
+msgstr "Нет минимума для характеристик"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:584
+msgid "Maximized HP Per Level for TNO and Party"
+msgstr ""
+"Максимум здоровья при повышении уровня \n"
+"для Безымянного и партии"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:590
+msgid "Maximized Friends Spell"
+msgstr "Заклинания друзей максимально эффективны"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:596
+msgid "No Battle Music"
+msgstr "Нет музыки в бою"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:602
+msgid "Use Floating Text Font Globally"
+msgstr "Использовать шрифт из всплывающего текста везде"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:608
+msgid "Identify All Items"
+msgstr "Опознать все предметы"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:614
+msgid "Early Glabrezus Tweak"
+msgstr "Glabrezu появляется раньше"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:620
+msgid "Power Action Leprechaun Annah, by Black Isle"
+msgstr "Лепрекон Анна от Black Isle"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:626
+msgid "Easter Egg Morte, by Black Isle"
+msgstr "Морте-пасхальное яйцо "
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:632
+msgid "Quick Load:"
+msgstr "Быстрое загрузка:"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:638
+msgid "disabled"
+msgstr "отключить"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:639
+msgid "F5 QuickSave, F9 QuickLoad"
+msgstr "F5 Быстрое сохранение, F9 Быстрая загрузка"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:640
+msgid "F5 QuickSave, F10 QuickLoad"
+msgstr "F5 Быстрое сохранение, F10 Быстрая загрузка"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:650
+msgid "Rest Anywhere (Not Recommended)"
+msgstr "Можно отдыхать везде (не рекомендуется)"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:656
+msgid "Tome Of Cheats (Not Recommended)"
+msgstr "Книга читов (не рекомендуется)"
+
+#: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:686
+msgid "Patch and quit"
+msgstr "Пропатчить и выйти"
+
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:54
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:85
+msgid "Populous: The Beginning"
+msgstr "Populous: The Beginning"
+
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:90
 msgid "Populous: The Beginning (software rendering)"
 msgstr "Populous: The Beginning (программный рендеринг)"
 
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:110
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:96
 msgid "Populous: Undiscovered Worlds"
 msgstr "Populous: Undiscovered Worlds"
 
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:116
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:102
 msgid "Populous: Undiscovered Worlds (software rendering)"
 msgstr "Populous: Undiscovered Worlds (программный рендеринг)"
 
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:137
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:123
 msgid "Patches"
 msgstr "Патчи"
 
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:149
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:135
 msgid "Resolution Changer"
 msgstr "Изменить разрешение"
 
-#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:157
+#: ../../games_nebula_goglib_scripts/populous_the_beginning/settings.py:143
 msgid "More patches"
 msgstr "Больше патчей"
 
-#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:108
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:132
+msgid "Prince of Persia: The Sands of Time"
+msgstr "Prince of Persia: The Sands of Time"
+
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:186
+msgid "Cutscenes black borders:"
+msgstr "Чёрные поля в роликах:"
+
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:200
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:179
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:200
+msgid "Xbox FOV:"
+msgstr "Xbox FOV:"
+
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:214
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:193
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:214
+msgid "Fog bug fix:"
+msgstr "Исправление бага с туманом:"
+
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:228
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:207
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:228
+msgid "FOV multiplier:"
+msgstr "Коэффициент FOV:"
+
+#: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:125
+msgid "Prince of Persia: The Two Thrones"
+msgstr "Prince of Persia: The Two Thrones"
+
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:132
+msgid "Prince of Persia: Warrior Within"
+msgstr "Prince of Persia: Warrior Within"
+
+#: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:186
+msgid "HUD glitch fix:"
+msgstr "Исправление бага с HUD:"
+
+#: ../../games_nebula_goglib_scripts/robin_hood/settings.py:93
+msgid "Robin Hood: The Legend of Sherwood"
+msgstr "Robin Hood: The Legend of Sherwood"
+
+#: ../../games_nebula_goglib_scripts/robin_hood/settings.py:113
+msgid "Windowed 1"
+msgstr "Оконный 1"
+
+#: ../../games_nebula_goglib_scripts/robin_hood/settings.py:120
+msgid "Windowed 2"
+msgstr "Оконный 2"
+
+#: ../../games_nebula_goglib_scripts/robin_hood/settings.py:127
+msgid "Monitor index:"
+msgstr "Индекс монитора:"
+
+#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:96
 msgid "Saints Row 2"
 msgstr "Saints Row 2"
 
-#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:142
+#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:130
 msgid "Custom resolution"
 msgstr "Нестандартное разрешение"
 
-#: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:173
-msgid "Quit without saving"
-msgstr "Выйти без сохранения"
+#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:67
+msgid "Shadowgrounds"
+msgstr "Shadowgrounds"
+
+#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:67
+msgid "Shadowgrounds: Survivor"
+msgstr "Shadowgrounds: Survivor"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:91
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:194
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:249
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:304
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:359
+msgid "The Temple of Elemental Evil"
+msgstr "The Temple of Elemental Evil"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:129
+msgid "TFE-X"
+msgstr "TFE-X"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:137
+msgid "Install 'Co8 Mopdack Standard Edition'"
+msgstr "Исправление бага с  'Co8 Mopdack Standard Edition'"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:145
+msgid "Install 'Co8 Mopdack New Content Edition'"
+msgstr "Установить 'Co8 Mopdack New Content Edition'"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:153
+msgid "Install 'The Keep on the Borderlands'"
+msgstr "Установить 'The Keep on the Borderlands'"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:161
+msgid "Install Portrait Packs"
+msgstr "Установить портреты"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:212
+msgid "Download 'Circle of Eight Mopdack Standard Edition'"
+msgstr "Скачать 'Circle of Eight Mopdack Standard Edition'"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:267
+msgid "Download 'Circle of Eight Mopdack New Content Edition'"
+msgstr "Скачать 'Circle of Eight Mopdack New Content Edition'"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:322
+msgid "Download 'The Keep on the Borderlands'"
+msgstr "Скачать 'The Keep on the Borderlands'"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:368
+msgid "Baldur's Gate Portrait Pack"
+msgstr "Портреты из Baldur's Gate"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:374
+msgid "Icewind Dale Portrait Pack"
+msgstr "Портреты из Icewind Dale"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:380
+msgid "Jagged Alliance 2 Portrait Pack"
+msgstr "Портреты из Jagged Alliance 2"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:386
+msgid "Luis Royo Portrait Pack"
+msgstr "Портреты от Luis Royo"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:535
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:578
+msgid "Modpack not found in download directory"
+msgstr "Модпак не найден в загрузочной директории"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:621
+msgid "Mod not found in download directory"
+msgstr "Мод не найден в загрузочной директории"
+
+#: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:669
+msgid "You have to select at least one portrait pack."
+msgstr "Нужно выбрать хотя бы одну опцию"
+
+#~ msgid "Patch not found in download directory"
+#~ msgstr "Патч не найден в загрузочной директории"
+
+#~ msgid "Are you sure you want to remove this game?"
+#~ msgstr "Вы уверены, что хотите удалить эту игру?"
+
+#~ msgid "Quit without saving"
+#~ msgstr "Выйти без сохранения"
 
 #~ msgid "Can't get games list."
 #~ msgstr "Невозможно получить список игр"
