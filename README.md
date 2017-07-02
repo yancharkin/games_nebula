@@ -1,13 +1,13 @@
-##Games Nebula
+## Games Nebula
 Unofficial Linux client for GOG.
 
-####Important notes
+#### Important notes
 - In terms of quality it's a prototype software at best
 - I'm not a programmer so code quality probably even worse than I think
 - Chances that I will re-write it properly are extremely low
 - But it works (most of the time) and has some cool and useful features
 
-##Features
+## Features
 - Listing, downloading and installing games from your gog library
 - Possibility to create you own (non-gog) library by writing simple scripts
 - Integration with wine, dosbox and scummvm to make running non-native games as easy as possible
@@ -17,26 +17,26 @@ Unofficial Linux client for GOG.
 
 ...and some other stuff.
 
-##Screenshots
-~~**Main window**
+## Screenshots
+**Main window**
 
 ![main window screenshot](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/main_window.jpg  "Main window")
 
-~~**DOSBox Configuration Utility**
+**DOSBox Configuration Utility**
 
 ![dosbox utility screenshot](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/dosbox_utility.jpg  "DOSBox Configuration Utility")
 
-~~**Wine, DOSBox and ScummVM launchers**
+**Wine, DOSBox and ScummVM launchers**
 
 ![launchers screenshot](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/launchers.png  "Launchers")
 
-~~**Configuration utilities for 'Arcanum: Of Steamworks and Magick Obscura' and 'Planescape: Torment'**
+**Configuration utilities for 'Arcanum: Of Steamworks and Magick Obscura' and 'Planescape: Torment'**
 
 ![conf_utilities](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/conf_utilities.png  "Configuration Utilities")
 
-##Installation
+## Installation
 For the reasons stated above there is no "proper" packages for the application (and not planned at the moment). But it's not that hard to install.
-###1. Install dependencies
+### 1. Install dependencies
 #### Mandatory dependencies
 
 **Debian/Ubuntu:**
@@ -73,7 +73,7 @@ For the reasons stated above there is no "proper" packages for the application (
     sudo dnf install xterm curl tar p7zip p7zip-plugins cabextract unshield megatools wine winetricks dosbox scummvm
 
 *[RPM Fusion](https://rpmfusion.org/): ffmpeg*
-###2. Install application
+### 2. Install application
 - Download the [latest release](https://github.com/yancharkin/games_nebula/releases) and extract it anywhere you like.
 - Run **setup.sh**. It will create shortcut in main menu.
 - It's recommended to configure lgogdownloader before launching 'Game Nebula'. And for versions < 3.2 it's a mandatory.
