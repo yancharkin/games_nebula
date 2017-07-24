@@ -38,6 +38,7 @@ sample_commands = {
     _("Disable output"):'xrandr --output <OUTPUT HERE> --off',
     _("Enable output"):'xrandr --output <OUTPUT HERE> --auto',
     _("Output position"):'xrandr --output <OUTPUT HERE> --auto <--left-of | --right-of | --above | --below> <ANOTHER OUTPUT HERE>',
+    _("Panning"):'xrandr --output <OUTPUT HERE> --mode <RESOLUTION HERE> --panning <RESOLUTION HERE>',
     _("Reset gamma"):'xgamma -gamma 1'
 }
 
