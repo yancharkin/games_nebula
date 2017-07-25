@@ -81,4 +81,3 @@ For the reasons stated above there is no "proper" packages for the application (
 - If you have a lot of games in your library and/or slow CPU, first launch can take some time
 - [Scripts repository for gog games](https://github.com/yancharkin/games_nebula_goglib_scripts)
 - [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
-- [If anyone wants to make a donation](https://www.paypal.me/yancharkin)
