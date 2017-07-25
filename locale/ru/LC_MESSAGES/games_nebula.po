@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-02 18:55+0300\n"
-"PO-Revision-Date: 2017-07-02 19:00+0300\n"
+"POT-Creation-Date: 2017-07-25 19:00+0300\n"
+"PO-Revision-Date: 2017-07-25 19:01+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -310,8 +310,8 @@ msgstr "Загрузочная директория"
 
 #: ../games_nebula.py:1595 ../games_nebula.py:1610 ../games_nebula.py:1875
 #: ../games_nebula.py:1890 ../games_nebula.py:2254 ../games_nebula.py:2358
-#: ../games_nebula.py:2431 ../launcher_dosbox.py:253 ../launcher_scummvm.py:301
-#: ../launcher_wine.py:435
+#: ../games_nebula.py:2431 ../launcher_dosbox.py:254 ../launcher_scummvm.py:302
+#: ../launcher_wine.py:436
 msgid "Select a directory"
 msgstr "Выбрать директорию"
 
@@ -405,27 +405,27 @@ msgstr "Шрифт"
 msgid "Emulators settings"
 msgstr "Настройка эмуляторов"
 
-#: ../games_nebula.py:2207 ../launcher_dosbox.py:300 ../launcher_scummvm.py:348
-#: ../launcher_wine.py:562
+#: ../games_nebula.py:2207 ../launcher_dosbox.py:301 ../launcher_scummvm.py:349
+#: ../launcher_wine.py:563
 msgid "Monitor"
 msgstr "Монитор"
 
-#: ../games_nebula.py:2225 ../launcher_wine.py:387
+#: ../games_nebula.py:2225 ../launcher_wine.py:388
 msgid "Wine"
 msgstr "Wine"
 
 #: ../games_nebula.py:2243 ../games_nebula.py:2347 ../games_nebula.py:2420
-#: ../launcher_dosbox.py:234 ../launcher_scummvm.py:282 ../launcher_wine.py:416
+#: ../launcher_dosbox.py:235 ../launcher_scummvm.py:283 ../launcher_wine.py:417
 msgid "System version"
 msgstr "Системная версия"
 
 #: ../games_nebula.py:2248 ../games_nebula.py:2319 ../games_nebula.py:2352
 #: ../games_nebula.py:2390 ../games_nebula.py:2463 ../games_nebula.py:5921
-#: ../games_nebula.py:6079 ../games_nebula.py:6091 ../launcher_dosbox.py:240
-#: ../launcher_dosbox.py:507 ../launcher_dosbox.py:512
-#: ../launcher_scummvm.py:288 ../launcher_scummvm.py:546
-#: ../launcher_scummvm.py:551 ../launcher_wine.py:422 ../launcher_wine.py:806
-#: ../launcher_wine.py:811
+#: ../games_nebula.py:6079 ../games_nebula.py:6091 ../launcher_dosbox.py:241
+#: ../launcher_dosbox.py:508 ../launcher_dosbox.py:513
+#: ../launcher_scummvm.py:289 ../launcher_scummvm.py:547
+#: ../launcher_scummvm.py:552 ../launcher_wine.py:423 ../launcher_wine.py:807
+#: ../launcher_wine.py:812
 msgid "From directory"
 msgstr "Из директории"
 
@@ -447,13 +447,13 @@ msgstr "Архитектура wine:"
 
 #: ../games_nebula.py:2324 ../games_nebula.py:2395 ../games_nebula.py:2425
 #: ../games_nebula.py:2468 ../games_nebula.py:5926 ../games_nebula.py:6084
-#: ../games_nebula.py:6096 ../launcher_dosbox.py:249 ../launcher_dosbox.py:517
-#: ../launcher_scummvm.py:297 ../launcher_scummvm.py:556
-#: ../launcher_wine.py:431 ../launcher_wine.py:816
+#: ../games_nebula.py:6096 ../launcher_dosbox.py:250 ../launcher_dosbox.py:518
+#: ../launcher_scummvm.py:298 ../launcher_scummvm.py:557
+#: ../launcher_wine.py:432 ../launcher_wine.py:817
 msgid "From directory:"
 msgstr "Из директории:"
 
-#: ../games_nebula.py:2329 ../launcher_dosbox.py:205
+#: ../games_nebula.py:2329 ../launcher_dosbox.py:206
 msgid "DOSBox"
 msgstr "DOSBox"
 
@@ -461,7 +461,7 @@ msgstr "DOSBox"
 msgid "DOSBox settings"
 msgstr "Настройки DOSBox"
 
-#: ../games_nebula.py:2401 ../launcher_scummvm.py:253
+#: ../games_nebula.py:2401 ../launcher_scummvm.py:254
 msgid "ScummVM"
 msgstr "ScummVM"
 
@@ -511,10 +511,10 @@ msgstr "Используйте запятые для разделения тег
 msgid "Current tags"
 msgstr "Текущие теги"
 
-#: ../games_nebula.py:4452 ../games_nebula.py:4678 ../launcher_dosbox.py:346
-#: ../launcher_dosbox.py:405 ../launcher_native.py:274
-#: ../launcher_native.py:333 ../launcher_scummvm.py:384
-#: ../launcher_scummvm.py:443 ../launcher_wine.py:610 ../launcher_wine.py:669
+#: ../games_nebula.py:4452 ../games_nebula.py:4678 ../launcher_dosbox.py:347
+#: ../launcher_dosbox.py:406 ../launcher_native.py:275
+#: ../launcher_native.py:334 ../launcher_scummvm.py:385
+#: ../launcher_scummvm.py:444 ../launcher_wine.py:611 ../launcher_wine.py:670
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -628,122 +628,127 @@ msgstr "Позиция  монитора"
 
 #: ../launcher_dosbox.py:46 ../launcher_native.py:41 ../launcher_scummvm.py:44
 #: ../launcher_wine.py:67
+msgid "Panning"
+msgstr "Панорамирование"
+
+#: ../launcher_dosbox.py:47 ../launcher_native.py:42 ../launcher_scummvm.py:45
+#: ../launcher_wine.py:68
 msgid "Reset gamma"
 msgstr "Сбросить гамму"
 
-#: ../launcher_dosbox.py:180 ../launcher_native.py:166
-#: ../launcher_scummvm.py:227 ../launcher_wine.py:361 ../settings_dosbox.py:42
+#: ../launcher_dosbox.py:181 ../launcher_native.py:167
+#: ../launcher_scummvm.py:228 ../launcher_wine.py:362 ../settings_dosbox.py:42
 msgid "Games Nebula"
 msgstr "Games Nebula"
 
-#: ../launcher_dosbox.py:229 ../launcher_scummvm.py:277 ../launcher_wine.py:411
-#: ../launcher_wine.py:744 ../launcher_wine.py:998
+#: ../launcher_dosbox.py:230 ../launcher_scummvm.py:278 ../launcher_wine.py:412
+#: ../launcher_wine.py:745 ../launcher_wine.py:999
 msgid "Global settings"
 msgstr "Глобальные настройки"
 
-#: ../launcher_dosbox.py:269
+#: ../launcher_dosbox.py:270
 msgid "Game specific DOSBox settings"
 msgstr "Настройки DOSBox для этой игры"
 
-#: ../launcher_dosbox.py:274 ../launcher_scummvm.py:317 ../launcher_wine.py:517
+#: ../launcher_dosbox.py:275 ../launcher_scummvm.py:318 ../launcher_wine.py:518
 msgid "Version:"
 msgstr "Версия:"
 
-#: ../launcher_dosbox.py:311 ../launcher_native.py:203 ../launcher_wine.py:573
+#: ../launcher_dosbox.py:312 ../launcher_native.py:204 ../launcher_wine.py:574
 msgid "Game settings"
 msgstr "Настройки игры"
 
-#: ../launcher_dosbox.py:321 ../launcher_native.py:249
-#: ../launcher_scummvm.py:359 ../launcher_wine.py:585
+#: ../launcher_dosbox.py:322 ../launcher_native.py:250
+#: ../launcher_scummvm.py:360 ../launcher_wine.py:586
 msgid "Execute before launching the game"
 msgstr "Выполнять перед запуском игры"
 
-#: ../launcher_dosbox.py:352 ../launcher_dosbox.py:411
-#: ../launcher_native.py:280 ../launcher_native.py:339
-#: ../launcher_scummvm.py:390 ../launcher_scummvm.py:449
-#: ../launcher_wine.py:616 ../launcher_wine.py:675
+#: ../launcher_dosbox.py:353 ../launcher_dosbox.py:412
+#: ../launcher_native.py:281 ../launcher_native.py:340
+#: ../launcher_scummvm.py:391 ../launcher_scummvm.py:450
+#: ../launcher_wine.py:617 ../launcher_wine.py:676
 msgid "Commands templates"
 msgstr "Шаблоны команд"
 
-#: ../launcher_dosbox.py:370 ../launcher_dosbox.py:429
-#: ../launcher_native.py:298 ../launcher_native.py:357
-#: ../launcher_scummvm.py:408 ../launcher_scummvm.py:467
-#: ../launcher_wine.py:634 ../launcher_wine.py:693
+#: ../launcher_dosbox.py:371 ../launcher_dosbox.py:430
+#: ../launcher_native.py:299 ../launcher_native.py:358
+#: ../launcher_scummvm.py:409 ../launcher_scummvm.py:468
+#: ../launcher_wine.py:635 ../launcher_wine.py:694
 msgid "Add command template"
 msgstr "Добавить шаблон команды"
 
-#: ../launcher_dosbox.py:381 ../launcher_native.py:309
-#: ../launcher_scummvm.py:419 ../launcher_wine.py:645
+#: ../launcher_dosbox.py:382 ../launcher_native.py:310
+#: ../launcher_scummvm.py:420 ../launcher_wine.py:646
 msgid "Execute after exiting the game"
 msgstr "Выполнять после выхода из игры"
 
-#: ../launcher_dosbox.py:440 ../launcher_native.py:368
-#: ../launcher_scummvm.py:478 ../launcher_wine.py:704
+#: ../launcher_dosbox.py:441 ../launcher_native.py:369
+#: ../launcher_scummvm.py:479 ../launcher_wine.py:705
 msgid "Launch game"
 msgstr "Запустить игру"
 
-#: ../launcher_dosbox.py:448 ../launcher_native.py:373
-#: ../launcher_scummvm.py:484 ../launcher_wine.py:710
+#: ../launcher_dosbox.py:449 ../launcher_native.py:374
+#: ../launcher_scummvm.py:485 ../launcher_wine.py:711
 msgid "Always show launcher"
 msgstr "Всегда показывать лаунчер "
 
-#: ../launcher_native.py:192
+#: ../launcher_native.py:193
 msgid "Primary output:"
 msgstr "Основной монитор:"
 
-#: ../launcher_native.py:215
+#: ../launcher_native.py:216
 msgid "Use:"
 msgstr "Использовать:"
 
-#: ../launcher_native.py:220
+#: ../launcher_native.py:221
 msgid "GOG launcher"
 msgstr "Лаунчер GOG"
 
-#: ../launcher_native.py:225
+#: ../launcher_native.py:226
 msgid "Games Nebula launcher"
 msgstr "Лаунчер Games Nebula"
 
-#: ../launcher_scummvm.py:322
+#: ../launcher_scummvm.py:323
 msgid "Game specific ScummVM settings"
 msgstr "Настройки ScummVM для этой игры"
 
-#: ../launcher_wine.py:85
+#: ../launcher_wine.py:86
 msgid "Select the correct '.exe' file:"
 msgstr "Выберите верный '.exe' файл:"
 
-#: ../launcher_wine.py:97
+#: ../launcher_wine.py:98
 msgid "Select the correct '.exe' file"
 msgstr "Выберите верный '.exe' файл"
 
-#: ../launcher_wine.py:106
+#: ../launcher_wine.py:107
 msgid "DOS/Windows executable"
 msgstr "Исполняемый файл DOS/Windows"
 
-#: ../launcher_wine.py:117
+#: ../launcher_wine.py:118
 msgid "Arguments (optional)"
 msgstr "Аргументы (необязательно)"
 
-#: ../launcher_wine.py:451
+#: ../launcher_wine.py:452
 msgid "Windows version"
 msgstr "Версия Windows"
 
-#: ../launcher_wine.py:461
+#: ../launcher_wine.py:462
 msgid "Use own wine prefix"
 msgstr "Использовать свой префикс wine"
 
-#: ../launcher_wine.py:467
+#: ../launcher_wine.py:468
 msgid "WINEARCH"
 msgstr "WINEARCH"
 
-#: ../launcher_wine.py:483
+#: ../launcher_wine.py:484
 msgid "Capture the mouse in fullscreen windows"
 msgstr "Удерживать мышь в полноэкранных окнах"
 
-#: ../launcher_wine.py:489
+#: ../launcher_wine.py:490
 msgid "Emulate a virtual desktop"
 msgstr "Эмулировать виртуальный рабочий стол"
 
-#: ../launcher_wine.py:495 ../settings_dosbox.py:108 ../settings_dosbox.py:158
+#: ../launcher_wine.py:496 ../settings_dosbox.py:108 ../settings_dosbox.py:158
 #: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:477
 #: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:102
 #: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:124
@@ -767,7 +772,7 @@ msgstr "Эмулировать виртуальный рабочий стол"
 msgid "Width"
 msgstr "Ширина"
 
-#: ../launcher_wine.py:506 ../settings_dosbox.py:117 ../settings_dosbox.py:167
+#: ../launcher_wine.py:507 ../settings_dosbox.py:117 ../settings_dosbox.py:167
 #: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:485
 #: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:110
 #: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:133
@@ -791,11 +796,11 @@ msgstr "Ширина"
 msgid "Height"
 msgstr "Высота"
 
-#: ../launcher_wine.py:522
+#: ../launcher_wine.py:523
 msgid "Game specific Wine settings:"
 msgstr "Настройки Wine для этой игры:"
 
-#: ../launcher_wine.py:527
+#: ../launcher_wine.py:528
 msgid "Current wine prefix settings"
 msgstr "Настройки текущего префикса Wine"
 
