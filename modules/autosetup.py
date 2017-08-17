@@ -220,7 +220,7 @@ def autosetup(lib, install_dir, game_name):
             scummvm_name = parser.get(game_name, 'scummvm_name')
             scummvm_id = parser.get(game_name, 'scummvm_id')
 
-            if (scummvm_id != '') and (scummvm_id != ''):
+            if scummvm_id != '':
                 print "Writing start.sh"
 
                 start_lines = ['#!/bin/bash\n',
