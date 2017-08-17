@@ -5283,7 +5283,7 @@ class GUI:
                         '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
 
             elif self.installer_type == 'exe':
-                command = ['innoextract', '--gog', \
+                command = ['innoextract', '--gog', '--lowercase', \
                         self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
                         '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
 

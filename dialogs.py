@@ -133,7 +133,6 @@ class GUI:
         window_progress = Gtk.Window(
             title = "Games Nebula",
             icon = app_icon,
-            title = message_text,
             type = Gtk.WindowType.TOPLEVEL,
             window_position = Gtk.WindowPosition.CENTER_ALWAYS,
             resizable = False
