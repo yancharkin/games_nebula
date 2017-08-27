@@ -45,7 +45,7 @@ For the reasons stated above there is no "proper" packages for the application (
     
 **Arch**
 
-    sudo pacman -S python-gobject python2-beautifulsoup4 python2-lxml python2-pillow
+    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow
 
 *AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/), [innoextract](https://aur.archlinux.org/packages/innoextract/)*
 
