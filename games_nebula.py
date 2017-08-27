@@ -5227,6 +5227,12 @@ class GUI:
                 settings_file.write(line)
             settings_file.close()
             os.system('chmod +x ' + game_dir + '/settings.sh')
+            
+        if self.own_prefix:
+            config_file = open(game_dir + '/config.ini', 'w')
+            config_file.write('[Settings]\n')
+            config_file.write('own_prefix = True')
+            config_file.close()
 
         command = [data_dir + '/scripts/mylib/' + game_name + '/setup']
 
