@@ -5042,8 +5042,8 @@ class GUI:
                 Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.YES_NO
                 )
-            message_dialog.format_secondary_text(_("Are you sure you want to remove\n'" +
-            self.mylib_dict_name_to_title[game_name] + "'?"))
+            message_dialog.format_secondary_text(_("Are you sure you want to remove\n'") +
+            self.mylib_dict_name_to_title[game_name] + "'?")
             content_area = message_dialog.get_content_area()
             content_area.set_property('margin-left', 10)
             content_area.set_property('margin-right', 10)
@@ -5109,8 +5109,8 @@ class GUI:
                 Gtk.MessageType.QUESTION,
                 Gtk.ButtonsType.YES_NO,
                 )
-            message_dialog.format_secondary_text(_("Are you sure you want to remove\n'" +
-            self.goglib_dict_name_to_title[game_name] + "'?"))
+            message_dialog.format_secondary_text(_("Are you sure you want to remove\n'") +
+            self.goglib_dict_name_to_title[game_name] + "'?")
             content_area = message_dialog.get_content_area()
             content_area.set_property('margin-left', 10)
             content_area.set_property('margin-right', 10)
