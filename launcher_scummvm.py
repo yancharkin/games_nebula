@@ -210,7 +210,9 @@ class GUI:
 
         goglib_banners_dir = os.getenv('HOME') + '/.games_nebula/images/goglib_banners'
         mylib_banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib_banners'
-        if os.path.exists(goglib_banners_dir + '/' + self.game_name + '.jpg'):
+
+        if os.path.exists(goglib_banners_dir + '/' + self.game_name + '.jpg') and \
+                os.path.exists(goglib_install_dir + '/' + self.game_name):
             self.banner_path = goglib_banners_dir + '/' + self.game_name + '.jpg'
         else:
             self.banner_path = mylib_banners_dir + '/' + self.game_name + '.jpg'
