@@ -3764,7 +3764,7 @@ class GUI:
             self.combobox_wine_version.append_text(ver_list[i])
             if ver_list[i] == self.wine_version:
                 ver_index = i
-        self.combobox_wine_version.set_active(i)
+        self.combobox_wine_version.set_active(ver_index)
 
     def populate_dosbox_version_combobox(self):
 
@@ -6106,7 +6106,7 @@ class GUI:
             self.scummvm = 'path'
 
     def cb_combobox_wine_version(self, combobox):
-        #self.wine_version = combobox.get_active_text()
+        self.wine_version = combobox.get_active_text()
         self.win64_available()
 
     def cb_combobox_dosbox_version(self, combobox):
