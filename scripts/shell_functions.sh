@@ -161,18 +161,17 @@ fi
 }
 
 get_exult () {
-ARCH=$(get_arch i)
-FILE_NAME="exult_1.5.0_git_bdcce09_gcc_4.9.2_$ARCH.tar.gz"
-LINK="https://github.com/yancharkin/exult/releases/download/1.5.0git/exult_1.5.0_git_bdcce09_gcc_4.9.2_$ARCH.tar.gz"
+FILE_NAME="exult_git_dee7d24.7z"
+LINK="https://mega.nz/#!TgIzRR6R!NCxRYaXk0ee7jBjjFoXVr56DDGz8jnjyYcfSEwMAdjw"
 if [ ! -f "$DOWNLOAD_DIR/_distr/ultima_7/$FILE_NAME" ]; then
 mkdir -p "$DOWNLOAD_DIR/_distr/ultima_7"
-curl -L -o "$DOWNLOAD_DIR/_distr/ultima_7/$FILE_NAME" -C - "$LINK" \
+megadl "$LINK" --path "$DOWNLOAD_DIR/_distr/ultima_7/" \
 & proc_timer $! "Downloading $FILE_NAME"
 fi
 mkdir -p "$INSTALL_DIR/exult/data"
 mkdir -p "$INSTALL_DIR/exult/saves"
 if [ ! -d "$INSTALL_DIR/exult/bin" ]; then
-tar -xzvf "$DOWNLOAD_DIR/_distr/ultima_7/$FILE_NAME" -C "$INSTALL_DIR/exult"
+7z x -aoa -o"$INSTALL_DIR/exult" "$DOWNLOAD_DIR/_distr/ultima_7/$FILE_NAME"
 fi
 }
 
