@@ -81,3 +81,17 @@ For the reasons stated above there is no "proper" packages for the application (
 - If you have a lot of games in your library and/or slow CPU, first launch can take some time
 - [Scripts repository for gog games](https://github.com/yancharkin/games_nebula_goglib_scripts)
 - [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
+
+## How you can contribute
+
+First of all you must know that I'm not planning to create "real" application. 'Games Nebula' is a quick and dirty solution. I created it for personal use and because it was fun to create. As long as it works I don't care if it's poorly written. So you should take this into considiration before contributing.
+
+Right now you can contribute by:
+- reporting bugs
+- writing scipts for games
+- fixing broken English
+- making translations
+
+Feel free to contact me if you have any questions.
+
+If community become large enough I'll think about rewritting 'Games Nebula' properly.
