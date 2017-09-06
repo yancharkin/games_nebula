@@ -60,8 +60,16 @@ def autosetup(lib, install_dir, game_name):
                 start_file.close()
                 os.system('chmod +x ' + start_file_path)
 
-                start_gn_lines = ['#!/bin/bash\n',
-                '"$INSTALL_DIR/' + game_name + '/game/' + native_exe + '"']
+                if '/' in native_exe:
+                    native_exe_dir = native_exe.split('/')[0]
+                    native_exe = native_exe.split('/')[1]
+                    start_gn_lines = ['#!/bin/bash\n',
+                    'cd "$INSTALL_DIR/' + game_name + '/game/' + native_exe_dir + '"\n',
+                    './' + native_exe]
+                else:
+                    start_gn_lines = ['#!/bin/bash\n',
+                    'cd "$INSTALL_DIR/' + game_name + '/game"\n',
+                    './' + native_exe]
 
                 start_gn_file_path = install_dir + '/' + game_name + '/start_gn.sh'
                 start_gn_file = open(start_gn_file_path, 'w')
@@ -75,8 +83,16 @@ def autosetup(lib, install_dir, game_name):
             if native_settings_exe != '':
                 print "Writing settings.sh"
 
-                start_gn_lines = ['#!/bin/bash\n',
-                '"$INSTALL_DIR/' + game_name + '/game/' + native_settings_exe + '"']
+                if '/' in native_settings_exe:
+                    native_settings_exe_dir = native_settings_exe.split('/')[0]
+                    native_settings_exe = native_settings_exe.split('/')[1]
+                    start_gn_lines = ['#!/bin/bash\n',
+                    'cd "$INSTALL_DIR/' + game_name + '/game/' + native_settings_exe_dir + '"\n',
+                    './' + native_settings_exe]
+                else:
+                    start_gn_lines = ['#!/bin/bash\n',
+                    'cd "$INSTALL_DIR/' + game_name + '/game"\n',
+                    './' + native_settings_exe]
 
                 start_gn_file_path = install_dir + '/' + game_name + '/settings.sh'
                 start_gn_file = open(start_gn_file_path, 'w')
