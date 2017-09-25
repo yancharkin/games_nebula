@@ -154,7 +154,7 @@ class GUI:
             while Gtk.events_pending():
                 Gtk.main_iteration()
 
-            os.system('cd ' + file_path + ' && ' + command)
+            os.system('cd "' + file_path + '" && ' + command)
 
         elif response == Gtk.ResponseType.CANCEL:
             dialog.destroy()

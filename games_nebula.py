@@ -5228,7 +5228,7 @@ class GUI:
                 settings_file.write(line)
             settings_file.close()
             os.system('chmod +x ' + game_dir + '/settings.sh')
-            
+
         if self.own_prefix:
             config_file = open(game_dir + '/config.ini', 'w')
             config_file.write('[Settings]\n')
@@ -5950,14 +5950,17 @@ class GUI:
             Gtk.main_iteration()
 
         if self.wine == 'system':
-            wine_path = 'wine'
+            os.environ['WINELOADER'] = 'wine'
         elif self.wine == 'path':
             wine_path = self.wine_path + '/' + self.wine_version
+            os.environ['WINE'] = wine_path + '/bin/wine'
+            os.environ['WINELOADER'] = wine_path + '/bin/wine'
+            os.environ['WINESERVER'] = wine_path + '/bin/wineserver'
+            os.environ['WINEDLLPATH'] = wine_path + '/lib'
 
-        wineprefix_path = os.getenv('HOME') + '/.games_nebula/wine_prefix'
+        os.environ['WINEPREFIX'] = os.getenv('HOME') + '/.games_nebula/wine_prefix'
 
-        os.system('python2 ' + nebula_dir + '/settings_wine.py ' + \
-        wine_path + ' ' + wineprefix_path)
+        os.system('python2 ' + nebula_dir + '/settings_wine.py')
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
