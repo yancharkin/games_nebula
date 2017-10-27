@@ -3093,8 +3093,7 @@ class GUI:
         if queue_game_image_list:
             for i in range(0, len(queue_game_image_list)):
 
-                if os.path.exists(data_dir + '/images/goglib_banners/' + queue_game_image_list[i].get_name() + '.jpg') and \
-                        os.path.exists(self.goglib_install_dir + '/' + queue_game_image_list[i].get_name()):
+                if os.path.exists(data_dir + '/images/goglib_banners/' + queue_game_image_list[i].get_name() + '.jpg'):
                     pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/' + queue_game_image_list[i].get_name() + '.jpg')
                 else:
                     pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/mylib_banners/' + queue_game_image_list[i].get_name() + '.jpg')
