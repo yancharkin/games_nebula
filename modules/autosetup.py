@@ -6,6 +6,7 @@
 #   native_exe
 #   native_settings_exe
 #   win_exe
+#   winedlloverrides
 #   win_settings_exe
 #   winetricks
 #   dos_iso
@@ -106,8 +107,14 @@ def autosetup(lib, install_dir, game_name):
             if win_exe != '':
                 print "Writing start.sh"
 
-                start_lines = ['#!/bin/bash\n',
-                'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + win_exe + '"']
+                if parser.has_option(game_name, 'winedlloverrides'):
+                    overrides = parser.get(game_name, 'winedlloverrides')
+                    start_lines = ['#!/bin/bash\n',
+                    'export WINEDLLOVERRIDES="' + overrides + '"\n',
+                    'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + win_exe + '"']
+                else:
+                    start_lines = ['#!/bin/bash\n',
+                    'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + win_exe + '"']
 
                 start_file_path = install_dir + '/' + game_name + '/start.sh'
                 start_file = open(start_file_path, 'w')
@@ -135,7 +142,7 @@ def autosetup(lib, install_dir, game_name):
         if parser.has_option(game_name, 'winetricks'):
             winetricks = parser.get(game_name, 'winetricks')
             if winetricks != '':
-                print "Writing additions.sh, winetricks"
+                print "Writing additions.sh"
 
                 additions_lines = ['#!/bin/bash\n',
                 'python2 "$NEBULA_DIR/dialogs.py" "progress" "' + 'winetricks --gui ' + winetricks + '"\n']
