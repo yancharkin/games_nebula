@@ -9,7 +9,7 @@ from gi.repository import Gtk, Gdk
 import ConfigParser
 import gettext
 
-from modules import mylib_get_data, goglib_get_data
+from modules import mylib_get_data, goglib_get_data, get_banner
 
 global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
 global_config_parser = ConfigParser.ConfigParser()
@@ -28,6 +28,7 @@ gsettings.set_property('gtk-font-name', font)
 nebula_dir = sys.path[0]
 data_dir = os.getenv('HOME') + '/.games_nebula'
 tmp = '/tmp'
+images_url = 'https://raw.githubusercontent.com/yancharkin/games_nebula_mylib_images/master/'
 
 gettext.bindtextdomain('games_nebula', nebula_dir + '/locale')
 gettext.textdomain('games_nebula')
@@ -45,7 +46,14 @@ class GUI:
             self.overwrite = False
 
         self.scripts_dir = os.getenv('HOME') + '/.games_nebula/scripts/' + self.lib
-        self.get_scripts()
+
+        mylib_has_new_scripts = self.get_scripts()
+
+        # Ugly but works
+        if not mylib_has_new_scripts:
+            sys.exit(0)
+        else:
+            sys.exit(2)
 
     def get_scripts(self):
 
@@ -64,7 +72,8 @@ class GUI:
             archive_file.write(archive_data)
             archive_file.close()
 
-            self.unpack(archive_path)
+            mylib_has_new_scripts = self.unpack(archive_path)
+            return mylib_has_new_scripts
 
         except urllib2.URLError as e:
 
@@ -99,6 +108,7 @@ class GUI:
             sys.exit()
 
     def unpack(self, archive_path):
+
         os.system('7z x -aoa -o' + tmp + ' ' + archive_path)
         os.system('rm ' + tmp + '/games_nebula_' + self.lib + '_scripts-master/LICENSE > /dev/null 2>&1')
 
@@ -152,6 +162,11 @@ class GUI:
 
             for i in range(len(mylib_names)):
                 name_to_title[mylib_names[i]] = mylib_titles[i]
+
+            for game_name in new_scripts:
+                image_url = images_url +  game_name + '.jpg'
+                banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib_banners/'
+                get_banner.get_banner(game_name, image_url, banners_dir, self.lib)
 
         message_dialog = Gtk.MessageDialog(
             None,
@@ -238,7 +253,10 @@ class GUI:
         response = message_dialog.run()
         message_dialog.destroy()
 
-        sys.exit()
+        if (n_new_scripts != 0) and (self.lib == 'mylib'):
+            return True
+        else:
+            return False
 
 def main():
     import sys

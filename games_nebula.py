@@ -6027,7 +6027,14 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        os.system('python2 ' + nebula_dir + '/get_scripts.py ' + lib + ' ' + str(overwrite))
+        mylib_has_new_scripts = os.system('python2 ' + nebula_dir + '/get_scripts.py ' + lib + ' ' + str(overwrite))
+
+        # Ugly but works
+        if mylib_has_new_scripts == 0:
+            print("No new scripts.")
+        else:
+            print("New scripts downloaded!")
+            os.execl(sys.executable, 'python2', __file__)
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
