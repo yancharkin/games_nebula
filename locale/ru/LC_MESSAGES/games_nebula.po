@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-25 19:00+0300\n"
-"PO-Revision-Date: 2017-07-25 19:01+0300\n"
+"POT-Creation-Date: 2017-11-11 14:26+0300\n"
+"PO-Revision-Date: 2017-11-11 14:32+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -32,6 +32,7 @@ msgstr "Неизвестный тип диалога:"
 #: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:94
 #: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:94
 #: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:174
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:88
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:221
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:276
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:331
@@ -46,6 +47,8 @@ msgstr "Выберите версию:"
 #: ../dialogs.py:131 ../winetricks_cache_backup.py:144
 #: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:102
 #: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:90
+#: ../../games_nebula_goglib_scripts/pathologic_classic_hd_game/settings.py:103
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:94
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:236
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:291
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:346
@@ -155,8 +158,8 @@ msgstr "Запустить в режиме \"оффлайн\""
 msgid "GOG LIBRARY"
 msgstr "БИБЛИОТЕКА GOG"
 
-#: ../games_nebula.py:513 ../games_nebula.py:5568 ../get_scripts.py:76
-#: ../get_scripts.py:92
+#: ../games_nebula.py:513 ../games_nebula.py:5574 ../get_scripts.py:85
+#: ../get_scripts.py:101
 #: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:151
 #: ../../games_nebula_goglib_scripts/desperados_2/settings.py:136
 #: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:158
@@ -310,8 +313,8 @@ msgstr "Загрузочная директория"
 
 #: ../games_nebula.py:1595 ../games_nebula.py:1610 ../games_nebula.py:1875
 #: ../games_nebula.py:1890 ../games_nebula.py:2254 ../games_nebula.py:2358
-#: ../games_nebula.py:2431 ../launcher_dosbox.py:254 ../launcher_scummvm.py:302
-#: ../launcher_wine.py:436
+#: ../games_nebula.py:2431 ../launcher_dosbox.py:256 ../launcher_scummvm.py:304
+#: ../launcher_wine.py:438
 msgid "Select a directory"
 msgstr "Выбрать директорию"
 
@@ -320,6 +323,7 @@ msgid "Installation directory"
 msgstr "Установочная директория"
 
 #: ../games_nebula.py:1618 ../games_nebula.py:1899
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:79
 msgid "Download"
 msgstr "Скачать"
 
@@ -405,27 +409,27 @@ msgstr "Шрифт"
 msgid "Emulators settings"
 msgstr "Настройка эмуляторов"
 
-#: ../games_nebula.py:2207 ../launcher_dosbox.py:301 ../launcher_scummvm.py:349
-#: ../launcher_wine.py:563
+#: ../games_nebula.py:2207 ../launcher_dosbox.py:303 ../launcher_scummvm.py:351
+#: ../launcher_wine.py:565
 msgid "Monitor"
 msgstr "Монитор"
 
-#: ../games_nebula.py:2225 ../launcher_wine.py:388
+#: ../games_nebula.py:2225 ../launcher_wine.py:390
 msgid "Wine"
 msgstr "Wine"
 
 #: ../games_nebula.py:2243 ../games_nebula.py:2347 ../games_nebula.py:2420
-#: ../launcher_dosbox.py:235 ../launcher_scummvm.py:283 ../launcher_wine.py:417
+#: ../launcher_dosbox.py:237 ../launcher_scummvm.py:285 ../launcher_wine.py:419
 msgid "System version"
 msgstr "Системная версия"
 
 #: ../games_nebula.py:2248 ../games_nebula.py:2319 ../games_nebula.py:2352
-#: ../games_nebula.py:2390 ../games_nebula.py:2463 ../games_nebula.py:5921
-#: ../games_nebula.py:6079 ../games_nebula.py:6091 ../launcher_dosbox.py:241
-#: ../launcher_dosbox.py:508 ../launcher_dosbox.py:513
-#: ../launcher_scummvm.py:289 ../launcher_scummvm.py:547
-#: ../launcher_scummvm.py:552 ../launcher_wine.py:423 ../launcher_wine.py:807
-#: ../launcher_wine.py:812
+#: ../games_nebula.py:2390 ../games_nebula.py:2463 ../games_nebula.py:5927
+#: ../games_nebula.py:6095 ../games_nebula.py:6107 ../launcher_dosbox.py:243
+#: ../launcher_dosbox.py:510 ../launcher_dosbox.py:515
+#: ../launcher_scummvm.py:291 ../launcher_scummvm.py:549
+#: ../launcher_scummvm.py:554 ../launcher_wine.py:425 ../launcher_wine.py:809
+#: ../launcher_wine.py:814
 msgid "From directory"
 msgstr "Из директории"
 
@@ -446,14 +450,14 @@ msgid "Winearch:"
 msgstr "Архитектура wine:"
 
 #: ../games_nebula.py:2324 ../games_nebula.py:2395 ../games_nebula.py:2425
-#: ../games_nebula.py:2468 ../games_nebula.py:5926 ../games_nebula.py:6084
-#: ../games_nebula.py:6096 ../launcher_dosbox.py:250 ../launcher_dosbox.py:518
-#: ../launcher_scummvm.py:298 ../launcher_scummvm.py:557
-#: ../launcher_wine.py:432 ../launcher_wine.py:817
+#: ../games_nebula.py:2468 ../games_nebula.py:5932 ../games_nebula.py:6100
+#: ../games_nebula.py:6112 ../launcher_dosbox.py:252 ../launcher_dosbox.py:520
+#: ../launcher_scummvm.py:300 ../launcher_scummvm.py:559
+#: ../launcher_wine.py:434 ../launcher_wine.py:819
 msgid "From directory:"
 msgstr "Из директории:"
 
-#: ../games_nebula.py:2329 ../launcher_dosbox.py:206
+#: ../games_nebula.py:2329 ../launcher_dosbox.py:208
 msgid "DOSBox"
 msgstr "DOSBox"
 
@@ -461,7 +465,7 @@ msgstr "DOSBox"
 msgid "DOSBox settings"
 msgstr "Настройки DOSBox"
 
-#: ../games_nebula.py:2401 ../launcher_scummvm.py:254
+#: ../games_nebula.py:2401 ../launcher_scummvm.py:256
 msgid "ScummVM"
 msgstr "ScummVM"
 
@@ -511,10 +515,10 @@ msgstr "Используйте запятые для разделения тег
 msgid "Current tags"
 msgstr "Текущие теги"
 
-#: ../games_nebula.py:4452 ../games_nebula.py:4678 ../launcher_dosbox.py:347
-#: ../launcher_dosbox.py:406 ../launcher_native.py:275
-#: ../launcher_native.py:334 ../launcher_scummvm.py:385
-#: ../launcher_scummvm.py:444 ../launcher_wine.py:611 ../launcher_wine.py:670
+#: ../games_nebula.py:4452 ../games_nebula.py:4678 ../launcher_dosbox.py:349
+#: ../launcher_dosbox.py:408 ../launcher_native.py:277
+#: ../launcher_native.py:336 ../launcher_scummvm.py:387
+#: ../launcher_scummvm.py:446 ../launcher_wine.py:613 ../launcher_wine.py:672
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -548,36 +552,36 @@ msgstr ""
 "Вы уверены, что хотите удалить\n"
 "'"
 
-#: ../games_nebula.py:5172 ../games_nebula.py:5867
+#: ../games_nebula.py:5172 ../games_nebula.py:5873
 msgid "Downloading..."
 msgstr "Скачивается..."
 
-#: ../games_nebula.py:5213 ../games_nebula.py:5256 ../games_nebula.py:5882
-#: ../games_nebula.py:5889 ../games_nebula.py:5902
+#: ../games_nebula.py:5213 ../games_nebula.py:5262 ../games_nebula.py:5888
+#: ../games_nebula.py:5895 ../games_nebula.py:5908
 msgid "Installing..."
 msgstr "Устанавливается..."
 
-#: ../games_nebula.py:5570
+#: ../games_nebula.py:5576
 msgid "Impossible to install."
 msgstr "Невозможно установить."
 
-#: ../games_nebula.py:5615 ../games_nebula.py:5896
+#: ../games_nebula.py:5621 ../games_nebula.py:5902
 msgid "Executing script..."
 msgstr "Выполняется скрипт..."
 
-#: ../games_nebula.py:5725 ../games_nebula.py:5756 ../games_nebula.py:5787
+#: ../games_nebula.py:5731 ../games_nebula.py:5762 ../games_nebula.py:5793
 msgid "Done"
 msgstr "Завершено"
 
-#: ../games_nebula.py:5816
+#: ../games_nebula.py:5822
 msgid "No new games in library."
 msgstr "Нет новых игр в библиотеке."
 
-#: ../games_nebula.py:6148 ../games_nebula.py:6197
+#: ../games_nebula.py:6164 ../games_nebula.py:6213
 msgid "Installation directory changed"
 msgstr "Установочная директория изменена"
 
-#: ../games_nebula.py:6150 ../games_nebula.py:6199
+#: ../games_nebula.py:6166 ../games_nebula.py:6215
 msgid ""
 "Do you really want to change installation directory?\n"
 "All your installed games will be moved to the new location.\n"
@@ -587,27 +591,27 @@ msgstr ""
 "Все установленные игры будут перемещены в новое местоположение\n"
 "Продолжить?"
 
-#: ../games_nebula.py:6872
+#: ../games_nebula.py:6888
 msgid "Quit application?"
 msgstr "Выйти из приложения?"
 
-#: ../get_scripts.py:157
+#: ../get_scripts.py:176
 msgid "Completed successfully"
 msgstr "Успешно завершено"
 
-#: ../get_scripts.py:163
+#: ../get_scripts.py:182
 msgid "New scripts downloaded"
 msgstr "Скачаны новые скрипты"
 
-#: ../get_scripts.py:165
+#: ../get_scripts.py:184
 msgid "No new scripts in repository"
 msgstr "Нет новых скриптов в репозитории"
 
-#: ../get_scripts.py:176
+#: ../get_scripts.py:195
 msgid "All new scripts ("
 msgstr "Все новые скрипты ("
 
-#: ../get_scripts.py:206
+#: ../get_scripts.py:225
 msgid "Scripts for games you own ("
 msgstr "Скрипты для игр, которые у вас есть ("
 
@@ -636,79 +640,79 @@ msgstr "Панорамирование"
 msgid "Reset gamma"
 msgstr "Сбросить гамму"
 
-#: ../launcher_dosbox.py:181 ../launcher_native.py:167
-#: ../launcher_scummvm.py:228 ../launcher_wine.py:362 ../settings_dosbox.py:42
+#: ../launcher_dosbox.py:183 ../launcher_native.py:169
+#: ../launcher_scummvm.py:230 ../launcher_wine.py:364 ../settings_dosbox.py:42
 msgid "Games Nebula"
 msgstr "Games Nebula"
 
-#: ../launcher_dosbox.py:230 ../launcher_scummvm.py:278 ../launcher_wine.py:412
-#: ../launcher_wine.py:745 ../launcher_wine.py:999
+#: ../launcher_dosbox.py:232 ../launcher_scummvm.py:280 ../launcher_wine.py:414
+#: ../launcher_wine.py:747 ../launcher_wine.py:1001
 msgid "Global settings"
 msgstr "Глобальные настройки"
 
-#: ../launcher_dosbox.py:270
+#: ../launcher_dosbox.py:272
 msgid "Game specific DOSBox settings"
 msgstr "Настройки DOSBox для этой игры"
 
-#: ../launcher_dosbox.py:275 ../launcher_scummvm.py:318 ../launcher_wine.py:518
+#: ../launcher_dosbox.py:277 ../launcher_scummvm.py:320 ../launcher_wine.py:520
 msgid "Version:"
 msgstr "Версия:"
 
-#: ../launcher_dosbox.py:312 ../launcher_native.py:204 ../launcher_wine.py:574
+#: ../launcher_dosbox.py:314 ../launcher_native.py:206 ../launcher_wine.py:576
 msgid "Game settings"
 msgstr "Настройки игры"
 
-#: ../launcher_dosbox.py:322 ../launcher_native.py:250
-#: ../launcher_scummvm.py:360 ../launcher_wine.py:586
+#: ../launcher_dosbox.py:324 ../launcher_native.py:252
+#: ../launcher_scummvm.py:362 ../launcher_wine.py:588
 msgid "Execute before launching the game"
 msgstr "Выполнять перед запуском игры"
 
-#: ../launcher_dosbox.py:353 ../launcher_dosbox.py:412
-#: ../launcher_native.py:281 ../launcher_native.py:340
-#: ../launcher_scummvm.py:391 ../launcher_scummvm.py:450
-#: ../launcher_wine.py:617 ../launcher_wine.py:676
+#: ../launcher_dosbox.py:355 ../launcher_dosbox.py:414
+#: ../launcher_native.py:283 ../launcher_native.py:342
+#: ../launcher_scummvm.py:393 ../launcher_scummvm.py:452
+#: ../launcher_wine.py:619 ../launcher_wine.py:678
 msgid "Commands templates"
 msgstr "Шаблоны команд"
 
-#: ../launcher_dosbox.py:371 ../launcher_dosbox.py:430
-#: ../launcher_native.py:299 ../launcher_native.py:358
-#: ../launcher_scummvm.py:409 ../launcher_scummvm.py:468
-#: ../launcher_wine.py:635 ../launcher_wine.py:694
+#: ../launcher_dosbox.py:373 ../launcher_dosbox.py:432
+#: ../launcher_native.py:301 ../launcher_native.py:360
+#: ../launcher_scummvm.py:411 ../launcher_scummvm.py:470
+#: ../launcher_wine.py:637 ../launcher_wine.py:696
 msgid "Add command template"
 msgstr "Добавить шаблон команды"
 
-#: ../launcher_dosbox.py:382 ../launcher_native.py:310
-#: ../launcher_scummvm.py:420 ../launcher_wine.py:646
+#: ../launcher_dosbox.py:384 ../launcher_native.py:312
+#: ../launcher_scummvm.py:422 ../launcher_wine.py:648
 msgid "Execute after exiting the game"
 msgstr "Выполнять после выхода из игры"
 
-#: ../launcher_dosbox.py:441 ../launcher_native.py:369
-#: ../launcher_scummvm.py:479 ../launcher_wine.py:705
+#: ../launcher_dosbox.py:443 ../launcher_native.py:371
+#: ../launcher_scummvm.py:481 ../launcher_wine.py:707
 msgid "Launch game"
 msgstr "Запустить игру"
 
-#: ../launcher_dosbox.py:449 ../launcher_native.py:374
-#: ../launcher_scummvm.py:485 ../launcher_wine.py:711
+#: ../launcher_dosbox.py:451 ../launcher_native.py:376
+#: ../launcher_scummvm.py:487 ../launcher_wine.py:713
 msgid "Always show launcher"
 msgstr "Всегда показывать лаунчер "
 
-#: ../launcher_native.py:193
+#: ../launcher_native.py:195
 msgid "Primary output:"
 msgstr "Основной монитор:"
 
-#: ../launcher_native.py:216
+#: ../launcher_native.py:218
 msgid "Use:"
 msgstr "Использовать:"
 
-#: ../launcher_native.py:221
+#: ../launcher_native.py:223
 msgid "GOG launcher"
 msgstr "Лаунчер GOG"
 
-#: ../launcher_native.py:226
+#: ../launcher_native.py:228
 msgid "Games Nebula launcher"
 msgstr "Лаунчер Games Nebula"
 
-#: ../launcher_scummvm.py:323
+#: ../launcher_scummvm.py:325
 msgid "Game specific ScummVM settings"
 msgstr "Настройки ScummVM для этой игры"
 
@@ -728,27 +732,27 @@ msgstr "Исполняемый файл DOS/Windows"
 msgid "Arguments (optional)"
 msgstr "Аргументы (необязательно)"
 
-#: ../launcher_wine.py:452
+#: ../launcher_wine.py:454
 msgid "Windows version"
 msgstr "Версия Windows"
 
-#: ../launcher_wine.py:462
+#: ../launcher_wine.py:464
 msgid "Use own wine prefix"
 msgstr "Использовать свой префикс wine"
 
-#: ../launcher_wine.py:468
+#: ../launcher_wine.py:470
 msgid "WINEARCH"
 msgstr "WINEARCH"
 
-#: ../launcher_wine.py:484
+#: ../launcher_wine.py:486
 msgid "Capture the mouse in fullscreen windows"
 msgstr "Удерживать мышь в полноэкранных окнах"
 
-#: ../launcher_wine.py:490
+#: ../launcher_wine.py:492
 msgid "Emulate a virtual desktop"
 msgstr "Эмулировать виртуальный рабочий стол"
 
-#: ../launcher_wine.py:496 ../settings_dosbox.py:108 ../settings_dosbox.py:158
+#: ../launcher_wine.py:498 ../settings_dosbox.py:108 ../settings_dosbox.py:158
 #: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:477
 #: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:102
 #: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:124
@@ -772,7 +776,7 @@ msgstr "Эмулировать виртуальный рабочий стол"
 msgid "Width"
 msgstr "Ширина"
 
-#: ../launcher_wine.py:507 ../settings_dosbox.py:117 ../settings_dosbox.py:167
+#: ../launcher_wine.py:509 ../settings_dosbox.py:117 ../settings_dosbox.py:167
 #: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:485
 #: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:110
 #: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:133
@@ -796,11 +800,11 @@ msgstr "Ширина"
 msgid "Height"
 msgstr "Высота"
 
-#: ../launcher_wine.py:523
+#: ../launcher_wine.py:525
 msgid "Game specific Wine settings:"
 msgstr "Настройки Wine для этой игры:"
 
-#: ../launcher_wine.py:528
+#: ../launcher_wine.py:530
 msgid "Current wine prefix settings"
 msgstr "Настройки текущего префикса Wine"
 
@@ -1545,6 +1549,8 @@ msgstr "Включить эмуляцию ipx поверх UDP/IP."
 #: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:123
 #: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:217
 #: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:107
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:203
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:260
 #: ../../games_nebula_goglib_scripts/prince_of_persia_the_sands_of_time/settings.py:241
 #: ../../games_nebula_goglib_scripts/prince_of_persia_the_two_thrones/settings.py:220
 #: ../../games_nebula_goglib_scripts/prince_of_persia_warrior_within/settings.py:241
@@ -1831,11 +1837,13 @@ msgstr "Blood Rayne 2"
 
 #: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:77
 #: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:74
+#: ../../games_nebula_goglib_scripts/pathologic_classic_hd_game/settings.py:74
 msgid "Crop videos (FFmpeg)"
 msgstr "Обрезать видео (FFmpeg)"
 
 #: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:91
 #: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:79
+#: ../../games_nebula_goglib_scripts/pathologic_classic_hd_game/settings.py:92
 msgid "4:3 (no cropping)"
 msgstr "4:3 (без обрезки)"
 
@@ -1856,6 +1864,7 @@ msgstr "Скачать патч"
 #: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:90
 #: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:90
 #: ../../games_nebula_goglib_scripts/konung_legend_of_the_north/settings.py:170
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:84
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:217
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:272
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:327
@@ -2081,6 +2090,31 @@ msgstr "Omikron: The Nomad Soul"
 #: ../../games_nebula_goglib_scripts/omikron_the_nomad_soul/settings.py:44
 msgid "Old Games Widescreen Patch"
 msgstr "Old Games Widescreen Patch"
+
+#: ../../games_nebula_goglib_scripts/pathologic_classic_hd_game/settings.py:65
+msgid "Pathologic Classic HD"
+msgstr "Pathologic Classic HD"
+
+#: ../../games_nebula_goglib_scripts/pathologic_classic_hd_game/settings.py:97
+msgid "Crop and quit"
+msgstr "Обрезать и выйти"
+
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:44
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:115
+msgid "Pathologic"
+msgstr "Мор. Утопия"
+
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:61
+msgid "Configuration"
+msgstr "Настройки"
+
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:65
+msgid "Widescreen Addon"
+msgstr "Аддон для широкоформатных мониторов"
+
+#: ../../games_nebula_goglib_scripts/pathologic/settings.py:516
+msgid "Addon not found in download directory."
+msgstr "Аддон не найден в загрузочной директории."
 
 #: ../../games_nebula_goglib_scripts/planescape_torment/settings.py:319
 msgid "Patching..."
