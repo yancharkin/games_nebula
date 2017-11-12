@@ -1,12 +1,6 @@
 # Games Nebula
 Unofficial Linux client for GOG.
 
-#### Important notes
-- In terms of quality it's a prototype software at best
-- I'm not a programmer so code quality probably even worse than I think
-- Chances that I will re-write it properly are extremely low
-- But it works (most of the time) and has some cool and useful features
-
 ## Features
 - Listing, downloading and installing games from your gog library
 - Possibility to create you own (non-gog) library by writing simple scripts
@@ -35,7 +29,7 @@ Unofficial Linux client for GOG.
 ![conf_utilities](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/conf_utilities.png  "Configuration Utilities")
 
 ## Installation
-For the reasons stated above there is no "proper" packages for the application (and not planned at the moment). But it's not that hard to install.
+There is no "proper" packages for the application (and not planned at the moment). But it's not that hard to install.
 ### 1. Install dependencies
 #### Mandatory dependencies
 
@@ -82,16 +76,15 @@ For the reasons stated above there is no "proper" packages for the application (
 - [Scripts repository for gog games](https://github.com/yancharkin/games_nebula_goglib_scripts)
 - [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
 
-## How you can contribute
+## Roadmap
+While poorly coded, 'Games Nebula' has all features that I intended to include in it, so no new features planned.
 
-First of all you must know that I'm not planning to create "real" application. 'Games Nebula' is a quick and dirty solution. I created it for personal use and because it was fun to create. As long as it works I don't care if it's poorly written. So you should take this into considiration before contributing.
+**Things need to be done:**
+- fix bugs
+- organize code
+- improve code quality
+- port to python3
+- write replacement for lgogdownloader
+- create proper packages
 
-Right now you can contribute by:
-- reporting bugs
-- writing scipts for games
-- fixing broken English
-- making translations
-
-Feel free to contact me if you have any questions.
-
-If community become large enough I'll think about rewritting 'Games Nebula' properly.
+But for various reasons in the foreseeable future I'm not going to do more than fixing bugs.
