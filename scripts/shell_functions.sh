@@ -109,6 +109,19 @@ tar xvfJ "$DOWNLOAD_DIR/_distr/$FILE_NAME" --strip-components=1 -C \
 "$INSTALL_DIR/$GAME_NAME/game/"
 }
 
+setup_lavfilters () {
+LINK='https://github.com/Nevcairiel/LAVFilters/releases/download/0.69/LAVFilters-0.69-x86.zip'
+get_common_file 'LAVFilters-0.69-x86.zip' "$LINK"
+echo -e 'mkdir -p "$WINEPREFIX/drive_c/Program Files/LAVFilters"
+7z x -aoa -o"$WINEPREFIX/drive_c/Program Files/LAVFilters" \
+"$DOWNLOAD_DIR/_distr/LAVFilters-0.69-x86.zip"
+cd "$WINEPREFIX/drive_c/Program Files/LAVFilters"
+"$WINELOADER" regsvr32.exe LAVSplitter.ax
+"$WINELOADER" regsvr32.exe LAVVideo.ax
+"$WINELOADER" regsvr32.exe LAVAudio.ax' >> \
+"$ADDITIONS_FILE" && chmod +x "$ADDITIONS_FILE"
+}
+
 ### Other ######################################################################
 heroes_chronicles_create_links () {
 cd "$INSTALL_DIR/$GAME_NAME/game/"
