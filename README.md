@@ -77,16 +77,16 @@ There is no "proper" packages for the application (and not planned at the moment
 - [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
 
 ## Shortcuts
-**Ctrl + F** - Toggle fullscreen
-**Shift + T** - Toggle tabs visibility
-**Ctrl + T** - Add tab
-**Ctrl + W** - Close tab
-**Ctrl + Tab** - Next tab
-**Shift + Tab** - Previous tab
-**Ctrl + S** - Search
-**Ctrl + Q** - Quit
-**RMB on filter** - invert filter type
-**MMB on filter** - reset filter
+- **Ctrl + F** - Toggle fullscreen
+- **Shift + T** - Toggle tabs visibility
+- **Ctrl + T** - Add tab
+- **Ctrl + W** - Close tab
+- **Ctrl + Tab** - Next tab
+- **Shift + Tab** - Previous tab
+- **Ctrl + S** - Search
+- **Ctrl + Q** - Quit
+- **RMB on filter** - invert filter type
+- **MMB on filter** - reset filter
 
 ## Roadmap
 While poorly coded, 'Games Nebula' has all features that I intended to include in it, so no new features planned.
