@@ -335,8 +335,8 @@ msgid "Installation scripts"
 msgstr "Installation scripts"
 
 #: ../games_nebula.py:1653 ../games_nebula.py:1934
-msgid "Status filter behaivior:"
-msgstr "Status filter behaivior:"
+msgid "Status filter behaviour:"
+msgstr "Status filter behaviour:"
 
 #: ../games_nebula.py:1657 ../games_nebula.py:1677 ../games_nebula.py:1697
 #: ../games_nebula.py:1717 ../games_nebula.py:1737 ../games_nebula.py:1768
@@ -353,20 +353,20 @@ msgid "Exclude"
 msgstr "Exclude"
 
 #: ../games_nebula.py:1673 ../games_nebula.py:1954
-msgid "Tags filter 1 behaivior:"
-msgstr "Tags filter 1 behaivior:"
+msgid "Tags filter 1 behaviour:"
+msgstr "Tags filter 1 behaviour:"
 
 #: ../games_nebula.py:1693 ../games_nebula.py:1974
-msgid "Tags filter 2 behaivior:"
-msgstr "Tags filter 2 behaivior:"
+msgid "Tags filter 2 behaviour:"
+msgstr "Tags filter 2 behaviour:"
 
 #: ../games_nebula.py:1713 ../games_nebula.py:1994
-msgid "Tags filter 3 behaivior:"
-msgstr "Tags filter 3 behaivior:"
+msgid "Tags filter 3 behaviour:"
+msgstr "Tags filter 3 behaviour:"
 
 #: ../games_nebula.py:1733 ../games_nebula.py:2014
-msgid "Tags filter 4 behaivior:"
-msgstr "Tags filter 4 behaivior:"
+msgid "Tags filter 4 behaviour:"
+msgstr "Tags filter 4 behaviour:"
 
 #: ../games_nebula.py:1754 ../games_nebula.py:2035
 msgid "Filters color indication"
