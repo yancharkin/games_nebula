@@ -37,11 +37,11 @@ There is no "proper" packages for the application (and not planned at the moment
 
     sudo apt install python-gi python-bs4 python-lxml python-pil lgogdownloader innoextract
     
-**Arch**
+**Archlinux**
 
-    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow
+    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow innoextract
 
-*AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/), [innoextract](https://aur.archlinux.org/packages/innoextract/)*
+*AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)*
 
 **Fedora**
 
@@ -55,7 +55,7 @@ There is no "proper" packages for the application (and not planned at the moment
 
     sudo apt install gksu xterm curl tar p7zip-full cabextract unshield ffmpeg megatools wine winetricks dosbox scummvm
 
-**Arch**
+**Archlinux**
 
     sudo pacman -S gksu xterm curl tar p7zip cabextract unshield ffmpeg wine winetricks dosbox scummvm
     
