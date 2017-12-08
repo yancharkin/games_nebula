@@ -32,7 +32,7 @@ Unofficial Linux client for GOG.
 For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/packages/games_nebula/) (thanks to [mwohlert](https://github.com/mwohlert)). For other distros there is no "proper" packages yet. But it's not that hard to install.
 ### 1. Install dependencies
 
-#### Debian/Ubuntu:
+#### Debian/Ubuntu
 
 Mandatory dependencies:
 
