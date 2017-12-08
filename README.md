@@ -34,24 +34,24 @@ For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/pa
 
 #### Debian/Ubuntu:
 
-**Mandatory dependencies**
+Mandatory dependencies:
 
     sudo apt install python-gi python-bs4 python-lxml python-pil lgogdownloader innoextract
 
-**Optional (but highly recommended) dependencies**
+Optional (but highly recommended) dependencies:
 
     sudo apt install gksu xterm curl tar p7zip-full cabextract unshield ffmpeg megatools wine winetricks dosbox scummvm
     
 #### Archlinux
 If you want to install it yourself.
 
-**Mandatory dependencies**
+Mandatory dependencies:
 
     sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow innoextract
 
 *AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)*
 
-**Optional (but highly recommended) dependencies**
+Optional (but highly recommended) dependencies:
 
     sudo pacman -S gksu xterm curl tar p7zip cabextract unshield ffmpeg wine winetricks dosbox scummvm
     
@@ -59,13 +59,13 @@ If you want to install it yourself.
 
 #### Fedora
 
-**Mandatory dependencies**
+Mandatory dependencies:
 
     sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 innoextract
 
 *You have to compile [lgogdownloader](https://github.com/Sude-/lgogdownloader) yourself*
 
-**Optional (but highly recommended) dependencies**
+Optional (but highly recommended) dependencies:
 
     sudo dnf install xterm curl tar p7zip p7zip-plugins cabextract unshield megatools wine winetricks dosbox scummvm
 
