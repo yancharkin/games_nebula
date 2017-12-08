@@ -76,11 +76,6 @@ If you want to install it yourself.
 - Run **setup.sh**. It will create shortcut in main menu.
 - It's highly recommended to configure lgogdownloader **BEFORE** launching 'Games Nebula'. I tried to make login more user friendly, but it not always work. And for versions < 3.2 it's a mandatory.
 
-## Also...
-- If you have a lot of games in your library and/or slow CPU, first launch can take some time
-- [Scripts repository for gog games](https://github.com/yancharkin/games_nebula_goglib_scripts)
-- [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
-
 ## Shortcuts
 - **Ctrl + F** - Toggle fullscreen
 - **Shift + T** - Toggle tabs visibility
@@ -122,3 +117,7 @@ But for various reasons in the foreseeable future I'm not going to do more than 
 
 **Problem.** Native Linux game fails to launch  
 **Solution.** Check GOG store page, maybe you need to install additional libraries. Check terminal output.
+
+## Also...
+- [Scripts repository for gog games](https://github.com/yancharkin/games_nebula_goglib_scripts)
+- [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
