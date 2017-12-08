@@ -34,24 +34,24 @@ For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/pa
 
 #### Debian/Ubuntu
 
-Mandatory dependencies:
+*Mandatory dependencies:*
 
     sudo apt install python-gi python-bs4 python-lxml python-pil lgogdownloader innoextract
 
-Optional (but highly recommended) dependencies:
+*Optional (but highly recommended) dependencies:*
 
     sudo apt install gksu xterm curl tar p7zip-full cabextract unshield ffmpeg megatools wine winetricks dosbox scummvm
     
 #### Archlinux
 If you want to install it yourself.
 
-Mandatory dependencies:
+*Mandatory dependencies:*
 
     sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow innoextract
 
 *AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)*
 
-Optional (but highly recommended) dependencies:
+*Optional (but highly recommended) dependencies:*
 
     sudo pacman -S gksu xterm curl tar p7zip cabextract unshield ffmpeg wine winetricks dosbox scummvm
     
@@ -59,13 +59,13 @@ Optional (but highly recommended) dependencies:
 
 #### Fedora
 
-Mandatory dependencies:
+*Mandatory dependencies:*
 
     sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 innoextract
 
 *You have to compile [lgogdownloader](https://github.com/Sude-/lgogdownloader) yourself*
 
-Optional (but highly recommended) dependencies:
+*Optional (but highly recommended) dependencies:*
 
     sudo dnf install xterm curl tar p7zip p7zip-plugins cabextract unshield megatools wine winetricks dosbox scummvm
 
@@ -112,9 +112,11 @@ But for various reasons in the foreseeable future I'm not going to do more than 
 
 **Solution.** Launch 'start.sh' in terminal to get more info
 
+
 **Problem.** Login always fails.
 
 **Solution.** Use lgogdownloader directly. If you’ll managed to login with it successfully it will works in ‘Games Nebula’ as well. The only thing ‘Games Nebula’ can help you with is exporting cookies (this feature helpful if you are using lgogdownloader 3.1 - 3.2 for git version it’s usless). To do it you have to open ‘GOG.COM’ tab (in ‘Games Nebuls’) and login.
+
 
 **Problem.** Windows game crashes even though 'Games Nebula' has installation script for it.
 
@@ -122,6 +124,7 @@ But for various reasons in the foreseeable future I'm not going to do more than 
 - Your hardware may be not good enough (even if game works in Windows, it needs more resources when using Wine)
 - If you're using one wine prefix for all games, some dlls may conflict with each other. Usually it's better to use a separate prefix for every game (can be enabled in main settings or in the launcher)
 - Some games won't  work if you are enable virtual desktop
+
 
 **Problem.** Native Linux game fails to launch
 
