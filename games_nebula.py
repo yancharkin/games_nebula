@@ -28,7 +28,8 @@ import gettext
 
 from modules import mylib_create_banner, mylib_get_data, mylib_tags_create, mylib_tags_get_all, \
 mylib_tags_get, goglib_check_authorization, goglib_check_connection, goglib_get_data, \
-goglib_get_games_list, goglib_tags_create, goglib_tags_get_all, goglib_tags_get, autosetup
+goglib_get_games_list, goglib_tags_create, goglib_tags_get_all, goglib_tags_get, autosetup, \
+monitors
 
 style_provider_1 = Gtk.CssProvider()
 
@@ -122,7 +123,7 @@ class GUI:
         self.additional_windows_list = []
         self.additional_notebooks_list = []
 
-        self.get_monitors()
+        self.monitors_list, self.monitor_primary = monitors.get_monitors()
         self.config_load()
         self.parse_goglib_colors()
         self.parse_mylib_colors()
@@ -6560,20 +6561,6 @@ class GUI:
 
     def cb_combobox_winearch(self, combobox):
         self.winearch = combobox.get_active_text()
-
-    def get_monitors(self):
-
-        self.monitors_list = []
-        proc = subprocess.Popen(['xrandr'],stdout=subprocess.PIPE)
-        for line in proc.stdout.readlines():
-
-            if re.compile(r'\b({0})\b'.format('connected'), flags=re.IGNORECASE).search(line):
-                if 'primary' in line:
-                    self.monitors_list.append(line.split(' ')[0] + ' ' + line.split(' ')[3].split('+')[0])
-                else:
-                    self.monitors_list.append(line.split(' ')[0] + ' ' + line.split(' ')[2].split('+')[0])
-            if 'primary' in line:
-                self.monitor_primary = line.split(' ')[0] + ' ' + line.split(' ')[3].split('+')[0]
 
     def switch_monitor(self, switch):
         if switch == 'ON':

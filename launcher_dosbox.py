@@ -10,6 +10,8 @@ from gi.repository import Gtk, Gdk, GdkPixbuf
 import ConfigParser
 import gettext
 
+from modules import monitors
+
 global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
 global_config_parser = ConfigParser.ConfigParser()
 global_config_parser.read(global_config_file)
@@ -145,20 +147,6 @@ class GUI:
         config_parser.write(new_config_file)
         new_config_file.close()
 
-    def get_monitors(self):
-
-        self.monitors_list = []
-        proc = subprocess.Popen(['xrandr'],stdout=subprocess.PIPE)
-        for line in proc.stdout.readlines():
-
-            if re.compile(r'\b({0})\b'.format('connected'), flags=re.IGNORECASE).search(line):
-                if 'primary' in line:
-                    self.monitors_list.append(line.split(' ')[0] + ' ' + line.split(' ')[3].split('+')[0])
-                else:
-                    self.monitors_list.append(line.split(' ')[0] + ' ' + line.split(' ')[2].split('+')[0])
-            if 'primary' in line:
-                self.monitor_primary = line.split(' ')[0] + ' ' + line.split(' ')[3].split('+')[0]
-
     def get_banner(self):
 
         goglib_banners_dir = os.getenv('HOME') + '/.games_nebula/images/goglib_banners'
@@ -177,7 +165,7 @@ class GUI:
     def create_main_window(self):
 
         self.get_banner()
-        self.get_monitors()
+        self.monitors_list, self.monitor_primary = monitors.get_monitors()
 
         self.main_window = Gtk.Window(
             title = _("Games Nebula"),
