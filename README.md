@@ -47,7 +47,7 @@ If you want to install it yourself.
 
 *Mandatory dependencies:*
 
-    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow innoextract
+    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow innoextract xorg-xrandr
 
 *AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)*
 
