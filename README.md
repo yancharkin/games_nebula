@@ -1,13 +1,16 @@
 # Games Nebula
 Unofficial Linux client for GOG.
 
-**[Features](https://github.com/yancharkin/games_nebula#features)**  
-**[Screenshots](https://github.com/yancharkin/games_nebula#screenshots)**  
-**[Installation](https://github.com/yancharkin/games_nebula#installation)**  
-**[Shortcuts](https://github.com/yancharkin/games_nebula#shortcuts)**  
-**[Roadmap](https://github.com/yancharkin/games_nebula#roadmap)**  
-**[Troubleshooting](https://github.com/yancharkin/games_nebula#troubleshooting)**  
-**[Also...](https://github.com/yancharkin/games_nebula#also)**  
+- **[Features](https://github.com/yancharkin/games_nebula#features)**  
+- **[Screenshots](https://github.com/yancharkin/games_nebula#screenshots)**  
+- **[Installation](https://github.com/yancharkin/games_nebula#installation)**  
+   * [Debian/Ubuntu](https://github.com/yancharkin/games_nebula#debianubuntu)  
+   * [Archlinux](https://github.com/yancharkin/games_nebula#archlinux)  
+   * [Fedora](https://github.com/yancharkin/games_nebula#fedora)  
+- **[Shortcuts](https://github.com/yancharkin/games_nebula#shortcuts)**  
+- **[Roadmap](https://github.com/yancharkin/games_nebula#roadmap)**  
+- **[Troubleshooting](https://github.com/yancharkin/games_nebula#troubleshooting)**  
+- **[Also...](https://github.com/yancharkin/games_nebula#also)**  
 
 
 ## Features
