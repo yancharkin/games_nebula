@@ -1,6 +1,15 @@
 # Games Nebula
 Unofficial Linux client for GOG.
 
+**[Features](https://github.com/yancharkin/games_nebula#features)**  
+**[Screenshots](https://github.com/yancharkin/games_nebula#screenshots)**  
+**[Installation](https://github.com/yancharkin/games_nebula#installation)**  
+**[Shortcuts](https://github.com/yancharkin/games_nebula#shortcuts)**  
+**[Roadmap](https://github.com/yancharkin/games_nebula#roadmap)**  
+**[Troubleshooting](https://github.com/yancharkin/games_nebula#troubleshooting)**  
+**[Also...](https://github.com/yancharkin/games_nebula#also)**  
+
+
 ## Features
 - Listing, downloading and installing games from your gog library
 - Possibility to create you own (non-gog) library by writing simple scripts
@@ -12,6 +21,10 @@ Unofficial Linux client for GOG.
 ...and some other stuff.
 
 ## Screenshots
+<details>
+<summary>Show / hide</summary>
+<p>
+
 **Main window**
 
 ![main window screenshot](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/main_window.jpg  "Main window")
@@ -27,6 +40,8 @@ Unofficial Linux client for GOG.
 **Configuration utilities for 'Arcanum: Of Steamworks and Magick Obscura' and 'Planescape: Torment'**
 
 ![conf_utilities](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/conf_utilities.png  "Configuration Utilities")
+</p>
+</details>
 
 ## Installation
 For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/packages/games_nebula/) (thanks to [mwohlert](https://github.com/mwohlert)). For other distros there is no "proper" packages yet. But it's not that hard to install.
@@ -36,7 +51,7 @@ For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/pa
 
 *Mandatory dependencies:*
 
-    sudo apt install python-gi python-bs4 python-lxml python-pil lgogdownloader innoextract
+    sudo apt install python-gi python-bs4 python-lxml python-pil lgogdownloader innoextract x11-xserver-utils
 
 *Optional (but highly recommended) dependencies:*
 
@@ -61,7 +76,7 @@ If you want to install it yourself.
 
 *Mandatory dependencies:*
 
-    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 innoextract
+    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 innoextract xorg-x11-server-utils
 
 *You have to compile [lgogdownloader](https://github.com/Sude-/lgogdownloader) yourself*
 
@@ -87,6 +102,7 @@ If you want to install it yourself.
 - **Ctrl + Q** - Quit
 - **RMB on filter** - invert filter type
 - **MMB on filter** - reset filter
+- **RMB on game image** - add/edit tags
 
 ## Roadmap
 While poorly coded, 'Games Nebula' has all features that I intended to include in it, so no new features planned.
