@@ -50,30 +50,32 @@ Unofficial Linux client for GOG.
 For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/packages/games_nebula/) (thanks to [mwohlert](https://github.com/mwohlert)). For other distros there is no "proper" packages yet. But it's not that hard to install.
 ### 1. Install dependencies
 
+- **Mandatory dependencies** - with this dependencies installed you can install and run native games only.
+- **Optional dependencies**  - with this dependencies installed you can install all games from GOG catalog (but it doesn't necessarily mean all of them will work).
+
 #### Debian/Ubuntu
 
 *Mandatory dependencies:*
 
     sudo apt install python-gi python-bs4 python-lxml python-pil lgogdownloader innoextract x11-xserver-utils
 
-*Optional (but highly recommended) dependencies:*
+*Optional dependencies:*
 
     sudo apt install gksu xterm curl tar p7zip-full cabextract unshield ffmpeg megatools wine winetricks dosbox scummvm
     
 #### Archlinux
-If you want to install it yourself.
 
 *Mandatory dependencies:*
 
     sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow innoextract xorg-xrandr
 
-*AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)*
+AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)
 
-*Optional (but highly recommended) dependencies:*
+*Optional dependencies:*
 
     sudo pacman -S gksu xterm curl tar p7zip cabextract unshield ffmpeg wine winetricks dosbox scummvm
     
-*AUR: [megatools](https://aur.archlinux.org/packages/megatools/)*
+AUR: [megatools](https://aur.archlinux.org/packages/megatools/)
 
 #### Fedora
 
@@ -81,13 +83,13 @@ If you want to install it yourself.
 
     sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 innoextract xorg-x11-server-utils
 
-*You have to compile [lgogdownloader](https://github.com/Sude-/lgogdownloader) yourself*
+You have to compile [lgogdownloader](https://github.com/Sude-/lgogdownloader) yourself
 
-*Optional (but highly recommended) dependencies:*
+*Optional dependencies:*
 
     sudo dnf install xterm curl tar p7zip p7zip-plugins cabextract unshield megatools wine winetricks dosbox scummvm
 
-*[RPM Fusion](https://rpmfusion.org/): ffmpeg*
+[RPM Fusion](https://rpmfusion.org/): ffmpeg
 
 ### 2. Install application
 - Download the [latest release](https://github.com/yancharkin/games_nebula/releases) and extract it anywhere you like.
