@@ -25,7 +25,7 @@ Unofficial Linux client for GOG.
 
 ## Screenshots
 <details>
-<summary>Show / hide</summary>
+<summary>Click to show/hide screenshots</summary>
 <p>
 
 **Main window**
