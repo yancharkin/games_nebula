@@ -83,7 +83,7 @@ AUR: [megatools](https://aur.archlinux.org/packages/megatools/)
 
     sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 innoextract xorg-x11-server-utils
 
-You have to compile [lgogdownloader](https://github.com/Sude-/lgogdownloader) yourself
+You have to compile [lgogdownloader](https://github.com/Sude-/lgogdownloader) yourself, or use [mmansell/lgogdownloader COPR](https://copr.fedorainfracloud.org/coprs/mmansell/lgogdownloader/) repository.
 
 *Optional dependencies:*
 
