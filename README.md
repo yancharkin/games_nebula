@@ -83,7 +83,7 @@ AUR: [megatools](https://aur.archlinux.org/packages/megatools/)
 
     sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 innoextract xorg-x11-server-utils
 
-You have to compile [lgogdownloader](https://github.com/Sude-/lgogdownloader) yourself, or use [mmansell/lgogdownloader COPR](https://copr.fedorainfracloud.org/coprs/mmansell/lgogdownloader/) repository.
+Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/lgogdownloader/)
 
 *Optional dependencies:*
 
@@ -128,7 +128,7 @@ But for various reasons in the foreseeable future I'm not going to do more than 
 **Solution.** Launch 'start.sh' in terminal to get more info
 
 **Problem.** Login always fails  
-**Solution.** Use lgogdownloader directly. If you’ll managed to login with it successfully it will works in ‘Games Nebula’ as well. The only thing ‘Games Nebula’ can help you with is exporting cookies (this feature helpful if you are using lgogdownloader 3.1 - 3.2 for git version it’s usless). To do it you have to open ‘GOG.COM’ tab (in ‘Games Nebuls’) and login.
+**Solution.** Use lgogdownloader directly. If you’ll managed to login with it successfully it will works in ‘Games Nebula’ as well. The only thing ‘Games Nebula’ can help you with is exporting cookies (this feature helpful if you are using lgogdownloader 3.1 - 3.2 for git version it’s usless). To do it you have to open ‘GOG.COM’ tab (in ‘Games Nebuls’) and login. For [some people](https://github.com/Sude-/lgogdownloader/issues/129) it's impossible to login with lgogdownloader > 3.2. For now the only solution is to use lgogdownloader 3.2.
 
 **Problem.** Windows game crashes even though 'Games Nebula' has installation script for it  
 **Solution.** A lot of things can go wrong with Windows games :)
