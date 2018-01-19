@@ -5852,7 +5852,8 @@ class GUI:
 
         line = io.readline()
 
-        print line.translate(None, '\n')
+        if (process_name != 'check_for_new_games' ) and (process_name != 'update_goglib'):
+            print line.translate(None, '\n')
 
         if self.goglib_page_exists():
             self.progressbar_goglib.pulse()
@@ -5912,8 +5913,12 @@ class GUI:
 
         if process_name == 'check_for_new_games':
             if '\n' in line:
-                if line.translate(None, '\n') not in self.goglib_games_list:
-                    self.goglib_new_games_list.append(line.translate(None, '\n'))
+                if not ' ' in line:
+                    game_name = line.replace('\n', '')
+                else:
+                    game_name = line.split(' ')[0].translate(None, '\x1b[32m\n')
+                if  game_name not in self.goglib_games_list:
+                    self.goglib_new_games_list.append(game_name)
 
         if process_name == 'update_goglib':
             self.goglib_updated_games_list.append(line)
