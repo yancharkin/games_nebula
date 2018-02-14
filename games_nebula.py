@@ -5913,10 +5913,9 @@ class GUI:
 
         if process_name == 'check_for_new_games':
             if '\n' in line:
-                if not ' ' in line:
-                    game_name = line.replace('\n', '')
-                else:
-                    game_name = line.split(' ')[0].translate(None, '\x1b[32m\n')
+                game_name = line.split(' ')[0].translate(None, '\n')
+                if '\x1b[32m' in game_name:
+                    game_name = game_name.split('\x1b[32m')[1]
                 if  game_name not in self.goglib_games_list:
                     self.goglib_new_games_list.append(game_name)
 
