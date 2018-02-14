@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- Mode: Python; coding: utf-8; indent-tabs-install_mode: t; c-basic-offset: 4; tab-width: 4 -*-
 
 import sys, os, subprocess, re
@@ -152,11 +152,11 @@ class GUI:
 
                     if arguments != '':
                         start_lines = ['#!/bin/bash\n', \
-                        'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
+                        'python "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
                         new_exe_path + ' ' + arguments + '"']
                     else:
                         start_lines = ['#!/bin/bash\n', \
-                        'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
+                        'python "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + \
                         new_exe_path + '"']
 
                     start_file = open(game_dir + '/start.sh', 'w')
@@ -164,7 +164,7 @@ class GUI:
                         start_file.write(line)
                     start_file.close()
 
-                    os.execl(sys.executable, 'python', __file__, game_name, new_exe_path)
+                    os.execl(sys.executable, sys.executable, __file__, game_name, new_exe_path)
 
                 else:
                     message_dialog.destroy()
@@ -831,7 +831,7 @@ class GUI:
         self.set_win_ver_command()
         self.set_additions_command()
 
-        launch_command = 'python2 ' + nebula_dir + '/settings_wine.py'
+        launch_command = 'python ' + nebula_dir + '/settings_wine.py'
 
         full_command = self.win_ver_command + '\n' + \
         self.additions_command + '\n' + \
@@ -867,7 +867,7 @@ class GUI:
 
         self.exe_path = self.get_new_exe_path()
 
-        os.execl(sys.executable, 'python', __file__, self.game_name, self.exe_path)
+        os.execl(sys.executable, sys.executable, __file__, self.game_name, self.exe_path)
 
     def get_new_exe_path(self):
 

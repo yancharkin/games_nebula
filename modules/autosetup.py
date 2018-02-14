@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- Mode: Python; coding: utf-8; -*-
 
 # Available option:
@@ -53,7 +53,7 @@ def autosetup(lib, install_dir, game_name):
                     os.system('mv ' + start_file_path + ' ' + start_gog_path)
 
                 start_lines = ['#!/bin/bash\n',
-                'python2 "$NEBULA_DIR/launcher_native.py" ' + game_name]
+                'python "$NEBULA_DIR/launcher_native.py" ' + game_name]
 
                 start_file = open(start_file_path, 'w')
                 for line in start_lines:
@@ -111,10 +111,10 @@ def autosetup(lib, install_dir, game_name):
                     overrides = parser.get(game_name, 'winedlloverrides')
                     start_lines = ['#!/bin/bash\n',
                     'export WINEDLLOVERRIDES="' + overrides + '"\n',
-                    'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + win_exe + '"']
+                    'python "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + win_exe + '"']
                 else:
                     start_lines = ['#!/bin/bash\n',
-                    'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + win_exe + '"']
+                    'python "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' "' + win_exe + '"']
 
                 start_file_path = install_dir + '/' + game_name + '/start.sh'
                 start_file = open(start_file_path, 'w')
@@ -145,7 +145,7 @@ def autosetup(lib, install_dir, game_name):
                 print "Writing additions.sh"
 
                 additions_lines = ['#!/bin/bash\n',
-                'python2 "$NEBULA_DIR/dialogs.py" "progress" "' + 'winetricks --gui ' + winetricks + '"\n']
+                'python "$NEBULA_DIR/dialogs.py" "progress" "' + 'winetricks --gui ' + winetricks + '"\n']
 
                 additions_file_path = install_dir + '/' + game_name + '/additions.sh'
                 additions_file = open(additions_file_path, 'w')
@@ -165,7 +165,7 @@ def autosetup(lib, install_dir, game_name):
                 print "Writing start.sh"
 
                 start_lines = ['#!/bin/bash\n',
-                'python2 "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
+                'python "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
 
                 exe_dir = ''
                 if '\\' in dos_exe:
@@ -247,7 +247,7 @@ def autosetup(lib, install_dir, game_name):
                 print "Writing start.sh"
 
                 start_lines = ['#!/bin/bash\n',
-                'python2 "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
+                'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
 
                 start_file_path = install_dir + '/' + game_name + '/start.sh'
                 start_file = open(start_file_path, 'w')

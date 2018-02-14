@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- Mode: Python; coding: utf-8; -*-
 
 import sys, os, subprocess, re
@@ -459,7 +459,7 @@ class GUI:
         os.system(launch_command)
 
         self.config_save()
-        os.execl(sys.executable, 'python', __file__, self.game_name)
+        os.execl(sys.executable, sys.executable, __file__, self.game_name)
 
     def cb_entries(self, entry):
         if entry.get_name() == 'command_before':

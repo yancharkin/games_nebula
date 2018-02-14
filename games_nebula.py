@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- Mode: Python; coding: utf-8; -*-
 #
 # "Games Nebula"
@@ -59,7 +59,6 @@ goglib_game_grids_current_list = []
 goglib_games_banners_list = []
 goglib_setup_buttons_list = []
 goglib_launch_buttons_list = []
-#~ goglib_pixbufs_list = []
 
 mylib_game_grids_full_list = []
 mylib_game_grids_current_list = []
@@ -100,7 +99,6 @@ def file_exist_in_dir(path):
     return any(isfile(join(path, i)) for i in os.listdir(path))
 
 os.environ['NEBULA_DIR'] = nebula_dir
-#~ os.environ['WINEARCH'] = 'win32'
 
 class GUI:
 
@@ -5222,7 +5220,7 @@ class GUI:
             os.system('cp ' + settings_py_path + ' ' + game_dir)
             os.system('echo "Writing settings.sh"')
             settings_lines = ['#!/bin/bash\n',
-            'python2 "$INSTALL_DIR/' + game_name + '/settings.py"']
+            'python "$INSTALL_DIR/' + game_name + '/settings.py"']
             settings_file = open(game_dir + '/settings.sh', 'w')
             for line in settings_lines:
                 settings_file.write(line)
@@ -5381,7 +5379,7 @@ class GUI:
                     update_conf_file(game_dir + '/dosbox_settings.conf')
 
                 start_lines = ['#!/bin/bash\n',
-                'python2 "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
+                'python "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
 
                 start_file = open(game_dir + '/start.sh', 'w')
                 for line in start_lines:
@@ -5408,7 +5406,7 @@ class GUI:
                 ' ' + game_dir + '/scummvmrc')
 
                 start_lines = ['#!/bin/bash\n',
-                'python2 "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
+                'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
 
                 start_file = open(game_dir + '/start.sh', 'w')
                 for line in start_lines:
@@ -5507,7 +5505,7 @@ class GUI:
                     update_conf_file(game_dir + '/dosbox_settings.conf')
 
                 start_lines = ['#!/bin/bash\n',
-                'python2 "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
+                'python "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
 
                 start_file = open(game_dir + '/start.sh', 'w')
                 for line in start_lines:
@@ -5552,7 +5550,7 @@ class GUI:
                     exe_name = 'NOEXE'
 
                 start_lines = ['#!/bin/bash\n',
-                'python2 "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' ' + exe_name]
+                'python "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' ' + exe_name]
                 start_file = open(game_dir + '/start.sh', 'w')
                 for line in start_lines:
                     start_file.write(line)
@@ -5598,7 +5596,7 @@ class GUI:
             os.system('cp ' + settings_py_path + ' ' + game_dir)
             os.system('echo "Writing settings.sh"')
             settings_lines = ['#!/bin/bash\n',
-            'python2 "$INSTALL_DIR/' + game_name + '/settings.py"']
+            'python "$INSTALL_DIR/' + game_name + '/settings.py"']
             settings_file = open(game_dir + '/settings.sh', 'w')
             for line in settings_lines:
                 settings_file.write(line)
@@ -5718,7 +5716,7 @@ class GUI:
                                 os.system('mv ' + start_file_path + ' ' + start_gog_path)
 
                             start_lines = ['#!/bin/bash\n',
-                            'python2 "$NEBULA_DIR/launcher_native.py" ' + game_name]
+                            'python "$NEBULA_DIR/launcher_native.py" ' + game_name]
 
                             start_file = open(start_file_path, 'w')
                             for line in start_lines:
@@ -5843,7 +5841,7 @@ class GUI:
                     for line in self.goglib_updated_games_list:
                         updated_file.write(line)
                     updated_file.close()
-                    
+
                     self.config_save()
                     os.execl(sys.executable, sys.executable, *sys.argv)
 
@@ -5963,7 +5961,7 @@ class GUI:
 
         os.environ['WINEPREFIX'] = os.getenv('HOME') + '/.games_nebula/wine_prefix'
 
-        os.system('python2 ' + nebula_dir + '/settings_wine.py')
+        os.system('python ' + nebula_dir + '/settings_wine.py')
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
@@ -5980,7 +5978,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        os.system('python2 ' + nebula_dir + '/winetricks_cache_backup.py')
+        os.system('python ' + nebula_dir + '/winetricks_cache_backup.py')
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
@@ -6031,14 +6029,14 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        mylib_has_new_scripts = os.system('python2 ' + nebula_dir + '/get_scripts.py ' + lib + ' ' + str(overwrite))
+        mylib_has_new_scripts = os.system('python ' + nebula_dir + '/get_scripts.py ' + lib + ' ' + str(overwrite))
 
         # Ugly but works
         if mylib_has_new_scripts == 0:
             print("No new scripts.")
         else:
             print("New scripts downloaded!")
-            os.execl(sys.executable, 'python2', __file__)
+            os.execl(sys.executable, sys.executable, *sys.argv)
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
@@ -6064,15 +6062,15 @@ class GUI:
 
         dosbox_global_config = os.getenv('HOME') + '/.games_nebula/config/dosbox.conf'
 
-        os.system('python2 ' + nebula_dir + '/settings_dosbox.py ' \
+        os.system('python ' + nebula_dir + '/settings_dosbox.py ' \
         + dosbox_global_config + ' global ' + dosbox_version)
 
         # TODO Use if special config tool for svn-daum build exists (settings_dosbox_svn_daum.py)
         #~ if (dosbox_version == 'stable') or (dosbox_version == 'svn'):
-            #~ os.system('python2 ' + nebula_dir + '/settings_dosbox.py ' + \
+            #~ os.system('python ' + nebula_dir + '/settings_dosbox.py ' + \
             #~ dosbox_global_config + ' global ' + dosbox_version)
         #~ elif dosbox_version == 'svn_daum':
-            #~ os.system('python2 ' + nebula_dir + '/dosbox_settings_svn_daum.py ' + \
+            #~ os.system('python ' + nebula_dir + '/dosbox_settings_svn_daum.py ' + \
             #~ dosbox_global_config + ' global ' + dosbox_version)
 
         self.main_window.show()
