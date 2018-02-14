@@ -5840,12 +5840,11 @@ class GUI:
                 if len(self.goglib_updated_games_list) > 1:
 
                     updated_file = open(config_dir + '/games_list', 'w')
-
                     for line in self.goglib_updated_games_list:
                         updated_file.write(line)
-
                     updated_file.close()
-
+                    
+                    self.config_save()
                     os.execl(sys.executable, sys.executable, *sys.argv)
 
                 return False
@@ -6892,6 +6891,7 @@ class GUI:
             self.main_window.show()
 
             if response == Gtk.ResponseType.OK:
+                self.config_save()
                 Gtk.main_quit()
 
     def set_environ(self, game_name, download_dir, install_dir):
