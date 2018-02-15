@@ -57,7 +57,14 @@ For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/pa
 
 *Mandatory dependencies:*
 
+Python 2
+
     sudo apt install python-gi python-bs4 python-lxml python-pil lgogdownloader innoextract x11-xserver-utils
+
+Python 3 (master branch only)
+
+    sudo apt install python3-gi python3-bs4 python3-lxml python3-pil lgogdownloader innoextract x11-xserver-utils
+
 
 *Optional dependencies:*
 
@@ -67,7 +74,13 @@ For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/pa
 
 *Mandatory dependencies:*
 
+Python 2
+
     sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow innoextract xorg-xrandr
+
+Python 3 (master branch only)
+
+    sudo pacman -S python-gobject python-beautifulsoup4 python-lxml python-pillow innoextract xorg-xrandr
 
 AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)
 
@@ -81,7 +94,13 @@ AUR: [megatools](https://aur.archlinux.org/packages/megatools/)
 
 *Mandatory dependencies:*
 
+Python 2
+
     sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 innoextract xorg-x11-server-utils
+
+Python 3 (master branch only)
+
+    sudo dnf install python3 python3-gobject python3-pillow python3-beautifulsoup4 innoextract xorg-x11-server-utils
 
 Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/lgogdownloader/)
 
@@ -116,11 +135,9 @@ While poorly coded, 'Games Nebula' has all features that I intended to include i
 - fix bugs
 - organize code
 - improve code quality
-- port to python3
+- ~~port to python3~~
 - write replacement for lgogdownloader
 - create proper packages
-
-But for various reasons in the foreseeable future I'm not going to do more than fixing bugs.
 
 ## Troubleshooting
 
