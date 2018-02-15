@@ -1,30 +1,15 @@
-#!/usr/bin/env python
-# -*- Mode: Python; coding: utf-8; -*-
-
-# Available option:
-#   image
-#   native_exe
-#   native_settings_exe
-#   win_exe
-#   winedlloverrides
-#   win_settings_exe
-#   winetricks
-#   dos_iso
-#   dos_exe
-#   dos_settings_exe
-#   scummvm_name
-#   scummvm_id
-#   special
-#   win_reg1, win_reg2... win_reg n
-
 import os, sys
-import ConfigParser
 
-import get_banner
+try:
+    from ConfigParser import ConfigParser as ConfigParser
+except:
+    from configparser import ConfigParser as ConfigParser
+
+from modules import get_banner
 
 def autosetup(lib, install_dir, game_name):
 
-    parser = ConfigParser.ConfigParser()
+    parser = ConfigParser()
 
     if lib == 'goglib':
         parser.read(os.getenv('HOME') + '/.games_nebula/scripts/goglib/autosetup.ini')
@@ -38,13 +23,13 @@ def autosetup(lib, install_dir, game_name):
         if parser.has_option(game_name, 'image'):
             image = parser.get(game_name, 'image')
             if image != '':
-                print "Downloading image"
+                print("Downloading image")
                 get_banner.get_banner(game_name, image, banners_dir, lib)
 
         if parser.has_option(game_name, 'native_exe'):
             native_exe = parser.get(game_name, 'native_exe')
             if native_exe != '':
-                print "Writing start.sh"
+                print("Writing start.sh")
 
                 start_file_path = install_dir + '/' + game_name + '/start.sh'
                 start_gog_path = install_dir + '/' + game_name + '/start_gog.sh'
@@ -82,7 +67,7 @@ def autosetup(lib, install_dir, game_name):
         if parser.has_option(game_name, 'native_settings_exe'):
             native_settings_exe = parser.get(game_name, 'native_settings_exe')
             if native_settings_exe != '':
-                print "Writing settings.sh"
+                print("Writing settings.sh")
 
                 if '/' in native_settings_exe:
                     native_settings_exe_dir = native_settings_exe.split('/')[0]
@@ -105,7 +90,7 @@ def autosetup(lib, install_dir, game_name):
         if parser.has_option(game_name, 'win_exe'):
             win_exe = parser.get(game_name, 'win_exe')
             if win_exe != '':
-                print "Writing start.sh"
+                print("Writing start.sh")
 
                 if parser.has_option(game_name, 'winedlloverrides'):
                     overrides = parser.get(game_name, 'winedlloverrides')
@@ -126,7 +111,7 @@ def autosetup(lib, install_dir, game_name):
         if parser.has_option(game_name, 'win_settings_exe'):
             win_settings_exe = parser.get(game_name, 'win_settings_exe')
             if win_settings_exe != '':
-                print "Writing settings.sh"
+                print("Writing settings.sh")
 
                 settings_lines = ['#!/bin/bash\n',
                 'cd "$INSTALL_DIR/' + game_name + '/game"\n',
@@ -142,7 +127,7 @@ def autosetup(lib, install_dir, game_name):
         if parser.has_option(game_name, 'winetricks'):
             winetricks = parser.get(game_name, 'winetricks')
             if winetricks != '':
-                print "Writing additions.sh"
+                print("Writing additions.sh")
 
                 additions_lines = ['#!/bin/bash\n',
                 'python "$NEBULA_DIR/dialogs.py" "progress" "' + 'winetricks --gui ' + winetricks + '"\n']
@@ -162,7 +147,7 @@ def autosetup(lib, install_dir, game_name):
         if parser.has_option(game_name, 'dos_exe'):
             dos_exe = parser.get(game_name, 'dos_exe')
             if dos_exe != '':
-                print "Writing start.sh"
+                print("Writing start.sh")
 
                 start_lines = ['#!/bin/bash\n',
                 'python "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
@@ -206,7 +191,7 @@ def autosetup(lib, install_dir, game_name):
         if parser.has_option(game_name, 'dos_settings_exe'):
             dos_settings_exe = parser.get(game_name, 'dos_settings_exe')
             if dos_settings_exe != '':
-                print "Writing dosbox_settings.conf"
+                print("Writing dosbox_settings.conf")
 
                 exe_dir = ''
                 if '\\' in dos_settings_exe:
@@ -244,7 +229,7 @@ def autosetup(lib, install_dir, game_name):
             scummvm_id = parser.get(game_name, 'scummvm_id')
 
             if scummvm_id != '':
-                print "Writing start.sh"
+                print("Writing start.sh")
 
                 start_lines = ['#!/bin/bash\n',
                 'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
@@ -273,7 +258,7 @@ def autosetup(lib, install_dir, game_name):
         if parser.has_option(game_name, 'win_reg1'):
             win_reg1 = parser.get(game_name, 'win_reg1')
             if win_reg1 != '':
-                print "Writing additions.sh, reg keys"
+                print("Writing additions.sh, reg keys")
 
                 options_list = parser.options(game_name)
 

@@ -1,17 +1,18 @@
-#!/usr/bin/env python
-# -*- Mode: Python; coding: utf-8; indent-tabs-install_mode: t; c-basic-offset: 4; tab-width: 4 -*-
-
 import sys, os, subprocess, re
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf
-import ConfigParser
 import gettext
+
+try:
+    from ConfigParser import ConfigParser as ConfigParser
+except:
+    from configparser import ConfigParser as ConfigParser
 
 from modules import monitors
 
 global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
-global_config_parser = ConfigParser.ConfigParser()
+global_config_parser = ConfigParser()
 global_config_parser.read(global_config_file)
 gtk_theme = global_config_parser.get('visuals', 'gtk_theme')
 gtk_dark = global_config_parser.getboolean('visuals', 'gtk_dark')
@@ -202,7 +203,7 @@ class GUI:
     def config_load(self):
 
         config_file = self.install_dir + '/' + self.game_name + '/config.ini'
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_file)
 
         if not config_parser.has_section('Settings'):
@@ -210,91 +211,91 @@ class GUI:
 
         if not config_parser.has_option('Settings', 'wine'):
             self.wine = 'global'
-            config_parser.set('Settings', 'wine', self.wine)
+            config_parser.set('Settings', 'wine', str(self.wine))
         else:
             self.wine = config_parser.get('Settings', 'wine')
 
         if not config_parser.has_option('Settings', 'wine_path'):
             self.wine_path = global_wine_path
-            config_parser.set('Settings', 'wine_path', self.wine_path)
+            config_parser.set('Settings', 'wine_path', str(self.wine_path))
         else:
             self.wine_path = config_parser.get('Settings', 'wine_path')
 
         if not config_parser.has_option('Settings', 'wine_version'):
             self.wine_version = global_wine_version
-            config_parser.set('Settings', 'wine_version', self.wine_version)
+            config_parser.set('Settings', 'wine_version', str(self.wine_version))
         else:
             self.wine_version = config_parser.get('Settings', 'wine_version')
 
         if not config_parser.has_option('Settings', 'monitor'):
             self.monitor = global_monitor
-            config_parser.set('Settings', 'monitor', self.monitor)
+            config_parser.set('Settings', 'monitor', str(self.monitor))
         else:
             self.monitor = config_parser.getint('Settings', 'monitor')
 
         if not config_parser.has_option('Settings', 'launcher'):
             self.launcher = True
-            config_parser.set('Settings', 'launcher', self.launcher)
+            config_parser.set('Settings', 'launcher', str(self.launcher))
         else:
             self.launcher = config_parser.getboolean('Settings', 'launcher')
 
         if not config_parser.has_option('Settings', 'show_banner'):
             self.show_banner = True
-            config_parser.set('Settings', 'show_banner', self.show_banner)
+            config_parser.set('Settings', 'show_banner', str(self.show_banner))
         else:
             self.show_banner = config_parser.getboolean('Settings', 'show_banner')
 
         if not config_parser.has_option('Settings', 'win_ver'):
             self.win_ver = 0
-            config_parser.set('Settings', 'win_ver', self.win_ver)
+            config_parser.set('Settings', 'win_ver', str(self.win_ver))
         else:
             self.win_ver = config_parser.getint('Settings', 'win_ver')
 
         if not config_parser.has_option('Settings', 'virtual_desktop'):
             self.virtual_desktop = False
-            config_parser.set('Settings', 'virtual_desktop', self.virtual_desktop)
+            config_parser.set('Settings', 'virtual_desktop', str(self.virtual_desktop))
         else:
             self.virtual_desktop = config_parser.getboolean('Settings', 'virtual_desktop')
 
         if not config_parser.has_option('Settings', 'virtual_desktop_width'):
             self.virtual_desktop_width = ''
-            config_parser.set('Settings', 'virtual_desktop_width', self.virtual_desktop_width)
+            config_parser.set('Settings', 'virtual_desktop_width', str(self.virtual_desktop_width))
         else:
             self.virtual_desktop_width = config_parser.get('Settings', 'virtual_desktop_width')
 
         if not config_parser.has_option('Settings', 'virtual_desktop_height'):
             self.virtual_desktop_height = ''
-            config_parser.set('Settings', 'virtual_desktop_height', self.virtual_desktop_height)
+            config_parser.set('Settings', 'virtual_desktop_height', str(self.virtual_desktop_height))
         else:
             self.virtual_desktop_height = config_parser.get('Settings', 'virtual_desktop_height')
 
         if not config_parser.has_option('Settings', 'mouse_capture'):
             self.mouse_capture = False
-            config_parser.set('Settings', 'mouse_capture', self.mouse_capture)
+            config_parser.set('Settings', 'mouse_capture', str(self.mouse_capture))
         else:
             self.mouse_capture = config_parser.getboolean('Settings', 'mouse_capture')
 
         if not config_parser.has_option('Settings', 'own_prefix'):
             self.own_prefix = False
-            config_parser.set('Settings', 'own_prefix', self.own_prefix)
+            config_parser.set('Settings', 'own_prefix', str(self.own_prefix))
         else:
             self.own_prefix = config_parser.getboolean('Settings', 'own_prefix')
 
         if not config_parser.has_option('Settings', 'winearch'):
             self.winearch = 'win32'
-            config_parser.set('Settings', 'winearch', self.winearch)
+            config_parser.set('Settings', 'winearch', str(self.winearch))
         else:
             self.winearch = config_parser.get('Settings', 'winearch')
 
         if not config_parser.has_option('Settings', 'command_before'):
             self.command_before = ''
-            config_parser.set('Settings', 'command_before', self.command_before)
+            config_parser.set('Settings', 'command_before', str(self.command_before))
         else:
             self.command_before = config_parser.get('Settings', 'command_before')
 
         if not config_parser.has_option('Settings', 'command_after'):
             self.command_after = ''
-            config_parser.set('Settings', 'command_after', self.command_after)
+            config_parser.set('Settings', 'command_after', str(self.command_after))
         else:
             self.command_after = config_parser.get('Settings', 'command_after')
 
@@ -305,24 +306,24 @@ class GUI:
     def config_save(self):
 
         config_file = self.install_dir + '/' + self.game_name + '/config.ini'
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_file)
 
-        config_parser.set('Settings', 'wine', self.wine)
-        config_parser.set('Settings', 'wine_path', self.wine_path)
-        config_parser.set('Settings', 'wine_version', self.wine_version)
-        config_parser.set('Settings', 'monitor', self.monitor)
-        config_parser.set('Settings', 'launcher', self.launcher)
-        config_parser.set('Settings', 'show_banner', self.show_banner)
-        config_parser.set('Settings', 'win_ver', self.win_ver)
-        config_parser.set('Settings', 'virtual_desktop', self.virtual_desktop)
-        config_parser.set('Settings', 'virtual_desktop_width', self.virtual_desktop_width)
-        config_parser.set('Settings', 'virtual_desktop_height', self.virtual_desktop_height)
-        config_parser.set('Settings', 'mouse_capture', self.mouse_capture)
-        config_parser.set('Settings', 'own_prefix', self.own_prefix)
-        config_parser.set('Settings', 'command_before', self.command_before)
-        config_parser.set('Settings', 'command_after', self.command_after)
-        config_parser.set('Settings', 'winearch', self.winearch)
+        config_parser.set('Settings', 'wine', str(self.wine))
+        config_parser.set('Settings', 'wine_path', str(self.wine_path))
+        config_parser.set('Settings', 'wine_version', str(self.wine_version))
+        config_parser.set('Settings', 'monitor', str(self.monitor))
+        config_parser.set('Settings', 'launcher', str(self.launcher))
+        config_parser.set('Settings', 'show_banner', str(self.show_banner))
+        config_parser.set('Settings', 'win_ver', str(self.win_ver))
+        config_parser.set('Settings', 'virtual_desktop', str(self.virtual_desktop))
+        config_parser.set('Settings', 'virtual_desktop_width', str(self.virtual_desktop_width))
+        config_parser.set('Settings', 'virtual_desktop_height', str(self.virtual_desktop_height))
+        config_parser.set('Settings', 'mouse_capture', str(self.mouse_capture))
+        config_parser.set('Settings', 'own_prefix', str(self.own_prefix))
+        config_parser.set('Settings', 'command_before', str(self.command_before))
+        config_parser.set('Settings', 'command_after', str(self.command_after))
+        config_parser.set('Settings', 'winearch', str(self.winearch))
 
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)
@@ -555,7 +556,13 @@ class GUI:
         self.combobox_monitor = Gtk.ComboBoxText()
 
         for output in self.monitors_list:
-            self.combobox_monitor.append_text(output.translate(None, '\n'))
+
+            try:
+                self.combobox_monitor.append_text(output.translate(None, '\n'))
+            except:
+                char_map = str.maketrans('', '', '\n')
+                self.combobox_monitor.append_text(output.translate(char_map))
+
         self.combobox_monitor.set_active(self.monitor)
 
         self.combobox_monitor.connect('changed', self.cb_combobox_monitor)
@@ -882,7 +889,13 @@ class GUI:
         del command_list[0:3]
         exe_path = ' '.join(command_list)
 
-        return exe_path.translate(None, '"\n')
+        try:
+            exe_path = exe_path.translate(None, '"\n')
+        except:
+            char_map = str.maketrans('', '', '"\n')
+            exe_path = exe_path.translate(char_map)
+
+        return exe_path
 
     def get_wine_bin_path(self):
 

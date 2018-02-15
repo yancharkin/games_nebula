@@ -1,16 +1,17 @@
-#!/usr/bin/env python
-# -*- Mode: Python; coding: utf-8; -*-
-
 import sys, os, subprocess, re
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GLib, GdkPixbuf
 from gi.repository.GdkPixbuf import Pixbuf, InterpType
-import ConfigParser
 import gettext
 
+try:
+    from ConfigParser import ConfigParser as ConfigParser
+except:
+    from configparser import ConfigParser as ConfigParser
+
 global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
-global_config_parser = ConfigParser.ConfigParser()
+global_config_parser = ConfigParser()
 global_config_parser.read(global_config_file)
 gtk_theme = global_config_parser.get('visuals', 'gtk_theme')
 gtk_dark = global_config_parser.getboolean('visuals', 'gtk_dark')
@@ -36,15 +37,15 @@ class GUI:
     def __init__(self, dialog_type, argument1):
 
         if dialog_type == 'question':
-            print self.create_question(argument1)
+            print(self.create_question(argument1))
             sys.exit()
         elif dialog_type == 'list':
-            print self.create_list(argument1)
+            print(self.create_list(argument1))
             sys.exit()
         elif dialog_type == 'progress':
             self.create_progress(argument1)
         else:
-            print _("Unknown dialog type: ") + dialog_type
+            print(_("Unknown dialog type: ") + dialog_type)
             sys.exit()
 
     def create_question(self, option_name):
@@ -174,7 +175,11 @@ class GUI:
                 Gtk.main_iteration_do(False)
 
             line = io.readline()
-            print line.translate(None, '\n')
+            try:
+                print(line.translate(None, '\n'))
+            except:
+                char_map = str.maketrans('', '', '\n')
+                print(line.translate(char_map))
 
             return True
 

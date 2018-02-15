@@ -1,12 +1,13 @@
-#!/usr/bin/env python
-# -*- Mode: Python; coding: utf-8; indent-tabs-install_mode: t; c-basic-offset: 4; tab-width: 4 -*-
-
 import sys, os
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, Gio, GdkPixbuf
-import ConfigParser
 import gettext
+
+try:
+    from ConfigParser import ConfigParser as ConfigParser
+except:
+    from configparser import ConfigParser as ConfigParser
 
 nebula_dir = sys.path[0]
 app_icon = GdkPixbuf.Pixbuf.new_from_file(nebula_dir + '/images/icon.png')
@@ -237,8 +238,7 @@ class GUI:
             tooltip_text = _("Mouse sensitivity.")
             )
 
-        self.adjustment_sensitivity = Gtk.Adjustment(int(self.sdl_sensitivity), 0, 1000, 1, 10)
-        #self.adjustment_sensitivity.connect('value-changed', self.cb_adjustment_sensitivity)
+        self.adjustment_sensitivity = Gtk.Adjustment(self.sdl_sensitivity, 0, 1000, 1, 10)
 
         self.scale_sensitivity = Gtk.Scale(
             tooltip_text = _("Mouse sensitivity."),
@@ -261,8 +261,6 @@ class GUI:
             active = self.dosbox_config_to_bool(self.sdl_waitonerror),
             tooltip_text = _("Wait before closing the console if dosbox has an error.")
             )
-
-        #self.switch_waitonerror.connect('toggled', self.cb_switch_waitonerror)
 
         self.label_priority = Gtk.Label(
             label = _("Priority"),
@@ -355,6 +353,9 @@ class GUI:
         self.scrolled_window_sdl = Gtk.ScrolledWindow()
         self.scrolled_window_sdl.add(self.grid_sdl)
 
+        # FIX Workaround to prevent strange bug: adjustment not always setted
+        self.adjustment_sensitivity.set_value(self.sdl_sensitivity)
+
         self.label_sdl = Gtk.Label(
             label = "SDL"
             )
@@ -402,16 +403,16 @@ class GUI:
         if self.dosbox_version == 'svn_daum':
 
             machine_list = [
-                'hercules', 'cga', 'cga_mono', 'tandy', 'pcjr', 
-                'ega', 'vgaonly', 'svga_s3', 'svga_et3000', 
-                'svga_et4000', 'svga_paradise', 'vesa_nolfb', 
+                'hercules', 'cga', 'cga_mono', 'tandy', 'pcjr',
+                'ega', 'vgaonly', 'svga_s3', 'svga_et3000',
+                'svga_et4000', 'svga_paradise', 'vesa_nolfb',
                 'vesa_oldvbe', 'amstrad'
                 ]
         else:
 
             machine_list = [
-                'hercules', 'cga', 'tandy', 'pcjr', 'ega', 
-                'vgaonly', 'svga_s3', 'svga_et3000', 'svga_et4000', 
+                'hercules', 'cga', 'tandy', 'pcjr', 'ega',
+                'vgaonly', 'svga_s3', 'svga_et3000', 'svga_et4000',
                 'svga_paradise', 'vesa_nolfb', 'vesa_oldvbe'
                 ]
 
@@ -531,20 +532,20 @@ class GUI:
         if self.dosbox_version == 'svn_daum':
 
             scaler_list = [
-                'none', 'normal2x', 'normal3x', 'normal4x', 'normal5x', 
-                'advmame2x', 'advmame3x', 'advinterp2x', 'advinterp3x', 
-                'hq2x', 'hq3x', '2xsai', 'super2xsai', 'supereagle', 
-                'tv2x', 'tv3x', 'rgb2x', 'rgb3x', 'scan2x', 'scan3x', 
-                'hardware_none', 'hardware2x', 'hardware3x', 'hardware4x', 
+                'none', 'normal2x', 'normal3x', 'normal4x', 'normal5x',
+                'advmame2x', 'advmame3x', 'advinterp2x', 'advinterp3x',
+                'hq2x', 'hq3x', '2xsai', 'super2xsai', 'supereagle',
+                'tv2x', 'tv3x', 'rgb2x', 'rgb3x', 'scan2x', 'scan3x',
+                'hardware_none', 'hardware2x', 'hardware3x', 'hardware4x',
                 'hardware5x', 'xbrz'
                 ]
 
         else:
 
             scaler_list = [
-                'none', 'normal2x', 'normal3x', 'advmame2x', 
-                'advmame3x', 'advinterp2x', 'advinterp3x', 'hq2x', 
-                'hq3x', '2xsai', 'super2xsai', 'supereagle', 'tv2x', 
+                'none', 'normal2x', 'normal3x', 'advmame2x',
+                'advmame3x', 'advinterp2x', 'advinterp3x', 'hq2x',
+                'hq3x', '2xsai', 'super2xsai', 'supereagle', 'tv2x',
                 'tv3x', 'rgb2x', 'rgb3x', 'scan2x', 'scan3x'
                 ]
 
@@ -633,12 +634,12 @@ class GUI:
         # TODO Remove if scecific svn-daum version exists
         if self.dosbox_version == 'svn_daum':
             cputype_list = [
-                'auto', '386', '486', 'pentium', '386_prefetch', 
+                'auto', '386', '486', 'pentium', '386_prefetch',
                 'pentium_mmx'
                 ]
         else:
             cputype_list = [
-                'auto', '386', '386_slow', '486_slow', 
+                'auto', '386', '386_slow', '486_slow',
                 'pentium_slow', '386_prefetch'
                 ]
 
@@ -976,7 +977,7 @@ class GUI:
         # TODO Remove if scecific svn-daum version exists
         if self.dosbox_version == 'svn_daum':
             sbtype_list = [
-                'sb1', 'sb2', 'sbpro1', 'sbpro2', 'sb16', 'sb16vibra', 
+                'sb1', 'sb2', 'sbpro1', 'sbpro2', 'sb16', 'sb16vibra',
                 'gb', 'none'
                 ]
         else:
@@ -1088,7 +1089,7 @@ class GUI:
         # TODO Remove if scecific svn-daum version exists
         if self.dosbox_version == 'svn_daum':
             oplmode_list = [
-                'auto', 'cms', 'opl2', 'dualopl2', 'opl3', 'none', 
+                'auto', 'cms', 'opl2', 'dualopl2', 'opl3', 'none',
                 'hardware', 'hardwaregb'
                 ]
         elif self.dosbox_version == 'svn':
@@ -1921,7 +1922,7 @@ class GUI:
     def get_global_settings(self):
 
         global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
-        global_config_parser = ConfigParser.ConfigParser()
+        global_config_parser = ConfigParser()
         global_config_parser.read(global_config_file)
         gtk_theme = global_config_parser.get('visuals', 'gtk_theme')
         gtk_dark = global_config_parser.getboolean('visuals', 'gtk_dark')
@@ -1936,7 +1937,7 @@ class GUI:
 
     def dosbox_config_global_load(self, config_path):
 
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_path)
 
         if not config_parser.has_section('sdl'):
@@ -1946,67 +1947,67 @@ class GUI:
             self.sdl_fullscreen_global = config_parser.get('sdl', 'fullscreen')
         else:
             self.sdl_fullscreen_global = 'false'
-            config_parser.set('sdl', 'fullscreen', self.sdl_fullscreen_global)
+            config_parser.set('sdl', 'fullscreen', str(self.sdl_fullscreen_global))
 
         if config_parser.has_option('sdl', 'fulldouble'):
             self.sdl_fulldouble_global = config_parser.get('sdl', 'fulldouble')
         else:
             self.sdl_fulldouble_global = 'false'
-            config_parser.set('sdl', 'fulldouble', self.sdl_fulldouble_global)
+            config_parser.set('sdl', 'fulldouble', str(self.sdl_fulldouble_global))
 
         if config_parser.has_option('sdl', 'fullresolution'):
             self.sdl_fullresolution_global = config_parser.get('sdl', 'fullresolution')
         else:
             self.sdl_fullresolution_global = 'original'
-            config_parser.set('sdl', 'fullresolution', self.sdl_fullresolution_global)
+            config_parser.set('sdl', 'fullresolution', str(self.sdl_fullresolution_global))
 
         if config_parser.has_option('sdl', 'windowresolution'):
             self.sdl_windowresolution_global = config_parser.get('sdl', 'windowresolution')
         else:
             self.sdl_windowresolution_global = 'original'
-            config_parser.set('sdl', 'windowresolution', self.sdl_windowresolution_global)
+            config_parser.set('sdl', 'windowresolution', str(self.sdl_windowresolution_global))
 
         if config_parser.has_option('sdl', 'output'):
             self.sdl_output_global = config_parser.get('sdl', 'output')
         else:
             self.sdl_output_global = 'surface'
-            config_parser.set('sdl', 'output', self.sdl_output_global)
+            config_parser.set('sdl', 'output', str(self.sdl_output_global))
 
         if config_parser.has_option('sdl', 'autolock'):
             self.sdl_autolock_global = config_parser.get('sdl', 'autolock')
         else:
             self.sdl_autolock_global = 'true'
-            config_parser.set('sdl', 'autolock', self.sdl_autolock_global)
+            config_parser.set('sdl', 'autolock', str(self.sdl_autolock_global))
 
         if config_parser.has_option('sdl', 'sensitivity'):
-            self.sdl_sensitivity_global = config_parser.get('sdl', 'sensitivity')
+            self.sdl_sensitivity_global = config_parser.getint('sdl', 'sensitivity')
         else:
             self.sdl_sensitivity_global = '100'
-            config_parser.set('sdl', 'sensitivity', self.sdl_sensitivity_global)
+            config_parser.set('sdl', 'sensitivity', str(self.sdl_sensitivity_global))
 
         if config_parser.has_option('sdl', 'waitonerror'):
             self.sdl_waitonerror_global = config_parser.get('sdl', 'waitonerror')
         else:
             self.sdl_waitonerror_global = 'true'
-            config_parser.set('sdl', 'waitonerror', self.sdl_waitonerror_global)
+            config_parser.set('sdl', 'waitonerror', str(self.sdl_waitonerror_global))
 
         if config_parser.has_option('sdl', 'priority'):
             self.sdl_priority_global = config_parser.get('sdl', 'priority')
         else:
             self.sdl_priority_global = 'higher,normal'
-            config_parser.set('sdl', 'priority', self.sdl_priority_global)
+            config_parser.set('sdl', 'priority', str(self.sdl_priority_global))
 
         if config_parser.has_option('sdl', 'mapperfile'):
             self.sdl_mapperfile_global = config_parser.get('sdl', 'mapperfile')
         else:
             self.sdl_mapperfile_global = ''
-            config_parser.set('sdl', 'mapperfile', self.sdl_mapperfile_global)
+            config_parser.set('sdl', 'mapperfile', str(self.sdl_mapperfile_global))
 
         if config_parser.has_option('sdl', 'usescancodes'):
             self.sdl_usescancodes_global = config_parser.get('sdl', 'usescancodes')
         else:
             self.sdl_usescancodes_global = 'true'
-            config_parser.set('sdl', 'usescancodes', self.sdl_usescancodes_global)
+            config_parser.set('sdl', 'usescancodes', str(self.sdl_usescancodes_global))
 ###########################################################################################
         if not config_parser.has_section('dosbox'):
             config_parser.add_section('dosbox')
@@ -2015,25 +2016,25 @@ class GUI:
             self.dosbox_language_global = config_parser.get('dosbox', 'language')
         else:
             self.dosbox_language_global = ''
-            config_parser.set('dosbox', 'language', self.dosbox_language_global)
+            config_parser.set('dosbox', 'language', str(self.dosbox_language_global))
 
         if config_parser.has_option('dosbox', 'machine'):
             self.dosbox_machine_global = config_parser.get('dosbox', 'machine')
         else:
             self.dosbox_machine_global = 'svga_s3'
-            config_parser.set('dosbox', 'machine', self.dosbox_machine_global)
+            config_parser.set('dosbox', 'machine', str(self.dosbox_machine_global))
 
         if config_parser.has_option('dosbox', 'captures'):
             self.dosbox_captures_global = config_parser.get('dosbox', 'captures')
         else:
             self.dosbox_captures_global = os.path.abspath(os.getenv('HOME') + '/.games_nebula/dosbox_captures')
-            config_parser.set('dosbox', 'captures', self.dosbox_captures_global)
+            config_parser.set('dosbox', 'captures', str(self.dosbox_captures_global))
 
         if config_parser.has_option('dosbox', 'memsize'):
             self.dosbox_memsize_global = config_parser.get('dosbox', 'memsize')
         else:
             self.dosbox_memsize_global = '16'
-            config_parser.set('dosbox', 'memsize', self.dosbox_memsize_global)
+            config_parser.set('dosbox', 'memsize', str(self.dosbox_memsize_global))
 ###########################################################################################
         if not config_parser.has_section('render'):
             config_parser.add_section('render')
@@ -2042,19 +2043,19 @@ class GUI:
             self.render_frameskip_global = config_parser.get('render', 'frameskip')
         else:
             self.render_frameskip_global = '0'
-            config_parser.set('render', 'frameskip', self.render_frameskip_global)
+            config_parser.set('render', 'frameskip', str(self.render_frameskip_global))
 
         if config_parser.has_option('render', 'aspect'):
             self.render_aspect_global = config_parser.get('render', 'aspect')
         else:
             self.render_aspect_global = 'false'
-            config_parser.set('render', 'aspect', self.render_aspect_global)
+            config_parser.set('render', 'aspect', str(self.render_aspect_global))
 
         if config_parser.has_option('render', 'scaler'):
             self.render_scaler_global = config_parser.get('render', 'scaler')
         else:
             self.render_scaler_global = 'normal2x'
-            config_parser.set('render', 'scaler', self.render_scaler_global)
+            config_parser.set('render', 'scaler', str(self.render_scaler_global))
 ###########################################################################################
         if not config_parser.has_section('cpu'):
             config_parser.add_section('cpu')
@@ -2063,31 +2064,31 @@ class GUI:
             self.cpu_core_global = config_parser.get('cpu', 'core')
         else:
             self.cpu_core_global = 'auto'
-            config_parser.set('cpu', 'core', self.cpu_core_global)
+            config_parser.set('cpu', 'core', str(self.cpu_core_global))
 
         if config_parser.has_option('cpu', 'cputype'):
             self.cpu_cputype_global = config_parser.get('cpu', 'cputype')
         else:
             self.cpu_cputype_global = 'auto'
-            config_parser.set('cpu', 'cputype', self.cpu_cputype_global)
+            config_parser.set('cpu', 'cputype', str(self.cpu_cputype_global))
 
         if config_parser.has_option('cpu', 'cycles'):
             self.cpu_cycles_global = config_parser.get('cpu', 'cycles')
         else:
             self.cpu_cycles_global = 'auto'
-            config_parser.set('cpu', 'cycles', self.cpu_cycles_global)
+            config_parser.set('cpu', 'cycles', str(self.cpu_cycles_global))
 
         if config_parser.has_option('cpu', 'cycleup'):
             self.cpu_cycleup_global = config_parser.get('cpu', 'cycleup')
         else:
             self.cpu_cycleup_global = '10'
-            config_parser.set('cpu', 'cycleup', self.cpu_cycleup_global)
+            config_parser.set('cpu', 'cycleup', str(self.cpu_cycleup_global))
 
         if config_parser.has_option('cpu', 'cycledown'):
             self.cpu_cycledown_global = config_parser.get('cpu', 'cycledown')
         else:
             self.cpu_cycledown_global = '20'
-            config_parser.set('cpu', 'cycledown', self.cpu_cycledown_global)
+            config_parser.set('cpu', 'cycledown', str(self.cpu_cycledown_global))
 ###########################################################################################
         if not config_parser.has_section('mixer'):
             config_parser.add_section('mixer')
@@ -2096,25 +2097,25 @@ class GUI:
             self.mixer_nosound_global = config_parser.get('mixer', 'nosound')
         else:
             self.mixer_nosound_global = 'false'
-            config_parser.set('mixer', 'nosound', self.mixer_nosound_global)
+            config_parser.set('mixer', 'nosound', str(self.mixer_nosound_global))
 
         if config_parser.has_option('mixer', 'rate'):
             self.mixer_rate_global = config_parser.get('mixer', 'rate')
         else:
             self.mixer_rate_global = '44100'
-            config_parser.set('mixer', 'rate', self.mixer_rate_global)
+            config_parser.set('mixer', 'rate', str(self.mixer_rate_global))
 
         if config_parser.has_option('mixer', 'blocksize'):
             self.mixer_blocksize_global = config_parser.get('mixer', 'blocksize')
         else:
             self.mixer_blocksize_global = '1024'
-            config_parser.set('mixer', 'blocksize', self.mixer_blocksize_global)
+            config_parser.set('mixer', 'blocksize', str(self.mixer_blocksize_global))
 
         if config_parser.has_option('mixer', 'prebuffer'):
             self.mixer_prebuffer_global = config_parser.get('mixer', 'prebuffer')
         else:
             self.mixer_prebuffer_global = '20'
-            config_parser.set('mixer', 'prebuffer', self.mixer_prebuffer_global)
+            config_parser.set('mixer', 'prebuffer', str(self.mixer_prebuffer_global))
 ###########################################################################################
         if not config_parser.has_section('midi'):
             config_parser.add_section('midi')
@@ -2123,19 +2124,19 @@ class GUI:
             self.midi_mpu401_global = config_parser.get('midi', 'mpu401')
         else:
             self.midi_mpu401_global = 'intelligent'
-            config_parser.set('midi', 'mpu401', self.midi_mpu401_global)
+            config_parser.set('midi', 'mpu401', str(self.midi_mpu401_global))
 
         if config_parser.has_option('midi', 'mididevice'):
             self.midi_mididevice_global = config_parser.get('midi', 'mididevice')
         else:
             self.midi_mididevice_global = 'default'
-            config_parser.set('midi', 'mididevice', self.midi_mididevice_global)
+            config_parser.set('midi', 'mididevice', str(self.midi_mididevice_global))
 
         if config_parser.has_option('midi', 'midiconfig'):
             self.midi_midiconfig_global = config_parser.get('midi', 'midiconfig')
         else:
             self.midi_midiconfig_global = ''
-            config_parser.set('midi', 'midiconfig', self.midi_midiconfig_global)
+            config_parser.set('midi', 'midiconfig', str(self.midi_midiconfig_global))
 ###########################################################################################
         if not config_parser.has_section('sblaster'):
             config_parser.add_section('sblaster')
@@ -2144,55 +2145,55 @@ class GUI:
             self.sblaster_sbtype_global = config_parser.get('sblaster', 'sbtype')
         else:
             self.sblaster_sbtype_global = 'sb16'
-            config_parser.set('sblaster', 'sbtype', self.sblaster_sbtype_global)
+            config_parser.set('sblaster', 'sbtype', str(self.sblaster_sbtype_global))
 
         if config_parser.has_option('sblaster', 'sbbase'):
             self.sblaster_sbbase_global = config_parser.get('sblaster', 'sbbase')
         else:
             self.sblaster_sbbase_global = '220'
-            config_parser.set('sblaster', 'sbbase', self.sblaster_sbbase_global)
+            config_parser.set('sblaster', 'sbbase', str(self.sblaster_sbbase_global))
 
         if config_parser.has_option('sblaster', 'irq'):
             self.sblaster_irq_global = config_parser.get('sblaster', 'irq')
         else:
             self.sblaster_irq_global = '7'
-            config_parser.set('sblaster', 'irq', self.sblaster_irq_global)
+            config_parser.set('sblaster', 'irq', str(self.sblaster_irq_global))
 
         if config_parser.has_option('sblaster', 'dma'):
             self.sblaster_dma_global = config_parser.get('sblaster', 'dma')
         else:
             self.sblaster_dma_global = '1'
-            config_parser.set('sblaster', 'dma', self.sblaster_dma_global)
+            config_parser.set('sblaster', 'dma', str(self.sblaster_dma_global))
 
         if config_parser.has_option('sblaster', 'hdma'):
             self.sblaster_hdma_global = config_parser.get('sblaster', 'hdma')
         else:
             self.sblaster_hdma_global = '5'
-            config_parser.set('sblaster', 'hdma', self.sblaster_hdma_global)
+            config_parser.set('sblaster', 'hdma', str(self.sblaster_hdma_global))
 
         if config_parser.has_option('sblaster', 'sbmixer'):
             self.sblaster_sbmixer_global = config_parser.get('sblaster', 'sbmixer')
         else:
             self.sblaster_sbmixer_global = 'true'
-            config_parser.set('sblaster', 'sbmixer', self.sblaster_sbmixer_global)
+            config_parser.set('sblaster', 'sbmixer', str(self.sblaster_sbmixer_global))
 
         if config_parser.has_option('sblaster', 'oplmode'):
             self.sblaster_oplmode_global = config_parser.get('sblaster', 'oplmode')
         else:
             self.sblaster_oplmode_global = 'auto'
-            config_parser.set('sblaster', 'oplmode', self.sblaster_oplmode_global)
+            config_parser.set('sblaster', 'oplmode', str(self.sblaster_oplmode_global))
 
         if config_parser.has_option('sblaster', 'oplemu'):
             self.sblaster_oplemu_global = config_parser.get('sblaster', 'oplemu')
         else:
             self.sblaster_oplemu_global = 'default'
-            config_parser.set('sblaster', 'oplemu', self.sblaster_oplemu_global)
+            config_parser.set('sblaster', 'oplemu', str(self.sblaster_oplemu_global))
 
         if config_parser.has_option('sblaster', 'oplrate'):
             self.sblaster_oplrate_global = config_parser.get('sblaster', 'oplrate')
         else:
             self.sblaster_oplrate_global = '44100'
-            config_parser.set('sblaster', 'oplrate', self.sblaster_oplrate_global)
+            config_parser.set('sblaster', 'oplrate', str(self.sblaster_oplrate_global))
 ###########################################################################################
         if not config_parser.has_section('gus'):
             config_parser.add_section('gus')
@@ -2201,37 +2202,37 @@ class GUI:
             self.gus_gus_global = config_parser.get('gus', 'gus')
         else:
             self.gus_gus_global = 'false'
-            config_parser.set('gus', 'gus', self.gus_gus_global)
+            config_parser.set('gus', 'gus', str(self.gus_gus_global))
 
         if config_parser.has_option('gus', 'gusrate'):
             self.gus_gusrate_global = config_parser.get('gus', 'gusrate')
         else:
             self.gus_gusrate_global = '44100'
-            config_parser.set('gus', 'gusrate', self.gus_gusrate_global)
+            config_parser.set('gus', 'gusrate', str(self.gus_gusrate_global))
 
         if config_parser.has_option('gus', 'gusbase'):
             self.gus_gusbase_global = config_parser.get('gus', 'gusbase')
         else:
             self.gus_gusbase_global = '240'
-            config_parser.set('gus', 'gusbase', self.gus_gusbase_global)
+            config_parser.set('gus', 'gusbase', str(self.gus_gusbase_global))
 
         if config_parser.has_option('gus', 'gusirq'):
             self.gus_gusirq_global = config_parser.get('gus', 'gusirq')
         else:
             self.gus_gusirq_global = '5'
-            config_parser.set('gus', 'gusirq', self.gus_gusirq_global)
+            config_parser.set('gus', 'gusirq', str(self.gus_gusirq_global))
 
         if config_parser.has_option('gus', 'gusdma'):
             self.gus_gusdma_global = config_parser.get('gus', 'gusdma')
         else:
             self.gus_gusdma_global = '3'
-            config_parser.set('gus', 'gusdma', self.gus_gusdma_global)
+            config_parser.set('gus', 'gusdma', str(self.gus_gusdma_global))
 
         if config_parser.has_option('gus', 'ultradir'):
             self.gus_ultradir_global = config_parser.get('gus', 'ultradir')
         else:
-            self.gus_ultradir_global = 'C:\ULTRASND'
-            config_parser.set('gus', 'ultradir', self.gus_ultradir_global)
+            self.gus_ultradir_global = 'C:\\ULTRASND'
+            config_parser.set('gus', 'ultradir', str(self.gus_ultradir_global))
 ###########################################################################################
         if not config_parser.has_section('speaker'):
             config_parser.add_section('speaker')
@@ -2240,31 +2241,31 @@ class GUI:
             self.speaker_pcspeaker_global = config_parser.get('speaker', 'pcspeaker')
         else:
             self.speaker_pcspeaker_global = 'true'
-            config_parser.set('speaker', 'pcspeaker', self.speaker_pcspeaker_global)
+            config_parser.set('speaker', 'pcspeaker', str(self.speaker_pcspeaker_global))
 
         if config_parser.has_option('speaker', 'pcrate'):
             self.speaker_pcrate_global = config_parser.get('speaker', 'pcrate')
         else:
             self.speaker_pcrate_global = '44100'
-            config_parser.set('speaker', 'pcrate', self.speaker_pcrate_global)
+            config_parser.set('speaker', 'pcrate', str(self.speaker_pcrate_global))
 
         if config_parser.has_option('speaker', 'tandy'):
             self.speaker_tandy_global = config_parser.get('speaker', 'tandy')
         else:
             self.speaker_tandy_global = 'auto'
-            config_parser.set('speaker', 'tandy', self.speaker_tandy_global)
+            config_parser.set('speaker', 'tandy', str(self.speaker_tandy_global))
 
         if config_parser.has_option('speaker', 'tandyrate'):
             self.speaker_tandyrate_global = config_parser.get('speaker', 'tandyrate')
         else:
             self.speaker_tandyrate_global = '44100'
-            config_parser.set('speaker', 'tandyrate', self.speaker_tandyrate_global)
+            config_parser.set('speaker', 'tandyrate', str(self.speaker_tandyrate_global))
 
         if config_parser.has_option('speaker', 'disney'):
             self.speaker_disney_global = config_parser.get('speaker', 'disney')
         else:
             self.speaker_disney_global = 'true'
-            config_parser.set('speaker', 'disney', self.speaker_disney_global)
+            config_parser.set('speaker', 'disney', str(self.speaker_disney_global))
 ###########################################################################################
         if not config_parser.has_section('joystick'):
             config_parser.add_section('joystick')
@@ -2273,31 +2274,31 @@ class GUI:
             self.joystick_joysticktype_global = config_parser.get('joystick', 'joysticktype')
         else:
             self.joystick_joysticktype_global = 'auto'
-            config_parser.set('joystick', 'joysticktype', self.joystick_joysticktype_global)
+            config_parser.set('joystick', 'joysticktype', str(self.joystick_joysticktype_global))
 
         if config_parser.has_option('joystick', 'timed'):
             self.joystick_timed_global = config_parser.get('joystick', 'timed')
         else:
             self.joystick_timed_global = 'true'
-            config_parser.set('joystick', 'timed', self.joystick_timed_global)
+            config_parser.set('joystick', 'timed', str(self.joystick_timed_global))
 
         if config_parser.has_option('joystick', 'autofire'):
             self.joystick_autofire_global = config_parser.get('joystick', 'autofire')
         else:
             self.joystick_autofire_global = 'false'
-            config_parser.set('joystick', 'autofire', self.joystick_autofire_global)
+            config_parser.set('joystick', 'autofire', str(self.joystick_autofire_global))
 
         if config_parser.has_option('joystick', 'swap34'):
             self.joystick_swap34_global = config_parser.get('joystick', 'swap34')
         else:
             self.joystick_swap34_global = 'false'
-            config_parser.set('joystick', 'swap34', self.joystick_swap34_global)
+            config_parser.set('joystick', 'swap34', str(self.joystick_swap34_global))
 
         if config_parser.has_option('joystick', 'buttonwrap'):
             self.joystick_buttonwrap_global = config_parser.get('joystick', 'buttonwrap')
         else:
             self.joystick_buttonwrap_global = 'false'
-            config_parser.set('joystick', 'buttonwrap', self.joystick_buttonwrap_global)
+            config_parser.set('joystick', 'buttonwrap', str(self.joystick_buttonwrap_global))
 ###########################################################################################
         if not config_parser.has_section('serial'):
             config_parser.add_section('serial')
@@ -2306,25 +2307,25 @@ class GUI:
             self.serial_serial1_global = config_parser.get('serial', 'serial1')
         else:
             self.serial_serial1_global = 'dummy'
-            config_parser.set('serial', 'serial1', self.serial_serial1_global)
+            config_parser.set('serial', 'serial1', str(self.serial_serial1_global))
 
         if config_parser.has_option('serial', 'serial2'):
             self.serial_serial2_global = config_parser.get('serial', 'serial2')
         else:
             self.serial_serial2_global = 'dummy'
-            config_parser.set('serial', 'serial2', self.serial_serial2_global)
+            config_parser.set('serial', 'serial2', str(self.serial_serial2_global))
 
         if config_parser.has_option('serial', 'serial3'):
             self.serial_serial3_global = config_parser.get('serial', 'serial3')
         else:
             self.serial_serial3_global = 'disabled'
-            config_parser.set('serial', 'serial3', self.serial_serial3_global)
+            config_parser.set('serial', 'serial3', str(self.serial_serial3_global))
 
         if config_parser.has_option('serial', 'serial4'):
             self.serial_serial4_global = config_parser.get('serial', 'serial4')
         else:
             self.serial_serial4_global = 'disabled'
-            config_parser.set('serial', 'serial4', self.serial_serial4_global)
+            config_parser.set('serial', 'serial4', str(self.serial_serial4_global))
 ###########################################################################################
         if not config_parser.has_section('dos'):
             config_parser.add_section('dos')
@@ -2333,25 +2334,25 @@ class GUI:
             self.dos_xms_global = config_parser.get('dos', 'xms')
         else:
             self.dos_xms_global = 'true'
-            config_parser.set('dos', 'xms', self.dos_xms_global)
+            config_parser.set('dos', 'xms', str(self.dos_xms_global))
 
         if config_parser.has_option('dos', 'ems'):
             self.dos_ems_global = config_parser.get('dos', 'ems')
         else:
             self.dos_ems_global = 'true'
-            config_parser.set('dos', 'ems', self.dos_ems_global)
+            config_parser.set('dos', 'ems', str(self.dos_ems_global))
 
         if config_parser.has_option('dos', 'umb'):
             self.dos_umb_global = config_parser.get('dos', 'umb')
         else:
             self.dos_umb_global = 'true'
-            config_parser.set('dos', 'umb', self.dos_umb_global)
+            config_parser.set('dos', 'umb', str(self.dos_umb_global))
 
         if config_parser.has_option('dos', 'keyboardlayout'):
             self.dos_keyboardlayout_global = config_parser.get('dos', 'keyboardlayout')
         else:
             self.dos_keyboardlayout_global = 'auto'
-            config_parser.set('dos', 'keyboardlayout', self.dos_keyboardlayout_global)
+            config_parser.set('dos', 'keyboardlayout', str(self.dos_keyboardlayout_global))
 ###########################################################################################
         if not config_parser.has_section('ipx'):
             config_parser.add_section('ipx')
@@ -2360,7 +2361,7 @@ class GUI:
             self.ipx_ipx_global = config_parser.get('ipx', 'ipx')
         else:
             self.ipx_ipx_global = 'false'
-            config_parser.set('ipx', 'ipx', self.ipx_ipx_global)
+            config_parser.set('ipx', 'ipx', str(self.ipx_ipx_global))
 ###########################################################################################
 
         config_file = open(config_path, 'w')
@@ -2369,7 +2370,7 @@ class GUI:
 
     def dosbox_config_local_load(self, config_path):
 
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_path)
 
         if config_parser.has_option('sdl', 'fullscreen'):
@@ -2403,7 +2404,7 @@ class GUI:
             self.sdl_autolock_local = None
 
         if config_parser.has_option('sdl', 'sensitivity'):
-            self.sdl_sensitivity_local = config_parser.get('sdl', 'sensitivity')
+            self.sdl_sensitivity_local = config_parser.getint('sdl', 'sensitivity')
         else:
             self.sdl_sensitivity_local = None
 
@@ -2845,124 +2846,124 @@ class GUI:
 
         if self.config_type == 'global':
 
-            config_parser = ConfigParser.ConfigParser()
+            config_parser = ConfigParser()
             config_parser.read(self.config_path)
 
             if not config_parser.has_section('sdl'):
                 config_parser.add_section('sdl')
 
-            config_parser.set('sdl', 'fullscreen', self.sdl_fullscreen_new)
-            config_parser.set('sdl', 'fulldouble', self.sdl_fulldouble_new)
-            config_parser.set('sdl', 'fullresolution', self.sdl_fullresolution_new)
-            config_parser.set('sdl', 'windowresolution', self.sdl_windowresolution_new)
-            config_parser.set('sdl', 'output', self.sdl_output_new)
-            config_parser.set('sdl', 'autolock', self.sdl_autolock_new)
-            config_parser.set('sdl', 'sensitivity', self.sdl_sensitivity_new)
-            config_parser.set('sdl', 'waitonerror', self.sdl_waitonerror_new)
-            config_parser.set('sdl', 'priority', self.sdl_priority_new)
-            config_parser.set('sdl', 'mapperfile', self.sdl_mapperfile_new)
-            config_parser.set('sdl', 'usescancodes', self.sdl_usescancodes_new)
+            config_parser.set('sdl', 'fullscreen', str(self.sdl_fullscreen_new))
+            config_parser.set('sdl', 'fulldouble', str(self.sdl_fulldouble_new))
+            config_parser.set('sdl', 'fullresolution', str(self.sdl_fullresolution_new))
+            config_parser.set('sdl', 'windowresolution', str(self.sdl_windowresolution_new))
+            config_parser.set('sdl', 'output', str(self.sdl_output_new))
+            config_parser.set('sdl', 'autolock', str(self.sdl_autolock_new))
+            config_parser.set('sdl', 'sensitivity', str(self.sdl_sensitivity_new))
+            config_parser.set('sdl', 'waitonerror', str(self.sdl_waitonerror_new))
+            config_parser.set('sdl', 'priority', str(self.sdl_priority_new))
+            config_parser.set('sdl', 'mapperfile', str(self.sdl_mapperfile_new))
+            config_parser.set('sdl', 'usescancodes', str(self.sdl_usescancodes_new))
 
             if not config_parser.has_section('dosbox'):
                 config_parser.add_section('dosbox')
 
-            config_parser.set('dosbox', 'language', self.dosbox_language_new)
-            config_parser.set('dosbox', 'machine', self.dosbox_machine_new)
-            config_parser.set('dosbox', 'captures', self.dosbox_captures_new)
-            config_parser.set('dosbox', 'memsize', self.dosbox_memsize_new)
+            config_parser.set('dosbox', 'language', str(self.dosbox_language_new))
+            config_parser.set('dosbox', 'machine', str(self.dosbox_machine_new))
+            config_parser.set('dosbox', 'captures', str(self.dosbox_captures_new))
+            config_parser.set('dosbox', 'memsize', str(self.dosbox_memsize_new))
 
             if not config_parser.has_section('render'):
                 config_parser.add_section('render')
 
-            config_parser.set('render', 'frameskip', self.render_frameskip_new)
-            config_parser.set('render', 'aspect', self.render_aspect_new)
-            config_parser.set('render', 'scaler', self.render_scaler_new)
+            config_parser.set('render', 'frameskip', str(self.render_frameskip_new))
+            config_parser.set('render', 'aspect', str(self.render_aspect_new))
+            config_parser.set('render', 'scaler', str(self.render_scaler_new))
 
             if not config_parser.has_section('cpu'):
                 config_parser.add_section('cpu')
 
-            config_parser.set('cpu', 'core', self.cpu_core_new)
-            config_parser.set('cpu', 'cputype', self.cpu_cputype_new)
-            config_parser.set('cpu', 'cycles', self.cpu_cycles_new)
-            config_parser.set('cpu', 'cycleup', self.cpu_cycleup_new)
-            config_parser.set('cpu', 'cycledown', self.cpu_cycledown_new)
+            config_parser.set('cpu', 'core', str(self.cpu_core_new))
+            config_parser.set('cpu', 'cputype', str(self.cpu_cputype_new))
+            config_parser.set('cpu', 'cycles', str(self.cpu_cycles_new))
+            config_parser.set('cpu', 'cycleup', str(self.cpu_cycleup_new))
+            config_parser.set('cpu', 'cycledown', str(self.cpu_cycledown_new))
 
             if not config_parser.has_section('mixer'):
                 config_parser.add_section('mixer')
 
-            config_parser.set('mixer', 'nosound', self.mixer_nosound_new)
-            config_parser.set('mixer', 'rate', self.mixer_rate_new)
-            config_parser.set('mixer', 'blocksize', self.mixer_blocksize_new)
-            config_parser.set('mixer', 'prebuffer', self.mixer_prebuffer_new)
+            config_parser.set('mixer', 'nosound', str(self.mixer_nosound_new))
+            config_parser.set('mixer', 'rate', str(self.mixer_rate_new))
+            config_parser.set('mixer', 'blocksize', str(self.mixer_blocksize_new))
+            config_parser.set('mixer', 'prebuffer', str(self.mixer_prebuffer_new))
 
             if not config_parser.has_section('midi'):
                 config_parser.add_section('midi')
 
-            config_parser.set('midi', 'mpu401', self.midi_mpu401_new)
-            config_parser.set('midi', 'mididevice', self.midi_mididevice_new)
-            config_parser.set('midi', 'midiconfig', self.midi_midiconfig_new)
+            config_parser.set('midi', 'mpu401', str(self.midi_mpu401_new))
+            config_parser.set('midi', 'mididevice', str(self.midi_mididevice_new))
+            config_parser.set('midi', 'midiconfig', str(self.midi_midiconfig_new))
 
             if not config_parser.has_section('sblaster'):
                 config_parser.add_section('sblaster')
 
-            config_parser.set('sblaster', 'sbtype', self.sblaster_sbtype_new)
-            config_parser.set('sblaster', 'sbbase', self.sblaster_sbbase_new)
-            config_parser.set('sblaster', 'irq', self.sblaster_irq_new)
-            config_parser.set('sblaster', 'dma', self.sblaster_dma_new)
-            config_parser.set('sblaster', 'hdma', self.sblaster_hdma_new)
-            config_parser.set('sblaster', 'sbmixer', self.sblaster_sbmixer_new)
-            config_parser.set('sblaster', 'oplmode', self.sblaster_oplmode_new)
-            config_parser.set('sblaster', 'oplemu', self.sblaster_oplemu_new)
-            config_parser.set('sblaster', 'oplrate', self.sblaster_oplrate_new)
+            config_parser.set('sblaster', 'sbtype', str(self.sblaster_sbtype_new))
+            config_parser.set('sblaster', 'sbbase', str(self.sblaster_sbbase_new))
+            config_parser.set('sblaster', 'irq', str(self.sblaster_irq_new))
+            config_parser.set('sblaster', 'dma', str(self.sblaster_dma_new))
+            config_parser.set('sblaster', 'hdma', str(self.sblaster_hdma_new))
+            config_parser.set('sblaster', 'sbmixer', str(self.sblaster_sbmixer_new))
+            config_parser.set('sblaster', 'oplmode', str(self.sblaster_oplmode_new))
+            config_parser.set('sblaster', 'oplemu', str(self.sblaster_oplemu_new))
+            config_parser.set('sblaster', 'oplrate', str(self.sblaster_oplrate_new))
 
             if not config_parser.has_section('gus'):
                 config_parser.add_section('gus')
 
-            config_parser.set('gus', 'gus', self.gus_gus_new)
-            config_parser.set('gus', 'gusrate', self.gus_gusrate_new)
-            config_parser.set('gus', 'gusbase', self.gus_gusbase_new)
-            config_parser.set('gus', 'gusirq', self.gus_gusirq_new)
-            config_parser.set('gus', 'gusdma', self.gus_gusdma_new)
-            config_parser.set('gus', 'ultradir', self.gus_ultradir_new)
+            config_parser.set('gus', 'gus', str(self.gus_gus_new))
+            config_parser.set('gus', 'gusrate', str(self.gus_gusrate_new))
+            config_parser.set('gus', 'gusbase', str(self.gus_gusbase_new))
+            config_parser.set('gus', 'gusirq', str(self.gus_gusirq_new))
+            config_parser.set('gus', 'gusdma', str(self.gus_gusdma_new))
+            config_parser.set('gus', 'ultradir', str(self.gus_ultradir_new))
 
             if not config_parser.has_section('speaker'):
                 config_parser.add_section('speaker')
 
-            config_parser.set('speaker', 'pcspeaker', self.speaker_pcspeaker_new)
-            config_parser.set('speaker', 'pcrate', self.speaker_pcrate_new)
-            config_parser.set('speaker', 'tandy', self.speaker_tandy_new)
-            config_parser.set('speaker', 'tandyrate', self.speaker_tandyrate_new)
-            config_parser.set('speaker', 'disney', self.speaker_disney_new)
+            config_parser.set('speaker', 'pcspeaker', str(self.speaker_pcspeaker_new))
+            config_parser.set('speaker', 'pcrate', str(self.speaker_pcrate_new))
+            config_parser.set('speaker', 'tandy', str(self.speaker_tandy_new))
+            config_parser.set('speaker', 'tandyrate', str(self.speaker_tandyrate_new))
+            config_parser.set('speaker', 'disney', str(self.speaker_disney_new))
 
             if not config_parser.has_section('joystick'):
                 config_parser.add_section('joystick')
 
-            config_parser.set('joystick', 'joysticktype', self.joystick_joysticktype_new)
-            config_parser.set('joystick', 'timed', self.joystick_timed_new)
-            config_parser.set('joystick', 'autofire', self.joystick_autofire_new)
-            config_parser.set('joystick', 'swap34', self.joystick_swap34_new)
-            config_parser.set('joystick', 'buttonwrap', self.joystick_buttonwrap_new)
+            config_parser.set('joystick', 'joysticktype', str(self.joystick_joysticktype_new))
+            config_parser.set('joystick', 'timed', str(self.joystick_timed_new))
+            config_parser.set('joystick', 'autofire', str(self.joystick_autofire_new))
+            config_parser.set('joystick', 'swap34', str(self.joystick_swap34_new))
+            config_parser.set('joystick', 'buttonwrap', str(self.joystick_buttonwrap_new))
 
             if not config_parser.has_section('serial'):
                 config_parser.add_section('serial')
 
-            config_parser.set('serial', 'serial1', self.serial_serial1_new)
-            config_parser.set('serial', 'serial2', self.serial_serial2_new)
-            config_parser.set('serial', 'serial3', self.serial_serial3_new)
-            config_parser.set('serial', 'serial4', self.serial_serial4_new)
+            config_parser.set('serial', 'serial1', str(self.serial_serial1_new))
+            config_parser.set('serial', 'serial2', str(self.serial_serial2_new))
+            config_parser.set('serial', 'serial3', str(self.serial_serial3_new))
+            config_parser.set('serial', 'serial4', str(self.serial_serial4_new))
 
             if not config_parser.has_section('dos'):
                 config_parser.add_section('dos')
 
-            config_parser.set('dos', 'xms', self.dos_xms_new)
-            config_parser.set('dos', 'ems', self.dos_ems_new)
-            config_parser.set('dos', 'umb', self.dos_umb_new)
-            config_parser.set('dos', 'keyboardlayout', self.dos_keyboardlayout_new)
+            config_parser.set('dos', 'xms', str(self.dos_xms_new))
+            config_parser.set('dos', 'ems', str(self.dos_ems_new))
+            config_parser.set('dos', 'umb', str(self.dos_umb_new))
+            config_parser.set('dos', 'keyboardlayout', str(self.dos_keyboardlayout_new))
 
             if not config_parser.has_section('ipx'):
                 config_parser.add_section('ipx')
 
-            config_parser.set('ipx', 'ipx', self.ipx_ipx_new)
+            config_parser.set('ipx', 'ipx', str(self.ipx_ipx_new))
 
             config_file = open(self.config_path, 'w')
             config_parser.write(config_file)
@@ -2971,64 +2972,64 @@ class GUI:
 
         elif self.config_type == 'local':
 
-            config_parser = ConfigParser.ConfigParser()
+            config_parser = ConfigParser()
             config_parser.read(self.config_path)
 
             if not config_parser.has_section('sdl'):
                 config_parser.add_section('sdl')
 
             if self.sdl_fullscreen_new != self.sdl_fullscreen:
-                config_parser.set('sdl', 'fullscreen', self.sdl_fullscreen_new)
+                config_parser.set('sdl', 'fullscreen', str(self.sdl_fullscreen_new))
             elif self.sdl_fullscreen_new == self.sdl_fullscreen_global:
                 config_parser.remove_option('sdl', 'fullscreen')
 
             if self.sdl_fulldouble_new != self.sdl_fulldouble:
-                config_parser.set('sdl', 'fulldouble', self.sdl_fulldouble_new)
+                config_parser.set('sdl', 'fulldouble', str(self.sdl_fulldouble_new))
             elif self.sdl_fulldouble_new == self.sdl_fulldouble_global:
                 config_parser.remove_option('sdl', 'fulldouble')
 
             if self.sdl_fullresolution_new != self.sdl_fullresolution:
-                config_parser.set('sdl', 'fullresolution', self.sdl_fullresolution_new)
+                config_parser.set('sdl', 'fullresolution', str(self.sdl_fullresolution_new))
             elif self.sdl_fullresolution_new == self.sdl_fullresolution_global:
                 config_parser.remove_option('sdl', 'fullresolution')
 
             if self.sdl_windowresolution_new != self.sdl_windowresolution:
-                config_parser.set('sdl', 'windowresolution', self.sdl_windowresolution_new)
+                config_parser.set('sdl', 'windowresolution', str(self.sdl_windowresolution_new))
             elif self.sdl_windowresolution_new == self.sdl_windowresolution_global:
                 config_parser.remove_option('sdl', 'windowresolution')
 
             if self.sdl_output_new != self.sdl_output:
-                config_parser.set('sdl', 'output', self.sdl_output_new)
+                config_parser.set('sdl', 'output', str(self.sdl_output_new))
             elif self.sdl_output_new == self.sdl_output_global:
                 config_parser.remove_option('sdl', 'output')
 
             if self.sdl_autolock_new != self.sdl_autolock:
-                config_parser.set('sdl', 'autolock', self.sdl_autolock_new)
+                config_parser.set('sdl', 'autolock', str(self.sdl_autolock_new))
             elif self.sdl_autolock_new == self.sdl_autolock_global:
                 config_parser.remove_option('sdl', 'autolock')
 
             if str(self.sdl_sensitivity_new) != self.sdl_sensitivity:
-                config_parser.set('sdl', 'sensitivity', self.sdl_sensitivity_new)
+                config_parser.set('sdl', 'sensitivity', str(self.sdl_sensitivity_new))
             elif str(self.sdl_sensitivity_new) == self.sdl_sensitivity_global:
                 config_parser.remove_option('sdl', 'sensitivity')
 
             if self.sdl_waitonerror_new != self.sdl_waitonerror:
-                config_parser.set('sdl', 'waitonerror', self.sdl_waitonerror_new)
+                config_parser.set('sdl', 'waitonerror', str(self.sdl_waitonerror_new))
             elif self.sdl_waitonerror_new == self.sdl_waitonerror_global:
                 config_parser.remove_option('sdl', 'waitonerror')
 
             if self.sdl_priority_new != self.sdl_priority:
-                config_parser.set('sdl', 'priority', self.sdl_priority_new)
+                config_parser.set('sdl', 'priority', str(self.sdl_priority_new))
             elif self.sdl_priority_new == self.sdl_priority_global:
                 config_parser.remove_option('sdl', 'priority')
 
             if self.sdl_mapperfile_new != self.sdl_mapperfile:
-                config_parser.set('sdl', 'mapperfile', self.sdl_mapperfile_new)
+                config_parser.set('sdl', 'mapperfile', str(self.sdl_mapperfile_new))
             elif self.sdl_mapperfile_new == self.sdl_mapperfile_global:
                 config_parser.remove_option('sdl', 'mapperfile')
 
             if self.sdl_usescancodes_new != self.sdl_usescancodes:
-                config_parser.set('sdl', 'usescancodes', self.sdl_usescancodes_new)
+                config_parser.set('sdl', 'usescancodes', str(self.sdl_usescancodes_new))
             elif self.sdl_usescancodes_new == self.sdl_usescancodes_global:
                 config_parser.remove_option('sdl', 'usescancodes')
 
@@ -3039,22 +3040,22 @@ class GUI:
                 config_parser.add_section('dosbox')
 
             if self.dosbox_language_new != self.dosbox_language:
-                config_parser.set('dosbox', 'language', self.dosbox_language_new)
+                config_parser.set('dosbox', 'language', str(self.dosbox_language_new))
             elif self.dosbox_language_new == self.dosbox_language_global:
                 config_parser.remove_option('dosbox', 'language')
 
             if self.dosbox_machine_new != self.dosbox_machine:
-                config_parser.set('dosbox', 'machine', self.dosbox_machine_new)
+                config_parser.set('dosbox', 'machine', str(self.dosbox_machine_new))
             elif self.dosbox_machine_new == self.dosbox_machine_global:
                 config_parser.remove_option('dosbox', 'machine')
 
             if self.dosbox_captures_new != self.dosbox_captures:
-                config_parser.set('dosbox', 'caprutes', self.dosbox_captures_new)
+                config_parser.set('dosbox', 'caprutes', str(self.dosbox_captures_new))
             elif self.dosbox_captures_new == self.dosbox_captures_global:
                 config_parser.remove_option('dosbox', 'caprutes')
 
             if self.dosbox_memsize_new != self.dosbox_memsize:
-                config_parser.set('dosbox', 'memsize', self.dosbox_memsize_new)
+                config_parser.set('dosbox', 'memsize', str(self.dosbox_memsize_new))
             elif self.dosbox_memsize_new == self.dosbox_memsize_global:
                 config_parser.remove_option('dosbox', 'memsize')
 
@@ -3065,17 +3066,17 @@ class GUI:
                 config_parser.add_section('render')
 
             if self.render_frameskip_new != self.render_frameskip:
-                config_parser.set('render', 'frameskip', self.render_frameskip_new)
+                config_parser.set('render', 'frameskip', str(self.render_frameskip_new))
             elif self.render_frameskip_new == self.render_frameskip_global:
                 config_parser.remove_option('render', 'frameskip')
 
             if self.render_aspect_new != self.render_aspect:
-                config_parser.set('render', 'aspect', self.render_aspect_new)
+                config_parser.set('render', 'aspect', str(self.render_aspect_new))
             elif self.render_aspect_new == self.render_aspect_global:
                 config_parser.remove_option('render', 'aspect')
 
             if self.render_scaler_new != self.render_scaler:
-                config_parser.set('render', 'scaler', self.render_scaler_new)
+                config_parser.set('render', 'scaler', str(self.render_scaler_new))
             elif self.render_scaler_new == self.render_scaler_global:
                 config_parser.remove_option('render', 'scaler')
 
@@ -3086,27 +3087,27 @@ class GUI:
                 config_parser.add_section('cpu')
 
             if self.cpu_core_new != self.cpu_core:
-                config_parser.set('cpu', 'core', self.cpu_core_new)
+                config_parser.set('cpu', 'core', str(self.cpu_core_new))
             elif self.cpu_core_new == self.cpu_core_global:
                 config_parser.remove_option('cpu', 'core')
 
             if self.cpu_cputype_new != self.cpu_cputype:
-                config_parser.set('cpu', 'cputype', self.cpu_cputype_new)
+                config_parser.set('cpu', 'cputype', str(self.cpu_cputype_new))
             elif self.cpu_cputype_new == self.cpu_cputype_global:
                 config_parser.remove_option('cpu', 'cputype')
 
             if self.cpu_cycles_new != self.cpu_cycles:
-                config_parser.set('cpu', 'cycles', self.cpu_cycles_new)
+                config_parser.set('cpu', 'cycles', str(self.cpu_cycles_new))
             elif self.cpu_cycles_new == self.cpu_cycles_global:
                 config_parser.remove_option('cpu', 'cycles')
 
             if self.cpu_cycleup_new != self.cpu_cycleup:
-                config_parser.set('cpu', 'cycleup', self.cpu_cycleup_new)
+                config_parser.set('cpu', 'cycleup', str(self.cpu_cycleup_new))
             elif self.cpu_cycleup_new == self.cpu_cycleup_global:
                 config_parser.remove_option('cpu', 'cycleup')
 
             if self.cpu_cycledown_new != self.cpu_cycledown:
-                config_parser.set('cpu', 'cycledown', self.cpu_cycledown_new)
+                config_parser.set('cpu', 'cycledown', str(self.cpu_cycledown_new))
             elif self.cpu_cycledown_new == self.cpu_cycledown_global:
                 config_parser.remove_option('cpu', 'cycledown')
 
@@ -3117,22 +3118,22 @@ class GUI:
                 config_parser.add_section('mixer')
 
             if self.mixer_nosound_new != self.mixer_nosound:
-                config_parser.set('mixer', 'nosound', self.mixer_nosound_new)
+                config_parser.set('mixer', 'nosound', str(self.mixer_nosound_new))
             elif self.mixer_nosound_new == self.mixer_nosound_global:
                 config_parser.remove_option('mixer', 'nosound')
 
             if self.mixer_rate_new != self.mixer_rate:
-                config_parser.set('mixer', 'rate', self.mixer_rate_new)
+                config_parser.set('mixer', 'rate', str(self.mixer_rate_new))
             elif self.mixer_rate_new == self.mixer_rate_global:
                 config_parser.remove_option('mixer', 'rate')
 
             if self.mixer_blocksize_new != self.mixer_blocksize:
-                config_parser.set('mixer', 'blocksize', self.mixer_blocksize_new)
+                config_parser.set('mixer', 'blocksize', str(self.mixer_blocksize_new))
             elif self.mixer_blocksize_new == self.mixer_blocksize_global:
                 config_parser.remove_option('mixer', 'blocksize')
 
             if self.mixer_prebuffer_new != self.mixer_prebuffer:
-                config_parser.set('mixer', 'prebuffer', self.mixer_prebuffer_new)
+                config_parser.set('mixer', 'prebuffer', str(self.mixer_prebuffer_new))
             elif self.mixer_prebuffer_new == self.mixer_prebuffer_global:
                 config_parser.remove_option('mixer', 'prebuffer')
 
@@ -3143,17 +3144,17 @@ class GUI:
                 config_parser.add_section('midi')
 
             if self.midi_mpu401_new != self.midi_mpu401:
-                config_parser.set('midi', 'mpu401', self.midi_mpu401_new)
+                config_parser.set('midi', 'mpu401', str(self.midi_mpu401_new))
             elif self.midi_mpu401_new == self.midi_mpu401_global:
                 config_parser.remove_option('midi', 'mpu401')
 
             if self.midi_mididevice_new != self.midi_mididevice:
-                config_parser.set('midi', 'mididevice', self.midi_mididevice_new)
+                config_parser.set('midi', 'mididevice', str(self.midi_mididevice_new))
             elif self.midi_mididevice_new == self.midi_mididevice_global:
                 config_parser.remove_option('midi', 'mididevice')
 
             if self.midi_midiconfig_new != self.midi_midiconfig:
-                config_parser.set('midi', 'midiconfig', self.midi_midiconfig_new)
+                config_parser.set('midi', 'midiconfig', str(self.midi_midiconfig_new))
             elif self.midi_midiconfig_new == self.midi_midiconfig_global:
                 config_parser.remove_option('midi', 'midiconfig')
 
@@ -3164,47 +3165,47 @@ class GUI:
                 config_parser.add_section('sblaster')
 
             if self.sblaster_sbtype_new != self.sblaster_sbtype:
-                config_parser.set('sblaster', 'sbtype', self.sblaster_sbtype_new)
+                config_parser.set('sblaster', 'sbtype', str(self.sblaster_sbtype_new))
             elif self.sblaster_sbtype_new == self.sblaster_sbtype_global:
                 config_parser.remove_option('sblaster', 'sbtype')
 
             if self.sblaster_sbbase_new != self.sblaster_sbbase:
-                config_parser.set('sblaster', 'sbbase', self.sblaster_sbbase_new)
+                config_parser.set('sblaster', 'sbbase', str(self.sblaster_sbbase_new))
             elif self.sblaster_sbbase_new == self.sblaster_sbbase_global:
                 config_parser.remove_option('sblaster', 'sbbase')
 
             if self.sblaster_irq_new != self.sblaster_irq:
-                config_parser.set('sblaster', 'irq', self.sblaster_irq_new)
+                config_parser.set('sblaster', 'irq', str(self.sblaster_irq_new))
             elif self.sblaster_irq_new == self.sblaster_irq_global:
                 config_parser.remove_option('sblaster', 'irq')
 
             if self.sblaster_dma_new != self.sblaster_dma:
-                config_parser.set('sblaster', 'dma', self.sblaster_dma_new)
+                config_parser.set('sblaster', 'dma', str(self.sblaster_dma_new))
             elif self.sblaster_dma_new == self.sblaster_dma_global:
                 config_parser.remove_option('sblaster', 'dma')
 
             if self.sblaster_hdma_new != self.sblaster_hdma:
-                config_parser.set('sblaster', 'hdma', self.sblaster_hdma_new)
+                config_parser.set('sblaster', 'hdma', str(self.sblaster_hdma_new))
             elif self.sblaster_hdma_new == self.sblaster_hdma_global:
                 config_parser.remove_option('sblaster', 'hdma')
 
             if self.sblaster_sbmixer_new != self.sblaster_sbmixer:
-                config_parser.set('sblaster', 'sbmixer', self.sblaster_sbmixer_new)
+                config_parser.set('sblaster', 'sbmixer', str(self.sblaster_sbmixer_new))
             elif self.sblaster_sbmixer_new == self.sblaster_sbmixer_global:
                 config_parser.remove_option('sblaster', 'sbmixer')
 
             if self.sblaster_oplmode_new != self.sblaster_oplmode:
-                config_parser.set('sblaster', 'oplmode', self.sblaster_oplmode_new)
+                config_parser.set('sblaster', 'oplmode', str(self.sblaster_oplmode_new))
             elif self.sblaster_oplmode_new == self.sblaster_oplmode_global:
                 config_parser.remove_option('sblaster', 'oplmode')
 
             if self.sblaster_oplemu_new != self.sblaster_oplemu:
-                config_parser.set('sblaster', 'oplemu', self.sblaster_oplemu_new)
+                config_parser.set('sblaster', 'oplemu', str(self.sblaster_oplemu_new))
             elif self.sblaster_oplemu_new == self.sblaster_oplemu_global:
                 config_parser.remove_option('sblaster', 'oplemu')
 
             if self.sblaster_oplrate_new != self.sblaster_oplrate:
-                config_parser.set('sblaster', 'oplrate', self.sblaster_oplrate_new)
+                config_parser.set('sblaster', 'oplrate', str(self.sblaster_oplrate_new))
             elif self.sblaster_oplrate_new == self.sblaster_oplrate_global:
                 config_parser.remove_option('sblaster', 'oplrate')
 
@@ -3215,32 +3216,32 @@ class GUI:
                 config_parser.add_section('gus')
 
             if self.gus_gus_new != self.gus_gus:
-                config_parser.set('gus', 'gus', self.gus_gus_new)
+                config_parser.set('gus', 'gus', str(self.gus_gus_new))
             elif self.gus_gus_new == self.gus_gus_global:
                 config_parser.remove_option('gus', 'gus')
 
             if self.gus_gusrate_new != self.gus_gusrate:
-                config_parser.set('gus', 'gusrate', self.gus_gusrate_new)
+                config_parser.set('gus', 'gusrate', str(self.gus_gusrate_new))
             elif self.gus_gusrate_new == self.gus_gusrate_global:
                 config_parser.remove_option('gus', 'gusrate')
 
             if self.gus_gusbase_new != self.gus_gusbase:
-                config_parser.set('gus', 'gusbase', self.gus_gusbase_new)
+                config_parser.set('gus', 'gusbase', str(self.gus_gusbase_new))
             elif self.gus_gusbase_new == self.gus_gusbase_global:
                 config_parser.remove_option('gus', 'gusbase')
 
             if self.gus_gusirq_new != self.gus_gusirq:
-                config_parser.set('gus', 'gusirq', self.gus_gusirq_new)
+                config_parser.set('gus', 'gusirq', str(self.gus_gusirq_new))
             elif self.gus_gusirq_new == self.gus_gusirq_global:
                 config_parser.remove_option('gus', 'gusirq')
 
             if self.gus_gusdma_new != self.gus_gusdma:
-                config_parser.set('gus', 'gusdma', self.gus_gusdma_new)
+                config_parser.set('gus', 'gusdma', str(self.gus_gusdma_new))
             elif self.gus_gusdma_new == self.gus_gusdma_global:
                 config_parser.remove_option('gus', 'gusdma')
 
             if self.gus_ultradir_new != self.gus_ultradir:
-                config_parser.set('gus', 'ultradir', self.gus_ultradir_new)
+                config_parser.set('gus', 'ultradir', str(self.gus_ultradir_new))
             elif self.gus_ultradir_new == self.gus_ultradir_global:
                 config_parser.remove_option('gus', 'ultradir')
 
@@ -3251,27 +3252,27 @@ class GUI:
                 config_parser.add_section('speaker')
 
             if self.speaker_pcspeaker_new != self.speaker_pcspeaker:
-                config_parser.set('speaker', 'pcspeaker', self.speaker_pcspeaker_new)
+                config_parser.set('speaker', 'pcspeaker', str(self.speaker_pcspeaker_new))
             elif self.speaker_pcspeaker_new == self.speaker_pcspeaker_global:
                 config_parser.remove_option('speaker', 'pcspeaker')
 
             if self.speaker_pcrate_new != self.speaker_pcrate:
-                config_parser.set('speaker', 'pcrate', self.speaker_pcrate_new)
+                config_parser.set('speaker', 'pcrate', str(self.speaker_pcrate_new))
             elif self.speaker_pcrate_new == self.speaker_pcrate_global:
                 config_parser.remove_option('speaker', 'pcrate')
 
             if self.speaker_tandy_new != self.speaker_tandy:
-                config_parser.set('speaker', 'tandy', self.speaker_tandy_new)
+                config_parser.set('speaker', 'tandy', str(self.speaker_tandy_new))
             elif self.speaker_tandy_new == self.speaker_tandy_global:
                 config_parser.remove_option('speaker', 'tandy')
 
             if self.speaker_tandyrate_new != self.speaker_tandyrate:
-                config_parser.set('speaker', 'tandyrate', self.speaker_tandyrate_new)
+                config_parser.set('speaker', 'tandyrate', str(self.speaker_tandyrate_new))
             elif self.speaker_tandyrate_new == self.speaker_tandyrate_global:
                 config_parser.remove_option('speaker', 'tandyrate')
 
             if self.speaker_disney_new != self.speaker_disney:
-                config_parser.set('speaker', 'disney', self.speaker_disney_new)
+                config_parser.set('speaker', 'disney', str(self.speaker_disney_new))
             elif self.speaker_disney_new == self.speaker_disney_global:
                 config_parser.remove_option('speaker', 'disney')
 
@@ -3282,27 +3283,27 @@ class GUI:
                 config_parser.add_section('joystick')
 
             if self.joystick_joysticktype_new != self.joystick_joysticktype:
-                config_parser.set('joystick', 'joysticktype', self.joystick_joysticktype_new)
+                config_parser.set('joystick', 'joysticktype', str(self.joystick_joysticktype_new))
             elif self.joystick_joysticktype_new == self.joystick_joysticktype_global:
                 config_parser.remove_option('joystick', 'joysticktype')
 
             if self.joystick_timed_new != self.joystick_timed:
-                config_parser.set('joystick', 'timed', self.joystick_timed_new)
+                config_parser.set('joystick', 'timed', str(self.joystick_timed_new))
             elif self.joystick_timed_new == self.joystick_timed_global:
                 config_parser.remove_option('joystick', 'timed')
 
             if self.joystick_autofire_new != self.joystick_autofire:
-                config_parser.set('joystick', 'autofire', self.joystick_autofire_new)
+                config_parser.set('joystick', 'autofire', str(self.joystick_autofire_new))
             elif self.joystick_autofire_new == self.joystick_autofire_global:
                 config_parser.remove_option('joystick', 'autofire')
 
             if self.joystick_swap34_new != self.joystick_swap34:
-                config_parser.set('joystick', 'swap34', self.joystick_swap34_new)
+                config_parser.set('joystick', 'swap34', str(self.joystick_swap34_new))
             elif self.joystick_swap34_new == self.joystick_swap34_global:
                 config_parser.remove_option('joystick', 'swap34')
 
             if self.joystick_buttonwrap_new != self.joystick_buttonwrap:
-                config_parser.set('joystick', 'buttonwrap', self.joystick_buttonwrap_new)
+                config_parser.set('joystick', 'buttonwrap', str(self.joystick_buttonwrap_new))
             elif self.joystick_buttonwrap_new == self.joystick_buttonwrap_global:
                 config_parser.remove_option('joystick', 'buttonwrap')
 
@@ -3313,22 +3314,22 @@ class GUI:
                 config_parser.add_section('serial')
 
             if self.serial_serial1_new != self.serial_serial1:
-                config_parser.set('serial', 'serial1', self.serial_serial1_new)
+                config_parser.set('serial', 'serial1', str(self.serial_serial1_new))
             elif self.serial_serial1_new == self.serial_serial1_global:
                 config_parser.remove_option('serial', 'serial1')
 
             if self.serial_serial2_new != self.serial_serial2:
-                config_parser.set('serial', 'serial2', self.serial_serial2_new)
+                config_parser.set('serial', 'serial2', str(self.serial_serial2_new))
             elif self.serial_serial2_new == self.serial_serial2_global:
                 config_parser.remove_option('serial', 'serial2')
 
             if self.serial_serial3_new != self.serial_serial3:
-                config_parser.set('serial', 'serial3', self.serial_serial3_new)
+                config_parser.set('serial', 'serial3', str(self.serial_serial3_new))
             elif self.serial_serial3_new == self.serial_serial3_global:
                 config_parser.remove_option('serial', 'serial3')
 
             if self.serial_serial4_new != self.serial_serial4:
-                config_parser.set('serial', 'serial4', self.serial_serial4_new)
+                config_parser.set('serial', 'serial4', str(self.serial_serial4_new))
             elif self.serial_serial4_new == self.serial_serial4_global:
                 config_parser.remove_option('serial', 'serial4')
 
@@ -3339,22 +3340,22 @@ class GUI:
                 config_parser.add_section('dos')
 
             if self.dos_xms_new != self.dos_xms:
-                config_parser.set('dos', 'xms', self.dos_xms_new)
+                config_parser.set('dos', 'xms', str(self.dos_xms_new))
             elif self.dos_xms_new == self.dos_xms_global:
                 config_parser.remove_option('dos', 'xms')
 
             if self.dos_ems_new != self.dos_ems:
-                config_parser.set('dos', 'ems', self.dos_ems_new)
+                config_parser.set('dos', 'ems', str(self.dos_ems_new))
             elif self.dos_ems_new == self.dos_ems_global:
                 config_parser.remove_option('dos', 'ems')
 
             if self.dos_umb_new != self.dos_umb:
-                config_parser.set('dos', 'umb', self.dos_umb_new)
+                config_parser.set('dos', 'umb', str(self.dos_umb_new))
             elif self.dos_umb_new == self.dos_umb_global:
                 config_parser.remove_option('dos', 'umb')
 
             if self.dos_keyboardlayout_new != self.dos_keyboardlayout:
-                config_parser.set('dos', 'keyboardlayout', self.dos_keyboardlayout_new)
+                config_parser.set('dos', 'keyboardlayout', str(self.dos_keyboardlayout_new))
             elif self.dos_keyboardlayout_new == self.dos_keyboardlayout_global:
                 config_parser.remove_option('dos', 'keyboardlayout')
 
@@ -3365,7 +3366,7 @@ class GUI:
                 config_parser.add_section('ipx')
 
             if self.ipx_ipx_new != self.ipx_ipx:
-                config_parser.set('ipx', 'ipx', self.ipx_ipx_new)
+                config_parser.set('ipx', 'ipx', str(self.ipx_ipx_new))
             elif self.ipx_ipx_new == self.ipx_ipx_global:
                 config_parser.remove_option('ipx', 'ipx')
 

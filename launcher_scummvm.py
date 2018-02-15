@@ -1,17 +1,18 @@
-#!/usr/bin/env python
-# -*- Mode: Python; coding: utf-8; indent-tabs-install_mode: t; c-basic-offset: 4; tab-width: 4 -*-
-
 import sys, os, subprocess, re
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf
-import ConfigParser
 import gettext
+
+try:
+    from ConfigParser import ConfigParser as ConfigParser
+except:
+    from configparser import ConfigParser as ConfigParser
 
 from modules import monitors
 
 global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
-global_config_parser = ConfigParser.ConfigParser()
+global_config_parser = ConfigParser()
 global_config_parser.read(global_config_file)
 gtk_theme = global_config_parser.get('visuals', 'gtk_theme')
 gtk_dark = global_config_parser.getboolean('visuals', 'gtk_dark')
@@ -99,7 +100,7 @@ class GUI:
     def set_game_path(self):
 
         config_file = self.install_dir + '/' + self.game_name + '/scummvmrc'
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_file)
 
         sections = config_parser.sections()
@@ -107,8 +108,8 @@ class GUI:
         for section in sections:
             if section != 'scummvm':
                 game_path = self.install_dir + '/' + self.game_name + '/game'
-                config_parser.set(section, 'path', game_path)
-                config_parser.set(section, 'savepath', game_path)
+                config_parser.set(section, 'path', str(game_path))
+                config_parser.set(section, 'savepath', str(game_path))
 
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)
@@ -117,7 +118,7 @@ class GUI:
     def config_load(self):
 
         config_file = self.install_dir + '/' + self.game_name + '/config.ini'
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_file)
 
         if not config_parser.has_section('Settings'):
@@ -125,49 +126,49 @@ class GUI:
 
         if not config_parser.has_option('Settings', 'scummvm'):
             self.scummvm = 'global'
-            config_parser.set('Settings', 'scummvm', self.scummvm)
+            config_parser.set('Settings', 'scummvm', str(self.scummvm))
         else:
             self.scummvm = config_parser.get('Settings', 'scummvm')
 
         if not config_parser.has_option('Settings', 'scummvm_path'):
             self.scummvm_path = global_scummvm_path
-            config_parser.set('Settings', 'scummvm_path', self.scummvm_path)
+            config_parser.set('Settings', 'scummvm_path', str(self.scummvm_path))
         else:
             self.scummvm_path = config_parser.get('Settings', 'scummvm_path')
 
         if not config_parser.has_option('Settings', 'scummvm_version'):
             self.scummvm_version = global_scummvm_version
-            config_parser.set('Settings', 'scummvm_version', self.scummvm_version)
+            config_parser.set('Settings', 'scummvm_version', str(self.scummvm_version))
         else:
             self.scummvm_version = config_parser.get('Settings', 'scummvm_version')
 
         if not config_parser.has_option('Settings', 'monitor'):
             self.monitor = global_monitor
-            config_parser.set('Settings', 'monitor', self.monitor)
+            config_parser.set('Settings', 'monitor', str(self.monitor))
         else:
             self.monitor = config_parser.getint('Settings', 'monitor')
 
         if not config_parser.has_option('Settings', 'launcher'):
             self.launcher = True
-            config_parser.set('Settings', 'launcher', self.launcher)
+            config_parser.set('Settings', 'launcher', str(self.launcher))
         else:
             self.launcher = config_parser.getboolean('Settings', 'launcher')
 
         if not config_parser.has_option('Settings', 'show_banner'):
             self.show_banner = True
-            config_parser.set('Settings', 'show_banner', self.show_banner)
+            config_parser.set('Settings', 'show_banner', str(self.show_banner))
         else:
             self.show_banner = config_parser.getboolean('Settings', 'show_banner')
 
         if not config_parser.has_option('Settings', 'command_before'):
             self.command_before = ''
-            config_parser.set('Settings', 'command_before', self.command_before)
+            config_parser.set('Settings', 'command_before', str(self.command_before))
         else:
             self.command_before = config_parser.get('Settings', 'command_before')
 
         if not config_parser.has_option('Settings', 'command_after'):
             self.command_after = ''
-            config_parser.set('Settings', 'command_after', self.command_after)
+            config_parser.set('Settings', 'command_after', str(self.command_after))
         else:
             self.command_after = config_parser.get('Settings', 'command_after')
 
@@ -178,17 +179,17 @@ class GUI:
     def config_save(self):
 
         config_file = self.install_dir + '/' + self.game_name + '/config.ini'
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_file)
 
-        config_parser.set('Settings', 'scummvm', self.scummvm)
-        config_parser.set('Settings', 'scummvm_path', self.scummvm_path)
-        config_parser.set('Settings', 'scummvm_version', self.scummvm_version)
-        config_parser.set('Settings', 'monitor', self.monitor)
-        config_parser.set('Settings', 'launcher', self.launcher)
-        config_parser.set('Settings', 'show_banner', self.show_banner)
-        config_parser.set('Settings', 'command_before', self.command_before)
-        config_parser.set('Settings', 'command_after', self.command_after)
+        config_parser.set('Settings', 'scummvm', str(self.scummvm))
+        config_parser.set('Settings', 'scummvm_path', str(self.scummvm_path))
+        config_parser.set('Settings', 'scummvm_version', str(self.scummvm_version))
+        config_parser.set('Settings', 'monitor', str(self.monitor))
+        config_parser.set('Settings', 'launcher', str(self.launcher))
+        config_parser.set('Settings', 'show_banner', str(self.show_banner))
+        config_parser.set('Settings', 'command_before', str(self.command_before))
+        config_parser.set('Settings', 'command_after', str(self.command_after))
 
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)
@@ -341,7 +342,13 @@ class GUI:
         self.combobox_monitor = Gtk.ComboBoxText()
 
         for output in self.monitors_list:
-            self.combobox_monitor.append_text(output.translate(None, '\n'))
+            
+            try:
+                self.combobox_monitor.append_text(output.translate(None, '\n'))
+            except:
+                char_map = str.maketrans('', '', '\n')
+                self.combobox_monitor.append_text(output.translate(char_map))
+
         self.combobox_monitor.set_active(self.monitor)
 
         self.combobox_monitor.connect('changed', self.cb_combobox_monitor)

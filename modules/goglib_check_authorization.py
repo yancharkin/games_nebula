@@ -10,10 +10,10 @@ def goglib_authorized():
     stdoutdata, stderrdata = proc.communicate()
 
     if proc.returncode == 0:
-        print "Authorized on GOG"
+        print("Authorized on GOG")
         return True
     else:
-        print "Not authorized on GOG"
+        print("Not authorized on GOG")
         return False
 
 if __name__ == "__main__":

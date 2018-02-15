@@ -1,19 +1,18 @@
-#!/usr/bin/env python
-# -*- Mode: Python; coding: utf-8; indent-tabs-install_mode: t; c-basic-offset: 4; tab-width: 4 -*-
-
-# TODO Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
-
 import sys, os, subprocess, re
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf
-import ConfigParser
 import gettext
+
+try:
+    from ConfigParser import ConfigParser as ConfigParser
+except:
+    from configparser import ConfigParser as ConfigParser
 
 from modules import monitors
 
 global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
-global_config_parser = ConfigParser.ConfigParser()
+global_config_parser = ConfigParser()
 global_config_parser.read(global_config_file)
 gtk_theme = global_config_parser.get('visuals', 'gtk_theme')
 gtk_dark = global_config_parser.getboolean('visuals', 'gtk_dark')
@@ -70,7 +69,7 @@ class GUI:
     def config_load(self):
 
         config_file = self.install_dir + '/' + self.game_name + '/config.ini'
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_file)
 
         if not config_parser.has_section('Settings'):
@@ -78,49 +77,49 @@ class GUI:
 
         if not config_parser.has_option('Settings', 'dosbox'):
             self.dosbox = 'global'
-            config_parser.set('Settings', 'dosbox', self.dosbox)
+            config_parser.set('Settings', 'dosbox', str(self.dosbox))
         else:
             self.dosbox = config_parser.get('Settings', 'dosbox')
 
         if not config_parser.has_option('Settings', 'dosbox_path'):
             self.dosbox_path = global_dosbox_path
-            config_parser.set('Settings', 'dosbox_path', self.dosbox_path)
+            config_parser.set('Settings', 'dosbox_path', str(self.dosbox_path))
         else:
             self.dosbox_path = config_parser.get('Settings', 'dosbox_path')
 
         if not config_parser.has_option('Settings', 'dosbox_version'):
             self.dosbox_version = global_dosbox_version
-            config_parser.set('Settings', 'dosbox_version', self.dosbox_version)
+            config_parser.set('Settings', 'dosbox_version', str(self.dosbox_version))
         else:
             self.dosbox_version = config_parser.get('Settings', 'dosbox_version')
 
         if not config_parser.has_option('Settings', 'monitor'):
             self.monitor = global_monitor
-            config_parser.set('Settings', 'monitor', self.monitor)
+            config_parser.set('Settings', 'monitor', str(self.monitor))
         else:
             self.monitor = config_parser.getint('Settings', 'monitor')
 
         if not config_parser.has_option('Settings', 'launcher'):
             self.launcher = True
-            config_parser.set('Settings', 'launcher', self.launcher)
+            config_parser.set('Settings', 'launcher', str(self.launcher))
         else:
             self.launcher = config_parser.getboolean('Settings', 'launcher')
 
         if not config_parser.has_option('Settings', 'show_banner'):
             self.show_banner = True
-            config_parser.set('Settings', 'show_banner', self.show_banner)
+            config_parser.set('Settings', 'show_banner', str(self.show_banner))
         else:
             self.show_banner = config_parser.getboolean('Settings', 'show_banner')
 
         if not config_parser.has_option('Settings', 'command_before'):
             self.command_before = ''
-            config_parser.set('Settings', 'command_before', self.command_before)
+            config_parser.set('Settings', 'command_before', str(self.command_before))
         else:
             self.command_before = config_parser.get('Settings', 'command_before')
 
         if not config_parser.has_option('Settings', 'command_after'):
             self.command_after = ''
-            config_parser.set('Settings', 'command_after', self.command_after)
+            config_parser.set('Settings', 'command_after', str(self.command_after))
         else:
             self.command_after = config_parser.get('Settings', 'command_after')
 
@@ -131,17 +130,17 @@ class GUI:
     def config_save(self):
 
         config_file = self.install_dir + '/' + self.game_name + '/config.ini'
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_file)
 
-        config_parser.set('Settings', 'dosbox', self.dosbox)
-        config_parser.set('Settings', 'dosbox_path', self.dosbox_path)
-        config_parser.set('Settings', 'dosbox_version', self.dosbox_version)
-        config_parser.set('Settings', 'monitor', self.monitor)
-        config_parser.set('Settings', 'launcher', self.launcher)
-        config_parser.set('Settings', 'show_banner', self.show_banner)
-        config_parser.set('Settings', 'command_before', self.command_before)
-        config_parser.set('Settings', 'command_after', self.command_after)
+        config_parser.set('Settings', 'dosbox', str(self.dosbox))
+        config_parser.set('Settings', 'dosbox_path', str(self.dosbox_path))
+        config_parser.set('Settings', 'dosbox_version', str(self.dosbox_version))
+        config_parser.set('Settings', 'monitor', str(self.monitor))
+        config_parser.set('Settings', 'launcher', str(self.launcher))
+        config_parser.set('Settings', 'show_banner', str(self.show_banner))
+        config_parser.set('Settings', 'command_before', str(self.command_before))
+        config_parser.set('Settings', 'command_after', str(self.command_after))
 
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)
@@ -293,7 +292,13 @@ class GUI:
         self.combobox_monitor = Gtk.ComboBoxText()
 
         for output in self.monitors_list:
-            self.combobox_monitor.append_text(output.translate(None, '\n'))
+
+            try:
+                self.combobox_monitor.append_text(output.translate(None, '\n'))
+            except:
+                char_map = str.maketrans('', '', '\n')
+                self.combobox_monitor.append_text(output.translate(char_map))
+
         self.combobox_monitor.set_active(self.monitor)
 
         self.combobox_monitor.connect('changed', self.cb_combobox_monitor)
@@ -561,6 +566,7 @@ class GUI:
         ' -conf ' + self.install_dir + '/' + self.game_name + '/dosbox_game.conf'
 
         os.system(self.command_before)
+        # FIX Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
         os.system('export SDL_VIDEO_FULLSCREEN_HEAD=0 && ' + launch_command)
         os.system(self.command_after)
 
@@ -590,6 +596,7 @@ class GUI:
         ' -conf ' + self.install_dir + '/' + self.game_name + '/dosbox.conf' + \
         ' -conf ' + self.install_dir + '/' + self.game_name + '/dosbox_settings.conf'
 
+        # FIX Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
         os.system('export SDL_VIDEO_FULLSCREEN_HEAD=0 && ' + launch_command)
 
         output = self.monitor_primary.split()[0]
@@ -614,7 +621,7 @@ class GUI:
     def check_dosbox_version(self, dosbox_bin):
 
         proc = subprocess.Popen([dosbox_bin, '--version'],stdout=subprocess.PIPE)
-        version_line = proc.stdout.readlines()[1]
+        version_line = proc.stdout.readlines()[1].decode('utf-8')
 
         if 'SVN-Daum' in version_line:
             dosbox_version = 'svn_daum'

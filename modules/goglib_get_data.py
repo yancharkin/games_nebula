@@ -1,6 +1,6 @@
 import os
 
-import goglib_get_banner
+from modules import goglib_get_banner
 #~ import goglib_get_icon
 
 def games_info(data_dir):
@@ -14,11 +14,23 @@ def games_info(data_dir):
     with open(games_list, 'r') as in_file:
         for line in in_file:
             if 'gamename: ' in line:
-                list_names.append(line.split('name: ',1)[1].translate(None, '\n'))
+                try:
+                    list_names.append(line.split('name: ',1)[1].translate(None, '\n'))
+                except:
+                    char_map = str.maketrans('', '', '\n')
+                    list_names.append(line.split('name: ',1)[1].translate(char_map))
             if 'title: ' in line:
-                list_titles.append(line.split('title: ',1)[1].translate(None, '\n'))
+                try:
+                    list_titles.append(line.split('title: ',1)[1].translate(None, '\n'))
+                except:
+                    char_map = str.maketrans('', '', '\n')
+                    list_titles.append(line.split('title: ',1)[1].translate(char_map))
             if 'icon: ' in line:
-                list_icons.append(line.split('icon: ',1)[1].translate(None, '\n'))
+                try:
+                    list_icons.append(line.split('icon: ',1)[1].translate(None, '\n'))
+                except:
+                    char_map = str.maketrans('', '', '\n')
+                    list_icons.append(line.split('icon: ',1)[1].translate(char_map))
     in_file.close()
 
     number_of_games = len(list_names)

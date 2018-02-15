@@ -2,11 +2,15 @@ import sys, os, subprocess, re
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf
-import ConfigParser
 import gettext
 
+try:
+    from ConfigParser import ConfigParser as ConfigParser
+except:
+    from configparser import ConfigParser as ConfigParser
+
 global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
-global_config_parser = ConfigParser.ConfigParser()
+global_config_parser = ConfigParser()
 global_config_parser.read(global_config_file)
 gtk_theme = global_config_parser.get('visuals', 'gtk_theme')
 gtk_dark = global_config_parser.getboolean('visuals', 'gtk_dark')

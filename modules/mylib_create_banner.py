@@ -1,19 +1,31 @@
-# -*- Mode: Python; coding: utf-8; -*- 
 import os, sys
 from PIL import Image, ImageDraw, ImageFont
 
 def mylib_create_banner(game_name):
-    
+
     nebula_dir = sys.path[0]
     scripts_dir = os.getenv('HOME') + '/.games_nebula/scripts/mylib/' + game_name
     banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib_banners/'
     banner_path = banners_dir + game_name + '.jpg'
-    
+
     if not os.path.exists(banners_dir):
         os.makedirs(banners_dir)
 
     script_file = open(scripts_dir + '/setup', 'r')
-    game_title = script_file.readlines()[-1].translate(None, '#\n').decode('utf-8')
+    file_content = script_file.readlines()
+    raw_game_title = file_content[-1]
+
+    try:
+        raw_game_title = raw_game_title.translate(None, '#\n')
+    except:
+        char_map = str.maketrans('', '', '#\n')
+        raw_game_title = raw_game_title.translate(char_map)
+
+    if sys.version_info[0] == 2:
+        game_title = raw_game_title.decode('utf-8')
+    elif sys.version_info[0] == 3:
+        game_title = raw_game_title
+
     script_file.close()
 
     banner = Image.new('1', (518, 240), 0)

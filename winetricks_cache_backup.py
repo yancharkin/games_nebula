@@ -2,8 +2,12 @@ import sys, os, subprocess, re
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf, GLib
-import ConfigParser
 import gettext
+
+try:
+    from ConfigParser import ConfigParser as ConfigParser
+except:
+    from configparser import ConfigParser as ConfigParser
 
 nebula_dir = sys.path[0]
 app_icon = GdkPixbuf.Pixbuf.new_from_file(nebula_dir + '/images/icon.png')
@@ -22,7 +26,7 @@ class GUI:
     def config_load(self):
 
         global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
-        global_config_parser = ConfigParser.ConfigParser()
+        global_config_parser = ConfigParser()
         global_config_parser.read(global_config_file)
 
         gtk_theme = global_config_parser.get('visuals', 'gtk_theme')
@@ -41,7 +45,7 @@ class GUI:
 
         if not global_config_parser.has_option('goglib preferences', 'goglib_download_dir'):
             goglib_download_dir = os.getenv('HOME') + '/.games_nebula/games/goglib/downloads'
-            global_config_parser.set('goglib preferences', 'goglib_download_dir', goglib_download_dir)
+            global_config_parser.set('goglib preferences', 'goglib_download_dir', str(goglib_download_dir))
         else:
             goglib_download_dir = global_config_parser.get('goglib preferences', 'goglib_download_dir')
 
@@ -50,13 +54,13 @@ class GUI:
 
         if not global_config_parser.has_option('emulation settings', 'winetricks_cache'):
             self.winetricks_cache = os.getenv('HOME') + '/.cache/winetricks'
-            global_config_parser.set('emulation settings', 'winetricks_cache', self.winetricks_cache)
+            global_config_parser.set('emulation settings', 'winetricks_cache', str(self.winetricks_cache))
         else:
             self.winetricks_cache = global_config_parser.get('emulation settings', 'winetricks_cache')
 
         if not global_config_parser.has_option('emulation settings', 'winetricks_cache_backup'):
             self.winetricks_cache_backup = goglib_download_dir + '/_winetricks_cache_backup'
-            global_config_parser.set('emulation settings', 'winetricks_cache_backup', self.winetricks_cache_backup)
+            global_config_parser.set('emulation settings', 'winetricks_cache_backup', str(self.winetricks_cache_backup))
         else:
             self.winetricks_cache_backup = global_config_parser.get('emulation settings', 'winetricks_cache_backup')
 
@@ -73,11 +77,11 @@ class GUI:
     def config_save(self):
 
         config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
-        config_parser = ConfigParser.ConfigParser()
+        config_parser = ConfigParser()
         config_parser.read(config_file)
 
-        config_parser.set('emulation settings', 'winetricks_cache', self.winetricks_cache)
-        config_parser.set('emulation settings', 'winetricks_cache_backup', self.winetricks_cache_backup)
+        config_parser.set('emulation settings', 'winetricks_cache', str(self.winetricks_cache))
+        config_parser.set('emulation settings', 'winetricks_cache_backup', str(self.winetricks_cache_backup))
 
         new_config_file = open(os.getenv('HOME') + '/.games_nebula/config/config.ini', 'w')
         config_parser.write(new_config_file)

@@ -1,14 +1,15 @@
-#!/usr/bin/env python
-# -*- Mode: Python; coding: utf-8; indent-tabs-install_mode: t; c-basic-offset: 4; tab-width: 4 -*-
-
 import os
-import ConfigParser
+
+try:
+    from ConfigParser import ConfigParser as ConfigParser
+except:
+    from configparser import ConfigParser as ConfigParser
 
 def mylib_tags_get_all(tags_file):
 
     all_tags = []
 
-    parser = ConfigParser.ConfigParser()
+    parser = ConfigParser()
     parser.read(tags_file)
 
     if 'mylib tags' in parser.sections():
