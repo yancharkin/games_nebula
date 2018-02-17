@@ -1343,11 +1343,9 @@ class GUI:
 
         gi.require_version('WebKit2', '4.0')
         from gi.repository import WebKit2
-        from gi.repository import Soup
         import webbrowser
 
         self.webkit = WebKit2
-        self.soup = Soup
         self.webbrowser = webbrowser
 
         self.setup_cookies()
