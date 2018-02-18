@@ -207,68 +207,13 @@ class GUI:
 
     def create_login_window(self):
 
-        self.login_window = Gtk.Window(
-            title = "Games Nebula",
-            type = Gtk.WindowType.TOPLEVEL,
-            window_position = Gtk.WindowPosition.CENTER_ALWAYS,
-            icon = app_icon,
-            width_request = 360,
-            resizable = False
-            )
-        self.login_window.connect('delete-event', self.quit_app)
+        self.loading_window.destroy()
 
-        grid = Gtk.Grid(
-            column_homogeneous = True,
-            row_spacing = 10,
-            column_spacing = 10,
-            margin_right = 10,
-            margin_left = 10,
-            margin_top = 10,
-            margin_bottom = 10
-            )
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
-        label_authorization = Gtk.Label(
-            label = _("GOG Authorization")
-            )
-
-        self.entry_email = Gtk.Entry(
-            placeholder_text = _("E-mail"),
-            xalign = 0.5,
-            #input_purpose = Gtk.InputPurpose.EMAIL
-            )
-        self.entry_password = Gtk.Entry(
-            placeholder_text = _("Password"),
-            xalign = 0.5,
-            #input_purpose = Gtk.InputPurpose.PASSWORD
-            visibility = False
-            )
-
-        checkbutton_show_password = Gtk.CheckButton(
-            label = _("Show password")
-            )
-        checkbutton_show_password.connect('clicked', self.cb_checkbutton_show_password)
-
-        button_ok = Gtk.Button(
-            label = _("OK")
-            )
-        button_ok.connect('clicked', self.cb_login)
-
-        button_cancel = Gtk.Button(
-            label = _("Cancel")
-            )
-        button_cancel.connect('clicked', self.cb_login)
-
-        grid.attach(label_authorization, 0, 0, 2, 1)
-        grid.attach(self.entry_email, 0, 1, 2, 1)
-        grid.attach(self.entry_password, 0, 2, 2, 1)
-        grid.attach(checkbutton_show_password, 0, 3, 2, 1)
-        grid.attach(button_ok, 0, 4, 1, 1)
-        grid.attach(button_cancel, 1, 4, 1, 1)
-
-        self.login_window.add(grid)
-        self.login_window.show_all()
-        button_cancel.grab_focus()
-        self.loading_window.hide()
+        os.system(sys.executable + ' ' + nebula_dir + '/pygogauth.py')
+        os.execl(sys.executable, sys.executable, *sys.argv)
 
     def create_main_window(self):
 
@@ -4320,85 +4265,6 @@ class GUI:
             self.combobox_mylib_tags3.set_visible(True)
             self.combobox_mylib_tags4.set_visible(True)
 
-    def cb_login(self, button):
-        if button.get_label() == _("OK"):
-            email = self.entry_email.get_text()
-            password = self.entry_password.get_text()
-
-            if (email == '') or (password == ''):
-                message_dialog = Gtk.MessageDialog(
-                    self.login_window,
-                    0,
-                    Gtk.MessageType.ERROR,
-                    Gtk.ButtonsType.OK,
-                    _("Error!"),
-                    )
-                message_dialog.format_secondary_text(_("The password/e-mail field is empty."))
-                content_area = message_dialog.get_content_area()
-                content_area.set_property('margin-left', 10)
-                content_area.set_property('margin-right', 10)
-                content_area.set_property('margin-top', 10)
-                content_area.set_property('margin-bottom', 10)
-                action_area = message_dialog.get_action_area()
-                action_area.set_property('spacing', 10)
-
-                self.login_window.hide()
-                message_dialog.run()
-                message_dialog.destroy()
-            else:
-                os.system('lgogdownloader --login-email ' + email
-                + ' --login-password ' + password)
-
-                self.goglib_authorized = goglib_check_authorization.goglib_authorized()
-
-                if self.goglib_authorized == False:
-
-                    message_dialog = Gtk.MessageDialog(
-                        self.login_window,
-                        0,
-                        Gtk.MessageType.ERROR,
-                        Gtk.ButtonsType.OK,
-                        _("Error!"),
-                        )
-                    message_dialog.format_secondary_text(_("Authorization failed."))
-                    content_area = message_dialog.get_content_area()
-                    content_area.set_property('margin-left', 10)
-                    content_area.set_property('margin-right', 10)
-                    content_area.set_property('margin-top', 10)
-                    content_area.set_property('margin-bottom', 10)
-                    action_area = message_dialog.get_action_area()
-                    action_area.set_property('spacing', 10)
-
-                    self.login_window.hide()
-                    message_dialog.run()
-                    message_dialog.destroy()
-                else:
-                    self.goglib_offline_mode = False
-                    self.login_window.hide()
-                    self.loading_window.show()
-
-                    while Gtk.events_pending():
-                        Gtk.main_iteration()
-
-                    self.create_main_window()
-                    self.timer()
-        else:
-            self.goglib_offline_mode = True
-            self.login_window.hide()
-            self.loading_window.show()
-
-            while Gtk.events_pending():
-                Gtk.main_iteration()
-
-            self.create_main_window()
-            self.timer()
-
-    def cb_checkbutton_show_password(self, checkbutton):
-        if checkbutton.get_active() == True:
-            self.entry_password.set_visibility(True)
-        else:
-            self.entry_password.set_visibility(False)
-
     def cb_adjustment_goglib_scale_banner(self, adjustment):
 
         self.scale_level = adjustment.get_value()
@@ -5178,7 +5044,7 @@ class GUI:
 
             if not os.path.exists(self.goglib_download_dir + '/' +  game_name):
                     os.makedirs(self.goglib_download_dir + '/' +  game_name)
-            
+
             self.preferred_language = self.lang_index[self.goglib_lang]
 
             if self.goglib_download_extras == False:
@@ -6000,7 +5866,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        os.system('python ' + nebula_dir + '/winetricks_cache_backup.py')
+        os.system(sys.executable + ' ' + nebula_dir + '/winetricks_cache_backup.py')
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
