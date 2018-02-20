@@ -136,8 +136,6 @@ class GUI:
 
             if self.goglib_authorized == False:
 
-                #~ self.goglib_offline_mode = True
-
                 if goglib_check_connection.goglib_available():
 
                     self.loading_window.hide()
@@ -207,6 +205,8 @@ class GUI:
         content_area.set_property('margin-right', 10)
         content_area.set_property('margin-top', 10)
         content_area.set_property('margin-bottom', 10)
+        content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
+        content_area_label.set_property('justify', Gtk.Justification.CENTER)
 
         message_dialog.run()
         message_dialog.destroy()
@@ -227,6 +227,8 @@ class GUI:
         content_area.set_property('margin-right', 10)
         content_area.set_property('margin-top', 10)
         content_area.set_property('margin-bottom', 10)
+        content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
+        content_area_label.set_property('justify', Gtk.Justification.CENTER)
         action_area = message_dialog.get_action_area()
         action_area.set_property('spacing', 10)
 
@@ -272,11 +274,6 @@ class GUI:
         self.loading_window.show_all()
 
     def create_login_window(self):
-
-        self.loading_window.destroy()
-
-        while Gtk.events_pending():
-            Gtk.main_iteration()
 
         os.system(sys.executable + ' ' + nebula_dir + '/pygogauth.py')
         os.execl(sys.executable, sys.executable, *sys.argv)
@@ -358,7 +355,7 @@ class GUI:
             self.create_gogcom_tab()
 
         if self.goglib_tab_at_start == True:
-            self.create_goglib_tab_content()
+            self.create_goglib_tab_content('auto')
 
         if self.mylib_tab_at_start == True:
             self.create_mylib_tab()
@@ -374,22 +371,6 @@ class GUI:
         self.loading_window.hide()
 
     def notebook_page_switched(self, notebook, widget, arg):
-
-        # Automatically check for new games (not a good idea)
-        #~ if (widget.get_name() == 'goglib_tab') and (self.last_active_tab == 'gogcom_tab'):
-            #~ if self.goglib_offline_mode:
-                #~ if goglib_authorized:
-                    #~ os.execl(sys.executable, sys.executable, *sys.argv)
-            #~ else:
-                #~ for i in range (self.notebook.get_n_pages()):
-                    #~ try:
-                        #~ if self.notebook.get_nth_page(i) == self.unauthorized_grid:
-                            #~ if goglib_authorized:
-                                #~ os.execl(sys.executable, sys.executable, *sys.argv)
-                    #~ except:
-                        #~ pass
-        #~ if (self.last_active_tab == 'gogcom_tab') and goglib_authorized:
-            #~ self.check_for_new_games()
 
         if self.last_active_tab == 'settings_tab':
             self.config_save()
@@ -431,72 +412,6 @@ class GUI:
         self.config_save()
         Gtk.main_quit()
 
-    def create_goglib_tab_empty(self):
-
-        self.unauthorized_grid = Gtk.Grid(
-            name = 'goglib_tab',
-            halign = Gtk.Align.CENTER,
-            valign = Gtk.Align.CENTER,
-            row_spacing = 10,
-            column_spacing = 10,
-            margin_top = 10,
-            margin_bottom = 10,
-            margin_left = 10,
-            margin_right = 10,
-            )
-
-        self.unauthorized_message = Gtk.Label(
-            label = _("You are not authorized on GOG.COM and can't download games."),
-            wrap = True,
-            )
-
-        self.unauthorized_grid.attach(self.unauthorized_message, 0, 0, 1, 1)
-
-        if os.path.exists(os.getenv('HOME') + '/.games_nebula/config/games_list'):
-            self.button_start_offline = Gtk.Button(
-                label = _("Start in offline mode"),
-                halign = Gtk.Align.CENTER
-                )
-
-            self.button_start_offline.connect('clicked', self.goglib_start_offline_mode)
-
-            self.unauthorized_grid.attach(self.button_start_offline, 0, 1, 1, 1)
-
-        self.unauthorized_tab_box = Gtk.Box(
-            spacing = 10,
-            )
-
-        self.unauthorized_tab_label = Gtk.Label(
-            label = _("GOG LIBRARY")
-            )
-
-        self.unauthorized_tab_close_button = Gtk.Button(
-            name = "Downloads",
-            image = Gtk.Image(stock=Gtk.STOCK_CLOSE),
-            relief = Gtk.ReliefStyle.NONE,
-            focus_on_click = False,
-            )
-
-        self.unauthorized_tab_close_button.connect('clicked', self.close_tab, self.unauthorized_grid)
-
-        self.unauthorized_tab_box.pack_start(self.unauthorized_tab_label, True, True, 0)
-        self.unauthorized_tab_box.pack_start(self.unauthorized_tab_close_button, True, True, 0)
-        self.unauthorized_tab_box.show_all()
-
-        self.notebook.append_page(self.unauthorized_grid, self.unauthorized_tab_box)
-        self.notebook.set_tab_reorderable(self.unauthorized_grid, True)
-        self.notebook.set_tab_detachable(self.unauthorized_grid, True)
-
-    def goglib_start_offline_mode(self, button):
-        self.goglib_offline_mode = True
-        self.button_online_status.set_property('tooltip_text', _("Offline - click to go online"))
-        self.button_online_status.set_property('image', self.icon_network_offline)
-        self.notebook.detach_tab(self.unauthorized_grid)
-        self.create_goglib_tab_content()
-        self.main_window.show_all()
-        new_active_page = self.notebook.page_num(self.box_goglib_page)
-        self.notebook.set_current_page(new_active_page)
-
     def goglib_offline_available_games(self):
 
         available_distrs = os.listdir(self.goglib_download_dir)
@@ -509,7 +424,7 @@ class GUI:
 
         self.goglib_available_games = list(available_offline)
 
-    def create_goglib_tab_content(self):
+    def create_goglib_tab_content(self, created_by):
 
         if not os.path.exists(config_dir + '/games_list'):
 
@@ -525,19 +440,35 @@ class GUI:
                     _("File '") + os.getenv('HOME')
                         + '/.games_nebula/config/games_list'
                         + _("' is missing.\n")
-                        + _("'GOG LIBRARY' tab will be disabled.")
+                        + _("'GOG LIBRARY' tab disabled. ")
+                        + _("Login at least once before using it.")
                 )
 
-                if (self.mylib_tab_at_start == False) and \
-                        (self.gogcom_tab_at_start == False) and \
-                        (self.queue_tab_at_start == False) and \
-                        (self.settings_tab_at_start == False):
+                if created_by == 'button':
 
-                    self.create_settings_tab()
-                    self.notebook.append_page(self.scrolledwindow_settings, self.box_settings_tab)
-                    self.notebook.set_tab_detachable(self.scrolledwindow_settings, True)
-                    self.notebook.set_tab_reorderable(self.scrolledwindow_settings, True)
-                    self.notebook.set_tab_detachable(self.scrolledwindow_settings, True)
+                    if goglib_check_connection.goglib_available():
+
+                        try2authorize = self.simple_question(
+                            _("Not authorized on GOG.com"),
+                            _("Try to authorize?")
+                        )
+
+                        if try2authorize:
+
+                            self.create_login_window()
+
+                else:
+
+                    if (self.mylib_tab_at_start == False) and \
+                            (self.gogcom_tab_at_start == False) and \
+                            (self.queue_tab_at_start == False) and \
+                            (self.settings_tab_at_start == False):
+
+                        self.create_settings_tab()
+                        self.notebook.append_page(self.scrolledwindow_settings, self.box_settings_tab)
+                        self.notebook.set_tab_detachable(self.scrolledwindow_settings, True)
+                        self.notebook.set_tab_reorderable(self.scrolledwindow_settings, True)
+                        self.notebook.set_tab_detachable(self.scrolledwindow_settings, True)
 
                 return
 
@@ -561,7 +492,7 @@ class GUI:
         self.goglib_tags4_filter_list = list(self.goglib_games_list)
         self.goglib_search_filter_list = list(self.goglib_games_list)
 
-        self.all_tags = goglib_tags_get_all.goglib_tags_get_all(goglib_tags_file)
+        self.goglib_all_tags = goglib_tags_get_all.goglib_tags_get_all(goglib_tags_file)
 
         self.goglib_dict_name_to_title = {}
         for i in range(self.number_of_games):
@@ -615,13 +546,13 @@ class GUI:
             name = 'combobox_goglib_tags1'
             )
         self.combobox_goglib_tags1.append_text(_("No filter"))
-        for i in range(len(self.all_tags)):
-            if self.all_tags[i] != '':
-                self.combobox_goglib_tags1.append_text(self.all_tags[i])
-            if self.all_tags[i] == self.goglib_tags_filter1:
+        for i in range(len(self.goglib_all_tags)):
+            if self.goglib_all_tags[i] != '':
+                self.combobox_goglib_tags1.append_text(self.goglib_all_tags[i])
+            if self.goglib_all_tags[i] == self.goglib_tags_filter1:
                 self.combobox_goglib_tags1.set_active(i + 1)
 
-        if self.goglib_tags_filter1 not in self.all_tags:
+        if self.goglib_tags_filter1 not in self.goglib_all_tags:
             self.combobox_goglib_tags1.set_active(0)
 
         self.combobox_goglib_tags1.append_text(_("No tags"))
@@ -642,13 +573,13 @@ class GUI:
             name = 'combobox_goglib_tags2'
             )
         self.combobox_goglib_tags2.append_text(_("No filter"))
-        for i in range(len(self.all_tags)):
-            if self.all_tags[i] != '':
-                self.combobox_goglib_tags2.append_text(self.all_tags[i])
-            if self.all_tags[i] == self.goglib_tags_filter2:
+        for i in range(len(self.goglib_all_tags)):
+            if self.goglib_all_tags[i] != '':
+                self.combobox_goglib_tags2.append_text(self.goglib_all_tags[i])
+            if self.goglib_all_tags[i] == self.goglib_tags_filter2:
                 self.combobox_goglib_tags2.set_active(i + 1)
 
-        if self.goglib_tags_filter2 not in self.all_tags:
+        if self.goglib_tags_filter2 not in self.goglib_all_tags:
             self.combobox_goglib_tags2.set_active(0)
 
         self.combobox_goglib_tags2.append_text(_("No tags"))
@@ -669,13 +600,13 @@ class GUI:
             name = 'combobox_goglib_tags3'
             )
         self.combobox_goglib_tags3.append_text(_("No filter"))
-        for i in range(len(self.all_tags)):
-            if self.all_tags[i] != '':
-                self.combobox_goglib_tags3.append_text(self.all_tags[i])
-            if self.all_tags[i] == self.goglib_tags_filter3:
+        for i in range(len(self.goglib_all_tags)):
+            if self.goglib_all_tags[i] != '':
+                self.combobox_goglib_tags3.append_text(self.goglib_all_tags[i])
+            if self.goglib_all_tags[i] == self.goglib_tags_filter3:
                 self.combobox_goglib_tags3.set_active(i + 1)
 
-        if self.goglib_tags_filter3 not in self.all_tags:
+        if self.goglib_tags_filter3 not in self.goglib_all_tags:
             self.combobox_goglib_tags3.set_active(0)
 
         self.combobox_goglib_tags3.append_text(_("No tags"))
@@ -696,13 +627,13 @@ class GUI:
             name = 'combobox_goglib_tags4'
             )
         self.combobox_goglib_tags4.append_text(_("No filter"))
-        for i in range(len(self.all_tags)):
-            if self.all_tags[i] != '':
-                self.combobox_goglib_tags4.append_text(self.all_tags[i])
-            if self.all_tags[i] == self.goglib_tags_filter4:
+        for i in range(len(self.goglib_all_tags)):
+            if self.goglib_all_tags[i] != '':
+                self.combobox_goglib_tags4.append_text(self.goglib_all_tags[i])
+            if self.goglib_all_tags[i] == self.goglib_tags_filter4:
                 self.combobox_goglib_tags4.set_active(i + 1)
 
-        if self.goglib_tags_filter4 not in self.all_tags:
+        if self.goglib_tags_filter4 not in self.goglib_all_tags:
             self.combobox_goglib_tags4.set_active(0)
 
         self.combobox_goglib_tags4.append_text(_("No tags"))
@@ -881,10 +812,6 @@ class GUI:
         self.cb_combobox_goglib_tags4(self.combobox_goglib_tags4)
         self.goglib_tags_visibility()
         self.update_goglib_interface()
-
-        # Automatically check for new games (not a good idea for now)
-        #~ self.check_for_new_games()
-        #~ self.timer_check_for_new_games()
 
     def create_mylib_tab(self):
 
@@ -1296,16 +1223,11 @@ class GUI:
                     if button.get_active():
                         if button.get_name() == 'goglib_tab':
                             try:
-                                self.notebook.append_page(self.unauthorized_grid, self.unauthorized_tab_box)
-                                self.notebook.set_tab_reorderable(self.unauthorized_grid, True)
-                                self.notebook.set_tab_detachable(self.unauthorized_grid, True)
+                                self.notebook.append_page(self.box_goglib_page, self.box_goglib_tab)
+                                self.notebook.set_tab_reorderable(self.box_goglib_page, True)
+                                self.notebook.set_tab_detachable(self.box_goglib_page, True)
                             except:
-                                try:
-                                    self.notebook.append_page(self.box_goglib_page, self.box_goglib_tab)
-                                    self.notebook.set_tab_reorderable(self.box_goglib_page, True)
-                                    self.notebook.set_tab_detachable(self.box_goglib_page, True)
-                                except:
-                                    self.create_goglib_tab_content()
+                                self.create_goglib_tab_content('button')
 
                         if button.get_name() == 'mylib_tab':
                             try:
@@ -3104,10 +3026,6 @@ class GUI:
                 pixbuf = pixbuf.scale_simple(new_downloads_pixbuf_width, new_downloads_pixbuf_height, InterpType.BILINEAR)
                 queue_game_image_list[i].set_from_pixbuf(pixbuf)
 
-    #~ def timer_check_for_new_games(self):
-        #~ self.check_for_new_games()
-        #~ GObject.timeout_add(30000, self.timer_check_for_new_games)
-
     def timer(self):
 
         if len(self.additional_windows_list) != 0:
@@ -4330,11 +4248,43 @@ class GUI:
 
         self.update_mylib_grid()
 
-    def goglib_banner_clicked(self, widget, event):
+    def banner_clicked(self, widget, event, lib):
+
+        if lib == 'goglib':
+            lib_tags_get = goglib_tags_get.goglib_tags_get
+            lib_tags_file = goglib_tags_file
+            lib_dict_name_to_title = self.goglib_dict_name_to_title
+            lib_all_tags = self.goglib_all_tags
+            lib_tags_create = goglib_tags_create.goglib_tags_create
+            lib_tags_get_all = goglib_tags_get_all.goglib_tags_get_all
+            combobox_lib_tags1 = self.combobox_goglib_tags1
+            combobox_lib_tags2 = self.combobox_goglib_tags2
+            combobox_lib_tags3 = self.combobox_goglib_tags3
+            combobox_lib_tags4 = self.combobox_goglib_tags4
+            cb_combobox_lib_tags1 = self.cb_combobox_goglib_tags1
+            cb_combobox_lib_tags2 = self.cb_combobox_goglib_tags2
+            cb_combobox_lib_tags3 = self.cb_combobox_goglib_tags3
+            cb_combobox_lib_tags4 = self.cb_combobox_goglib_tags4
+        elif lib == 'mylib':
+            lib_tags_get = mylib_tags_get.mylib_tags_get
+            lib_tags_file = mylib_tags_file
+            lib_dict_name_to_title = self.mylib_dict_name_to_title
+            lib_all_tags = self.mylib_all_tags
+            lib_tags_create = mylib_tags_create.mylib_tags_create
+            lib_tags_get_all = mylib_tags_get_all.mylib_tags_get_all
+            combobox_lib_tags1 = self.combobox_mylib_tags1
+            combobox_lib_tags2 = self.combobox_mylib_tags2
+            combobox_lib_tags3 = self.combobox_mylib_tags3
+            combobox_lib_tags4 = self.combobox_mylib_tags4
+            cb_combobox_lib_tags1 = self.cb_combobox_mylib_tags1
+            cb_combobox_lib_tags2 = self.cb_combobox_mylib_tags2
+            cb_combobox_lib_tags3 = self.cb_combobox_mylib_tags3
+            cb_combobox_lib_tags4 = self.cb_combobox_mylib_tags4
+
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             game_name = widget.get_children()[0].get_name()
 
-            current_tags_list = goglib_tags_get.goglib_tags_get(game_name, goglib_tags_file)
+            current_tags_list = lib_tags_get(game_name, lib_tags_file)
 
             current_tags_str = str1 = ','.join(current_tags_list)
 
@@ -4343,233 +4293,7 @@ class GUI:
                 0,
                 Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK_CANCEL,
-                '"' + self.goglib_dict_name_to_title[game_name] + '" ' + _("tags:"),
-                )
-            message_dialog.set_property('default-width', 480)
-            content_area = message_dialog.get_content_area()
-            content_area.set_property('margin-left', 10)
-            content_area.set_property('margin-right', 10)
-            content_area.set_property('margin-top', 10)
-            content_area.set_property('margin-bottom', 10)
-            content_area.set_property('spacing', 10)
-            action_area = message_dialog.get_action_area()
-            action_area.set_property('margin_top', 10)
-            action_area.set_property('spacing', 10)
-
-            entry = Gtk.Entry(
-                text = current_tags_str,
-                placeholder_text = _("Use commas to separate tags."),
-                width_request = 100,
-                sensitive = False,
-                tooltip_text = _("Current tags")
-                )
-
-            def cb_button_edit_tags(button):
-                if entry.get_sensitive():
-                    entry.set_sensitive(False)
-                else:
-                    entry.set_sensitive(True)
-
-            img = Gtk.Image.new_from_icon_name("document-new", Gtk.IconSize.SMALL_TOOLBAR)
-            button_edit_tags = Gtk.Button(
-                image = img,
-                tooltip_text = _("Edit")
-                )
-            button_edit_tags.connect('clicked', cb_button_edit_tags)
-
-            box0 = Gtk.Box(spacing = 5)
-
-            box0.pack_start(entry, True, True, 0)
-            box0.pack_start(button_edit_tags, False, False, 0)
-
-            combobox_existing_tags = Gtk.ComboBoxText(no_show_all=True)
-            for tag in self.all_tags:
-                if tag not in predefined_tags:
-                    combobox_existing_tags.append_text(tag)
-            combobox_existing_tags.set_active(0)
-
-            def cb_button_remove_existing_tags(button):
-                current_tags = entry.get_text()
-                tag_to_remove = combobox_existing_tags.get_active_text()
-                if tag_to_remove in current_tags:
-                    tmp_list = current_tags.split(',')
-                    tmp_list.remove(tag_to_remove)
-                    net_tags_string = ','.join(tmp_list)
-                    entry.set_text(net_tags_string)
-
-            img = Gtk.Image.new_from_icon_name("edit-delete", Gtk.IconSize.SMALL_TOOLBAR)
-            button_remove_existing_tags = Gtk.Button(
-                image = img,
-                no_show_all = True,
-                tooltip_text = _("Remove from current tags")
-                )
-            button_remove_existing_tags.connect('clicked', cb_button_remove_existing_tags)
-
-            def cb_button_add_existing_tags(button):
-                current_tags = entry.get_text()
-                new_tag = combobox_existing_tags.get_active_text()
-                if new_tag not in current_tags:
-                    if len(current_tags) == 0:
-                        entry.set_text(new_tag)
-                    else:
-                        entry.set_text(current_tags + ',' + new_tag)
-
-            img = Gtk.Image.new_from_icon_name("go-up", Gtk.IconSize.SMALL_TOOLBAR)
-            button_add_existing_tags = Gtk.Button(
-                image = img,
-                no_show_all = True,
-                tooltip_text = _("Add to current tags")
-                )
-            button_add_existing_tags.connect('clicked', cb_button_add_existing_tags)
-
-            label_existing_tags = Gtk.Label(
-                label=_("Existing tags:"),
-                xalign = 0,
-                no_show_all = True
-                )
-            box1 = Gtk.Box(spacing = 5)
-
-            if len(self.all_tags) == 0:
-                label_existing_tags.set_visible(False)
-                combobox_existing_tags.set_visible(False)
-                button_remove_existing_tags.set_visible(False)
-                button_add_existing_tags.set_visible(False)
-            else:
-                label_existing_tags.set_visible(True)
-                combobox_existing_tags.set_visible(True)
-                button_remove_existing_tags.set_visible(True)
-                button_add_existing_tags.set_visible(True)
-
-            box1.pack_start(combobox_existing_tags, True, True, 0)
-            box1.pack_start(button_remove_existing_tags, False, False, 0)
-            box1.pack_start(button_add_existing_tags, False, False, 0)
-
-            combobox_predefined_tags = Gtk.ComboBoxText()
-            for tag in predefined_tags:
-                combobox_predefined_tags.append_text(tag)
-            combobox_predefined_tags.set_active(0)
-
-            def cb_button_remove_predefined_tags(button):
-                current_tags = entry.get_text()
-                tag_to_remove = combobox_predefined_tags.get_active_text()
-                if tag_to_remove in current_tags:
-                    tmp_list = current_tags.split(',')
-                    tmp_list.remove(tag_to_remove)
-                    net_tags_string = ','.join(tmp_list)
-                    entry.set_text(net_tags_string)
-
-            img = Gtk.Image.new_from_icon_name("edit-delete", Gtk.IconSize.SMALL_TOOLBAR)
-            button_remove_predefined_tags = Gtk.Button(
-                image = img,
-                tooltip_text = _("Remove from current tags")
-                )
-            button_remove_predefined_tags.connect('clicked', cb_button_remove_predefined_tags)
-
-            def cb_button_add_predefined_tags(button):
-                current_tags = entry.get_text()
-                new_tag = combobox_predefined_tags.get_active_text()
-                if new_tag not in current_tags:
-                    if len(current_tags) == 0:
-                        entry.set_text(new_tag)
-                    else:
-                        entry.set_text(current_tags + ',' + new_tag)
-
-            img = Gtk.Image.new_from_icon_name("go-up", Gtk.IconSize.SMALL_TOOLBAR)
-            button_add_predefined_tags = Gtk.Button(
-                image = img,
-                tooltip_text = _("Add to current tags")
-                )
-            button_add_predefined_tags.connect('clicked', cb_button_add_predefined_tags)
-
-            label_predefined_tags = Gtk.Label(
-                label=_("Predefined tags:"),
-                xalign = 0
-                )
-            box2 = Gtk.Box(spacing=5)
-            box2.pack_start(combobox_predefined_tags, True, True, 0)
-            box2.pack_start(button_remove_predefined_tags, False, False, 0)
-            box2.pack_start(button_add_predefined_tags, False, False, 0)
-
-            content_area.pack_start(box0, True, True, 0)
-            content_area.pack_start(label_existing_tags, True, True, 0)
-            content_area.pack_start(box1, True, True, 0)
-            content_area.pack_start(label_predefined_tags, True, True, 0)
-            content_area.pack_start(box2, True, True, 0)
-
-            message_dialog.show_all()
-            message_dialog_response = message_dialog.run()
-
-            if message_dialog_response == Gtk.ResponseType.OK:
-
-                new_tags = entry.get_text()
-
-                if new_tags != '':
-
-                    new_tags_list = new_tags.split(',')
-
-                    update_combobox = False
-
-                    for tag in new_tags_list:
-                        if tag not in self.all_tags:
-                            update_combobox = True
-
-                    goglib_tags_create.goglib_tags_create(game_name, new_tags, goglib_tags_file)
-                    self.all_tags = goglib_tags_get_all.goglib_tags_get_all(goglib_tags_file)
-
-                    if update_combobox == True:
-
-                        self.combobox_goglib_tags1.get_model().clear()
-                        self.combobox_goglib_tags2.get_model().clear()
-                        self.combobox_goglib_tags3.get_model().clear()
-                        self.combobox_goglib_tags4.get_model().clear()
-
-                        self.combobox_goglib_tags1.append_text(_("No filter"))
-                        self.combobox_goglib_tags2.append_text(_("No filter"))
-                        self.combobox_goglib_tags3.append_text(_("No filter"))
-                        self.combobox_goglib_tags4.append_text(_("No filter"))
-                        self.combobox_goglib_tags1.set_active(0)
-                        self.combobox_goglib_tags2.set_active(0)
-                        self.combobox_goglib_tags3.set_active(0)
-                        self.combobox_goglib_tags4.set_active(0)
-                        for tag in self.all_tags:
-                            if tag != '':
-                                self.combobox_goglib_tags1.append_text(tag)
-                                self.combobox_goglib_tags2.append_text(tag)
-                                self.combobox_goglib_tags3.append_text(tag)
-                                self.combobox_goglib_tags4.append_text(tag)
-                        self.combobox_goglib_tags1.append_text(_("No tags"))
-                        self.combobox_goglib_tags2.append_text(_("No tags"))
-                        self.combobox_goglib_tags3.append_text(_("No tags"))
-                        self.combobox_goglib_tags4.append_text(_("No tags"))
-
-                    self.cb_combobox_goglib_tags1(self.combobox_goglib_tags1)
-                    self.cb_combobox_goglib_tags2(self.combobox_goglib_tags2)
-                    self.cb_combobox_goglib_tags3(self.combobox_goglib_tags3)
-                    self.cb_combobox_goglib_tags4(self.combobox_goglib_tags4)
-
-                if new_tags == '':
-                    goglib_tags_create.goglib_tags_create(game_name, new_tags, goglib_tags_file)
-                    self.cb_combobox_goglib_tags1(self.combobox_goglib_tags1)
-                    self.cb_combobox_goglib_tags2(self.combobox_goglib_tags2)
-                    self.cb_combobox_goglib_tags3(self.combobox_goglib_tags3)
-                    self.cb_combobox_goglib_tags4(self.combobox_goglib_tags4)
-
-            message_dialog.destroy()
-
-    def mylib_banner_clicked(self, widget, event):
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
-            game_name = widget.get_children()[0].get_name()
-
-            current_tags_list = mylib_tags_get.mylib_tags_get(game_name, mylib_tags_file)
-
-            current_tags_str = str1 = ','.join(current_tags_list)
-
-            message_dialog = Gtk.MessageDialog(
-                self.main_window,
-                0,
-                Gtk.MessageType.INFO,
-                Gtk.ButtonsType.OK_CANCEL,
-                '"' + self.mylib_dict_name_to_title[game_name] + '" ' + _("tags:"),
+                '"' + lib_dict_name_to_title[game_name] + '" ' + _("tags:"),
                 )
             message_dialog.set_property('default-width', 480)
             content_area = message_dialog.get_content_area()
@@ -4609,7 +4333,7 @@ class GUI:
             box0.pack_start(button_edit_tags, False, False, 0)
 
             combobox_existing_tags = Gtk.ComboBoxText(no_show_all=True)
-            for tag in self.mylib_all_tags:
+            for tag in lib_all_tags:
                 if tag not in predefined_tags:
                     combobox_existing_tags.append_text(tag)
             combobox_existing_tags.set_active(0)
@@ -4655,7 +4379,7 @@ class GUI:
                 )
             box1 = Gtk.Box(spacing = 5)
 
-            if len(self.mylib_all_tags) == 0:
+            if len(lib_all_tags) == 0:
                 label_existing_tags.set_visible(False)
                 combobox_existing_tags.set_visible(False)
                 button_remove_existing_tags.set_visible(False)
@@ -4737,51 +4461,57 @@ class GUI:
                     update_combobox = False
 
                     for tag in new_tags_list:
-                        if tag not in self.mylib_all_tags:
+                        if tag not in lib_all_tags:
                             update_combobox = True
 
-                    mylib_tags_create.mylib_tags_create(game_name, new_tags, mylib_tags_file)
-                    self.mylib_all_tags = mylib_tags_get_all.mylib_tags_get_all(mylib_tags_file)
+                    lib_tags_create(game_name, new_tags, lib_tags_file)
+                    lib_all_tags = lib_tags_get_all(lib_tags_file)
 
                     if update_combobox == True:
 
-                        self.combobox_mylib_tags1.get_model().clear()
-                        self.combobox_mylib_tags2.get_model().clear()
-                        self.combobox_mylib_tags3.get_model().clear()
-                        self.combobox_mylib_tags4.get_model().clear()
+                        combobox_lib_tags1.get_model().clear()
+                        combobox_lib_tags2.get_model().clear()
+                        combobox_lib_tags3.get_model().clear()
+                        combobox_lib_tags4.get_model().clear()
 
-                        self.combobox_mylib_tags1.append_text(_("No filter"))
-                        self.combobox_mylib_tags2.append_text(_("No filter"))
-                        self.combobox_mylib_tags3.append_text(_("No filter"))
-                        self.combobox_mylib_tags4.append_text(_("No filter"))
-                        self.combobox_mylib_tags1.set_active(0)
-                        self.combobox_mylib_tags2.set_active(0)
-                        self.combobox_mylib_tags3.set_active(0)
-                        self.combobox_mylib_tags4.set_active(0)
-                        for tag in self.mylib_all_tags:
+                        combobox_lib_tags1.append_text(_("No filter"))
+                        combobox_lib_tags2.append_text(_("No filter"))
+                        combobox_lib_tags3.append_text(_("No filter"))
+                        combobox_lib_tags4.append_text(_("No filter"))
+                        combobox_lib_tags1.set_active(0)
+                        combobox_lib_tags2.set_active(0)
+                        combobox_lib_tags3.set_active(0)
+                        combobox_lib_tags4.set_active(0)
+                        for tag in lib_all_tags:
                             if tag != '':
-                                self.combobox_mylib_tags1.append_text(tag)
-                                self.combobox_mylib_tags2.append_text(tag)
-                                self.combobox_mylib_tags3.append_text(tag)
-                                self.combobox_mylib_tags4.append_text(tag)
-                        self.combobox_mylib_tags1.append_text(_("No tags"))
-                        self.combobox_mylib_tags2.append_text(_("No tags"))
-                        self.combobox_mylib_tags3.append_text(_("No tags"))
-                        self.combobox_mylib_tags4.append_text(_("No tags"))
+                                combobox_lib_tags1.append_text(tag)
+                                combobox_lib_tags2.append_text(tag)
+                                combobox_lib_tags3.append_text(tag)
+                                combobox_lib_tags4.append_text(tag)
+                        combobox_lib_tags1.append_text(_("No tags"))
+                        combobox_lib_tags2.append_text(_("No tags"))
+                        combobox_lib_tags3.append_text(_("No tags"))
+                        combobox_lib_tags4.append_text(_("No tags"))
 
-                    self.cb_combobox_mylib_tags1(self.combobox_mylib_tags1)
-                    self.cb_combobox_mylib_tags2(self.combobox_mylib_tags2)
-                    self.cb_combobox_mylib_tags3(self.combobox_mylib_tags3)
-                    self.cb_combobox_mylib_tags4(self.combobox_mylib_tags4)
+                    cb_combobox_lib_tags1(combobox_lib_tags1)
+                    cb_combobox_lib_tags2(combobox_lib_tags2)
+                    cb_combobox_lib_tags3(combobox_lib_tags3)
+                    cb_combobox_lib_tags4(combobox_lib_tags4)
 
                 if new_tags == '':
-                    mylib_tags_create.mylib_tags_create(game_name, new_tags, mylib_tags_file)
-                    self.cb_combobox_mylib_tags1(self.combobox_mylib_tags1)
-                    self.cb_combobox_mylib_tags2(self.combobox_mylib_tags2)
-                    self.cb_combobox_mylib_tags3(self.combobox_mylib_tags3)
-                    self.cb_combobox_mylib_tags4(self.combobox_mylib_tags4)
+                    lib_tags_create(game_name, new_tags, lib_tags_file)
+                    cb_combobox_lib_tags1(combobox_lib_tags1)
+                    cb_combobox_lib_tags2(combobox_lib_tags2)
+                    cb_combobox_lib_tags3(combobox_lib_tags3)
+                    cb_combobox_lib_tags4(combobox_lib_tags4)
 
             message_dialog.destroy()
+
+    def goglib_banner_clicked(self, widget, event):
+        self.banner_clicked(widget, event, 'goglib')
+
+    def mylib_banner_clicked(self, widget, event):
+        self.banner_clicked(widget, event, 'mylib')
 
     def remove_from_installation_queue(self, button):
 
@@ -4960,28 +4690,13 @@ class GUI:
 
         else:
 
-            message_dialog = Gtk.MessageDialog(
-                self.main_window,
-                0,
-                Gtk.MessageType.QUESTION,
-                Gtk.ButtonsType.YES_NO
-                )
-            message_dialog.format_secondary_text(_("Are you sure you want to remove\n'") +
-            self.mylib_dict_name_to_title[game_name] + "'?")
-            content_area = message_dialog.get_content_area()
-            content_area.set_property('margin-left', 10)
-            content_area.set_property('margin-right', 10)
-            content_area.set_property('margin-top', 10)
-            content_area.set_property('margin-bottom', 10)
-            action_area = message_dialog.get_action_area()
-            action_area.set_property('spacing', 10)
+            remove_game = self.simple_question(
+                _("Removing game"),
+                _("Are you sure you want to remove\n'")
+                    + self.mylib_dict_name_to_title[game_name] + "'?"
+            )
 
-            content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
-            content_area_label.set_property('justify', Gtk.Justification.CENTER)
-
-            message_dialog_response = message_dialog.run()
-
-            if message_dialog_response == Gtk.ResponseType.YES:
+            if remove_game:
 
                 os.system('rm -R -f ' + self.mylib_install_dir + '/' + game_name)
 
@@ -5002,8 +4717,6 @@ class GUI:
                         button.set_sensitive(False)
 
                 self.cb_combobox_mylib_status(self.combobox_mylib_status)
-
-            message_dialog.destroy()
 
     def goglib_setup_game(self, button):
 
@@ -5027,28 +4740,13 @@ class GUI:
 
         else:
 
-            message_dialog = Gtk.MessageDialog(
-                self.main_window,
-                0,
-                Gtk.MessageType.QUESTION,
-                Gtk.ButtonsType.YES_NO,
-                )
-            message_dialog.format_secondary_text(_("Are you sure you want to remove\n'") +
-            self.goglib_dict_name_to_title[game_name] + "'?")
-            content_area = message_dialog.get_content_area()
-            content_area.set_property('margin-left', 10)
-            content_area.set_property('margin-right', 10)
-            content_area.set_property('margin-top', 10)
-            content_area.set_property('margin-bottom', 10)
-            action_area = message_dialog.get_action_area()
-            action_area.set_property('spacing', 10)
+            remove_game = self.simple_question(
+                _("Removing game"),
+                _("Are you sure you want to remove\n'")
+                    + self.goglib_dict_name_to_title[game_name] + "'?"
+            )
 
-            content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
-            content_area_label.set_property('justify', Gtk.Justification.CENTER)
-
-            message_dialog_response = message_dialog.run()
-
-            if message_dialog_response == Gtk.ResponseType.YES:
+            if remove_game:
 
                 os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
 
@@ -5071,8 +4769,6 @@ class GUI:
                         button.set_sensitive(False)
 
                 self.cb_combobox_goglib_status(self.combobox_goglib_status)
-
-            message_dialog.destroy()
 
             if self.goglib_offline_mode:
 
@@ -5490,25 +5186,11 @@ class GUI:
         else:
             if not os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup'):
 
-                message_dialog = Gtk.MessageDialog(
-                    self.main_window,
-                    0,
+                self.show_simple_message(
                     Gtk.MessageType.ERROR,
-                    Gtk.ButtonsType.OK,
-                    _("Error")
-                    )
-                message_dialog.format_secondary_text(_("Impossible to install."))
-                message_dialog.set_property('default-width', 480)
-                content_area = message_dialog.get_content_area()
-                content_area.set_property('margin-left', 10)
-                content_area.set_property('margin-right', 10)
-                content_area.set_property('margin-top', 10)
-                content_area.set_property('margin-bottom', 10)
-                action_area = message_dialog.get_action_area()
-                action_area.set_property('spacing', 10)
-
-                message_dialog.run()
-                message_dialog.destroy()
+                    _("Error"),
+                    _("Impossible to install.")
+                )
 
                 os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
                 command = ['echo', 'Impossible to install']
@@ -5738,20 +5420,11 @@ class GUI:
 
                 if len(self.goglib_new_games_list) == 0:
 
-                    message_dialog = Gtk.MessageDialog(
-                        self.main_window,
-                        0,
+                    self.show_simple_message(
                         Gtk.MessageType.INFO,
-                        Gtk.ButtonsType.OK,
-                        _("No new games in library.")
-                        )
-                    content_area = message_dialog.get_content_area()
-                    content_area.set_property('margin-left', 10)
-                    content_area.set_property('margin-right', 10)
-                    content_area.set_property('margin-top', 10)
-                    content_area.set_property('margin-bottom', 10)
-                    message_dialog.run()
-                    message_dialog.destroy()
+                        _("Completed"),
+                       _("No new games in library.")
+                    )
 
                 GLib.source_remove(self.source_id_out)
                 return False
@@ -6099,26 +5772,14 @@ class GUI:
 
         if new_goglib_install_dir != self.goglib_install_dir:
 
-            message_dialog = Gtk.MessageDialog(
-                self.main_window,
-                0,
-                Gtk.MessageType.QUESTION,
-                Gtk.ButtonsType.YES_NO,
-                _("Installation directory changed")
-                )
-            message_dialog.format_secondary_text(_("Do you really want to change installation directory?\n" + \
-                "All your installed games will be moved to the new location.\nProceed?"))
-            content_area = message_dialog.get_content_area()
-            content_area.set_property('margin-left', 10)
-            content_area.set_property('margin-right', 10)
-            content_area.set_property('margin-top', 10)
-            content_area.set_property('margin-bottom', 10)
-            action_area = message_dialog.get_action_area()
-            action_area.set_property('spacing', 10)
+            change_dir = self.simple_question(
+                _("Installation directory changed"),
+                _("Do you really want to change installation directory?\n"
+                    + "All your installed games will be moved to the new location."
+                    + "\nProceed?")
+            )
 
-            message_dialog_response = message_dialog.run()
-
-            if message_dialog_response == Gtk.ResponseType.YES:
+            if change_dir:
 
                 os.system('mv -f ' + self.goglib_install_dir + '/* ' + \
                 new_goglib_install_dir + ' && rmdir ' + self.goglib_install_dir)
@@ -6127,17 +5788,9 @@ class GUI:
 
                 self.goglib_install_dir = new_goglib_install_dir
 
-            elif message_dialog_response == Gtk.ResponseType.NO:
+            else:
 
                 button.set_filename(self.goglib_install_dir)
-
-            message_dialog.destroy()
-
-        #~ self.goglib_status_filter_list = []
-        #~ for game_name in self.goglib_games_list:
-           #~ if os.path.exists(self.goglib_install_dir + '/' + game_name + '/start.sh'):
-               #~ self.goglib_status_filter_list.append(game_name)
-        #~ self.goglib_apply_filters()
 
     def cb_filechooserbutton_mylib_download_dir(self, button):
         self.mylib_download_dir = button.get_filename()
@@ -6148,26 +5801,14 @@ class GUI:
 
         if new_mylib_install_dir != self.mylib_install_dir:
 
-            message_dialog = Gtk.MessageDialog(
-                self.main_window,
-                0,
-                Gtk.MessageType.QUESTION,
-                Gtk.ButtonsType.YES_NO,
-                _("Installation directory changed")
-                )
-            message_dialog.format_secondary_text(_("Do you really want to change installation directory?\n" + \
-                "All your installed games will be moved to the new location.\nProceed?"))
-            content_area = message_dialog.get_content_area()
-            content_area.set_property('margin-left', 10)
-            content_area.set_property('margin-right', 10)
-            content_area.set_property('margin-top', 10)
-            content_area.set_property('margin-bottom', 10)
-            action_area = message_dialog.get_action_area()
-            action_area.set_property('spacing', 10)
+            change_dir = self.simple_question(
+                _("Installation directory changed"),
+                _("Do you really want to change installation directory?\n"
+                    + "All your installed games will be moved to the new location."
+                    + "\nProceed?")
+            )
 
-            message_dialog_response = message_dialog.run()
-
-            if message_dialog_response == Gtk.ResponseType.YES:
+            if change_dir:
 
                 os.system('mv -f ' + self.mylib_install_dir + '/* ' + \
                 new_mylib_install_dir + ' && rmdir ' + self.mylib_install_dir)
@@ -6176,11 +5817,9 @@ class GUI:
 
                 self.mylib_install_dir = new_mylib_install_dir
 
-            elif message_dialog_response == Gtk.ResponseType.NO:
+            else:
 
                 button.set_filename(self.mylib_install_dir)
-
-            message_dialog.destroy()
 
     def cb_combobox_preferred_language(self, combobox):
         self.goglib_lang = combobox.get_active_text()
@@ -6809,27 +6448,14 @@ class GUI:
 
         # Quit (Ctrl + Q)
         if (key_scancode == 24) and (event.state & Gdk.ModifierType.CONTROL_MASK):
-            message_dialog = Gtk.MessageDialog(
-                self.main_window,
-                0,
-                Gtk.MessageType.QUESTION,
-                Gtk.ButtonsType.OK_CANCEL,
-                _("Quit application?")
-                )
-            content_area = message_dialog.get_content_area()
-            content_area.set_property('margin-left', 10)
-            content_area.set_property('margin-right', 10)
-            content_area.set_property('margin-top', 10)
-            content_area.set_property('margin-bottom', 10)
-            action_area = message_dialog.get_action_area()
-            action_area.set_property('spacing', 10)
 
-            self.main_window.hide()
-            response = message_dialog.run()
-            message_dialog.destroy()
-            self.main_window.show()
+            confirm_quit = self.simple_question(
+                _("Quit application?"),
+                None
+            )
 
-            if response == Gtk.ResponseType.OK:
+            if confirm_quit:
+
                 self.config_save()
                 Gtk.main_quit()
 
