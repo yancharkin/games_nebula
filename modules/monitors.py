@@ -40,12 +40,12 @@ def get_monitors():
         for line in proc.stdout.readlines():
 
             if re.compile(r'\b({0})\b'.format('connected'), flags=re.IGNORECASE).search(line):
-                if 'primary' in line:
-                    monitors_list.append(line.split(' ')[0] + ' ' + line.split(' ')[3].split('+')[0])
+                if 'primary' in line.decode('utf-8'):
+                    monitors_list.append(line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[3].split('+')[0])
                 else:
-                    monitors_list.append(line.split(' ')[0] + ' ' + line.split(' ')[2].split('+')[0])
-            if 'primary' in line:
-                monitor_primary = line.split(' ')[0] + ' ' + line.split(' ')[3].split('+')[0]
+                    monitors_list.append(line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[2].split('+')[0])
+            if 'primary' in line.decode('utf-8'):
+                monitor_primary = line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[3].split('+')[0]
 
         ## Hack for Wayland
         try:

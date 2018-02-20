@@ -131,11 +131,41 @@ class GUI:
         self.parse_mylib_colors()
 
         if self.goglib_tab_at_start and not self.goglib_offline_mode_at_start:
+
             self.goglib_authorized = goglib_check_authorization.goglib_authorized()
+
             if self.goglib_authorized == False:
-                self.goglib_offline_mode = True
+
+                #~ self.goglib_offline_mode = True
+
                 if goglib_check_connection.goglib_available():
-                    self.create_login_window()
+
+                    self.loading_window.hide()
+
+                    while Gtk.events_pending():
+                        Gtk.main_iteration()
+
+                    try2authorize = self.simple_question(
+                        _("Not authorized on GOG.com"),
+                        _("Try to authorize?")
+                    )
+
+                    if try2authorize:
+
+                        self.create_login_window()
+
+                    else:
+
+                        self.show_simple_message(
+                            Gtk.MessageType.ERROR,
+                            _("Not authorized on GOG.com"),
+                            _("Starting in offline mode.")
+                        )
+
+                        self.goglib_offline_mode = True
+                        self.create_main_window()
+                        self.timer()
+
                 else:
 
                     self.loading_window.hide()
@@ -143,22 +173,11 @@ class GUI:
                     while Gtk.events_pending():
                         Gtk.main_iteration()
 
-                    message_dialog = Gtk.MessageDialog(
-                        None,
-                        0,
+                    self.show_simple_message(
                         Gtk.MessageType.ERROR,
-                        Gtk.ButtonsType.OK,
-                        _("GOG.com unavailable")
-                        )
-                    message_dialog.format_secondary_text(_("Check your internet connection.\nStarting in offline mode."))
-                    content_area = message_dialog.get_content_area()
-                    content_area.set_property('margin-left', 10)
-                    content_area.set_property('margin-right', 10)
-                    content_area.set_property('margin-top', 10)
-                    content_area.set_property('margin-bottom', 10)
-
-                    message_dialog.run()
-                    message_dialog.destroy()
+                        _("GOG.com unavailable"),
+                        _("Check your internet connection.\nStarting in offline mode.")
+                    )
 
                     self.goglib_offline_mode = True
                     self.create_main_window()
@@ -171,6 +190,53 @@ class GUI:
             self.goglib_offline_mode = True
             self.create_main_window()
             self.timer()
+
+    def show_simple_message(self, message_type, text_1, text_2):
+
+        message_dialog = Gtk.MessageDialog(
+            None,
+            0,
+            message_type,
+            Gtk.ButtonsType.OK,
+            text_1
+            )
+
+        message_dialog.format_secondary_text(text_2)
+        content_area = message_dialog.get_content_area()
+        content_area.set_property('margin-left', 10)
+        content_area.set_property('margin-right', 10)
+        content_area.set_property('margin-top', 10)
+        content_area.set_property('margin-bottom', 10)
+
+        message_dialog.run()
+        message_dialog.destroy()
+
+    def simple_question(self, text_1, text_2):
+
+        message_dialog = Gtk.MessageDialog(
+            None,
+            0,
+            Gtk.MessageType.QUESTION,
+            Gtk.ButtonsType.YES_NO,
+            text_1
+            )
+
+        message_dialog.format_secondary_text(text_2)
+        content_area = message_dialog.get_content_area()
+        content_area.set_property('margin-left', 10)
+        content_area.set_property('margin-right', 10)
+        content_area.set_property('margin-top', 10)
+        content_area.set_property('margin-bottom', 10)
+        action_area = message_dialog.get_action_area()
+        action_area.set_property('spacing', 10)
+
+        response = message_dialog.run()
+        message_dialog.destroy()
+
+        if response == Gtk.ResponseType.YES:
+            return True
+        else:
+            return False
 
     def create_loading_window(self):
 
@@ -453,27 +519,14 @@ class GUI:
 
             elif self.goglib_offline_mode:
 
-                message_dialog = Gtk.MessageDialog(
-                    self.main_window,
-                    0,
+                self.show_simple_message(
                     Gtk.MessageType.ERROR,
-                    Gtk.ButtonsType.OK,
                     _("Error"),
-                    )
-                message_dialog.format_secondary_text(_("File '") +
-                os.getenv('HOME') + '/.games_nebula/config/games_list' + _("' is missing.\n") +
-                _("'GOG LIBRARY' tab will be disabled."))
-                content_area = message_dialog.get_content_area()
-                content_area.set_property('margin-left', 10)
-                content_area.set_property('margin-right', 10)
-                content_area.set_property('margin-top', 10)
-                content_area.set_property('margin-bottom', 10)
-                action_area = message_dialog.get_action_area()
-                action_area.set_property('spacing', 10)
-
-                self.loading_window.hide()
-                message_dialog.run()
-                message_dialog.destroy()
+                    _("File '") + os.getenv('HOME')
+                        + '/.games_nebula/config/games_list'
+                        + _("' is missing.\n")
+                        + _("'GOG LIBRARY' tab will be disabled.")
+                )
 
                 if (self.mylib_tab_at_start == False) and \
                         (self.gogcom_tab_at_start == False) and \

@@ -1,4 +1,10 @@
-import os, subprocess
+import os, subprocess, sys
+
+def b2str(b):
+    if sys.version_info[0] == 2:
+        return str(b)
+    elif sys.version_info[0] == 3:
+        return b.decode('utf-8')
 
 def goglib_get_games_list():
 
@@ -14,8 +20,8 @@ def goglib_get_games_list():
         games_list_file = open(file_path, 'w')
 
         for line in games_detailed_list:
-            if 'Getting game info' not in line:
-                games_list_file.write(line)
+            if 'Getting game info' not in line.decode('utf-8'):
+                games_list_file.write(b2str(line))
 
         return 0
 
