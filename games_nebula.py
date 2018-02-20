@@ -232,6 +232,7 @@ class GUI:
             type = Gtk.WindowType.TOPLEVEL,
             window_position = Gtk.WindowPosition.CENTER,
             icon = app_icon,
+            height_request = 280
             )
         self.main_window.connect('delete-event', self.quit_app)
         self.main_window.connect('key-press-event', self.shortcuts)
