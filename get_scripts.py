@@ -1,9 +1,19 @@
 import os, sys
-import urllib2
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
 import gettext
+
+try:
+    from urllib2 import Request as urllib_request
+    from urllib2 import urlopen as urllib_urlopen
+    from urllib2 import URLError as urllib_urlerror
+    from urllib2 import HTTPError as urllib_httperror
+except:
+    from urllib.request import Request as urllib_request
+    from urllib.request import urlopen as urllib_urlopen
+    from urllib.request import URLError as urllib_urlerror
+    from urllib.request import HTTPError as urllib_httperror
 
 try:
     from ConfigParser import ConfigParser as ConfigParser
@@ -63,11 +73,11 @@ class GUI:
         elif self.lib == 'mylib':
             url = 'https://github.com/yancharkin/games_nebula_mylib_scripts/archive/master.zip'
 
-        req = urllib2.Request(url)
+        req = urllib_request(url)
 
         try:
 
-            archive_data = urllib2.urlopen(req).read()
+            archive_data = urllib_urlopen(req).read()
             archive_path = tmp + '/' + self.lib + '_scripts.zip'
             archive_file = open(archive_path, 'wb')
             archive_file.write(archive_data)
@@ -76,7 +86,7 @@ class GUI:
             mylib_has_new_scripts = self.unpack(archive_path)
             return mylib_has_new_scripts
 
-        except urllib2.URLError as e:
+        except urllib_urlerror as e:
 
             message_dialog = Gtk.MessageDialog(
                 None,
@@ -92,7 +102,7 @@ class GUI:
 
             sys.exit()
 
-        except urllib2.HTTPError as e:
+        except urllib_httperror as e:
 
             message_dialog = Gtk.MessageDialog(
             None,

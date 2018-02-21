@@ -1,14 +1,20 @@
 ## ! Module not used ! ##
 
 import os
-import urllib2
 import PIL
 from PIL import Image
 
+try:
+    from urllib2 import Request as urllib_request
+    from urllib2 import urlopen as urllib_urlopen
+except:
+    from urllib.request import Request as urllib_request
+    from urllib.request import urlopen as urllib_urlopen
+
 def goglib_get_icon(game_name, icon_url, path):
 
-    icon_req = urllib2.Request(icon_url)
-    icon_data = urllib2.urlopen(icon_req).read()
+    icon_req = urllib_request(icon_url)
+    icon_data = urllib_urlopen(icon_req).read()
     icon_file = open(path + '/' + game_name + '.jpg', 'wb')
     icon_file.write(icon_data)
     icon_file.close()

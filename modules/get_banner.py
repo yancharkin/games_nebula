@@ -8,10 +8,10 @@ try:
     from urllib2 import URLError as urllib_urlerror
     from urllib2 import HTTPError as urllib_httperror
 except:
-    from urllib import request as urllib_request
-    urllib_urlopen = urllib_request.urlopen
-    urllib_urlerror = urllib_request.URLError
-    urllib_httperror = urllib_request.HTTPError
+    from urllib.request import Request as urllib_request
+    from urllib.request import urlopen as urllib_urlopen
+    from urllib.request import URLError as urllib_urlerror
+    from urllib.request import HTTPError as urllib_httperror
 
 def get_banner(game_name, url, banner_path, lib):
 
