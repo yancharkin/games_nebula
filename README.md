@@ -59,11 +59,11 @@ For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/pa
 
 Python 2
 
-    sudo apt install python-gi python-bs4 python-lxml python-pil lgogdownloader innoextract x11-xserver-utils
+    sudo apt install python-gi python-bs4 python-lxml python-pil python-dateutil python-tz lgogdownloader innoextract x11-xserver-utils
 
-Python 3 (master branch only)
+Python 3
 
-    sudo apt install python3-gi python3-bs4 python3-lxml python3-pil lgogdownloader innoextract x11-xserver-utils
+    sudo apt install python3-gi python3-bs4 python3-lxml python3-pil python3-dateutil python3-tz lgogdownloader innoextract x11-xserver-utils
 
 
 *Optional dependencies:*
@@ -76,11 +76,11 @@ Python 3 (master branch only)
 
 Python 2
 
-    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow innoextract xorg-xrandr
+    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow python2-requests python2-dateutil python2-pytz webkit2gtk innoextract xorg-xrandr
 
-Python 3 (master branch only)
+Python 3
 
-    sudo pacman -S python-gobject python-beautifulsoup4 python-lxml python-pillow innoextract xorg-xrandr
+    sudo pacman -S python-gobject python-beautifulsoup4 python-lxml python-pillow python-requests python-dateutil python-pytz webkit2gtk innoextract xorg-xrandr
 
 AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)
 
@@ -96,11 +96,11 @@ AUR: [megatools](https://aur.archlinux.org/packages/megatools/)
 
 Python 2
 
-    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 innoextract xorg-x11-server-utils
+    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 python-requests python-dateutil pytz innoextract xorg-x11-server-utils
 
-Python 3 (master branch only)
+Python 3
 
-    sudo dnf install python3 python3-gobject python3-pillow python3-beautifulsoup4 innoextract xorg-x11-server-utils
+    sudo dnf install python3 python3-gobject python3-pillow python3-beautifulsoup4 python3-requests python3-dateutil pytz innoextract xorg-x11-server-utils
 
 Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/lgogdownloader/)
 
@@ -113,7 +113,6 @@ Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/l
 ### 2. Install application
 - Download the [latest release](https://github.com/yancharkin/games_nebula/releases) and extract it anywhere you like.
 - Run **setup.sh**. It will create shortcut in main menu.
-- It's highly recommended to configure lgogdownloader **BEFORE** launching 'Games Nebula'. I tried to make login more user friendly, but it not always work. And for versions < 3.2 it's a mandatory.
 
 ## Shortcuts
 - **Ctrl + F** - Toggle fullscreen
@@ -136,16 +135,13 @@ While poorly coded, 'Games Nebula' has all features that I intended to include i
 - organize code
 - improve code quality
 - ~~port to python3~~
-- write replacement for lgogdownloader
+- ***write replacement for lgogdownloader (WIP)***
 - create proper packages
 
 ## Troubleshooting
 
 **Problem.** ‘Games Nebula’ fails to launch / something wrong and I don’t know why  
 **Solution.** Launch 'start.sh' in terminal to get more info
-
-**Problem.** Login always fails  
-**Solution.** Use lgogdownloader directly. If you’ll managed to login with it successfully it will works in ‘Games Nebula’ as well. The only thing ‘Games Nebula’ can help you with is exporting cookies (this feature helpful if you are using lgogdownloader 3.1 - 3.2 for git version it’s usless). To do it you have to open ‘GOG.COM’ tab (in ‘Games Nebuls’) and login. For [some people](https://github.com/Sude-/lgogdownloader/issues/129) it's impossible to login with lgogdownloader > 3.2. For now the only solution is to use lgogdownloader 3.2.
 
 **Problem.** Windows game crashes even though 'Games Nebula' has installation script for it  
 **Solution.** A lot of things can go wrong with Windows games :)
@@ -159,3 +155,5 @@ While poorly coded, 'Games Nebula' has all features that I intended to include i
 ## Also...
 - [Scripts repository for gog games](https://github.com/yancharkin/games_nebula_goglib_scripts)
 - [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
+- [pygogapi](https://github.com/Yepoleb/pygogapi) by @Yepoleb
+- My fork of [pygogapi](https://github.com/yancharkin/pygogapi) - works both in python 2 and 3 (at least partially)
