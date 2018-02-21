@@ -714,6 +714,8 @@ class GUI:
         self.box_goglib_filters.pack_start(self.button_goglib_add_tag_filter, False, False, 0)
         self.box_goglib_filters.pack_start(self.scl_banners, False, False, 0)
 
+        self.adjustment_goglib_scale_banner.set_value(self.scale_level)
+
         self.scrolledwindow_goglib = Gtk.ScrolledWindow()
 
         self.grid_goglib = Gtk.Grid(
@@ -1055,6 +1057,8 @@ class GUI:
         self.mylib_filters_box.pack_start(self.button_mylib_tagfilter_remove, False, False, 0)
         self.mylib_filters_box.pack_start(self.button_mylib_tagfilter_add, False, False, 0)
         self.mylib_filters_box.pack_start(self.mylib_scl_banners, False, False, 0)
+
+        self.adjustment_mylib_scale_banner.set_value(self.mylib_scale_level)
 
         self.mylib_tab_scrolled_window = Gtk.ScrolledWindow()
 
