@@ -10,10 +10,10 @@ try:
     from urllib2 import URLError as urllib_urlerror
     from urllib2 import HTTPError as urllib_httperror
 except:
-    from urllib import request as urllib_request
-    urllib_urlopen = urllib_request.urlopen
-    urllib_urlerror = urllib_request.URLError
-    urllib_httperror = urllib_request.HTTPError
+    from urllib.request import Request as urllib_request
+    from urllib.request import urlopen as urllib_urlopen
+    from urllib.request import URLError as urllib_urlerror
+    from urllib.request import HTTPError as urllib_httperror
 
 def goglib_get_banner(banner_path, *args):
 
@@ -26,7 +26,7 @@ def goglib_get_banner(banner_path, *args):
         game_page_content = game_page.read()
         soup = BeautifulSoup(game_page_content, 'lxml')
         raw_data = soup.findAll(attrs={'name':'og:image'})
-        banner_url = raw_data[0]['content'].encode('utf-8')
+        banner_url = raw_data[0]['content']
 
         if banner_url.startswith('http'):
             banner_req = urllib_request(banner_url)
