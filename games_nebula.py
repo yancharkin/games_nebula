@@ -6089,7 +6089,7 @@ class GUI:
 
         switch = self.simple_question(
             _("GOG LIBRARY mode"),
-            _("Switch to " + mode + "?")
+            _("Switch to ") + mode + "?"
         )
 
         if switch:
