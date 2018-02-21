@@ -331,8 +331,8 @@ class GUI:
 
     def get_banner(self):
 
-        goglib_image_path = paths.get_image_path('goglib', self.game_name, 'normal')
-        mylib_image_path = paths.get_image_path('mylib', self.game_name)
+        goglib_image_path = paths.get_image_path('goglib', self.game_name, 'normal', 'check')
+        mylib_image_path = paths.get_image_path('mylib', self.game_name, 'check')
 
         if os.path.exists(goglib_image_path) and \
                 os.path.exists(goglib_install_dir + '/' + self.game_name):

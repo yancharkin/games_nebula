@@ -1,36 +1,56 @@
-import os
+import os, sys
 from os import listdir
+
+nebula_dir = sys.path[0]
 
 def games_info(data_dir):
 
     list_names = []
     list_titles = []
-    mylib_dir = data_dir + '/scripts/mylib'
 
-    list_all_files = sorted(list(os.listdir(mylib_dir)))
+    mylib_dir_0 = data_dir + '/scripts/mylib'
+    mylib_dir_1 = nebula_dir + '/scripts/mylib'
+    games_list_0 = os.listdir(mylib_dir_0)
+    games_list_1 = os.listdir(mylib_dir_1)
+    games_list_2 = []
 
-    for file_name in list_all_files:
-        setup_file_path = mylib_dir + '/' + file_name + '/setup'
+    for game_name in games_list_1:
+        if game_name not in games_list_0:
+            games_list_2.append(game_name)
+
+    dict_name2title_0 = get_info(games_list_0, mylib_dir_0)
+    dict_name2title_1 = get_info(games_list_2, mylib_dir_1)
+
+    dict_name2title_0.update(dict_name2title_1)
+
+    list_names = sorted(dict_name2title_0)
+    for name in list_names:
+        list_titles.append(dict_name2title_0[name])
+
+    number_of_games = len(list_names)
+
+    return (number_of_games, list_names, list_titles)
+
+def get_info(games_list, mylib_dir):
+
+    dict_name2title = {}
+
+    for game_name in games_list:
+
+        setup_file_path = mylib_dir + '/' + game_name + '/setup'
 
         if os.path.exists(setup_file_path):
-            list_names.append(file_name)
 
             setup_file = open(setup_file_path, 'r')
             data = setup_file.readlines()
+            setup_file.close()
 
             try:
                 title = data[-1].translate(None, '#\n')
             except:
                 char_map = str.maketrans('', '', '#\n')
                 title = data[-1].translate(char_map)
-            list_titles.append(title)
 
-            setup_file.close()
+            dict_name2title[game_name] = title
 
-    number_of_games = len(list_names)
-
-    return (number_of_games, list_names, list_titles)
-
-if __name__ == "__main__":
-    import sys
-    games_info(sys.argv[1])
+    return dict_name2title

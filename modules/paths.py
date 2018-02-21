@@ -34,12 +34,16 @@ def get_image_path(lib, game_name, *args):
         return path_1
     else:
         if lib == 'goglib':
-            if color == 'normal':
-                goglib_get_banner.goglib_get_banner(path_0)
-            if color == 'gray':
-                goglib_get_banner.goglib_get_banner(path_0, 'gray')
+            # FIX Hack to prevent crash in launchers (trying to create banner for game that not in lib)
+            if len(args) < 2:
+                if color == 'normal':
+                    goglib_get_banner.goglib_get_banner(path_0)
+                if color == 'gray':
+                    goglib_get_banner.goglib_get_banner(path_0, 'gray')
         if lib == 'mylib':
-            mylib_create_banner.mylib_create_banner(game_name)
+            # Same as above
+            if len(args) == 0:
+                mylib_create_banner.mylib_create_banner(game_name)
         return path_0
 
 def get_setup_script_path(lib, game_name):
