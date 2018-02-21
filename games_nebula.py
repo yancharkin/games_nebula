@@ -3044,7 +3044,7 @@ class GUI:
         if queue_game_image_list:
             for i in range(0, len(queue_game_image_list)):
 
-                goglib_image_path = paths.get_image_path('goglib', queue_game_image_list[i].get_name(), 'normal')
+                goglib_image_path = paths.get_image_path('goglib', queue_game_image_list[i].get_name(), 'normal', 'check')
 
                 if os.path.exists(goglib_image_path):
                     pixbuf = GdkPixbuf.Pixbuf.new_from_file(goglib_image_path)
