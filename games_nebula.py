@@ -5702,10 +5702,11 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        mylib_has_new_scripts = os.system('python ' + nebula_dir + '/get_scripts.py ' + lib + ' ' + str(overwrite))
+        lib_has_new_scripts = os.system(sys.executable + ' ' + nebula_dir + \
+                '/get_scripts.py ' + lib + ' ' + str(overwrite))
 
         # Ugly but works
-        if mylib_has_new_scripts == 0:
+        if lib_has_new_scripts == 0:
             print("No new scripts.")
         else:
             print("New scripts downloaded!")

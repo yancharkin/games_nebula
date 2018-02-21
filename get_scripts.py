@@ -56,12 +56,10 @@ class GUI:
         else:
             self.overwrite = False
 
-        self.scripts_dir = os.getenv('HOME') + '/.games_nebula/scripts/' + self.lib
-
-        mylib_has_new_scripts = self.get_scripts()
+        lib_has_new_scripts = self.get_scripts()
 
         # Ugly but works
-        if not mylib_has_new_scripts:
+        if not lib_has_new_scripts:
             sys.exit(0)
         else:
             sys.exit(2)
@@ -83,8 +81,8 @@ class GUI:
             archive_file.write(archive_data)
             archive_file.close()
 
-            mylib_has_new_scripts = self.unpack(archive_path)
-            return mylib_has_new_scripts
+            lib_has_new_scripts = self.unpack(archive_path)
+            return lib_has_new_scripts
 
         except urllib_urlerror as e:
 
@@ -120,39 +118,46 @@ class GUI:
 
     def unpack(self, archive_path):
 
-        os.system('7z x -aoa -o' + tmp + ' ' + archive_path)
-        os.system('rm ' + tmp + '/games_nebula_' + self.lib + '_scripts-master/LICENSE > /dev/null 2>&1')
+        scripts_dir_0 = data_dir + '/scripts/' + self.lib
+        scripts_dir_1 = nebula_dir + '/scripts/' + self.lib
 
-        if not os.path.exists(self.scripts_dir):
-            os.makedirs(self.scripts_dir)
+        if not os.path.exists(scripts_dir_0):
+            os.makedirs(scripts_dir_0)
 
         if self.lib == 'mylib':
             new_scripts_dir = tmp + '/games_nebula_' + self.lib + '_scripts-master/free/'
         else:
             new_scripts_dir = tmp + '/games_nebula_' + self.lib + '_scripts-master/'
 
+        os.system('7z x -aoa -o' + tmp + ' ' + archive_path)
+        os.system('rm ' + new_scripts_dir + 'LICENSE > /dev/null 2>&1')
+
         git_sctipts = os.listdir(new_scripts_dir)
-        existing_scripts = os.listdir(self.scripts_dir)
+        existing_scripts_0 = os.listdir(scripts_dir_0)
+        existing_scripts_1 = os.listdir(scripts_dir_1)
+        existing_scripts = existing_scripts_0 + existing_scripts_1
 
         new_scripts = []
         for script in git_sctipts:
             if script not in existing_scripts:
                 new_scripts.append(script)
-                os.system('mv ' + new_scripts_dir + script + ' ' + self.scripts_dir)
+                os.system('mv ' + new_scripts_dir + script + ' ' + scripts_dir_0)
 
         if self.overwrite == True:
-            os.system('cp -r ' + new_scripts_dir + '* ' + self.scripts_dir)
+            os.system('cp -r ' + new_scripts_dir + '* ' + scripts_dir_0)
 
-        os.system('rm -r ' + tmp + '/games_nebula_' + self.lib + '_scripts-master')
-        os.system('rm ' + tmp + '/' + self.lib + '_scripts.zip > /dev/null 2>&1')
+        os.system('rm -r ' + new_scripts_dir)
+        os.system('rm ' + archive_path + ' > /dev/null 2>&1')
 
         new_scripts = sorted(new_scripts)
         n_new_scripts = len(new_scripts)
 
         if self.lib == 'goglib':
 
-            goglib_names = goglib_get_data.games_info(data_dir)[1]
-            goglib_titles = goglib_get_data.games_info(data_dir)[2]
+            goglib_data = goglib_get_data.games_info(data_dir)
+
+            goglib_names =  goglib_data[1]
+            goglib_titles = goglib_data[2]
 
             name_to_title = {}
 
@@ -166,8 +171,10 @@ class GUI:
 
         elif self.lib == 'mylib':
 
-            mylib_names = mylib_get_data.games_info(data_dir)[1]
-            mylib_titles = mylib_get_data.games_info(data_dir)[2]
+            mylib_data = mylib_get_data.games_info(data_dir)
+
+            mylib_names = mylib_data[1]
+            mylib_titles = mylib_data[2]
 
             name_to_title = {}
 
@@ -176,7 +183,7 @@ class GUI:
 
             for game_name in new_scripts:
                 image_url = images_url +  game_name + '.jpg'
-                banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib/'
+                banners_dir = data_dir + '/images/mylib/'
                 get_banner.get_banner(game_name, image_url, banners_dir, self.lib)
 
         message_dialog = Gtk.MessageDialog(
