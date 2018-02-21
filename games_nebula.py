@@ -33,7 +33,7 @@ except:
 from modules import mylib_create_banner, mylib_get_data, mylib_tags_create, mylib_tags_get_all, \
 mylib_tags_get, goglib_check_authorization, goglib_check_connection, goglib_get_data, \
 goglib_get_games_list, goglib_tags_create, goglib_tags_get_all, goglib_tags_get, autosetup, \
-monitors
+monitors, paths
 
 style_provider_1 = Gtk.CssProvider()
 
@@ -1088,10 +1088,9 @@ class GUI:
             mylib_setup_buttons_list.append(mylib_setup_button)
             mylib_setup_button.connect('clicked', self.mylib_setup_game)
 
-            if not os.path.exists(data_dir + '/images/mylib_banners/' + self.mylib_shown_games_list[i] + '.jpg'):
-                mylib_create_banner.mylib_create_banner(self.mylib_shown_games_list[i])
+            mylib_image_path = paths.get_image_path('mylib', self.mylib_shown_games_list[i])
 
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/mylib_banners/' + self.mylib_shown_games_list[i] + '.jpg')
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(mylib_image_path)
             pixbuf = pixbuf.scale_simple(518 * self.mylib_scale_level, 240 * self.mylib_scale_level, InterpType.BILINEAR)
 
             mylib_game_banner = Gtk.Image(
@@ -2542,7 +2541,8 @@ class GUI:
 
         for i in range(self.mylib_number_of_games_to_show):
             if self.mylib_shown_games_list[i] == game_name:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/mylib_banners/' + game_name + '.jpg')
+                mylib_image_path = paths.get_image_path('mylib', game_name)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(mylib_image_path)
                 pixbuf = pixbuf.scale_simple(pixbuf_width, pixbuf_height, InterpType.BILINEAR)
                 queue_game_image.set_from_pixbuf(pixbuf)
 
@@ -2627,7 +2627,8 @@ class GUI:
 
         for i in range(self.goglib_number_of_games_to_show):
             if self.goglib_shown_games_list[i] == game_name:
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/' + game_name + '.jpg')
+                goglib_image_path = paths.get_image_path('goglib', game_name, 'normal')
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(goglib_image_path)
                 pixbuf = pixbuf.scale_simple(pixbuf_width, pixbuf_height, InterpType.BILINEAR)
                 queue_game_image.set_from_pixbuf(pixbuf)
 
@@ -2815,7 +2816,8 @@ class GUI:
                     mylib_setup_buttons_list[i].set_label(_("Installing"))
                     mylib_setup_buttons_list[i].set_sensitive(False)
 
-            pixbuf= GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/mylib_banners/' + self.mylib_shown_games_list[i] + '.jpg')
+            mylib_image_path = paths.get_image_path('mylib', self.mylib_shown_games_list[i])
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(mylib_image_path)
 
             pixbuf = pixbuf.scale_simple(new_pixbuf_width, new_pixbuf_height, InterpType.BILINEAR)
 
@@ -2853,12 +2855,14 @@ class GUI:
 
             if self.goglib_shown_games_list[i] not in self.goglib_available_games:
                 # TODO (?) Do not read images from file everytime, use pixbuf (create at start)
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/unavailable/' + self.goglib_shown_games_list[i] + '.jpg')
+                goglib_image_path = paths.get_image_path('goglib', self.goglib_shown_games_list[i], 'gray')
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(goglib_image_path)
                 goglib_setup_buttons_list[i].set_sensitive(False)
                 goglib_launch_buttons_list[i].set_sensitive(False)
             else:
                 goglib_setup_buttons_list[i].set_sensitive(True)
-                pixbuf= GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/' + self.goglib_shown_games_list[i] + '.jpg')
+                goglib_image_path = paths.get_image_path('goglib', self.goglib_shown_games_list[i], 'normal')
+                pixbuf= GdkPixbuf.Pixbuf.new_from_file(goglib_image_path)
 
             pixbuf = pixbuf.scale_simple(new_pixbuf_width, new_pixbuf_height, InterpType.BILINEAR)
 
@@ -3040,10 +3044,13 @@ class GUI:
         if queue_game_image_list:
             for i in range(0, len(queue_game_image_list)):
 
-                if os.path.exists(data_dir + '/images/goglib_banners/' + queue_game_image_list[i].get_name() + '.jpg'):
-                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/goglib_banners/' + queue_game_image_list[i].get_name() + '.jpg')
+                goglib_image_path = paths.get_image_path('goglib', queue_game_image_list[i].get_name(), 'normal')
+
+                if os.path.exists(goglib_image_path):
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(goglib_image_path)
                 else:
-                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(data_dir + '/images/mylib_banners/' + queue_game_image_list[i].get_name() + '.jpg')
+                    mylib_image_path = paths.get_image_path('mylib', queue_game_image_list[i].get_name())
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(mylib_image_path)
 
                 pixbuf = pixbuf.scale_simple(new_downloads_pixbuf_width, new_downloads_pixbuf_height, InterpType.BILINEAR)
                 queue_game_image_list[i].set_from_pixbuf(pixbuf)
@@ -3089,16 +3096,16 @@ class GUI:
             os.makedirs(data_dir + '/config')
         if not os.path.exists(data_dir + '/scripts'):
             os.makedirs(data_dir + '/scripts')
-            os.system('cp -R ' + nebula_dir + '/scripts/* ' + data_dir + '/scripts/')
-        if not os.path.exists(data_dir + '/images'):
-            os.makedirs(data_dir + '/images')
-            os.system('cp -R ' + nebula_dir + '/images/goglib_banners ' + data_dir + '/images/')
-            os.system('cp -R ' + nebula_dir + '/images/mylib_banners ' + data_dir + '/images/')
-
         if not os.path.exists(data_dir + '/scripts/goglib'):
             os.makedirs(data_dir + '/scripts/goglib')
         if not os.path.exists(data_dir + '/scripts/mylib'):
             os.makedirs(data_dir + '/scripts/mylib')
+        if not os.path.exists(data_dir + '/images'):
+            os.makedirs(data_dir + '/images')
+        if not os.path.exists(data_dir + '/images/goglib'):
+            os.makedirs(data_dir + '/images/goglib')
+        if not os.path.exists(data_dir + '/images/mylib'):
+            os.makedirs(data_dir + '/images/mylib')
 
         self.config_parser = ConfigParser()
         self.config_parser.read(config_dir + '/config.ini')
@@ -4892,7 +4899,8 @@ class GUI:
             config_file.write('own_prefix = True')
             config_file.close()
 
-        command = [data_dir + '/scripts/mylib/' + game_name + '/setup']
+        mylib_setup_script_path = paths.get_setup_script_path('mylib', game_name)
+        command = [mylib_setup_script_path]
 
         mylib_name_to_pid_install_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
                 flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
@@ -4969,7 +4977,8 @@ class GUI:
 
     def goglib_install_game(self, game_name):
 
-        setup_sctipt_exists = os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup')
+        goglib_setup_script_path = paths.get_setup_script_path('goglib', game_name)
+        setup_sctipt_exists = os.path.exists(goglib_setup_script_path)
 
         if not self.queue_tab_exists():
             self.append_queue_tab()
@@ -5222,7 +5231,9 @@ class GUI:
                 command.extend(('mv', files_path + f, game_dir + '/game'))
 
         else:
-            if not os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup'):
+
+            goglib_setup_script_path = paths.get_setup_script_path('goglib', game_name)
+            if not os.path.exists(goglib_setup_script_path):
 
                 self.simple_message(
                     Gtk.MessageType.ERROR,
@@ -5266,7 +5277,8 @@ class GUI:
 
         self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
 
-        command = [data_dir + '/scripts/goglib/' + game_name + '/setup']
+        goglib_setup_script_path = paths.get_setup_script_path('goglib', game_name)
+        command = [goglib_setup_script_path]
 
         goglib_name_to_pid_install_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
                 flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
@@ -5336,7 +5348,8 @@ class GUI:
                 self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
                 autosetup.autosetup('goglib', self.goglib_install_dir, game_name)
 
-                if os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/setup'):
+                goglib_setup_script_path = paths.get_setup_script_path('goglib', game_name)
+                if os.path.exists(goglib_setup_script_path):
                     self.run_goglib_setup_script(game_name)
                 else:
                     game_dir = self.goglib_install_dir + '/' + game_name

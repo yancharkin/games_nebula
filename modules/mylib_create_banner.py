@@ -4,14 +4,23 @@ from PIL import Image, ImageDraw, ImageFont
 def mylib_create_banner(game_name):
 
     nebula_dir = sys.path[0]
-    scripts_dir = os.getenv('HOME') + '/.games_nebula/scripts/mylib/' + game_name
-    banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib_banners/'
+    data_dir = os.getenv('HOME') + '/.games_nebula'
+
+    banners_dir = data_dir + '/images/mylib/'
     banner_path = banners_dir + game_name + '.jpg'
 
     if not os.path.exists(banners_dir):
         os.makedirs(banners_dir)
 
-    script_file = open(scripts_dir + '/setup', 'r')
+    script_path_0 = data_dir + '/scripts/mylib/' + game_name + '/setup'
+    script_path_1 = nebula_dir + '/scripts/mylib/' + game_name + '/setup'
+
+    if os.path.exists(script_path_0):
+        mylib_setup_script_path = script_path_0
+    else:
+        mylib_setup_script_path = script_path_1
+
+    script_file = open(mylib_setup_script_path, 'r')
     file_content = script_file.readlines()
     raw_game_title = file_content[-1]
 
@@ -59,7 +68,3 @@ def mylib_create_banner(game_name):
         draw.text((x, y), game_title, fill=1, font=font)
 
     banner.save(banner_path, 'JPEG')
-
-if __name__ == "__main__":
-    import sys
-    mylib_create_banner(sys.argv[1])

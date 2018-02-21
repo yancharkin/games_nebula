@@ -166,7 +166,7 @@ class GUI:
 
             for game_name in new_scripts:
                 image_url = images_url +  game_name + '.jpg'
-                banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib_banners/'
+                banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib/'
                 get_banner.get_banner(game_name, image_url, banners_dir, self.lib)
 
         message_dialog = Gtk.MessageDialog(

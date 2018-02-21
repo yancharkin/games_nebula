@@ -93,3 +93,5 @@ start.sh
 create_launcher.sh
 TODO
 gogapi
+goglib
+mylib

@@ -1,3 +1,4 @@
+import os
 from bs4 import BeautifulSoup
 import lxml
 import PIL
@@ -14,9 +15,9 @@ except:
     urllib_urlerror = urllib_request.URLError
     urllib_httperror = urllib_request.HTTPError
 
-#~ import goglib_recreate_banner
+def goglib_get_banner(banner_path, *args):
 
-def goglib_get_banner(game_name, icon_path, banner_path):
+    game_name = os.path.basename(banner_path).split('.jpg')[0]
 
     req = urllib_request('https://www.gog.com/game/' + game_name)
 
@@ -33,29 +34,20 @@ def goglib_get_banner(game_name, icon_path, banner_path):
             banner_req = urllib_request('https:' + banner_url)
 
         banner_data = urllib_urlopen(banner_req).read()
-        banner_file = open(banner_path + '/' + game_name + '.jpg', 'wb')
+        banner_file = open(banner_path, 'wb')
         banner_file.write(banner_data)
         banner_file.close()
 
-        pic_src = Image.open(banner_path + '/' + game_name + '.jpg')
+        pic_src = Image.open(banner_path)
         scale_lvl = 240/float(pic_src.size[1])
         scaled_width = int(float(pic_src.size[0])*scale_lvl)
         pic = pic_src.resize((scaled_width, 240), PIL.Image.ANTIALIAS)
-        pic.save(banner_path + '/' + game_name + '.jpg')
-
-        #~ if banner_url.startswith('http'):
-            #~ goglib_recreate_banner.goglib_recreate_banner(game_name, icon_path, banner_path)
-
-        new_pic = Image.open(banner_path + '/' + game_name + '.jpg')
-        pic_grey = new_pic.convert('L')
-        pic_grey.save(banner_path + '/unavailable/' + game_name + '.jpg')
+        if len(args) > 0:
+            pic = pic.convert('L')
+        pic.save(banner_path)
 
     except urllib_urlerror as e:
         print(e.reason)
     except urllib_httperror as e:
         print(e.code)
         print(e.read())
-
-if __name__ == "__main__":
-    import sys
-    goglib_get_banner(sys.argv[1], sys.argv[2], sys.argv[3])

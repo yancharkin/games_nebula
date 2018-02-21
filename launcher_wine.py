@@ -9,7 +9,7 @@ try:
 except:
     from configparser import ConfigParser as ConfigParser
 
-from modules import monitors
+from modules import monitors, paths
 
 global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
 global_config_parser = ConfigParser()
@@ -331,14 +331,14 @@ class GUI:
 
     def get_banner(self):
 
-        goglib_banners_dir = os.getenv('HOME') + '/.games_nebula/images/goglib_banners'
-        mylib_banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib_banners'
+        goglib_image_path = paths.get_image_path('goglib', self.game_name, 'normal')
+        mylib_image_path = paths.get_image_path('mylib', self.game_name)
 
-        if os.path.exists(goglib_banners_dir + '/' + self.game_name + '.jpg') and \
+        if os.path.exists(goglib_image_path) and \
                 os.path.exists(goglib_install_dir + '/' + self.game_name):
-            self.banner_path = goglib_banners_dir + '/' + self.game_name + '.jpg'
+            self.banner_path = goglib_image_path
         else:
-            self.banner_path = mylib_banners_dir + '/' + self.game_name + '.jpg'
+            self.banner_path = mylib_image_path
 
     def quit_app(self, window, event):
         self.config_save()

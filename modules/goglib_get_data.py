@@ -1,7 +1,7 @@
-import os
-
+import os, sys
 from modules import goglib_get_banner
-#~ import goglib_get_icon
+
+nebula_dir = sys.path[0]
 
 def games_info(data_dir):
 
@@ -37,25 +37,19 @@ def games_info(data_dir):
 
     if not os.path.exists(data_dir + '/images'):
         os.makedirs(data_dir + '/images')
-    if not os.path.exists(data_dir + '/images/goglib_banners'):
-        os.makedirs(data_dir + '/images/goglib_banners')
-    if not os.path.exists(data_dir + '/images/goglib_banners/unavailable'):
-        os.makedirs(data_dir + '/images/goglib_banners/unavailable')
-    #~ if not os.path.exists(data_dir + '/images/goglib_icons'):
-        #~ os.makedirs(data_dir + '/images/goglib_icons')
+    if not os.path.exists(data_dir + '/images/goglib'):
+        os.makedirs(data_dir + '/images/goglib')
+    if not os.path.exists(data_dir + '/images/goglib/unavailable'):
+        os.makedirs(data_dir + '/images/goglib/unavailable')
 
     for i in range(0, number_of_games):
 
-        #~ if not os.path.exists(data_dir + '/images/goglib_icons/' + list_names[i] + '.jpg'):
-            #~ goglib_get_icon.goglib_get_icon(list_names[i], list_icons[i], data_dir + '/images/goglib_icons/')
-        if not os.path.exists(data_dir + '/images/goglib_banners/' + list_names[i] + '.jpg'):
-            goglib_get_banner.goglib_get_banner(list_names[i], data_dir + '/images/goglib_icons/', data_dir + '/images/goglib_banners/')
-            goglib_get_banner.goglib_get_banner(list_names[i], data_dir + '/images/goglib_icons/', data_dir + '/images/goglib_banners/')
+        banner_path_0 = data_dir + '/images/goglib/' + list_names[i] + '.jpg'
+        banner_path_1 = nebula_dir + '/images/goglib/' + list_names[i] + '.jpg'
+
+        if (not os.path.exists(banner_path_0)) and (not os.path.exists(banner_path_1)):
+            goglib_get_banner.goglib_get_banner(banner_path_0)
 
     available_scripts = os.listdir(data_dir + '/scripts/goglib/')
 
     return (number_of_games, list_names, list_titles, list_icons, available_scripts)
-
-if __name__ == "__main__":
-    import sys
-    games_info()

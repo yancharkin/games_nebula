@@ -13,10 +13,10 @@ def autosetup(lib, install_dir, game_name):
 
     if lib == 'goglib':
         parser.read(os.getenv('HOME') + '/.games_nebula/scripts/goglib/autosetup.ini')
-        banners_dir = os.getenv('HOME') + '/.games_nebula/images/goglib_banners/'
+        banners_dir = os.getenv('HOME') + '/.games_nebula/images/goglib/'
     elif lib == 'mylib':
         parser.read(os.getenv('HOME') + '/.games_nebula/scripts/mylib/autosetup.ini')
-        banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib_banners/'
+        banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib/'
 
     if parser.has_section(game_name):
 
