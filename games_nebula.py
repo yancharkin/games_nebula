@@ -3102,8 +3102,12 @@ class GUI:
             os.makedirs(data_dir + '/scripts')
         if not os.path.exists(data_dir + '/scripts/goglib'):
             os.makedirs(data_dir + '/scripts/goglib')
+        if not os.path.exists(data_dir + '/scripts/goglib/autosetup.ini'):
+            os.system('cp ' + nebula_dir + '/scripts/goglib/autosetup.ini ' + data_dir + '/scripts/goglib/')
         if not os.path.exists(data_dir + '/scripts/mylib'):
             os.makedirs(data_dir + '/scripts/mylib')
+        if not os.path.exists(data_dir + '/scripts/mylib/autosetup.ini'):
+            os.system('cp ' + nebula_dir + '/scripts/mylib/autosetup.ini ' + data_dir + '/scripts/mylib/')
         if not os.path.exists(data_dir + '/images'):
             os.makedirs(data_dir + '/images')
         if not os.path.exists(data_dir + '/images/goglib'):
