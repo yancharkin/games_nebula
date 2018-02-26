@@ -7,16 +7,25 @@ except:
 
 from modules import get_banner
 
+nebula_dir = sys.path[0]
+
 def autosetup(lib, install_dir, game_name):
 
     parser = ConfigParser()
 
     if lib == 'goglib':
-        parser.read(os.getenv('HOME') + '/.games_nebula/scripts/goglib/autosetup.ini')
         banners_dir = os.getenv('HOME') + '/.games_nebula/images/goglib/'
+        path_0 = os.getenv('HOME') + '/.games_nebula/scripts/goglib/autosetup.ini'
+        path_1 = nebula_dir + '/scripts/goglib/autosetup.ini'
     elif lib == 'mylib':
-        parser.read(os.getenv('HOME') + '/.games_nebula/scripts/mylib/autosetup.ini')
         banners_dir = os.getenv('HOME') + '/.games_nebula/images/mylib/'
+        path_0 = os.getenv('HOME') + '/.games_nebula/scripts/mylib/autosetup.ini'
+        path_1 = nebula_dir + '/scripts/mylib/autosetup.ini'
+
+    if os.path.exists(path_0):
+        parser.read(path_0)
+    else:
+        parser.read(path_1)
 
     if parser.has_section(game_name):
 
