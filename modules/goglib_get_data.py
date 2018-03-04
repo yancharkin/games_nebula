@@ -14,23 +14,11 @@ def games_info(data_dir):
     with open(games_list, 'r') as in_file:
         for line in in_file:
             if 'gamename: ' in line:
-                try:
-                    list_names.append(line.split('name: ',1)[1].translate(None, '\n'))
-                except:
-                    char_map = str.maketrans('', '', '\n')
-                    list_names.append(line.split('name: ',1)[1].translate(char_map))
+                list_names.append(line.split('name: ',1)[1].replace('\n', ''))
             if 'title: ' in line:
-                try:
-                    list_titles.append(line.split('title: ',1)[1].translate(None, '\n'))
-                except:
-                    char_map = str.maketrans('', '', '\n')
-                    list_titles.append(line.split('title: ',1)[1].translate(char_map))
+                list_titles.append(line.split('title: ',1)[1].replace('\n', ''))
             if 'icon: ' in line:
-                try:
-                    list_icons.append(line.split('icon: ',1)[1].translate(None, '\n'))
-                except:
-                    char_map = str.maketrans('', '', '\n')
-                    list_icons.append(line.split('icon: ',1)[1].translate(char_map))
+                list_icons.append(line.split('icon: ',1)[1].replace('\n', ''))
     in_file.close()
 
     number_of_games = len(list_names)

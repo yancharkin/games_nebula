@@ -2161,11 +2161,7 @@ class GUI:
             )
 
         for output in self.monitors_list:
-            try:
-                self.combobox_monitor.append_text(output.translate(None, '\n'))
-            except:
-                char_map = str.maketrans('', '', '\n')
-                self.combobox_monitor.append_text(output.translate(char_map))
+            self.combobox_monitor.append_text(output.replace('\n', ''))
 
         self.combobox_monitor.set_active(self.monitor)
 
@@ -5503,11 +5499,7 @@ class GUI:
         line = io.readline()
 
         if (process_name != 'check_for_new_games' ) and (process_name != 'update_goglib'):
-            try:
-                print(line.translate(None, '\n'))
-            except:
-                char_map = str.maketrans('', '', '\n')
-                print(line.translate(char_map))
+            print(line.replace('\n', ''))
 
         if self.goglib_page_exists():
             self.progressbar_goglib.pulse()
@@ -5519,17 +5511,8 @@ class GUI:
             if '%' in line:
                 mb_downloaded = line.split('@')[0].split(' ')[-2]
                 speed = line.split('@')[1].split(' ')[1]
-                try:
-                    eta = line.split('@')[1].split(' ')[3].translate(None, '\n')
-                except:
-                    char_map = str.maketrans('', '', '\n')
-                    eta = line.split('@')[1].split(' ')[3].translate(char_map)
-
-                try:
-                    percentage = line.split('%', 1)[0].translate(None, ' %\n')
-                except:
-                    char_map = str.maketrans('', '', '%\n')
-                    percentage = line.split('%', 1)[0].translate(char_map)
+                eta = line.split('@')[1].split(' ')[3].replace('\n', '')
+                percentage = line.split('%', 1)[0].replace(' ', '').replace('%', '').replace('\n', '')
 
                 for progress_bar in queue_progress_bars_list:
                     if progress_bar.get_name() == goglib_installation_queue[0]:
@@ -5575,11 +5558,7 @@ class GUI:
 
         if process_name == 'check_for_new_games':
             if '\n' in line:
-                try:
-                    game_name = line.split(' ')[0].translate(None, '\n')
-                except:
-                    char_map = str.maketrans('', '', '\n')
-                    game_name = line.split(' ')[0].translate(char_map)
+                game_name = line.split(' ')[0].replace('\n', '')
                 if '\x1b[32m' in game_name:
                     game_name = game_name.split('\x1b[32m')[1]
                 if  game_name not in self.goglib_games_list:
