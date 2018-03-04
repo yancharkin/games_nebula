@@ -556,12 +556,7 @@ class GUI:
         self.combobox_monitor = Gtk.ComboBoxText()
 
         for output in self.monitors_list:
-
-            try:
-                self.combobox_monitor.append_text(output.translate(None, '\n'))
-            except:
-                char_map = str.maketrans('', '', '\n')
-                self.combobox_monitor.append_text(output.translate(char_map))
+            self.combobox_monitor.append_text(output.replace('\n', ''))
 
         self.combobox_monitor.set_active(self.monitor)
 
@@ -887,13 +882,7 @@ class GUI:
                 command_list = line.split(' ')
 
         del command_list[0:3]
-        exe_path = ' '.join(command_list)
-
-        try:
-            exe_path = exe_path.translate(None, '"\n')
-        except:
-            char_map = str.maketrans('', '', '"\n')
-            exe_path = exe_path.translate(char_map)
+        exe_path = ' '.join(command_list).replace('\n', '').replace('"', '')
 
         return exe_path
 

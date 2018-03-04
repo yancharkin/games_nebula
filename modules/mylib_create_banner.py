@@ -22,13 +22,7 @@ def mylib_create_banner(game_name):
 
     script_file = open(mylib_setup_script_path, 'r')
     file_content = script_file.readlines()
-    raw_game_title = file_content[-1]
-
-    try:
-        raw_game_title = raw_game_title.translate(None, '#\n')
-    except:
-        char_map = str.maketrans('', '', '#\n')
-        raw_game_title = raw_game_title.translate(char_map)
+    raw_game_title = file_content[-1].replace('#', '').replace('\n', '')
 
     if sys.version_info[0] == 2:
         game_title = raw_game_title.decode('utf-8')

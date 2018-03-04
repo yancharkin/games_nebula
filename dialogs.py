@@ -175,11 +175,7 @@ class GUI:
                 Gtk.main_iteration_do(False)
 
             line = io.readline()
-            try:
-                print(line.translate(None, '\n'))
-            except:
-                char_map = str.maketrans('', '', '\n')
-                print(line.translate(char_map))
+            print(line.replace('\n', ''))
 
             return True
 

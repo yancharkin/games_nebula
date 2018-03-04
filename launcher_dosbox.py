@@ -292,12 +292,7 @@ class GUI:
         self.combobox_monitor = Gtk.ComboBoxText()
 
         for output in self.monitors_list:
-
-            try:
-                self.combobox_monitor.append_text(output.translate(None, '\n'))
-            except:
-                char_map = str.maketrans('', '', '\n')
-                self.combobox_monitor.append_text(output.translate(char_map))
+            self.combobox_monitor.append_text(output.replace('\n', ''))
 
         self.combobox_monitor.set_active(self.monitor)
 

@@ -1,7 +1,7 @@
 import os, sys
-from os import listdir
 
 nebula_dir = sys.path[0]
+
 
 def games_info(data_dir):
 
@@ -29,7 +29,8 @@ def games_info(data_dir):
 
     number_of_games = len(list_names)
 
-    return (number_of_games, list_names, list_titles)
+    return number_of_games, list_names, list_titles
+
 
 def get_info(games_list, mylib_dir):
 
@@ -45,12 +46,7 @@ def get_info(games_list, mylib_dir):
             data = setup_file.readlines()
             setup_file.close()
 
-            try:
-                title = data[-1].translate(None, '#\n')
-            except:
-                char_map = str.maketrans('', '', '#\n')
-                title = data[-1].translate(char_map)
-
+            title = data[-1].replace('#', '').replace('\n', '')
             dict_name2title[game_name] = title
 
     return dict_name2title
