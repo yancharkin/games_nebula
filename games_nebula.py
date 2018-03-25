@@ -5026,6 +5026,9 @@ class GUI:
                             tmp_list = file_content[i].split(' ')[2:]
                             tmp_list[0] = tmp_list[0].strip('"\\.')
                             iso = ' '.join(tmp_list)
+                            if '/' in iso:
+                                tmp_list = iso.split('/')
+                                iso = tmp_list[1]
                             if tmp_list[0] not in files_to_move:
                                 iso = iso.lower()
                             file_content[i] = d_imgmount_command + iso + 'cls\n'
