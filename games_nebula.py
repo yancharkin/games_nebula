@@ -4998,7 +4998,7 @@ class GUI:
                 os.system('mv ' + game_dir + '/tmp/data/noarch/*_single.conf ' +
                 game_dir + '/dosbox_game.conf')
 
-                if '_settings.conf' in ' '.join(files_to_move):
+                if '_settings.conf' in ' '.join(files_to_move_lower):
                     settings_conf_exists = True
                     os.system('mv ' + game_dir + '/tmp/data/noarch/*_settings.conf ' +
                     game_dir + '/dosbox_settings.conf')
