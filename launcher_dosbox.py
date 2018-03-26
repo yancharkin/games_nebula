@@ -65,7 +65,6 @@ class GUI:
 
         self.create_main_window()
 
-
     def config_load(self):
 
         config_file = self.install_dir + '/' + self.game_name + '/config.ini'
@@ -92,6 +91,12 @@ class GUI:
             config_parser.set('Settings', 'dosbox_version', str(self.dosbox_version))
         else:
             self.dosbox_version = config_parser.get('Settings', 'dosbox_version')
+
+        if not config_parser.has_option('Settings', 'own_dosbox_mapperfile'):
+            self.own_dosbox_mapperfile = False
+            config_parser.set('Settings', 'own_dosbox_mapperfile', str(self.own_dosbox_mapperfile))
+        else:
+            self.own_dosbox_mapperfile = config_parser.getboolean('Settings', 'own_dosbox_mapperfile')
 
         if not config_parser.has_option('Settings', 'monitor'):
             self.monitor = global_monitor
@@ -136,6 +141,7 @@ class GUI:
         config_parser.set('Settings', 'dosbox', str(self.dosbox))
         config_parser.set('Settings', 'dosbox_path', str(self.dosbox_path))
         config_parser.set('Settings', 'dosbox_version', str(self.dosbox_version))
+        config_parser.set('Settings', 'own_dosbox_mapperfile', str(self.own_dosbox_mapperfile))
         config_parser.set('Settings', 'monitor', str(self.monitor))
         config_parser.set('Settings', 'launcher', str(self.launcher))
         config_parser.set('Settings', 'show_banner', str(self.show_banner))
@@ -214,6 +220,11 @@ class GUI:
             margin_right = 10,
             )
 
+        self.label_version = Gtk.Label(
+            label = _("Version:"),
+            halign = Gtk.Align.CENTER
+            )
+
         self.rbutton_global = Gtk.RadioButton(
             name = 'global',
             label = _("Global settings")
@@ -255,15 +266,29 @@ class GUI:
         self.filechooser_button.connect('file-set', self.cb_filechooser_button)
         self.combobox_version.connect('changed', self.cb_combobox_version)
 
-        self.button_dosbox_settings = Gtk.Button(
-            label = _("Game specific DOSBox settings")
-            )
-        self.button_dosbox_settings.connect('clicked', self.cb_button_dosbox_settings)
-
-        self.label_version = Gtk.Label(
-            label = _("Version:"),
+        self.label_settings = Gtk.Label(
+            label = _("Game specific DOSBox settings:"),
             halign = Gtk.Align.CENTER
             )
+
+        self.checkbutton_own_mapper = Gtk.CheckButton(
+            label = _("Use own mapperfile"),
+            active = self.own_dosbox_mapperfile
+            )
+        self.checkbutton_own_mapper.connect('toggled', self.cb_checkbutton_own_mapper)
+
+        self.button_remap_keys = Gtk.Button(
+            label = _("Remap input"),
+            tooltip_text = _("Mapper can be started in game by pressing Ctrl+F1"),
+            no_show_all = True
+            )
+        self.button_remap_keys.connect('clicked', self.cb_button_remap_keys)
+        self.button_remap_keys.set_visible(self.own_dosbox_mapperfile)
+
+        self.button_dosbox_settings = Gtk.Button(
+            label = _("More settings")
+            )
+        self.button_dosbox_settings.connect('clicked', self.cb_button_dosbox_settings)
 
         self.frame_grid.attach(self.label_version, 0, 0, 2, 1)
         self.frame_grid.attach(self.rbutton_global, 0, 1, 2, 1)
@@ -271,7 +296,10 @@ class GUI:
         self.frame_grid.attach(self.rbutton_path, 0, 3, 2, 1)
         self.frame_grid.attach(self.filechooser_button, 0, 4, 1, 1)
         self.frame_grid.attach(self.combobox_version, 1, 4, 1, 1)
-        self.frame_grid.attach(self.button_dosbox_settings, 0, 5, 2, 1)
+        self.frame_grid.attach(self.label_settings, 0, 5, 2, 1)
+        self.frame_grid.attach(self.checkbutton_own_mapper, 0, 6, 1, 1)
+        self.frame_grid.attach(self.button_remap_keys, 1, 6, 1, 1)
+        self.frame_grid.attach(self.button_dosbox_settings, 0, 7, 2, 1)
         self.frame.add(self.frame_grid)
         self.expander.add(self.frame)
 
@@ -535,6 +563,67 @@ class GUI:
         #~ elif dosbox_version == 'svn_daum':
             #~ os.system('python ' + nebula_dir + '/settings_dosbox_svn_daum.py ' + \
             #~ self.install_dir + '/' + self.game_name + '/dosbox.conf local ' + dosbox_version)
+
+        self.main_window.show()
+
+    def cb_checkbutton_own_mapper(self, button):
+
+        self.own_dosbox_mapperfile = button.get_active()
+        self.button_remap_keys.set_visible(button.get_active())
+
+        game_dir = self.install_dir + '/' + self.game_name
+
+        if button.get_active() == False:
+
+            config_parser = ConfigParser()
+            global_dosbox_conf_path = os.getenv('HOME') + '/.games_nebula/config/dosbox.conf'
+
+            if (os.path.exists(global_dosbox_conf_path)):
+
+                config_parser.read(global_dosbox_conf_path)
+
+                if (config_parser.has_section('sdl')) and \
+                        (config_parser.has_option('sdl', 'mapperfile')):
+                    dosbox_keymap_path = config_parser.get('sdl', 'mapperfile')
+                else:
+                    dosbox_keymap_path = os.getenv('HOME') + '/.games_nebula/config/dosbox_keymap'
+            else:
+                dosbox_keymap_path = os.getenv('HOME') + '/.games_nebula/config/dosbox_keymap'
+        else:
+
+            dosbox_keymap_path = game_dir + '/dosbox_keymap'
+
+        dosbox_conf = game_dir + '/dosbox.conf'
+        config_parser = ConfigParser()
+        config_parser.read(dosbox_conf)
+        config_parser.set('sdl', 'mapperfile', str(dosbox_keymap_path))
+        new_config_file = open(dosbox_conf, 'w')
+        config_parser.write(new_config_file)
+        new_config_file.close()
+
+    def cb_button_remap_keys(self, button):
+
+        self.main_window.hide()
+
+        while Gtk.events_pending():
+            Gtk.main_iteration()
+
+        dosbox_bin = self.set_dosbox_bin()
+
+        with open('/tmp/gn_tmp_dosbox.conf', 'w') as gn_tmp_dosbox_conf:
+            gn_tmp_dosbox_conf.write('[autoexec]\n')
+            gn_tmp_dosbox_conf.write('exit\n')
+
+        gn_tmp_dosbox_conf.close()
+
+        launch_command = dosbox_bin + ' -conf /tmp/gn_tmp_dosbox.conf' + \
+        ' -conf ' + self.install_dir + '/' + self.game_name + '/dosbox.conf' + \
+        ' -startmapper'
+
+        # FIX Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
+        os.system('export SDL_VIDEO_FULLSCREEN_HEAD=0 && ' + launch_command)
+
+        os.system('rm /tmp/gn_tmp_dosbox.conf')
 
         self.main_window.show()
 

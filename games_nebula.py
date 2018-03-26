@@ -2315,6 +2315,12 @@ class GUI:
 
         self.populate_dosbox_version_combobox()
 
+        checkbutton_own_mapperfile = Gtk.CheckButton(
+            label = _("Own mapperfile for every game"),
+            active = self.own_dosbox_mapperfile
+            )
+        checkbutton_own_mapperfile.connect('clicked', self.cb_checkbutton_own_mapperfile)
+
         self.button_dosbox_settings = Gtk.Button(
             label = _("DOSBox settings")
             )
@@ -2325,7 +2331,8 @@ class GUI:
         self.grid_dosbox_settings.attach(self.radiobutton_dosbox_settings_dir, 0, 1, 2, 1)
         self.grid_dosbox_settings.attach(self.filechooserbutton_dosbox, 0, 2, 2, 1)
         self.grid_dosbox_settings.attach(self.combobox_dosbox_version, 2, 2, 2, 1)
-        self.grid_dosbox_settings.attach(self.button_dosbox_settings, 0, 3, 4, 1)
+        self.grid_dosbox_settings.attach(checkbutton_own_mapperfile, 0, 3, 4, 1)
+        self.grid_dosbox_settings.attach(self.button_dosbox_settings, 0, 4, 4, 1)
 
         self.frame_dosbox_settings.add(self.grid_dosbox_settings)
 
@@ -3549,6 +3556,12 @@ class GUI:
         else:
             self.dosbox_version = self.config_parser.get('emulation settings', 'dosbox_version')
 
+        if not self.config_parser.has_option('emulation settings', 'own_dosbox_mapperfile'):
+            self.own_dosbox_mapperfile = True
+            self.config_parser.set('emulation settings', 'own_dosbox_mapperfile', str(self.own_dosbox_mapperfile))
+        else:
+            self.own_dosbox_mapperfile = self.config_parser.getboolean('emulation settings', 'own_dosbox_mapperfile')
+
         if not self.config_parser.has_option('emulation settings', 'scummvm'):
             self.scummvm = 'system'
             self.config_parser.set('emulation settings', 'scummvm', str(self.scummvm))
@@ -3667,6 +3680,7 @@ class GUI:
         self.config_parser.set('emulation settings', 'dosbox', str(self.dosbox))
         self.config_parser.set('emulation settings', 'dosbox_path', str(self.dosbox_path))
         self.config_parser.set('emulation settings', 'dosbox_version', str(self.dosbox_version))
+        self.config_parser.set('emulation settings', 'own_dosbox_mapperfile', str(self.own_dosbox_mapperfile))
         self.config_parser.set('emulation settings', 'scummvm', str(self.scummvm))
         self.config_parser.set('emulation settings', 'scummvm_path', str(self.scummvm_path))
         self.config_parser.set('emulation settings', 'scummvm_version', str(self.scummvm_version))
@@ -4983,6 +4997,43 @@ class GUI:
         if not self.queue_tab_exists():
             self.append_queue_tab()
 
+        def set_dosbox_mapper_file(game_dir):
+
+            doxbox_conf_file = open(game_dir + '/dosbox.conf', 'w')
+            doxbox_conf_file.write('[sdl]\n')
+
+            if self.own_dosbox_mapperfile:
+
+                doxbox_conf_file.write('mapperfile = ' + game_dir + '/dosbox_keymap\n')
+                conf_file = open(game_dir + '/config.ini', 'w')
+                conf_file.write('[Settings]\n')
+                conf_file.write('own_dosbox_mapperfile = True')
+                conf_file.close()
+
+            else:
+
+                global_dosbox_conf_path = os.getenv('HOME') + '/.games_nebula/config/dosbox.conf'
+
+                if (os.path.exists(global_dosbox_conf_path)):
+
+                    config_parser = ConfigParser()
+                    config_parser.read(global_dosbox_conf_path)
+
+                    if (config_parser.has_section('sdl')) and \
+                            (config_parser.has_option('sdl', 'mapperfile')):
+
+                        dosbox_keymap_path = config_parser.get('sdl', 'mapperfile')
+                    else:
+                        dosbox_keymap_path = os.getenv('HOME') + '/.games_nebula/config/dosbox_keymap'
+
+                else:
+
+                    dosbox_keymap_path = os.getenv('HOME') + '/.games_nebula/config/dosbox_keymap'
+
+                doxbox_conf_file.write('mapperfile = ' + dosbox_keymap_path + '\n')
+
+            doxbox_conf_file.close()
+
         if self.installer_type == 'sh':
 
             game_dir = self.goglib_install_dir + '/' + game_name
@@ -4992,6 +5043,8 @@ class GUI:
             files_to_move_lower = [file_name.lower() for file_name in files_to_move]
 
             if 'dosbox' in files_to_move_lower:
+
+                set_dosbox_mapper_file(game_dir)
 
                 files_path = game_dir + '/tmp/data/noarch/data/'
                 files_to_move = os.listdir(files_path)
@@ -5124,6 +5177,9 @@ class GUI:
             files_to_move_lower = [file_name.lower() for file_name in files_to_move]
 
             if 'dosbox' in files_to_move_lower:
+
+                set_dosbox_mapper_file(game_dir)
+
                 os.system('mv ' + game_dir + game_data_dir + '*_single.conf ' +
                 game_dir + '/dosbox_game.conf')
 
@@ -5590,6 +5646,9 @@ class GUI:
 
     def cb_checkbutton_own_prefix(self, checkbutton):
         self.own_prefix = checkbutton.get_active()
+
+    def cb_checkbutton_own_mapperfile(self, checkbutton):
+        self.own_dosbox_mapperfile = checkbutton.get_active()
 
     def cb_button_wine_settings(self, button):
 

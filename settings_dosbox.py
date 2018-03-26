@@ -238,7 +238,7 @@ class GUI:
             tooltip_text = _("Mouse sensitivity.")
             )
 
-        self.adjustment_sensitivity = Gtk.Adjustment(self.sdl_sensitivity, 0, 1000, 1, 10)
+        self.adjustment_sensitivity = Gtk.Adjustment(int(self.sdl_sensitivity), 0, 1000, 1, 10)
 
         self.scale_sensitivity = Gtk.Scale(
             tooltip_text = _("Mouse sensitivity."),
@@ -297,18 +297,24 @@ class GUI:
         self.label_mapperfile = Gtk.Label(
             label = _("Mapperfile"),
             halign = Gtk.Align.START,
-            tooltip_text = _("File used to load/save the key/event mappings from.\nResetmapper only works with the defaul value.")
+            tooltip_text = _("File used to load/save the key/event mappings from.\nResetmapper only works with the defaul value."),
+            no_show_all = True
             )
 
         self.filechooser_mapperfile = Gtk.FileChooserButton(
             tooltip_text = _("File used to load/save the key/event mappings from.\nResetmapper only works with the defaul value."),
             title = _("Select a file"),
             action =  Gtk.FileChooserAction.OPEN,
+            no_show_all = True
             )
 
         if self.sdl_mapperfile != '':
             mapperfile = Gio.File.new_for_path(self.sdl_mapperfile)
             self.filechooser_mapperfile.set_file(mapperfile)
+
+        if self.config_type == 'global':
+            self.label_mapperfile.set_visible(True)
+            self.filechooser_mapperfile.set_visible(True)
 
         self.label_scancodes = Gtk.Label(
             label = _("Use scancodes"),
@@ -354,7 +360,7 @@ class GUI:
         self.scrolled_window_sdl.add(self.grid_sdl)
 
         # FIX Workaround to prevent strange bug: adjustment not always setted
-        self.adjustment_sensitivity.set_value(self.sdl_sensitivity)
+        self.adjustment_sensitivity.set_value(int(self.sdl_sensitivity))
 
         self.label_sdl = Gtk.Label(
             label = "SDL"
@@ -2000,7 +2006,8 @@ class GUI:
         if config_parser.has_option('sdl', 'mapperfile'):
             self.sdl_mapperfile_global = config_parser.get('sdl', 'mapperfile')
         else:
-            self.sdl_mapperfile_global = ''
+            dosbox_keymap_path = os.getenv('HOME') + '/.games_nebula/config/dosbox_keymap'
+            self.sdl_mapperfile_global = dosbox_keymap_path
             config_parser.set('sdl', 'mapperfile', str(self.sdl_mapperfile_global))
 
         if config_parser.has_option('sdl', 'usescancodes'):
