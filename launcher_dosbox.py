@@ -572,43 +572,43 @@ class GUI:
         self.button_remap_keys.set_visible(button.get_active())
 
         game_dir = self.install_dir + '/' + self.game_name
+        dosbox_conf = game_dir + '/dosbox.conf'
 
-        if button.get_active() == False:
-
-            config_parser = ConfigParser()
-            global_dosbox_conf_path = os.getenv('HOME') + '/.games_nebula/config/dosbox.conf'
-
-            if (os.path.exists(global_dosbox_conf_path)):
-
-                config_parser.read(global_dosbox_conf_path)
-
-                if (config_parser.has_section('sdl')) and \
-                        (config_parser.has_option('sdl', 'mapperfile')):
-                    dosbox_keymap_path = config_parser.get('sdl', 'mapperfile')
-                else:
-                    dosbox_keymap_path = os.getenv('HOME') + '/.games_nebula/config/dosbox_keymap'
-            else:
-                dosbox_keymap_path = os.getenv('HOME') + '/.games_nebula/config/dosbox_keymap'
-        else:
+        if button.get_active() == True:
 
             dosbox_keymap_path = game_dir + '/dosbox_keymap'
 
-        dosbox_conf = game_dir + '/dosbox.conf'
+            if not os.path.exists(dosbox_conf):
+                open(dosbox_conf, 'a').close()
 
-        if not os.path.exists(dosbox_conf):
-            open(dosbox_conf, 'a').close()
+            config_parser = ConfigParser()
+            config_parser.read(dosbox_conf)
 
-        config_parser = ConfigParser()
-        config_parser.read(dosbox_conf)
+            if not config_parser.has_section('sdl'):
+                config_parser.add_section('sdl')
 
-        if not config_parser.has_section('sdl'):
-            config_parser.add_section('sdl')
+            config_parser.set('sdl', 'mapperfile', str(dosbox_keymap_path))
 
-        config_parser.set('sdl', 'mapperfile', str(dosbox_keymap_path))
+            new_config_file = open(dosbox_conf, 'w')
+            config_parser.write(new_config_file)
+            new_config_file.close()
 
-        new_config_file = open(dosbox_conf, 'w')
-        config_parser.write(new_config_file)
-        new_config_file.close()
+        else:
+
+            if os.path.exists(dosbox_conf):
+
+                config_parser = ConfigParser()
+                config_parser.read(dosbox_conf)
+
+                if (config_parser.has_section('sdl')) and \
+                        config_parser.has_option('sdl', 'mapperfile'):
+
+                    config_parser.remove_option('sdl', 'mapperfile')
+
+                if (len(config_parser.sections()) == 1) and \
+                        (len(config_parser.options('sdl')) == 0):
+
+                    os.system('rm ' + dosbox_conf)
 
     def cb_button_remap_keys(self, button):
 
