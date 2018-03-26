@@ -4896,6 +4896,9 @@ class GUI:
         autosetup.autosetup('mylib', self.mylib_install_dir, game_name)
 
         settings_py_path = os.getenv('HOME') + '/.games_nebula/scripts/mylib/' + game_name + '/settings.py'
+        if not os.path.exists(settings_py_path):
+            settings_py_path = nebula_dir + '/scripts/mylib/' + game_name + '/settings.py'
+        
         if os.path.exists(settings_py_path):
             os.system('cp ' + settings_py_path + ' ' + game_dir)
             os.system('echo "Writing settings.sh"')
@@ -5307,6 +5310,9 @@ class GUI:
                 command = ['echo', 'Running script...']
 
         settings_py_path = os.getenv('HOME') + '/.games_nebula/scripts/goglib/' + game_name + '/settings.py'
+        if not os.path.exists(settings_py_path):
+            settings_py_path = nebula_dir + '/scripts/goglib/' + game_name + '/settings.py'
+            
         if os.path.exists(settings_py_path):
             os.system('cp ' + settings_py_path + ' ' + game_dir)
             os.system('echo "Writing settings.sh"')
