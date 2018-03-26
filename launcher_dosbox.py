@@ -594,9 +594,18 @@ class GUI:
             dosbox_keymap_path = game_dir + '/dosbox_keymap'
 
         dosbox_conf = game_dir + '/dosbox.conf'
+
+        if not os.path.exists(dosbox_conf):
+            open(dosbox_conf, 'a').close()
+
         config_parser = ConfigParser()
         config_parser.read(dosbox_conf)
+
+        if not config_parser.has_section('sdl'):
+            config_parser.add_section('sdl')
+
         config_parser.set('sdl', 'mapperfile', str(dosbox_keymap_path))
+
         new_config_file = open(dosbox_conf, 'w')
         config_parser.write(new_config_file)
         new_config_file.close()
