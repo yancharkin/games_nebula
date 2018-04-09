@@ -4898,7 +4898,7 @@ class GUI:
         settings_py_path = os.getenv('HOME') + '/.games_nebula/scripts/mylib/' + game_name + '/settings.py'
         if not os.path.exists(settings_py_path):
             settings_py_path = nebula_dir + '/scripts/mylib/' + game_name + '/settings.py'
-        
+
         if os.path.exists(settings_py_path):
             os.system('cp ' + settings_py_path + ' ' + game_dir)
             os.system('echo "Writing settings.sh"')
@@ -4974,7 +4974,7 @@ class GUI:
             elif self.installer_type == 'exe':
                 command = ['innoextract', '--gog', \
                         self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
-                        '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
+                        '-d', self.goglib_install_dir + '/' + game_name + '/game']
 
         elif number_of_installers == 0:
             self.goglib_install_game(goglib_installation_queue[0])
@@ -5155,8 +5155,11 @@ class GUI:
         elif self.installer_type == 'exe':
 
             game_dir = self.goglib_install_dir + '/' + game_name
-            tmp_game_path = game_dir + '/tmp/game/'
-            tmp_app_path = game_dir + '/tmp/app/'
+            tmp_root_path = game_dir + '/game/'
+            tmp_game_path = game_dir + '/game/game/'
+            tmp_app_path = game_dir + '/game/app/'
+
+            tmp_root_files = os.listdir(tmp_root_path)
 
             tmp_game_files_n = 0
             if os.path.exists(tmp_game_path):
@@ -5170,26 +5173,32 @@ class GUI:
 
             if tmp_game_files_n > tmp_app_files_n:
                 files_path = tmp_game_path
-                files_to_move = list(tmp_game_files)
-                game_data_dir = '/tmp/game/'
+                files_to_move = tmp_game_files
+                game_data_dir = tmp_game_path
             else:
                 files_path = tmp_app_path
-                files_to_move = list(tmp_app_files)
-                game_data_dir = '/tmp/app/'
+                files_to_move = tmp_app_files
+                game_data_dir = tmp_app_path
 
+            tmp_root_files_lower = [file_name.lower() for file_name in tmp_root_files]
             files_to_move_lower = [file_name.lower() for file_name in files_to_move]
 
-            if 'dosbox' in files_to_move_lower:
+            if ('dosbox' in files_to_move_lower) or ('dosbox' in tmp_root_files_lower):
 
                 set_dosbox_mapper_file(game_dir)
 
-                os.system('mv ' + game_dir + game_data_dir + '*_single.conf ' +
-                game_dir + '/dosbox_game.conf')
+                #~ if 'dosbox' in tmp_root_files_lower:
+                    #~ game_data_dir = tmp_root_path
 
-                if '_settings.conf' in ' '.join(files_to_move):
+                game_data_dir_files = os.listdir(game_data_dir)
+
+                os.system('mv ' + game_data_dir + '*_single.conf ' +
+                        game_dir + '/dosbox_game.conf')
+
+                if '_settings.conf' in ''.join(game_data_dir_files):
                     settings_conf_exists = True
-                    os.system('mv ' + game_dir + game_data_dir + '*_settings.conf ' +
-                    game_dir + '/dosbox_settings.conf')
+                    os.system('mv ' + game_data_dir + '*_settings.conf ' +
+                            game_dir + '/dosbox_settings.conf')
                 else:
                     settings_conf_exists = False
 
@@ -5243,15 +5252,19 @@ class GUI:
                 start_file.close()
                 os.system('chmod +x ' + game_dir + '/start.sh')
 
-            elif 'scummvm' in files_to_move_lower:
+            elif ('scummvm' in files_to_move_lower) or ('scummvm' in tmp_root_files_lower):
 
-                for file_name in files_to_move:
+                if 'scummvm' in tmp_root_files_lower:
+                    game_data_dir = tmp_root_path
+                game_data_dir_files = os.listdir(game_data_dir)
+
+                for file_name in game_data_dir_files:
                     if '.ini' in file_name.lower():
                         ini_file = file_name
                         scummvm_name = file_name.split('.')[0].lower()
 
-                os.system('mv ' + game_dir + game_data_dir + ini_file + ' ' +
-                game_dir + '/scummvmrc')
+                os.system('mv ' + game_data_dir + ini_file + ' ' +
+                        game_dir + '/scummvmrc')
 
                 start_lines = ['#!/bin/bash\n',
                 'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
@@ -5270,12 +5283,19 @@ class GUI:
                     config_file.write('own_prefix = True')
                     config_file.close()
 
-                files_in_game_dir = os.listdir(game_dir + game_data_dir)
+                files_in_game_dir = os.listdir(game_data_dir)
                 n_exe = 0
                 for file_name in files_in_game_dir:
                     if '.exe' in file_name.lower():
                         exe_name =  '"' + file_name + '"'
                         n_exe += 1
+
+                if n_exe == 0:
+                    for file_name in tmp_root_files:
+                        if '.exe' in file_name.lower():
+                            exe_name =  '"' + file_name + '"'
+                        n_exe += 1
+
                 if n_exe != 1:
                     exe_name = 'NOEXE'
 
@@ -5287,7 +5307,7 @@ class GUI:
                 start_file.close()
                 os.system('chmod +x ' + game_dir + '/start.sh')
 
-            os.system('mkdir -p ' + game_dir + '/game')
+            #~ os.system('mkdir -p ' + game_dir + '/game')
             command = []
             for f in files_to_move:
                 command.extend(('mv', files_path + f, game_dir + '/game'))
@@ -5312,7 +5332,7 @@ class GUI:
         settings_py_path = os.getenv('HOME') + '/.games_nebula/scripts/goglib/' + game_name + '/settings.py'
         if not os.path.exists(settings_py_path):
             settings_py_path = nebula_dir + '/scripts/goglib/' + game_name + '/settings.py'
-            
+
         if os.path.exists(settings_py_path):
             os.system('cp ' + settings_py_path + ' ' + game_dir)
             os.system('echo "Writing settings.sh"')
@@ -5458,6 +5478,10 @@ class GUI:
                            #~ frame.destroy()
 
                     os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/tmp')
+                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/tmp')
+                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/app')
+                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/game')
+                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/commonappdata')
 
                     if self.goglib_keep_installers == False:
                         os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
@@ -5489,6 +5513,10 @@ class GUI:
                        #~ frame.destroy()
 
                 os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/tmp')
+                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/tmp')
+                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/app')
+                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/game')
+                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/commonappdata')
 
                 if self.goglib_keep_installers == False:
                     os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
