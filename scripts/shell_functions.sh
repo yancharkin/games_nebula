@@ -102,8 +102,9 @@ ARCH=$(get_arch i)
 }
 
 get_upx () {
-FILE_NAME="upx-i386_linux.tar.xz"
-LINK='https://github.com/upx/upx/releases/download/v3.94/upx-3.94-i386_linux.tar.xz'
+ARCH=$(get_arch i)
+FILE_NAME="upx-$ARCH_linux.tar.xz"
+LINK='https://github.com/upx/upx/releases/download/v3.94/upx-3.94-'"$ARCH"'_linux.tar.xz'
 get_common_file "$FILE_NAME" "$LINK"
 tar xvfJ "$DOWNLOAD_DIR/_distr/$FILE_NAME" --strip-components=1 -C \
 "$INSTALL_DIR/$GAME_NAME/game/"
