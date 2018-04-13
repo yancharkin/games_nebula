@@ -7,52 +7,55 @@ def get_monitors():
 
     monitors_list = []
 
-    try:
-        x = os.environ['WAYLAND_DISPLAY']
-        session_type = 'wayland'
-    except KeyError:
-        session_type = 'x11'
+    #~ try:
+        #~ x = os.environ['WAYLAND_DISPLAY']
+        #~ session_type = 'wayland'
+    #~ except KeyError:
+        #~ session_type = 'x11'
 
-    if session_type == 'x11':
+    #~ if session_type == 'x11':
 
         # Use GTK
-        ## Not working with Wayland (?)
 
-        display_manager = Gdk.DisplayManager.get()
-        display = Gdk.DisplayManager.get_default_display(display_manager)
-        n_monitors = display.get_n_monitors()
+        # Doesn't work in distros that use gtk < 3.22
+        # Doesn't work with Wayland (?)
+        # => disabled for now
 
-        for monitor_index in range(n_monitors):
-            monitor = display.get_monitor(monitor_index)
+        #~ display_manager = Gdk.DisplayManager.get()
+        #~ display = Gdk.DisplayManager.get_default_display(display_manager)
+        #~ n_monitors = display.get_n_monitors()
 
-            model = monitor.get_model()
-            geometry = monitor.get_geometry()
-            monitors_list.append(model + ' ' + str(geometry.width) + 'x' + str(geometry.height))
+        #~ for monitor_index in range(n_monitors):
+            #~ monitor = display.get_monitor(monitor_index)
 
-            if monitor.is_primary():
-                monitor_primary = model + ' ' + str(geometry.width) + 'x' + str(geometry.height)
+            #~ model = monitor.get_model()
+            #~ geometry = monitor.get_geometry()
+            #~ monitors_list.append(model + ' ' + str(geometry.width) + 'x' + str(geometry.height))
 
-    else:
+            #~ if monitor.is_primary():
+                #~ monitor_primary = model + ' ' + str(geometry.width) + 'x' + str(geometry.height)
 
-        # Using xrandr
+    #~ else:
 
-        proc = subprocess.Popen(['xrandr'],stdout=subprocess.PIPE)
-        for line in proc.stdout.readlines():
+    # Use xrandr
 
-            if re.compile(r'\b({0})\b'.format('connected'), flags=re.IGNORECASE).search(line):
-                if 'primary' in line.decode('utf-8'):
-                    monitors_list.append(line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[3].split('+')[0])
-                else:
-                    monitors_list.append(line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[2].split('+')[0])
+    proc = subprocess.Popen(['xrandr'],stdout=subprocess.PIPE)
+    for line in proc.stdout.readlines():
+
+        if re.compile(r'\b({0})\b'.format('connected'), flags=re.IGNORECASE).search(line):
             if 'primary' in line.decode('utf-8'):
-                monitor_primary = line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[3].split('+')[0]
+                monitors_list.append(line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[3].split('+')[0])
+            else:
+                monitors_list.append(line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[2].split('+')[0])
+        if 'primary' in line.decode('utf-8'):
+            monitor_primary = line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[3].split('+')[0]
 
-        ## Hack for Wayland
-        try:
-            monitor_primary
-        except NameError:
-            monitor_primary = monitors_list[0]
-        else:
-            pass
+    ## Hack for Wayland
+    try:
+        monitor_primary
+    except NameError:
+        monitor_primary = monitors_list[0]
+    else:
+        pass
 
     return monitors_list, monitor_primary

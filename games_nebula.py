@@ -149,8 +149,15 @@ class GUI:
         content_area.set_property('margin-right', 10)
         content_area.set_property('margin-top', 10)
         content_area.set_property('margin-bottom', 10)
-        content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
-        content_area_label.set_property('justify', Gtk.Justification.CENTER)
+
+        try:
+            content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
+            content_area_label.set_property('justify', Gtk.Justification.CENTER)
+        except AttributeError:
+            content_area_label = content_area.get_children()[0].get_children()[1].get_children()[1]
+            content_area_label.set_property('justify', Gtk.Justification.CENTER)
+        except:
+            pass
 
         message_dialog.run()
         message_dialog.destroy()
@@ -171,8 +178,16 @@ class GUI:
         content_area.set_property('margin-right', 10)
         content_area.set_property('margin-top', 10)
         content_area.set_property('margin-bottom', 10)
-        content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
-        content_area_label.set_property('justify', Gtk.Justification.CENTER)
+
+        try:
+            content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
+            content_area_label.set_property('justify', Gtk.Justification.CENTER)
+        except AttributeError:
+            content_area_label = content_area.get_children()[0].get_children()[1].get_children()[1]
+            content_area_label.set_property('justify', Gtk.Justification.CENTER)
+        except:
+            pass
+
         action_area = message_dialog.get_action_area()
         action_area.set_property('spacing', 10)
 

@@ -33,7 +33,7 @@ class Login:
             icon = app_icon,
             width_request = 390,
             height_request = 496,
-            resizable = False
+            resizable = True
         )
         self.login_window.connect('delete-event', self.quit_app)
 
