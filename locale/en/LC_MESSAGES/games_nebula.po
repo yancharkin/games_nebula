@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-21 20:34+0300\n"
-"PO-Revision-Date: 2018-02-21 20:34+0300\n"
+"POT-Creation-Date: 2018-04-24 14:34+0300\n"
+"PO-Revision-Date: 2018-04-24 14:20+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "Unknown dialog type: "
 msgstr "Unknown dialog type: "
 
-#: ../dialogs.py:58 ../games_nebula.py:746 ../games_nebula.py:774
-#: ../games_nebula.py:1091 ../games_nebula.py:1124 ../games_nebula.py:2814
-#: ../games_nebula.py:2890 ../games_nebula.py:4570 ../games_nebula.py:4588
-#: ../games_nebula.py:4603 ../games_nebula.py:4613 ../games_nebula.py:4632
-#: ../games_nebula.py:4644 ../games_nebula.py:4748 ../games_nebula.py:4800
+#: ../dialogs.py:58 ../games_nebula.py:761 ../games_nebula.py:789
+#: ../games_nebula.py:1106 ../games_nebula.py:1139 ../games_nebula.py:2832
+#: ../games_nebula.py:2908 ../games_nebula.py:4595 ../games_nebula.py:4613
+#: ../games_nebula.py:4628 ../games_nebula.py:4638 ../games_nebula.py:4657
+#: ../games_nebula.py:4669 ../games_nebula.py:4773 ../games_nebula.py:4825
 #: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:163
 #: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:95
 #: ../../games_nebula_goglib_scripts/konung_2_blood_of_titans/settings.py:95
@@ -88,49 +88,51 @@ msgstr "Simulation"
 msgid "Strategy"
 msgstr "Strategy"
 
-#: ../games_nebula.py:211
+#: ../games_nebula.py:226
 msgid "Launching 'Games Nebula'"
 msgstr "Launching 'Games Nebula'"
 
-#: ../games_nebula.py:254 ../games_nebula.py:1222
+#: ../games_nebula.py:269 ../games_nebula.py:1237
 msgid "Add tabs"
 msgstr "Add tabs"
 
-#: ../games_nebula.py:262
+#: ../games_nebula.py:277
 msgid "Offline - click to go online"
 msgstr "Offline - click to go online"
 
-#: ../games_nebula.py:266
+#: ../games_nebula.py:281
 msgid "Online - click to go offline"
 msgstr "Online - click to go offline"
 
-#: ../games_nebula.py:283 ../games_nebula.py:6111
+#: ../games_nebula.py:298 ../games_nebula.py:6202
 msgid "Change user"
 msgstr "Change user"
 
-#: ../games_nebula.py:293
+#: ../games_nebula.py:308
 msgid "Update GOG library"
 msgstr "Update GOG library"
 
-#: ../games_nebula.py:408 ../games_nebula.py:463 ../games_nebula.py:475
+#: ../games_nebula.py:423 ../games_nebula.py:478 ../games_nebula.py:490
 msgid "Not authorized on GOG.com"
 msgstr "Not authorized on GOG.com"
 
-#: ../games_nebula.py:409 ../games_nebula.py:464
+#: ../games_nebula.py:424 ../games_nebula.py:479
 msgid "Authorize?"
 msgstr "Authorize?"
 
-#: ../games_nebula.py:420 ../games_nebula.py:490 ../games_nebula.py:4828
+#: ../games_nebula.py:435 ../games_nebula.py:505 ../games_nebula.py:4853
 msgid "GOG.com unavailable"
 msgstr "GOG.com unavailable"
 
-#: ../games_nebula.py:421 ../games_nebula.py:4829
+#: ../games_nebula.py:436 ../games_nebula.py:4854
 msgid "Check your internet connection."
 msgstr "Check your internet connection."
 
-#: ../games_nebula.py:426 ../games_nebula.py:5244 ../get_scripts.py:86
-#: ../get_scripts.py:102 ../pygogauth.py:117
+#: ../games_nebula.py:441 ../games_nebula.py:5337 ../get_scripts.py:94
+#: ../get_scripts.py:110 ../pygogauth.py:117
 #: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:152
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:151
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:161
 #: ../../games_nebula_goglib_scripts/desperados_2/settings.py:131
 #: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:159
 #: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:192
@@ -142,30 +144,34 @@ msgstr "Check your internet connection."
 #: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:149
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:504
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:663
+#: ../../games_nebula_mylib_scripts/free/kings_quest_1_remake/settings.py:142
+#: ../../games_nebula_mylib_scripts/free/kings_quest_2_remake/settings.py:142
+#: ../../games_nebula_mylib_scripts/free/kings_quest_3_remake/settings.py:142
+#: ../../games_nebula_mylib_scripts/free/quest_for_glory_2_remake/settings.py:142
 msgid "Error"
 msgstr "Error"
 
-#: ../games_nebula.py:427
+#: ../games_nebula.py:442
 msgid "File '"
 msgstr "File '"
 
-#: ../games_nebula.py:429
+#: ../games_nebula.py:444
 msgid "' is missing.\n"
 msgstr "' is missing.\n"
 
-#: ../games_nebula.py:430
+#: ../games_nebula.py:445
 msgid "'GOG LIBRARY' tab disabled. "
 msgstr "'GOG LIBRARY' tab disabled. "
 
-#: ../games_nebula.py:431
+#: ../games_nebula.py:446
 msgid "Login at least once before using it."
 msgstr "Login at least once before using it."
 
-#: ../games_nebula.py:476
+#: ../games_nebula.py:491
 msgid "Starting in offline mode."
 msgstr "Starting in offline mode."
 
-#: ../games_nebula.py:491
+#: ../games_nebula.py:506
 msgid ""
 "Check your internet connection.\n"
 "Starting in offline mode."
@@ -173,358 +179,362 @@ msgstr ""
 "Check your internet connection.\n"
 "Starting in offline mode."
 
-#: ../games_nebula.py:545 ../games_nebula.py:884
+#: ../games_nebula.py:560 ../games_nebula.py:899
 msgid "Search"
 msgstr "Search"
 
-#: ../games_nebula.py:551 ../games_nebula.py:890
+#: ../games_nebula.py:566 ../games_nebula.py:905
 msgid "Status filter"
 msgstr "Status filter"
 
-#: ../games_nebula.py:555 ../games_nebula.py:575 ../games_nebula.py:602
-#: ../games_nebula.py:629 ../games_nebula.py:656 ../games_nebula.py:894
-#: ../games_nebula.py:915 ../games_nebula.py:943 ../games_nebula.py:971
-#: ../games_nebula.py:999 ../games_nebula.py:3169 ../games_nebula.py:3181
-#: ../games_nebula.py:3187 ../games_nebula.py:3193 ../games_nebula.py:3199
-#: ../games_nebula.py:3263 ../games_nebula.py:3275 ../games_nebula.py:3281
-#: ../games_nebula.py:3287 ../games_nebula.py:3293 ../games_nebula.py:3795
-#: ../games_nebula.py:3826 ../games_nebula.py:3857 ../games_nebula.py:3888
-#: ../games_nebula.py:3919 ../games_nebula.py:3950 ../games_nebula.py:3981
-#: ../games_nebula.py:4012 ../games_nebula.py:4079 ../games_nebula.py:4117
-#: ../games_nebula.py:4512 ../games_nebula.py:4513 ../games_nebula.py:4514
-#: ../games_nebula.py:4515
+#: ../games_nebula.py:570 ../games_nebula.py:590 ../games_nebula.py:617
+#: ../games_nebula.py:644 ../games_nebula.py:671 ../games_nebula.py:909
+#: ../games_nebula.py:930 ../games_nebula.py:958 ../games_nebula.py:986
+#: ../games_nebula.py:1014 ../games_nebula.py:3187 ../games_nebula.py:3199
+#: ../games_nebula.py:3205 ../games_nebula.py:3211 ../games_nebula.py:3217
+#: ../games_nebula.py:3281 ../games_nebula.py:3293 ../games_nebula.py:3299
+#: ../games_nebula.py:3305 ../games_nebula.py:3311 ../games_nebula.py:3820
+#: ../games_nebula.py:3851 ../games_nebula.py:3882 ../games_nebula.py:3913
+#: ../games_nebula.py:3944 ../games_nebula.py:3975 ../games_nebula.py:4006
+#: ../games_nebula.py:4037 ../games_nebula.py:4104 ../games_nebula.py:4142
+#: ../games_nebula.py:4537 ../games_nebula.py:4538 ../games_nebula.py:4539
+#: ../games_nebula.py:4540
 msgid "No filter"
 msgstr "No filter"
 
-#: ../games_nebula.py:555 ../games_nebula.py:894 ../games_nebula.py:4081
-#: ../games_nebula.py:4119
+#: ../games_nebula.py:570 ../games_nebula.py:909 ../games_nebula.py:4106
+#: ../games_nebula.py:4144
 msgid "Installed"
 msgstr "Installed"
 
-#: ../games_nebula.py:555 ../games_nebula.py:4097
+#: ../games_nebula.py:570 ../games_nebula.py:4122
 msgid "Unavailable"
 msgstr "Unavailable"
 
-#: ../games_nebula.py:572 ../games_nebula.py:912
+#: ../games_nebula.py:587 ../games_nebula.py:927
 msgid "Tags filter 1"
 msgstr "Tags filter 1"
 
-#: ../games_nebula.py:585 ../games_nebula.py:612 ../games_nebula.py:639
-#: ../games_nebula.py:666 ../games_nebula.py:926 ../games_nebula.py:954
-#: ../games_nebula.py:982 ../games_nebula.py:1010 ../games_nebula.py:3801
-#: ../games_nebula.py:3832 ../games_nebula.py:3863 ../games_nebula.py:3894
-#: ../games_nebula.py:3925 ../games_nebula.py:3956 ../games_nebula.py:3987
-#: ../games_nebula.py:4018 ../games_nebula.py:4526 ../games_nebula.py:4527
-#: ../games_nebula.py:4528 ../games_nebula.py:4529
+#: ../games_nebula.py:600 ../games_nebula.py:627 ../games_nebula.py:654
+#: ../games_nebula.py:681 ../games_nebula.py:941 ../games_nebula.py:969
+#: ../games_nebula.py:997 ../games_nebula.py:1025 ../games_nebula.py:3826
+#: ../games_nebula.py:3857 ../games_nebula.py:3888 ../games_nebula.py:3919
+#: ../games_nebula.py:3950 ../games_nebula.py:3981 ../games_nebula.py:4012
+#: ../games_nebula.py:4043 ../games_nebula.py:4551 ../games_nebula.py:4552
+#: ../games_nebula.py:4553 ../games_nebula.py:4554
 msgid "No tags"
 msgstr "No tags"
 
-#: ../games_nebula.py:598 ../games_nebula.py:939
+#: ../games_nebula.py:613 ../games_nebula.py:954
 msgid "Tags filter 2"
 msgstr "Tags filter 2"
 
-#: ../games_nebula.py:625 ../games_nebula.py:967
+#: ../games_nebula.py:640 ../games_nebula.py:982
 msgid "Tags filter 3"
 msgstr "Tags filter 3"
 
-#: ../games_nebula.py:652 ../games_nebula.py:995
+#: ../games_nebula.py:667 ../games_nebula.py:1010
 msgid "Tags filter 4"
 msgstr "Tags filter 4"
 
-#: ../games_nebula.py:682 ../games_nebula.py:1026
+#: ../games_nebula.py:697 ../games_nebula.py:1041
 msgid "Add tags filter"
 msgstr "Add tags filter"
 
-#: ../games_nebula.py:689 ../games_nebula.py:1033
+#: ../games_nebula.py:704 ../games_nebula.py:1048
 msgid "Remove tags filter"
 msgstr "Remove tags filter"
 
-#: ../games_nebula.py:697 ../games_nebula.py:1041
+#: ../games_nebula.py:712 ../games_nebula.py:1056
 msgid "Scale"
 msgstr "Scale"
 
-#: ../games_nebula.py:765 ../games_nebula.py:1115
+#: ../games_nebula.py:780 ../games_nebula.py:1130
 msgid "Launch"
 msgstr "Launch"
 
-#: ../games_nebula.py:771 ../games_nebula.py:1121 ../games_nebula.py:2805
-#: ../games_nebula.py:2879
+#: ../games_nebula.py:786 ../games_nebula.py:1136 ../games_nebula.py:2823
+#: ../games_nebula.py:2897
 msgid "Remove"
 msgstr "Remove"
 
-#: ../games_nebula.py:817 ../games_nebula.py:1201 ../games_nebula.py:1367
-#: ../games_nebula.py:6129
+#: ../games_nebula.py:832 ../games_nebula.py:1216 ../games_nebula.py:1382
+#: ../games_nebula.py:6220
 msgid "GOG LIBRARY"
 msgstr "GOG LIBRARY"
 
-#: ../games_nebula.py:1167 ../games_nebula.py:1202 ../games_nebula.py:1384
+#: ../games_nebula.py:1182 ../games_nebula.py:1217 ../games_nebula.py:1399
 msgid "MY LIBRARY"
 msgstr "MY LIBRARY"
 
-#: ../games_nebula.py:1203 ../games_nebula.py:1314 ../games_nebula.py:1401
+#: ../games_nebula.py:1218 ../games_nebula.py:1329 ../games_nebula.py:1416
 msgid "GOG.COM"
 msgstr "GOG.COM"
 
-#: ../games_nebula.py:1204 ../games_nebula.py:1414 ../games_nebula.py:2497
+#: ../games_nebula.py:1219 ../games_nebula.py:1429 ../games_nebula.py:2515
 msgid "QUEUE"
 msgstr "QUEUE"
 
-#: ../games_nebula.py:1205 ../games_nebula.py:1427 ../games_nebula.py:2443
+#: ../games_nebula.py:1220 ../games_nebula.py:1442 ../games_nebula.py:2461
 msgid "SETTINGS"
 msgstr "SETTINGS"
 
-#: ../games_nebula.py:1224
+#: ../games_nebula.py:1239
 msgid "Choose tabs you want to add:"
 msgstr "Choose tabs you want to add:"
 
-#: ../games_nebula.py:1362
+#: ../games_nebula.py:1377
 msgid "Tabs at startup"
 msgstr "Tabs at startup"
 
-#: ../games_nebula.py:1464
+#: ../games_nebula.py:1479
 msgid "GOG library preferences"
 msgstr "GOG library preferences"
 
-#: ../games_nebula.py:1470
+#: ../games_nebula.py:1485
 msgid "Preferred language"
 msgstr "Preferred language"
 
-#: ../games_nebula.py:1491 ../games_nebula.py:1801
+#: ../games_nebula.py:1506 ../games_nebula.py:1816
 msgid "Keep installers"
 msgstr "Keep installers"
 
-#: ../games_nebula.py:1510
+#: ../games_nebula.py:1525
 msgid "Download extras"
 msgstr "Download extras"
 
-#: ../games_nebula.py:1523
+#: ../games_nebula.py:1538
 msgid "Start in offline mode"
 msgstr "Start in offline mode"
 
-#: ../games_nebula.py:1536 ../games_nebula.py:1816
+#: ../games_nebula.py:1551 ../games_nebula.py:1831
 msgid "Downloads directory"
 msgstr "Downloads directory"
 
-#: ../games_nebula.py:1541 ../games_nebula.py:1556 ../games_nebula.py:1821
-#: ../games_nebula.py:1836 ../games_nebula.py:2204 ../games_nebula.py:2308
-#: ../games_nebula.py:2381 ../launcher_dosbox.py:243 ../launcher_scummvm.py:293
+#: ../games_nebula.py:1556 ../games_nebula.py:1571 ../games_nebula.py:1836
+#: ../games_nebula.py:1851 ../games_nebula.py:2215 ../games_nebula.py:2319
+#: ../games_nebula.py:2399 ../launcher_dosbox.py:254 ../launcher_scummvm.py:293
 #: ../launcher_wine.py:427
 msgid "Select a directory"
 msgstr "Select a directory"
 
-#: ../games_nebula.py:1550 ../games_nebula.py:1830
+#: ../games_nebula.py:1565 ../games_nebula.py:1845
 msgid "Installation directory"
 msgstr "Installation directory"
 
-#: ../games_nebula.py:1564 ../games_nebula.py:1845
+#: ../games_nebula.py:1579 ../games_nebula.py:1860
 #: ../../games_nebula_goglib_scripts/pathologic/settings.py:80
 msgid "Download"
 msgstr "Download"
 
-#: ../games_nebula.py:1570 ../games_nebula.py:1851
+#: ../games_nebula.py:1585 ../games_nebula.py:1866
 msgid "Overwrite existing scripts"
 msgstr "Overwrite existing scripts"
 
-#: ../games_nebula.py:1590 ../games_nebula.py:1871
+#: ../games_nebula.py:1605 ../games_nebula.py:1886
 msgid "Installation scripts"
 msgstr "Installation scripts"
 
-#: ../games_nebula.py:1599 ../games_nebula.py:1880
+#: ../games_nebula.py:1614 ../games_nebula.py:1895
 msgid "Status filter behaivior:"
 msgstr "Status filter behaivior:"
 
-#: ../games_nebula.py:1603 ../games_nebula.py:1623 ../games_nebula.py:1643
-#: ../games_nebula.py:1663 ../games_nebula.py:1683 ../games_nebula.py:1714
-#: ../games_nebula.py:1884 ../games_nebula.py:1904 ../games_nebula.py:1924
-#: ../games_nebula.py:1944 ../games_nebula.py:1964 ../games_nebula.py:1995
+#: ../games_nebula.py:1618 ../games_nebula.py:1638 ../games_nebula.py:1658
+#: ../games_nebula.py:1678 ../games_nebula.py:1698 ../games_nebula.py:1729
+#: ../games_nebula.py:1899 ../games_nebula.py:1919 ../games_nebula.py:1939
+#: ../games_nebula.py:1959 ../games_nebula.py:1979 ../games_nebula.py:2010
 msgid "Include"
 msgstr "Include"
 
-#: ../games_nebula.py:1607 ../games_nebula.py:1627 ../games_nebula.py:1647
-#: ../games_nebula.py:1667 ../games_nebula.py:1687 ../games_nebula.py:1721
-#: ../games_nebula.py:1888 ../games_nebula.py:1908 ../games_nebula.py:1928
-#: ../games_nebula.py:1948 ../games_nebula.py:1968 ../games_nebula.py:2002
+#: ../games_nebula.py:1622 ../games_nebula.py:1642 ../games_nebula.py:1662
+#: ../games_nebula.py:1682 ../games_nebula.py:1702 ../games_nebula.py:1736
+#: ../games_nebula.py:1903 ../games_nebula.py:1923 ../games_nebula.py:1943
+#: ../games_nebula.py:1963 ../games_nebula.py:1983 ../games_nebula.py:2017
 msgid "Exclude"
 msgstr "Exclude"
 
-#: ../games_nebula.py:1619 ../games_nebula.py:1900
+#: ../games_nebula.py:1634 ../games_nebula.py:1915
 msgid "Tags filter 1 behaivior:"
 msgstr "Tags filter 1 behaivior:"
 
-#: ../games_nebula.py:1639 ../games_nebula.py:1920
+#: ../games_nebula.py:1654 ../games_nebula.py:1935
 msgid "Tags filter 2 behaivior:"
 msgstr "Tags filter 2 behaivior:"
 
-#: ../games_nebula.py:1659 ../games_nebula.py:1940
+#: ../games_nebula.py:1674 ../games_nebula.py:1955
 msgid "Tags filter 3 behaivior:"
 msgstr "Tags filter 3 behaivior:"
 
-#: ../games_nebula.py:1679 ../games_nebula.py:1960
+#: ../games_nebula.py:1694 ../games_nebula.py:1975
 msgid "Tags filter 4 behaivior:"
 msgstr "Tags filter 4 behaivior:"
 
-#: ../games_nebula.py:1700 ../games_nebula.py:1981
+#: ../games_nebula.py:1715 ../games_nebula.py:1996
 msgid "Filters color indication"
 msgstr "Filters color indication"
 
-#: ../games_nebula.py:1710 ../games_nebula.py:1991
+#: ../games_nebula.py:1725 ../games_nebula.py:2006
 msgid "Include/exclude colors:"
 msgstr "Include/exclude colors:"
 
-#: ../games_nebula.py:1758 ../games_nebula.py:2039
+#: ../games_nebula.py:1773 ../games_nebula.py:2054
 msgid "Filters"
 msgstr "Filters"
 
-#: ../games_nebula.py:1795
+#: ../games_nebula.py:1810
 msgid "My library preferences"
 msgstr "My library preferences"
 
-#: ../games_nebula.py:2070
+#: ../games_nebula.py:2085
 msgid "Visuals"
 msgstr "Visuals"
 
-#: ../games_nebula.py:2075
+#: ../games_nebula.py:2090
 msgid "GTK+ theme"
 msgstr "GTK+ theme"
 
-#: ../games_nebula.py:2087
+#: ../games_nebula.py:2102
 msgid "Dark variant"
 msgstr "Dark variant"
 
-#: ../games_nebula.py:2100
+#: ../games_nebula.py:2115
 msgid "Icon theme"
 msgstr "Icon theme"
 
-#: ../games_nebula.py:2110
+#: ../games_nebula.py:2125
 msgid "Font"
 msgstr "Font"
 
-#: ../games_nebula.py:2148
+#: ../games_nebula.py:2163
 msgid "Emulators settings"
 msgstr "Emulators settings"
 
-#: ../games_nebula.py:2153 ../launcher_dosbox.py:290 ../launcher_scummvm.py:340
+#: ../games_nebula.py:2168 ../launcher_dosbox.py:318 ../launcher_scummvm.py:340
 #: ../launcher_wine.py:554
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../games_nebula.py:2175 ../launcher_wine.py:379
+#: ../games_nebula.py:2186 ../launcher_wine.py:379
 msgid "Wine"
 msgstr "Wine"
 
-#: ../games_nebula.py:2193 ../games_nebula.py:2297 ../games_nebula.py:2370
-#: ../launcher_dosbox.py:224 ../launcher_scummvm.py:274 ../launcher_wine.py:408
+#: ../games_nebula.py:2204 ../games_nebula.py:2308 ../games_nebula.py:2388
+#: ../launcher_dosbox.py:235 ../launcher_scummvm.py:274 ../launcher_wine.py:408
 msgid "System version"
 msgstr "System version"
 
-#: ../games_nebula.py:2198 ../games_nebula.py:2269 ../games_nebula.py:2302
-#: ../games_nebula.py:2340 ../games_nebula.py:2413 ../games_nebula.py:5598
-#: ../games_nebula.py:5766 ../games_nebula.py:5778 ../launcher_dosbox.py:230
-#: ../launcher_dosbox.py:503 ../launcher_dosbox.py:508
-#: ../launcher_scummvm.py:280 ../launcher_scummvm.py:544
-#: ../launcher_scummvm.py:549 ../launcher_wine.py:414 ../launcher_wine.py:804
-#: ../launcher_wine.py:809
+#: ../games_nebula.py:2209 ../games_nebula.py:2280 ../games_nebula.py:2313
+#: ../games_nebula.py:2358 ../games_nebula.py:2431 ../games_nebula.py:5685
+#: ../games_nebula.py:5857 ../games_nebula.py:5869 ../launcher_dosbox.py:241
+#: ../launcher_dosbox.py:526 ../launcher_dosbox.py:531
+#: ../launcher_scummvm.py:280 ../launcher_scummvm.py:539
+#: ../launcher_scummvm.py:544 ../launcher_wine.py:414 ../launcher_wine.py:799
+#: ../launcher_wine.py:804
 msgid "From directory"
 msgstr "From directory"
 
-#: ../games_nebula.py:2218
+#: ../games_nebula.py:2229
 msgid "Own wineprefix for every game"
 msgstr "Own wineprefix for every game"
 
-#: ../games_nebula.py:2224
+#: ../games_nebula.py:2235
 msgid "Backup/Restore winetricks cache"
 msgstr "Backup/Restore winetricks cache"
 
-#: ../games_nebula.py:2229
+#: ../games_nebula.py:2240
 msgid "Wine settings"
 msgstr "Wine settings"
 
-#: ../games_nebula.py:2234
+#: ../games_nebula.py:2245
 msgid "Winearch:"
 msgstr "Winearch:"
 
-#: ../games_nebula.py:2274 ../games_nebula.py:2345 ../games_nebula.py:2375
-#: ../games_nebula.py:2418 ../games_nebula.py:5603 ../games_nebula.py:5771
-#: ../games_nebula.py:5783 ../launcher_dosbox.py:239 ../launcher_dosbox.py:513
-#: ../launcher_scummvm.py:289 ../launcher_scummvm.py:554
-#: ../launcher_wine.py:423 ../launcher_wine.py:814
+#: ../games_nebula.py:2285 ../games_nebula.py:2363 ../games_nebula.py:2393
+#: ../games_nebula.py:2436 ../games_nebula.py:5690 ../games_nebula.py:5862
+#: ../games_nebula.py:5874 ../launcher_dosbox.py:250 ../launcher_dosbox.py:536
+#: ../launcher_scummvm.py:289 ../launcher_scummvm.py:549
+#: ../launcher_wine.py:423 ../launcher_wine.py:809
 msgid "From directory:"
 msgstr "From directory:"
 
-#: ../games_nebula.py:2279 ../launcher_dosbox.py:195
+#: ../games_nebula.py:2290 ../launcher_dosbox.py:201
 msgid "DOSBox"
 msgstr "DOSBox"
 
-#: ../games_nebula.py:2323
+#: ../games_nebula.py:2334
+msgid "Own mapperfile for every game"
+msgstr "Own mapperfile for every game"
+
+#: ../games_nebula.py:2340
 msgid "DOSBox settings"
 msgstr "DOSBox settings"
 
-#: ../games_nebula.py:2351 ../launcher_scummvm.py:245
+#: ../games_nebula.py:2369 ../launcher_scummvm.py:245
 msgid "ScummVM"
 msgstr "ScummVM"
 
-#: ../games_nebula.py:2396
+#: ../games_nebula.py:2414
 msgid "ScummVM settings"
 msgstr "ScummVM settings"
 
-#: ../games_nebula.py:2817 ../games_nebula.py:2897 ../games_nebula.py:4715
-#: ../games_nebula.py:4765
+#: ../games_nebula.py:2835 ../games_nebula.py:2915 ../games_nebula.py:4740
+#: ../games_nebula.py:4790
 msgid "In queue"
 msgstr "In queue"
 
-#: ../games_nebula.py:2820 ../games_nebula.py:2899 ../games_nebula.py:2984
-#: ../games_nebula.py:3017 ../games_nebula.py:4713 ../games_nebula.py:4763
+#: ../games_nebula.py:2838 ../games_nebula.py:2917 ../games_nebula.py:3002
+#: ../games_nebula.py:3035 ../games_nebula.py:4738 ../games_nebula.py:4788
 msgid "Installing"
 msgstr "Installing"
 
-#: ../games_nebula.py:2921
+#: ../games_nebula.py:2939
 msgid "Changes in library"
 msgstr "Changes in library"
 
-#: ../games_nebula.py:2933
+#: ../games_nebula.py:2951
 msgid "Updating GOG library..."
 msgstr "Updating GOG library..."
 
-#: ../games_nebula.py:4331
+#: ../games_nebula.py:4356
 msgid "tags:"
 msgstr "tags:"
 
-#: ../games_nebula.py:4346
+#: ../games_nebula.py:4371
 msgid "Use comma to separate tags."
 msgstr "Use comma to separate tags."
 
-#: ../games_nebula.py:4349
+#: ../games_nebula.py:4374
 msgid "Current tags"
 msgstr "Current tags"
 
-#: ../games_nebula.py:4361 ../launcher_dosbox.py:342 ../launcher_dosbox.py:401
-#: ../launcher_native.py:272 ../launcher_native.py:331
-#: ../launcher_scummvm.py:382 ../launcher_scummvm.py:441
-#: ../launcher_wine.py:608 ../launcher_wine.py:667
+#: ../games_nebula.py:4386 ../launcher_dosbox.py:365 ../launcher_dosbox.py:424
+#: ../launcher_native.py:267 ../launcher_native.py:326
+#: ../launcher_scummvm.py:377 ../launcher_scummvm.py:436
+#: ../launcher_wine.py:603 ../launcher_wine.py:662
 msgid "Edit"
 msgstr "Edit"
 
-#: ../games_nebula.py:4389 ../games_nebula.py:4449
+#: ../games_nebula.py:4414 ../games_nebula.py:4474
 msgid "Remove from current tags"
 msgstr "Remove from current tags"
 
-#: ../games_nebula.py:4406 ../games_nebula.py:4466
+#: ../games_nebula.py:4431 ../games_nebula.py:4491
 msgid "Add to current tags"
 msgstr "Add to current tags"
 
-#: ../games_nebula.py:4411
+#: ../games_nebula.py:4436
 msgid "Existing tags:"
 msgstr "Existing tags:"
 
-#: ../games_nebula.py:4471
+#: ../games_nebula.py:4496
 msgid "Predefined tags:"
 msgstr "Predefined tags:"
 
-#: ../games_nebula.py:4729 ../games_nebula.py:4779
+#: ../games_nebula.py:4754 ../games_nebula.py:4804
 msgid "Removing game"
 msgstr "Removing game"
 
-#: ../games_nebula.py:4730 ../games_nebula.py:4780
+#: ../games_nebula.py:4755 ../games_nebula.py:4805
 msgid ""
 "Are you sure you want to remove\n"
 "'"
@@ -532,40 +542,40 @@ msgstr ""
 "Are you sure you want to remove\n"
 "'"
 
-#: ../games_nebula.py:4841 ../games_nebula.py:5537
+#: ../games_nebula.py:4866 ../games_nebula.py:5628
 msgid "Downloading..."
 msgstr "Downloading..."
 
-#: ../games_nebula.py:4882 ../games_nebula.py:4932 ../games_nebula.py:5552
-#: ../games_nebula.py:5559 ../games_nebula.py:5572
+#: ../games_nebula.py:4907 ../games_nebula.py:4960 ../games_nebula.py:5643
+#: ../games_nebula.py:5650 ../games_nebula.py:5663
 msgid "Installing..."
 msgstr "Installing..."
 
-#: ../games_nebula.py:5245
+#: ../games_nebula.py:5338
 msgid "Impossible to install."
 msgstr "Impossible to install."
 
-#: ../games_nebula.py:5280 ../games_nebula.py:5566
+#: ../games_nebula.py:5376 ../games_nebula.py:5657
 msgid "Executing script..."
 msgstr "Executing script..."
 
-#: ../games_nebula.py:5392 ../games_nebula.py:5423 ../games_nebula.py:5454
+#: ../games_nebula.py:5488 ../games_nebula.py:5523 ../games_nebula.py:5558
 msgid "Done"
 msgstr "Done"
 
-#: ../games_nebula.py:5480
+#: ../games_nebula.py:5584
 msgid "Completed"
 msgstr "Completed"
 
-#: ../games_nebula.py:5481
+#: ../games_nebula.py:5585
 msgid "No new games in library."
 msgstr "No new games in library."
 
-#: ../games_nebula.py:5831 ../games_nebula.py:5860
+#: ../games_nebula.py:5922 ../games_nebula.py:5951
 msgid "Installation directory changed"
 msgstr "Installation directory changed"
 
-#: ../games_nebula.py:5832 ../games_nebula.py:5861
+#: ../games_nebula.py:5923 ../games_nebula.py:5952
 msgid ""
 "Do you really want to change installation directory?\n"
 "All your installed games will be moved to the new location.\n"
@@ -575,51 +585,51 @@ msgstr ""
 "All your installed games will be moved to the new location.\n"
 "Proceed?"
 
-#: ../games_nebula.py:6086
+#: ../games_nebula.py:6177
 msgid "online mode"
 msgstr "online mode"
 
-#: ../games_nebula.py:6088
+#: ../games_nebula.py:6179
 msgid "offline mode"
 msgstr "offline mode"
 
-#: ../games_nebula.py:6091
+#: ../games_nebula.py:6182
 msgid "GOG LIBRARY mode"
 msgstr "GOG LIBRARY mode"
 
-#: ../games_nebula.py:6092
+#: ../games_nebula.py:6183
 msgid "Switch to "
 msgstr "Switch to "
 
-#: ../games_nebula.py:6112
+#: ../games_nebula.py:6203
 msgid "Are sure you want to log out?"
 msgstr "Are sure you want to log out?"
 
-#: ../games_nebula.py:6130
+#: ../games_nebula.py:6221
 msgid "Update games list?"
 msgstr "Update games list?"
 
-#: ../games_nebula.py:6554
+#: ../games_nebula.py:6645
 msgid "Quit application?"
 msgstr "Quit application?"
 
-#: ../get_scripts.py:177
+#: ../get_scripts.py:194
 msgid "Completed successfully"
 msgstr "Completed successfully"
 
-#: ../get_scripts.py:183
+#: ../get_scripts.py:200
 msgid "New scripts downloaded"
 msgstr "New scripts downloaded"
 
-#: ../get_scripts.py:185
+#: ../get_scripts.py:202
 msgid "No new scripts in repository"
 msgstr "No new scripts in repository"
 
-#: ../get_scripts.py:196
+#: ../get_scripts.py:213
 msgid "All new scripts ("
 msgstr "All new scripts ("
 
-#: ../get_scripts.py:226
+#: ../get_scripts.py:243
 msgid "Scripts for games you own ("
 msgstr "Scripts for games you own ("
 
@@ -648,59 +658,79 @@ msgstr "Panning"
 msgid "Reset gamma"
 msgstr "Reset gamma"
 
-#: ../launcher_dosbox.py:170 ../launcher_native.py:158
+#: ../launcher_dosbox.py:176 ../launcher_native.py:158
 #: ../launcher_scummvm.py:219 ../launcher_wine.py:353 ../settings_dosbox.py:43
 msgid "Games Nebula"
 msgstr "Games Nebula"
 
-#: ../launcher_dosbox.py:219 ../launcher_scummvm.py:269 ../launcher_wine.py:403
-#: ../launcher_wine.py:742 ../launcher_wine.py:1002
-msgid "Global settings"
-msgstr "Global settings"
-
-#: ../launcher_dosbox.py:259
-msgid "Game specific DOSBox settings"
-msgstr "Game specific DOSBox settings"
-
-#: ../launcher_dosbox.py:264 ../launcher_scummvm.py:309 ../launcher_wine.py:509
+#: ../launcher_dosbox.py:224 ../launcher_scummvm.py:309 ../launcher_wine.py:509
 msgid "Version:"
 msgstr "Version:"
 
-#: ../launcher_dosbox.py:307 ../launcher_native.py:201 ../launcher_wine.py:571
+#: ../launcher_dosbox.py:230 ../launcher_scummvm.py:269 ../launcher_wine.py:403
+#: ../launcher_wine.py:737 ../launcher_wine.py:991
+msgid "Global settings"
+msgstr "Global settings"
+
+#: ../launcher_dosbox.py:270
+msgid "Game specific DOSBox settings:"
+msgstr "Game specific DOSBox settings:"
+
+#: ../launcher_dosbox.py:275
+msgid "Use own mapperfile"
+msgstr "Use own mapperfile"
+
+#: ../launcher_dosbox.py:281
+msgid "Remap input"
+msgstr "Remap input"
+
+#: ../launcher_dosbox.py:282
+msgid "Mapper can be started in game by pressing Ctrl+F1"
+msgstr "Mapper can be started in game by pressing Ctrl+F1"
+
+#: ../launcher_dosbox.py:289
+#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:188
+#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:97
+#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:100
+#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:100
+msgid "More settings"
+msgstr "More settings"
+
+#: ../launcher_dosbox.py:330 ../launcher_native.py:196 ../launcher_wine.py:566
 msgid "Game settings"
 msgstr "Game settings"
 
-#: ../launcher_dosbox.py:317 ../launcher_native.py:247
-#: ../launcher_scummvm.py:357 ../launcher_wine.py:583
+#: ../launcher_dosbox.py:340 ../launcher_native.py:242
+#: ../launcher_scummvm.py:352 ../launcher_wine.py:578
 msgid "Execute before launching the game"
 msgstr "Execute before launching the game"
 
-#: ../launcher_dosbox.py:348 ../launcher_dosbox.py:407
-#: ../launcher_native.py:278 ../launcher_native.py:337
-#: ../launcher_scummvm.py:388 ../launcher_scummvm.py:447
-#: ../launcher_wine.py:614 ../launcher_wine.py:673
+#: ../launcher_dosbox.py:371 ../launcher_dosbox.py:430
+#: ../launcher_native.py:273 ../launcher_native.py:332
+#: ../launcher_scummvm.py:383 ../launcher_scummvm.py:442
+#: ../launcher_wine.py:609 ../launcher_wine.py:668
 msgid "Commands templates"
 msgstr "Commands templates"
 
-#: ../launcher_dosbox.py:366 ../launcher_dosbox.py:425
-#: ../launcher_native.py:296 ../launcher_native.py:355
-#: ../launcher_scummvm.py:406 ../launcher_scummvm.py:465
-#: ../launcher_wine.py:632 ../launcher_wine.py:691
+#: ../launcher_dosbox.py:389 ../launcher_dosbox.py:448
+#: ../launcher_native.py:291 ../launcher_native.py:350
+#: ../launcher_scummvm.py:401 ../launcher_scummvm.py:460
+#: ../launcher_wine.py:627 ../launcher_wine.py:686
 msgid "Add command template"
 msgstr "Add command template"
 
-#: ../launcher_dosbox.py:377 ../launcher_native.py:307
-#: ../launcher_scummvm.py:417 ../launcher_wine.py:643
+#: ../launcher_dosbox.py:400 ../launcher_native.py:302
+#: ../launcher_scummvm.py:412 ../launcher_wine.py:638
 msgid "Execute after exiting the game"
 msgstr "Execute after exiting the game"
 
-#: ../launcher_dosbox.py:436 ../launcher_native.py:366
-#: ../launcher_scummvm.py:476 ../launcher_wine.py:702
+#: ../launcher_dosbox.py:459 ../launcher_native.py:361
+#: ../launcher_scummvm.py:471 ../launcher_wine.py:697
 msgid "Launch game"
 msgstr "Launch game"
 
-#: ../launcher_dosbox.py:444 ../launcher_native.py:371
-#: ../launcher_scummvm.py:482 ../launcher_wine.py:708
+#: ../launcher_dosbox.py:467 ../launcher_native.py:366
+#: ../launcher_scummvm.py:477 ../launcher_wine.py:703
 msgid "Always show launcher"
 msgstr "Always show launcher"
 
@@ -708,15 +738,15 @@ msgstr "Always show launcher"
 msgid "Primary output:"
 msgstr "Primary output:"
 
-#: ../launcher_native.py:213
+#: ../launcher_native.py:208
 msgid "Use:"
 msgstr "Use:"
 
-#: ../launcher_native.py:218
+#: ../launcher_native.py:213
 msgid "GOG launcher"
 msgstr "GOG launcher"
 
-#: ../launcher_native.py:223
+#: ../launcher_native.py:218
 msgid "Games Nebula launcher"
 msgstr "Games Nebula launcher"
 
@@ -765,6 +795,7 @@ msgstr "Emulate a virtual desktop"
 #: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:103
 #: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:125
 #: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:57
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:96
 #: ../../games_nebula_goglib_scripts/desperados_2/settings.py:83
 #: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:115
 #: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:95
@@ -781,6 +812,12 @@ msgstr "Emulate a virtual desktop"
 #: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:84
 #: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:84
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:109
+#: ../../games_nebula_mylib_scripts/free/kings_quest_1_remake/settings.py:93
+#: ../../games_nebula_mylib_scripts/free/kings_quest_2_remake/settings.py:93
+#: ../../games_nebula_mylib_scripts/free/kings_quest_3_remake/settings.py:93
+#: ../../games_nebula_mylib_scripts/free/quest_for_glory_2_remake/settings.py:93
+#: ../../games_nebula_mylib_scripts/steam/original_war/settings.py:149
+#: ../../games_nebula_mylib_scripts/steam/zanzarah/settings.py:217
 msgid "Width"
 msgstr "Width"
 
@@ -789,6 +826,7 @@ msgstr "Width"
 #: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:111
 #: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:134
 #: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:66
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:104
 #: ../../games_nebula_goglib_scripts/desperados_2/settings.py:91
 #: ../../games_nebula_goglib_scripts/deus_ex_invisible_war/settings.py:123
 #: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:104
@@ -805,6 +843,12 @@ msgstr "Width"
 #: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:92
 #: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:92
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:117
+#: ../../games_nebula_mylib_scripts/free/kings_quest_1_remake/settings.py:101
+#: ../../games_nebula_mylib_scripts/free/kings_quest_2_remake/settings.py:101
+#: ../../games_nebula_mylib_scripts/free/kings_quest_3_remake/settings.py:101
+#: ../../games_nebula_mylib_scripts/free/quest_for_glory_2_remake/settings.py:101
+#: ../../games_nebula_mylib_scripts/steam/original_war/settings.py:160
+#: ../../games_nebula_mylib_scripts/steam/zanzarah/settings.py:225
 msgid "Height"
 msgstr "Height"
 
@@ -920,7 +964,7 @@ msgstr "Not focused/minimized."
 msgid "Mapperfile"
 msgstr "Mapperfile"
 
-#: ../settings_dosbox.py:300 ../settings_dosbox.py:304
+#: ../settings_dosbox.py:300 ../settings_dosbox.py:305
 msgid ""
 "File used to load/save the key/event mappings from.\n"
 "Resetmapper only works with the defaul value."
@@ -928,47 +972,47 @@ msgstr ""
 "File used to load/save the key/event mappings from.\n"
 "Resetmapper only works with the defaul value."
 
-#: ../settings_dosbox.py:305
+#: ../settings_dosbox.py:306
 msgid "Select a file"
 msgstr "Select a file"
 
-#: ../settings_dosbox.py:314
+#: ../settings_dosbox.py:320
 msgid "Use scancodes"
 msgstr "Use scancodes"
 
-#: ../settings_dosbox.py:316 ../settings_dosbox.py:322
+#: ../settings_dosbox.py:322 ../settings_dosbox.py:328
 msgid "Avoid usage of symkeys."
 msgstr "Avoid usage of symkeys."
 
-#: ../settings_dosbox.py:378
+#: ../settings_dosbox.py:384
 msgid "Language file"
 msgstr "Language file"
 
-#: ../settings_dosbox.py:380 ../settings_dosbox.py:384
+#: ../settings_dosbox.py:386 ../settings_dosbox.py:390
 msgid "Select another language file."
 msgstr "Select another language file."
 
-#: ../settings_dosbox.py:393
+#: ../settings_dosbox.py:399
 msgid "Machine"
 msgstr "Machine"
 
-#: ../settings_dosbox.py:395 ../settings_dosbox.py:399
+#: ../settings_dosbox.py:401 ../settings_dosbox.py:405
 msgid "The type of machine DOSBox tries to emulate."
 msgstr "The type of machine DOSBox tries to emulate."
 
-#: ../settings_dosbox.py:429
+#: ../settings_dosbox.py:435
 msgid "Captures directory"
 msgstr "Captures directory"
 
-#: ../settings_dosbox.py:431 ../settings_dosbox.py:435
+#: ../settings_dosbox.py:437 ../settings_dosbox.py:441
 msgid "Directory where things like wave, midi, screenshot get captured."
 msgstr "Directory where things like wave, midi, screenshot get captured."
 
-#: ../settings_dosbox.py:445
+#: ../settings_dosbox.py:451
 msgid "Memory"
 msgstr "Memory"
 
-#: ../settings_dosbox.py:447 ../settings_dosbox.py:451
+#: ../settings_dosbox.py:453 ../settings_dosbox.py:457
 msgid ""
 "This value is best left at its default to avoid problems with some games,\n"
 "though few games might require a higher value.\n"
@@ -978,19 +1022,19 @@ msgstr ""
 "though few games might require a higher value.\n"
 "There is generally no speed advantage when raising this value."
 
-#: ../settings_dosbox.py:495
+#: ../settings_dosbox.py:501
 msgid "Frameskip"
 msgstr "Frameskip"
 
-#: ../settings_dosbox.py:497 ../settings_dosbox.py:501
+#: ../settings_dosbox.py:503 ../settings_dosbox.py:507
 msgid "How many frames DOSBox skips before drawing one."
 msgstr "How many frames DOSBox skips before drawing one."
 
-#: ../settings_dosbox.py:510
+#: ../settings_dosbox.py:516
 msgid "Aspect correction"
 msgstr "Aspect correction"
 
-#: ../settings_dosbox.py:512 ../settings_dosbox.py:517
+#: ../settings_dosbox.py:518 ../settings_dosbox.py:523
 msgid ""
 "Do aspect correction, if your output method doesn't support\n"
 "scaling this can slow things down!."
@@ -998,31 +1042,31 @@ msgstr ""
 "Do aspect correction, if your output method doesn't support\n"
 "scaling this can slow things down!."
 
-#: ../settings_dosbox.py:522
+#: ../settings_dosbox.py:528
 msgid "Scaler"
 msgstr "Scaler"
 
-#: ../settings_dosbox.py:524 ../settings_dosbox.py:528
+#: ../settings_dosbox.py:530 ../settings_dosbox.py:534
 msgid "Scaler used to enlarge/enhance low resolution modes."
 msgstr "Scaler used to enlarge/enhance low resolution modes."
 
-#: ../settings_dosbox.py:560
+#: ../settings_dosbox.py:566
 msgid "Forced scaler"
 msgstr "Forced scaler"
 
-#: ../settings_dosbox.py:562 ../settings_dosbox.py:567
+#: ../settings_dosbox.py:568 ../settings_dosbox.py:573
 msgid "Scaler will be used even if the result might not be desired."
 msgstr "Scaler will be used even if the result might not be desired."
 
-#: ../settings_dosbox.py:584
+#: ../settings_dosbox.py:590
 msgid "Render"
 msgstr "Render"
 
-#: ../settings_dosbox.py:602
+#: ../settings_dosbox.py:608
 msgid "Core"
 msgstr "Core"
 
-#: ../settings_dosbox.py:604 ../settings_dosbox.py:608
+#: ../settings_dosbox.py:610 ../settings_dosbox.py:614
 msgid ""
 "CPU Core used in emulation. auto will switch to\n"
 "dynamic if available and appropriate."
@@ -1030,19 +1074,19 @@ msgstr ""
 "CPU Core used in emulation. auto will switch to\n"
 "dynamic if available and appropriate."
 
-#: ../settings_dosbox.py:625
+#: ../settings_dosbox.py:631
 msgid "CPU type"
 msgstr "CPU type"
 
-#: ../settings_dosbox.py:627 ../settings_dosbox.py:631
+#: ../settings_dosbox.py:633 ../settings_dosbox.py:637
 msgid "CPU Type used in emulation. auto is the fastest choice."
 msgstr "CPU Type used in emulation. auto is the fastest choice."
 
-#: ../settings_dosbox.py:654 ../settings_dosbox.py:677
+#: ../settings_dosbox.py:660 ../settings_dosbox.py:683
 msgid "Cycles"
 msgstr "Cycles"
 
-#: ../settings_dosbox.py:656 ../settings_dosbox.py:660
+#: ../settings_dosbox.py:662 ../settings_dosbox.py:666
 msgid ""
 "Amount of instructions DOSBox tries to emulate each millisecond.\n"
 "Setting this value too high results in sound dropouts and lags.."
@@ -1050,21 +1094,21 @@ msgstr ""
 "Amount of instructions DOSBox tries to emulate each millisecond.\n"
 "Setting this value too high results in sound dropouts and lags.."
 
-#: ../settings_dosbox.py:663 ../settings_dosbox.py:1808
-#: ../settings_dosbox.py:2760 ../settings_dosbox.py:2840
-#: ../settings_dosbox.py:3799 ../settings_dosbox.py:3805
+#: ../settings_dosbox.py:669 ../settings_dosbox.py:1814
+#: ../settings_dosbox.py:2767 ../settings_dosbox.py:2847
+#: ../settings_dosbox.py:3806 ../settings_dosbox.py:3812
 msgid "custom"
 msgstr "custom"
 
-#: ../settings_dosbox.py:683
+#: ../settings_dosbox.py:689
 msgid "Custom value"
 msgstr "Custom value"
 
-#: ../settings_dosbox.py:696
+#: ../settings_dosbox.py:702
 msgid "Cycle up"
 msgstr "Cycle up"
 
-#: ../settings_dosbox.py:698 ../settings_dosbox.py:702
+#: ../settings_dosbox.py:704 ../settings_dosbox.py:708
 msgid ""
 "Amount of cycles to increase with keycombo.(CTRL-F12)\n"
 "Setting it lower than 100 will be a percentage."
@@ -1072,11 +1116,11 @@ msgstr ""
 "Amount of cycles to increase with keycombo.(CTRL-F12)\n"
 "Setting it lower than 100 will be a percentage."
 
-#: ../settings_dosbox.py:710
+#: ../settings_dosbox.py:716
 msgid "Cycle down"
 msgstr "Cycle down"
 
-#: ../settings_dosbox.py:712 ../settings_dosbox.py:716
+#: ../settings_dosbox.py:718 ../settings_dosbox.py:722
 msgid ""
 "Amount of cycles to decrease with keycombo.(CTRL-F11)\n"
 "Setting it lower than 100 will be a percentage."
@@ -1084,24 +1128,24 @@ msgstr ""
 "Amount of cycles to decrease with keycombo.(CTRL-F11)\n"
 "Setting it lower than 100 will be a percentage."
 
-#: ../settings_dosbox.py:740
+#: ../settings_dosbox.py:746
 msgid "CPU"
 msgstr "CPU"
 
-#: ../settings_dosbox.py:758
+#: ../settings_dosbox.py:764
 #: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:338
 msgid "No sound"
 msgstr "No sound"
 
-#: ../settings_dosbox.py:760 ../settings_dosbox.py:765
+#: ../settings_dosbox.py:766 ../settings_dosbox.py:771
 msgid "Enable silent mode, sound is still emulated though."
 msgstr "Enable silent mode, sound is still emulated though."
 
-#: ../settings_dosbox.py:770 ../settings_dosbox.py:1196
+#: ../settings_dosbox.py:776 ../settings_dosbox.py:1202
 msgid "Sample rate"
 msgstr "Sample rate"
 
-#: ../settings_dosbox.py:772 ../settings_dosbox.py:776
+#: ../settings_dosbox.py:778 ../settings_dosbox.py:782
 msgid ""
 "Mixer sample rate, setting any device's rate higher than\n"
 "this will probably lower their sound quality."
@@ -1109,11 +1153,11 @@ msgstr ""
 "Mixer sample rate, setting any device's rate higher than\n"
 "this will probably lower their sound quality."
 
-#: ../settings_dosbox.py:788
+#: ../settings_dosbox.py:794
 msgid "Block size"
 msgstr "Block size"
 
-#: ../settings_dosbox.py:790 ../settings_dosbox.py:794
+#: ../settings_dosbox.py:796 ../settings_dosbox.py:800
 msgid ""
 "Mixer block size, larger blocks might help sound stuttering\n"
 "but sound will also be more lagged."
@@ -1121,39 +1165,39 @@ msgstr ""
 "Mixer block size, larger blocks might help sound stuttering\n"
 "but sound will also be more lagged."
 
-#: ../settings_dosbox.py:806
+#: ../settings_dosbox.py:812
 msgid "Prebuffer"
 msgstr "Prebuffer"
 
-#: ../settings_dosbox.py:808 ../settings_dosbox.py:812
+#: ../settings_dosbox.py:814 ../settings_dosbox.py:818
 msgid "How many milliseconds of data to keep on top of the blocksize."
 msgstr "How many milliseconds of data to keep on top of the blocksize."
 
-#: ../settings_dosbox.py:832
+#: ../settings_dosbox.py:838
 msgid "Mixer"
 msgstr "Mixer"
 
-#: ../settings_dosbox.py:850
+#: ../settings_dosbox.py:856
 msgid "MPU-401"
 msgstr "MPU-401"
 
-#: ../settings_dosbox.py:852 ../settings_dosbox.py:856
+#: ../settings_dosbox.py:858 ../settings_dosbox.py:862
 msgid "Type of MPU-401 to emulate."
 msgstr "Type of MPU-401 to emulate."
 
-#: ../settings_dosbox.py:868
+#: ../settings_dosbox.py:874
 msgid "MIDI device"
 msgstr "MIDI device"
 
-#: ../settings_dosbox.py:870 ../settings_dosbox.py:874
+#: ../settings_dosbox.py:876 ../settings_dosbox.py:880
 msgid "Device that will receive the MIDI data from MPU-401."
 msgstr "Device that will receive the MIDI data from MPU-401."
 
-#: ../settings_dosbox.py:894
+#: ../settings_dosbox.py:900
 msgid "MIDI configuration"
 msgstr "MIDI configuration"
 
-#: ../settings_dosbox.py:896 ../settings_dosbox.py:901
+#: ../settings_dosbox.py:902 ../settings_dosbox.py:907
 msgid ""
 "Special configuration options for the device driver.\n"
 "This is usually the id of the device you want to use.\n"
@@ -1163,75 +1207,75 @@ msgstr ""
 "This is usually the id of the device you want to use.\n"
 "See the README/Manual for more details."
 
-#: ../settings_dosbox.py:908
+#: ../settings_dosbox.py:914
 msgid "Soundfont"
 msgstr "Soundfont"
 
-#: ../settings_dosbox.py:909 ../settings_dosbox.py:920
+#: ../settings_dosbox.py:915 ../settings_dosbox.py:926
 msgid "Soundfont file. Path shouldn't contain spaces"
 msgstr "Soundfont file. Path shouldn't contain spaces"
 
-#: ../settings_dosbox.py:919
+#: ../settings_dosbox.py:925
 msgid "Select a soundfont"
 msgstr "Select a soundfont"
 
-#: ../settings_dosbox.py:950
+#: ../settings_dosbox.py:956
 msgid "MIDI"
 msgstr "MIDI"
 
-#: ../settings_dosbox.py:968
+#: ../settings_dosbox.py:974
 msgid "Soundblaster type"
 msgstr "Soundblaster type"
 
-#: ../settings_dosbox.py:970 ../settings_dosbox.py:974
+#: ../settings_dosbox.py:976 ../settings_dosbox.py:980
 msgid "Type of Soundblaster to emulate. gb is Gameblaster."
 msgstr "Type of Soundblaster to emulate. gb is Gameblaster."
 
-#: ../settings_dosbox.py:996 ../settings_dosbox.py:1214
+#: ../settings_dosbox.py:1002 ../settings_dosbox.py:1220
 msgid "IO address"
 msgstr "IO address"
 
-#: ../settings_dosbox.py:998 ../settings_dosbox.py:1002
+#: ../settings_dosbox.py:1004 ../settings_dosbox.py:1008
 msgid "The IO address of the soundblaster."
 msgstr "The IO address of the soundblaster."
 
-#: ../settings_dosbox.py:1014 ../settings_dosbox.py:1232
+#: ../settings_dosbox.py:1020 ../settings_dosbox.py:1238
 msgid "IRQ number"
 msgstr "IRQ number"
 
-#: ../settings_dosbox.py:1016 ../settings_dosbox.py:1020
+#: ../settings_dosbox.py:1022 ../settings_dosbox.py:1026
 msgid "The IRQ number of the soundblaster."
 msgstr "The IRQ number of the soundblaster."
 
-#: ../settings_dosbox.py:1032 ../settings_dosbox.py:1250
+#: ../settings_dosbox.py:1038 ../settings_dosbox.py:1256
 msgid "DMA number"
 msgstr "DMA number"
 
-#: ../settings_dosbox.py:1034 ../settings_dosbox.py:1038
+#: ../settings_dosbox.py:1040 ../settings_dosbox.py:1044
 msgid "The DMA number of the soundblaster."
 msgstr "The DMA number of the soundblaster."
 
-#: ../settings_dosbox.py:1050
+#: ../settings_dosbox.py:1056
 msgid "High DMA number"
 msgstr "High DMA number"
 
-#: ../settings_dosbox.py:1052 ../settings_dosbox.py:1056
+#: ../settings_dosbox.py:1058 ../settings_dosbox.py:1062
 msgid "The High DMA number of the soundblaster."
 msgstr "The High DMA number of the soundblaster."
 
-#: ../settings_dosbox.py:1068
+#: ../settings_dosbox.py:1074
 msgid "Soundblaster mixer"
 msgstr "Soundblaster mixer"
 
-#: ../settings_dosbox.py:1070 ../settings_dosbox.py:1074
+#: ../settings_dosbox.py:1076 ../settings_dosbox.py:1080
 msgid "Allow the soundblaster mixer to modify the DOSBox mixer."
 msgstr "Allow the soundblaster mixer to modify the DOSBox mixer."
 
-#: ../settings_dosbox.py:1080
+#: ../settings_dosbox.py:1086
 msgid "OPL emulation"
 msgstr "OPL emulation"
 
-#: ../settings_dosbox.py:1082 ../settings_dosbox.py:1086
+#: ../settings_dosbox.py:1088 ../settings_dosbox.py:1092
 msgid ""
 "Type of OPL emulation. On 'auto' the mode is determined\n"
 "by sblaster type. All OPL modes are Adlib-compatible,\n"
@@ -1241,11 +1285,11 @@ msgstr ""
 "by sblaster type. All OPL modes are Adlib-compatible,\n"
 "except for 'cms'."
 
-#: ../settings_dosbox.py:1108
+#: ../settings_dosbox.py:1114
 msgid "OPL emulation provider"
 msgstr "OPL emulation provider"
 
-#: ../settings_dosbox.py:1110 ../settings_dosbox.py:1114
+#: ../settings_dosbox.py:1116 ../settings_dosbox.py:1120
 msgid ""
 "Provider for the OPL emulation.\n"
 "compat might provide better quality (see oplrate as well)."
@@ -1253,11 +1297,11 @@ msgstr ""
 "Provider for the OPL emulation.\n"
 "compat might provide better quality (see oplrate as well)."
 
-#: ../settings_dosbox.py:1126
+#: ../settings_dosbox.py:1132
 msgid "OPL sample rate"
 msgstr "OPL sample rate"
 
-#: ../settings_dosbox.py:1128 ../settings_dosbox.py:1132
+#: ../settings_dosbox.py:1134 ../settings_dosbox.py:1138
 msgid ""
 "Sample rate of OPL music emulation.\n"
 "Use 49716 for highest quality (set the mixer rate accordingly)."
@@ -1265,39 +1309,39 @@ msgstr ""
 "Sample rate of OPL music emulation.\n"
 "Use 49716 for highest quality (set the mixer rate accordingly)."
 
-#: ../settings_dosbox.py:1166
+#: ../settings_dosbox.py:1172
 msgid "SoundBlaster"
 msgstr "SoundBlaster"
 
-#: ../settings_dosbox.py:1184 ../settings_dosbox.py:1296
+#: ../settings_dosbox.py:1190 ../settings_dosbox.py:1302
 msgid "Gravis Ultrasound"
 msgstr "Gravis Ultrasound"
 
-#: ../settings_dosbox.py:1186 ../settings_dosbox.py:1190
+#: ../settings_dosbox.py:1192 ../settings_dosbox.py:1196
 msgid "Enable the Gravis Ultrasound emulation."
 msgstr "Enable the Gravis Ultrasound emulation."
 
-#: ../settings_dosbox.py:1198 ../settings_dosbox.py:1202
+#: ../settings_dosbox.py:1204 ../settings_dosbox.py:1208
 msgid "Sample rate of Ultrasound emulation."
 msgstr "Sample rate of Ultrasound emulation."
 
-#: ../settings_dosbox.py:1216 ../settings_dosbox.py:1220
+#: ../settings_dosbox.py:1222 ../settings_dosbox.py:1226
 msgid "The IO base address of the Gravis Ultrasound."
 msgstr "The IO base address of the Gravis Ultrasound."
 
-#: ../settings_dosbox.py:1234 ../settings_dosbox.py:1238
+#: ../settings_dosbox.py:1240 ../settings_dosbox.py:1244
 msgid "The IRQ number of the Gravis Ultrasound."
 msgstr "The IRQ number of the Gravis Ultrasound."
 
-#: ../settings_dosbox.py:1252 ../settings_dosbox.py:1256
+#: ../settings_dosbox.py:1258 ../settings_dosbox.py:1262
 msgid "The DMA channel of the Gravis Ultrasound."
 msgstr "The DMA channel of the Gravis Ultrasound."
 
-#: ../settings_dosbox.py:1268
+#: ../settings_dosbox.py:1274
 msgid "Ultrasound directory"
 msgstr "Ultrasound directory"
 
-#: ../settings_dosbox.py:1270 ../settings_dosbox.py:1274
+#: ../settings_dosbox.py:1276 ../settings_dosbox.py:1280
 msgid ""
 "Path to Ultrasound directory. In this directory\n"
 "there should be a MIDI directory that contains\n"
@@ -1309,27 +1353,27 @@ msgstr ""
 "the patch files for GUS playback. Patch sets used\n"
 "with Timidity should work fine."
 
-#: ../settings_dosbox.py:1314
+#: ../settings_dosbox.py:1320
 msgid "PC-speaker"
 msgstr "PC-speaker"
 
-#: ../settings_dosbox.py:1316 ../settings_dosbox.py:1320
+#: ../settings_dosbox.py:1322 ../settings_dosbox.py:1326
 msgid "Enable PC-Speaker emulation."
 msgstr "Enable PC-Speaker emulation."
 
-#: ../settings_dosbox.py:1326
+#: ../settings_dosbox.py:1332
 msgid "PC-speaker sample rate"
 msgstr "PC-speaker sample rate"
 
-#: ../settings_dosbox.py:1328 ../settings_dosbox.py:1332
+#: ../settings_dosbox.py:1334 ../settings_dosbox.py:1338
 msgid "Sample rate of the PC-Speaker sound generation."
 msgstr "Sample rate of the PC-Speaker sound generation."
 
-#: ../settings_dosbox.py:1344
+#: ../settings_dosbox.py:1350
 msgid "Tandy Sound System"
 msgstr "Tandy Sound System"
 
-#: ../settings_dosbox.py:1346 ../settings_dosbox.py:1350
+#: ../settings_dosbox.py:1352 ../settings_dosbox.py:1356
 msgid ""
 "Enable Tandy Sound System emulation.\n"
 "For 'auto', emulation is present only if\n"
@@ -1339,19 +1383,19 @@ msgstr ""
 "For 'auto', emulation is present only if\n"
 "machine is set to 'tandy'."
 
-#: ../settings_dosbox.py:1362
+#: ../settings_dosbox.py:1368
 msgid "Tandy sample rate"
 msgstr "Tandy sample rate"
 
-#: ../settings_dosbox.py:1364 ../settings_dosbox.py:1368
+#: ../settings_dosbox.py:1370 ../settings_dosbox.py:1374
 msgid "Sample rate of the Tandy 3-Voice generation."
 msgstr "Sample rate of the Tandy 3-Voice generation."
 
-#: ../settings_dosbox.py:1380
+#: ../settings_dosbox.py:1386
 msgid "Disney Sound Source"
 msgstr "Disney Sound Source"
 
-#: ../settings_dosbox.py:1382 ../settings_dosbox.py:1386
+#: ../settings_dosbox.py:1388 ../settings_dosbox.py:1392
 msgid ""
 "Enable Disney Sound Source emulation.\n"
 "(Covox Voice Master and Speech Thing compatible)."
@@ -1359,15 +1403,15 @@ msgstr ""
 "Enable Disney Sound Source emulation.\n"
 "(Covox Voice Master and Speech Thing compatible)."
 
-#: ../settings_dosbox.py:1406
+#: ../settings_dosbox.py:1412
 msgid "Speaker"
 msgstr "Speaker"
 
-#: ../settings_dosbox.py:1424
+#: ../settings_dosbox.py:1430
 msgid "Joystick type"
 msgstr "Joystick type"
 
-#: ../settings_dosbox.py:1426 ../settings_dosbox.py:1436
+#: ../settings_dosbox.py:1432 ../settings_dosbox.py:1442
 msgid ""
 "Type of joystick to emulate:\n"
 "auto (choose emulation depending on real joystick(s)),\n"
@@ -1391,11 +1435,11 @@ msgstr ""
 "\n"
 "(Remember to reset dosbox's mapperfile if you saved it earlier)."
 
-#: ../settings_dosbox.py:1454
+#: ../settings_dosbox.py:1460
 msgid "Timed intervals for axis"
 msgstr "Timed intervals for axis"
 
-#: ../settings_dosbox.py:1456 ../settings_dosbox.py:1460
+#: ../settings_dosbox.py:1462 ../settings_dosbox.py:1466
 msgid ""
 "Enable timed intervals for axis. Experiment with this option,\n"
 "if your joystick drifts (away)."
@@ -1403,54 +1447,54 @@ msgstr ""
 "Enable timed intervals for axis. Experiment with this option,\n"
 "if your joystick drifts (away)."
 
-#: ../settings_dosbox.py:1466
+#: ../settings_dosbox.py:1472
 msgid "Autofire"
 msgstr "Autofire"
 
-#: ../settings_dosbox.py:1468 ../settings_dosbox.py:1472
+#: ../settings_dosbox.py:1474 ../settings_dosbox.py:1478
 msgid "Continuously fires as long as you keep the button pressed."
 msgstr "Continuously fires as long as you keep the button pressed."
 
-#: ../settings_dosbox.py:1478
+#: ../settings_dosbox.py:1484
 msgid "Swap axis"
 msgstr "Swap axis"
 
-#: ../settings_dosbox.py:1480 ../settings_dosbox.py:1484
+#: ../settings_dosbox.py:1486 ../settings_dosbox.py:1490
 msgid "Swap the 3rd and the 4th axis. Can be useful for certain joysticks."
 msgstr "Swap the 3rd and the 4th axis. Can be useful for certain joysticks."
 
-#: ../settings_dosbox.py:1490
+#: ../settings_dosbox.py:1496
 msgid "Button wrapping"
 msgstr "Button wrapping"
 
-#: ../settings_dosbox.py:1492 ../settings_dosbox.py:1496
+#: ../settings_dosbox.py:1498 ../settings_dosbox.py:1502
 msgid "Enable button wrapping at the number of emulated buttons."
 msgstr "Enable button wrapping at the number of emulated buttons."
 
-#: ../settings_dosbox.py:1516
+#: ../settings_dosbox.py:1522
 msgid "Joystick"
 msgstr "Joystick"
 
-#: ../settings_dosbox.py:1534
+#: ../settings_dosbox.py:1540
 msgid "Device connected to com port 1"
 msgstr "Device connected to com port 1"
 
-#: ../settings_dosbox.py:1536 ../settings_dosbox.py:1540
-#: ../settings_dosbox.py:1577 ../settings_dosbox.py:1581
-#: ../settings_dosbox.py:1618 ../settings_dosbox.py:1622
-#: ../settings_dosbox.py:1659 ../settings_dosbox.py:1663
+#: ../settings_dosbox.py:1542 ../settings_dosbox.py:1546
+#: ../settings_dosbox.py:1583 ../settings_dosbox.py:1587
+#: ../settings_dosbox.py:1624 ../settings_dosbox.py:1628
+#: ../settings_dosbox.py:1665 ../settings_dosbox.py:1669
 msgid "Set type of device connected to com port."
 msgstr "Set type of device connected to com port."
 
-#: ../settings_dosbox.py:1544 ../settings_dosbox.py:1585
-#: ../settings_dosbox.py:1626 ../settings_dosbox.py:1667
+#: ../settings_dosbox.py:1550 ../settings_dosbox.py:1591
+#: ../settings_dosbox.py:1632 ../settings_dosbox.py:1673
 msgid "Additional parameters:"
 msgstr "Additional parameters:"
 
-#: ../settings_dosbox.py:1546 ../settings_dosbox.py:1557
-#: ../settings_dosbox.py:1587 ../settings_dosbox.py:1598
-#: ../settings_dosbox.py:1628 ../settings_dosbox.py:1639
-#: ../settings_dosbox.py:1669 ../settings_dosbox.py:1680
+#: ../settings_dosbox.py:1552 ../settings_dosbox.py:1563
+#: ../settings_dosbox.py:1593 ../settings_dosbox.py:1604
+#: ../settings_dosbox.py:1634 ../settings_dosbox.py:1645
+#: ../settings_dosbox.py:1675 ../settings_dosbox.py:1686
 msgid ""
 "Parameter for all types: irq (optional).\n"
 "For directserial: realport (required), rxdelay (optional).\n"
@@ -1472,78 +1516,79 @@ msgstr ""
 "Additional parameters must be in the form\n"
 "of parameter:value (Example: listenport:5000)."
 
-#: ../settings_dosbox.py:1575
+#: ../settings_dosbox.py:1581
 msgid "Device connected to com port 2"
 msgstr "Device connected to com port 2"
 
-#: ../settings_dosbox.py:1616
+#: ../settings_dosbox.py:1622
 msgid "Device connected to com port 3"
 msgstr "Device connected to com port 3"
 
-#: ../settings_dosbox.py:1657
+#: ../settings_dosbox.py:1663
 msgid "Device connected to com port 4"
 msgstr "Device connected to com port 4"
 
-#: ../settings_dosbox.py:1738
+#: ../settings_dosbox.py:1744
 msgid "Com port device"
 msgstr "Com port device"
 
-#: ../settings_dosbox.py:1756
+#: ../settings_dosbox.py:1762
 msgid "XMS"
 msgstr "XMS"
 
-#: ../settings_dosbox.py:1758 ../settings_dosbox.py:1762
+#: ../settings_dosbox.py:1764 ../settings_dosbox.py:1768
 msgid "Enable XMS support."
 msgstr "Enable XMS support."
 
-#: ../settings_dosbox.py:1768
+#: ../settings_dosbox.py:1774
 msgid "EMS"
 msgstr "EMS"
 
-#: ../settings_dosbox.py:1770 ../settings_dosbox.py:1774
+#: ../settings_dosbox.py:1776 ../settings_dosbox.py:1780
 msgid "Enable EMS support."
 msgstr "Enable EMS support."
 
-#: ../settings_dosbox.py:1780
+#: ../settings_dosbox.py:1786
 msgid "UMB"
 msgstr "UMB"
 
-#: ../settings_dosbox.py:1782 ../settings_dosbox.py:1786
+#: ../settings_dosbox.py:1788 ../settings_dosbox.py:1792
 msgid "Enable UMB support."
 msgstr "Enable UMB support."
 
-#: ../settings_dosbox.py:1792
+#: ../settings_dosbox.py:1798
 msgid "Keyboard lauout:"
 msgstr "Keyboard lauout:"
 
-#: ../settings_dosbox.py:1794 ../settings_dosbox.py:1798
+#: ../settings_dosbox.py:1800 ../settings_dosbox.py:1804
 msgid "Keyboard layout."
 msgstr "Keyboard layout."
 
-#: ../settings_dosbox.py:1802
+#: ../settings_dosbox.py:1808
 msgid "Language code of the keyboard layout."
 msgstr "Language code of the keyboard layout."
 
-#: ../settings_dosbox.py:1803
+#: ../settings_dosbox.py:1809
 msgid "Keyboard layout code"
 msgstr "Keyboard layout code"
 
-#: ../settings_dosbox.py:1837
+#: ../settings_dosbox.py:1843
 msgid "DOS"
 msgstr "DOS"
 
-#: ../settings_dosbox.py:1855 ../settings_dosbox.py:1873
+#: ../settings_dosbox.py:1861 ../settings_dosbox.py:1879
 msgid "IPX"
 msgstr "IPX"
 
-#: ../settings_dosbox.py:1857 ../settings_dosbox.py:1861
+#: ../settings_dosbox.py:1863 ../settings_dosbox.py:1867
 msgid "Enable ipx over UDP/IP emulation."
 msgstr "Enable ipx over UDP/IP emulation."
 
-#: ../settings_dosbox.py:1896
+#: ../settings_dosbox.py:1902
 #: ../../games_nebula_goglib_scripts/arcanum_of_steamworks_and_magick_obscura/settings.py:422
 #: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:194
 #: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:85
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:118
 #: ../../games_nebula_goglib_scripts/corsairs_gold/settings.py:102
 #: ../../games_nebula_goglib_scripts/desperados_2/settings.py:99
 #: ../../games_nebula_goglib_scripts/desperados_wanted_dead_or_alive/settings.py:138
@@ -1566,6 +1611,12 @@ msgstr "Enable ipx over UDP/IP emulation."
 #: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:105
 #: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:105
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:170
+#: ../../games_nebula_mylib_scripts/free/kings_quest_1_remake/settings.py:109
+#: ../../games_nebula_mylib_scripts/free/kings_quest_2_remake/settings.py:109
+#: ../../games_nebula_mylib_scripts/free/kings_quest_3_remake/settings.py:109
+#: ../../games_nebula_mylib_scripts/free/quest_for_glory_2_remake/settings.py:109
+#: ../../games_nebula_mylib_scripts/steam/original_war/settings.py:180
+#: ../../games_nebula_mylib_scripts/steam/zanzarah/settings.py:233
 msgid "Save and quit"
 msgstr "Save and quit"
 
@@ -1773,6 +1824,10 @@ msgid "Battle Realms: Winter of the Wolf"
 msgstr "Battle Realms: Winter of the Wolf"
 
 #: ../../games_nebula_goglib_scripts/battle_realms_winter_of_the_wolf/settings.py:99
+#: ../../games_nebula_mylib_scripts/free/kings_quest_1_remake/settings.py:89
+#: ../../games_nebula_mylib_scripts/free/kings_quest_2_remake/settings.py:89
+#: ../../games_nebula_mylib_scripts/free/kings_quest_3_remake/settings.py:89
+#: ../../games_nebula_mylib_scripts/free/quest_for_glory_2_remake/settings.py:89
 msgid "Set custom resolution:"
 msgstr "Set custom resolution:"
 
@@ -1783,6 +1838,10 @@ msgstr "Set custom resolution:"
 #: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:151
 #: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:151
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:506
+#: ../../games_nebula_mylib_scripts/free/kings_quest_1_remake/settings.py:144
+#: ../../games_nebula_mylib_scripts/free/kings_quest_2_remake/settings.py:144
+#: ../../games_nebula_mylib_scripts/free/kings_quest_3_remake/settings.py:144
+#: ../../games_nebula_mylib_scripts/free/quest_for_glory_2_remake/settings.py:144
 msgid "You have to set width and height."
 msgstr "You have to set width and height."
 
@@ -1830,13 +1889,6 @@ msgstr "FOV:"
 #: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:181
 msgid "FOV"
 msgstr "FOV"
-
-#: ../../games_nebula_goglib_scripts/beyond_good_and_evil/settings.py:188
-#: ../../games_nebula_goglib_scripts/leisure_suit_larry_magna_cum_laude_uncut_and_uncensored/settings.py:97
-#: ../../games_nebula_goglib_scripts/shadowgrounds/settings.py:100
-#: ../../games_nebula_goglib_scripts/shadowgrounds_survivor/settings.py:100
-msgid "More settings"
-msgstr "More settings"
 
 #: ../../games_nebula_goglib_scripts/bloodrayne_2/settings.py:60
 msgid "Blood Rayne 2"
@@ -1898,8 +1950,43 @@ msgstr "Blood Rayne"
 
 #: ../../games_nebula_goglib_scripts/bloodrayne/settings.py:52
 #: ../../games_nebula_goglib_scripts/dungeon_keeper_2/settings.py:91
+#: ../../games_nebula_mylib_scripts/steam/zanzarah/settings.py:213
 msgid "Resolution"
 msgstr "Resolution"
+
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:77
+msgid "Celtic Kings: Rage of War"
+msgstr "Celtic Kings: Rage of War"
+
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:112
+msgid ""
+"Minimum width = 1024, maximum width = 1600,\n"
+"minimum height = 768, maximum height = 1200\n"
+"Other values may not work or work incorrectly."
+msgstr ""
+"Minimum width = 1024, maximum width = 1600,\n"
+"minimum height = 768, maximum height = 1200\n"
+"Other values may not work or work incorrectly."
+
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:152
+msgid "Maximum resolution exceeded (1600x1200)."
+msgstr "Maximum resolution exceeded (1600x1200)."
+
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:162
+msgid "Incorrect input value"
+msgstr "Incorrect input value"
+
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:179
+msgid "Warning"
+msgstr "Warning"
+
+#: ../../games_nebula_goglib_scripts/celtic_kings_rage_of_war/settings.py:180
+msgid ""
+"You're set resolution that lower than minimum.\n"
+"It may work incorrectly."
+msgstr ""
+"You're set resolution that lower than minimum.\n"
+"It may work incorrectly."
 
 #: ../../games_nebula_goglib_scripts/corsairs_gold/settings.py:68
 msgid "Corsairs Gold"
@@ -2014,6 +2101,8 @@ msgstr "Screenshots format"
 
 #: ../../games_nebula_goglib_scripts/dungeon_keeper/settings.py:252
 #: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:117
+#: ../../games_nebula_mylib_scripts/steam/original_war/settings.py:127
+#: ../../games_nebula_mylib_scripts/steam/zanzarah/settings.py:197
 msgid "Language"
 msgstr "Language"
 
@@ -2453,6 +2542,7 @@ msgid "Saints Row 2"
 msgstr "Saints Row 2"
 
 #: ../../games_nebula_goglib_scripts/saints_row_2/settings.py:133
+#: ../../games_nebula_mylib_scripts/steam/original_war/settings.py:142
 msgid "Custom resolution"
 msgstr "Custom resolution"
 
@@ -2532,6 +2622,50 @@ msgstr "Mod not found in download directory"
 #: ../../games_nebula_goglib_scripts/the_temple_of_elemental_evil/settings.py:665
 msgid "You have to select at least one portrait pack."
 msgstr "You have to select at least one portrait pack."
+
+#: ../../games_nebula_mylib_scripts/free/kings_quest_1_remake/settings.py:71
+msgid "King's Quest I Remake"
+msgstr "King's Quest I Remake"
+
+#: ../../games_nebula_mylib_scripts/free/kings_quest_2_remake/settings.py:71
+msgid "King's Quest II Remake"
+msgstr "King's Quest II Remake"
+
+#: ../../games_nebula_mylib_scripts/free/kings_quest_3_remake/settings.py:71
+msgid "King's Quest III Remake"
+msgstr "King's Quest III Remake"
+
+#: ../../games_nebula_mylib_scripts/free/quest_for_glory_2_remake/settings.py:71
+msgid "Quest for Glory 2 Remake"
+msgstr "Quest for Glory 2 Remake"
+
+#: ../../games_nebula_mylib_scripts/steam/original_war/settings.py:109
+msgid "Original War"
+msgstr "Original War"
+
+#: ../../games_nebula_mylib_scripts/steam/original_war/settings.py:144
+msgid "Makes the ingame resolution set to a custom resolution."
+msgstr "Makes the ingame resolution set to a custom resolution."
+
+#: ../../games_nebula_mylib_scripts/steam/original_war/settings.py:171
+msgid "Same resolution"
+msgstr "Same resolution"
+
+#: ../../games_nebula_mylib_scripts/steam/original_war/settings.py:173
+#, fuzzy
+msgid ""
+"Makes the menus and videos use the same resolution\n"
+"as the game instead of 800x600 and 640x480"
+msgstr ""
+"Makes the menus and videos use the same resolution\n"
+"as the game instead of 800x600 and 640x480)"
+
+#: ../../games_nebula_mylib_scripts/steam/zanzarah/settings.py:179
+msgid "Zanzarah: The Hidden Portal"
+msgstr "Zanzarah: The Hidden Portal"
+
+#~ msgid "Game specific DOSBox settings"
+#~ msgstr "Game specific DOSBox settings"
 
 #~ msgid "GOG Authorization"
 #~ msgstr "GOG Authorization"
@@ -2649,9 +2783,6 @@ msgstr "You have to select at least one portrait pack."
 
 #~ msgid "Path"
 #~ msgstr "Path"
-
-#~ msgid "Game specific DOSBox settings:"
-#~ msgstr "Game specific DOSBox settings:"
 
 #~ msgid "Game specific ScummVM settings:"
 #~ msgstr "Game specific ScummVM settings:"
