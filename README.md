@@ -59,11 +59,11 @@ For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/pa
 
 Python 2
 
-    sudo apt install python-gi python-bs4 python-lxml python-pil python-dateutil python-tz lgogdownloader innoextract x11-xserver-utils
+    sudo apt install python-gi python-bs4 python-lxml python-requests python-pil python-dateutil python-tz lgogdownloader innoextract x11-xserver-utils
 
 Python 3
 
-    sudo apt install python3-gi python3-bs4 python3-lxml python3-pil python3-dateutil python3-tz lgogdownloader innoextract x11-xserver-utils
+    sudo apt install python3-gi python3-bs4 python3-lxml python3-requests  python3-pil python3-dateutil python3-tz lgogdownloader innoextract x11-xserver-utils
 
 
 *Optional dependencies:*
