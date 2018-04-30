@@ -42,7 +42,7 @@ def get_monitors():
     proc = subprocess.Popen(['xrandr'],stdout=subprocess.PIPE)
     for line in proc.stdout.readlines():
 
-        if re.compile(r'\b({0})\b'.format('connected'), flags=re.IGNORECASE).search(line):
+        if re.compile(r'\b({0})\b'.format('connected'), flags=re.IGNORECASE).search(str(line)):
             if 'primary' in line.decode('utf-8'):
                 monitors_list.append(line.decode('utf-8').split(' ')[0] + ' ' + line.decode('utf-8').split(' ')[3].split('+')[0])
             else:
