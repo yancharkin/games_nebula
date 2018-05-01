@@ -5136,6 +5136,7 @@ class GUI:
 
             elif 'scummvm' in files_to_move_lower:
 
+                ini_file = None
                 for file_name in files_to_move:
                     if '.ini' in file_name.lower():
                         ini_file = file_name
@@ -5144,8 +5145,10 @@ class GUI:
                 files_path = game_dir + '/tmp/data/noarch/data/'
                 files_to_move = os.listdir(files_path)
 
-                os.system('mv ' + game_dir + '/tmp/data/noarch/' + ini_file +
-                ' ' + game_dir + '/scummvmrc')
+                if ini_file != None:
+                    ini_file_path = game_dir + '/tmp/data/noarch/' + ini_file
+                    scummvmrc_path = game_dir + '/scummvmrc'
+                    subprocess.call(['mv', ini_file_path, scummvmrc_path])
 
                 start_lines = ['#!/bin/bash\n',
                 'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
@@ -5273,22 +5276,37 @@ class GUI:
                     game_data_dir = tmp_root_path
                 game_data_dir_files = os.listdir(game_data_dir)
 
+                ini_file = None
                 for file_name in game_data_dir_files:
                     if '.ini' in file_name.lower():
                         ini_file = file_name
                         scummvm_name = file_name.split('.')[0].lower()
 
-                os.system('mv ' + game_data_dir + ini_file + ' ' +
-                        game_dir + '/scummvmrc')
+                if ini_file != None:
+                    ini_file_path = game_data_dir + ini_file
+                else:
+                    if os.path.exists(game_data_dir + '__support/app/'):
+                        files_list = os.listdir(game_data_dir + '__support/app/')
+                        for file_name in files_list:
+                            if '.ini' in file_name.lower():
+                                ini_file = file_name
+                                scummvm_name = file_name.split('.')[0].lower()
+                    if ini_file != None:
+                        ini_file_path = game_data_dir + '__support/app/' + ini_file
 
-                start_lines = ['#!/bin/bash\n',
-                'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
+                if ini_file != None:
 
-                start_file = open(game_dir + '/start.sh', 'w')
-                for line in start_lines:
-                    start_file.write(line)
-                start_file.close()
-                os.system('chmod +x ' + game_dir + '/start.sh')
+                    scummvmrc_path = game_dir + '/scummvmrc'
+                    subprocess.call(['mv', ini_file_path, scummvmrc_path])
+
+                    start_lines = ['#!/bin/bash\n',
+                    'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
+
+                    start_file = open(game_dir + '/start.sh', 'w')
+                    for line in start_lines:
+                        start_file.write(line)
+                    start_file.close()
+                    os.system('chmod +x ' + game_dir + '/start.sh')
 
             else:
 
