@@ -5140,12 +5140,16 @@ class GUI:
                 for file_name in files_to_move:
                     if '.ini' in file_name.lower():
                         ini_file = file_name
-                        scummvm_name = file_name.split('.')[0].lower()
 
                 files_path = game_dir + '/tmp/data/noarch/data/'
                 files_to_move = os.listdir(files_path)
 
                 if ini_file != None:
+
+                    conf = ConfigParser()
+                    conf.read(ini_file_path)
+                    scummvm_name = conf.sections()[1]
+
                     ini_file_path = game_dir + '/tmp/data/noarch/' + ini_file
                     scummvmrc_path = game_dir + '/scummvmrc'
                     subprocess.call(['mv', ini_file_path, scummvmrc_path])
@@ -5280,7 +5284,6 @@ class GUI:
                 for file_name in game_data_dir_files:
                     if '.ini' in file_name.lower():
                         ini_file = file_name
-                        scummvm_name = file_name.split('.')[0].lower()
 
                 if ini_file != None:
                     ini_file_path = game_data_dir + ini_file
@@ -5290,11 +5293,14 @@ class GUI:
                         for file_name in files_list:
                             if '.ini' in file_name.lower():
                                 ini_file = file_name
-                                scummvm_name = file_name.split('.')[0].lower()
                     if ini_file != None:
                         ini_file_path = game_data_dir + '__support/app/' + ini_file
 
                 if ini_file != None:
+
+                    conf = ConfigParser()
+                    conf.read(ini_file_path)
+                    scummvm_name = conf.sections()[1]
 
                     scummvmrc_path = game_dir + '/scummvmrc'
                     subprocess.call(['mv', ini_file_path, scummvmrc_path])
