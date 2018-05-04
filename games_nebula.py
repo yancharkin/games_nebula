@@ -5146,12 +5146,13 @@ class GUI:
 
                 if ini_file != None:
 
+                    ini_file_path = game_dir + '/tmp/data/noarch/' + ini_file
+                    scummvmrc_path = game_dir + '/scummvmrc'
+
                     conf = ConfigParser()
                     conf.read(ini_file_path)
                     scummvm_name = conf.sections()[1]
 
-                    ini_file_path = game_dir + '/tmp/data/noarch/' + ini_file
-                    scummvmrc_path = game_dir + '/scummvmrc'
                     subprocess.call(['mv', ini_file_path, scummvmrc_path])
 
                 start_lines = ['#!/bin/bash\n',
@@ -5298,11 +5299,12 @@ class GUI:
 
                 if ini_file != None:
 
+                    scummvmrc_path = game_dir + '/scummvmrc'
+
                     conf = ConfigParser()
                     conf.read(ini_file_path)
                     scummvm_name = conf.sections()[1]
 
-                    scummvmrc_path = game_dir + '/scummvmrc'
                     subprocess.call(['mv', ini_file_path, scummvmrc_path])
 
                     start_lines = ['#!/bin/bash\n',
