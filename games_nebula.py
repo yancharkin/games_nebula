@@ -237,7 +237,7 @@ class GUI:
 
     def create_login_window(self):
 
-        os.system(sys.executable + ' ' + nebula_dir + '/pygogauth.py')
+        subprocess.call([sys.executable, nebula_dir + '/pygogauth.py'])
         os.execl(sys.executable, sys.executable, *sys.argv)
 
     def create_main_window(self):
@@ -4587,8 +4587,9 @@ class GUI:
             os.kill(goglib_name_to_pid_download_dict[game_name], signal.SIGTERM)
 
             if self.goglib_keep_installers == False:
-                if os.path.exists(self.goglib_download_dir + '/' + game_name):
-                    os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
+                game_download_dir = self.goglib_download_dir + '/' + game_name
+                if os.path.exists(game_download_dir):
+                    subprocess.call(['rm', '-R', '-f', game_download_dir])
 
             for i in range(self.goglib_number_of_games_to_show):
                 if goglib_setup_buttons_list[i].get_name() == game_name:
@@ -4602,11 +4603,13 @@ class GUI:
             os.kill(goglib_name_to_pid_unpack_dict[game_name], signal.SIGTERM)
 
             if self.goglib_keep_installers == False:
-                if os.path.exists(self.goglib_download_dir + '/' + game_name):
-                    os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
+                game_download_dir = self.goglib_download_dir + '/' + game_name
+                if os.path.exists(game_download_dir):
+                    subprocess.call(['rm', '-R', '-f', game_download_dir])
 
-            if os.path.exists(self.goglib_install_dir + '/' + game_name):
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
+            game_install_dir = self.goglib_install_dir + '/' + game_name
+            if os.path.exists(game_install_dir):
+                subprocess.call(['rm', '-R', '-f', game_install_dir])
 
             for i in range(self.goglib_number_of_games_to_show):
                 if goglib_setup_buttons_list[i].get_name() == game_name:
@@ -4617,11 +4620,13 @@ class GUI:
             os.kill(goglib_name_to_pid_install_dict[game_name], signal.SIGTERM)
 
             if self.goglib_keep_installers == False:
-                if os.path.exists(self.goglib_download_dir + '/' + game_name):
-                    os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
+                game_download_dir = self.goglib_download_dir + '/' + game_name
+                if os.path.exists(game_download_dir):
+                    subprocess.call(['rm', '-R', '-f', game_download_dir])
 
-            if os.path.exists(self.goglib_install_dir + '/' + game_name):
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
+            game_install_dir = self.goglib_install_dir + '/' + game_name
+            if os.path.exists(game_install_dir):
+                subprocess.call(['rm', '-R', '-f', game_install_dir])
 
             for i in range(self.goglib_number_of_games_to_show):
                 if goglib_setup_buttons_list[i].get_name() == game_name:
@@ -4646,11 +4651,14 @@ class GUI:
             self.mylib_now_installing = None
 
             if self.mylib_keep_installers == False:
-                if os.path.exists(self.mylib_download_dir + '/' + game_name):
-                    os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
 
-            if os.path.exists(self.mylib_install_dir + '/' + game_name):
-                os.system('rm -R -f ' + self.mylib_install_dir + '/' + game_name)
+                game_download_dir = self.mylib_download_dir + '/' + game_name
+                if os.path.exists(game_download_dir):
+                    subprocess.call(['rm', '-R', '-f', game_download_dir])
+
+            game_install_dir = self.mylib_install_dir + '/' + game_name
+            if os.path.exists(game_install_dir):
+                subprocess.call(['rm', '-R', '-f', game_install_dir])
 
             for i in range(self.mylib_number_of_games_to_show):
                 if mylib_setup_buttons_list[i].get_name() == game_name:
@@ -4691,8 +4699,8 @@ class GUI:
         self.set_environ(game_name, self.mylib_download_dir, self.mylib_install_dir)
 
         start_path = self.mylib_install_dir + '/' + game_name + '/start.sh'
-        os.system('chmod +x ' + start_path)
-        os.system(start_path)
+        subprocess.call(['chmod', '+x', start_path])
+        subprocess.call([start_path])
 
         self.switch_monitor('OFF')
 
@@ -4718,8 +4726,8 @@ class GUI:
         self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
 
         start_file_path = self.goglib_install_dir + '/' + game_name + '/start.sh'
-        os.system('chmod +x ' + start_file_path)
-        os.system(start_file_path)
+        subprocess.call(['chmod', '+x', start_file_path])
+        subprocess.call([start_file_path])
 
         self.switch_monitor('OFF')
 
@@ -4758,17 +4766,18 @@ class GUI:
 
             if remove_game:
 
-                os.system('rm -R -f ' + self.mylib_install_dir + '/' + game_name)
+                game_install_dir = self.mylib_install_dir + '/' + game_name
+                subprocess.call(['rm', '-R', '-f', game_install_dir])
 
                 dosbox_game_path = os.getenv('HOME') + '/.games_nebula/games/.dosbox/' + game_name
-                os.system('rm -R -f ' + dosbox_game_path)
+                subprocess.call(['rm', '-R', '-f', dosbox_game_path])
                 wine_game_path = os.getenv('HOME') + '/.games_nebula/wine_prefix/drive_c/Games/' + game_name
-                os.system('rm -R -f ' + wine_game_path)
+                subprocess.call(['rm', '-R', '-f', wine_game_path])
 
                 if os.path.exists(data_dir + '/scripts/mylib/' + game_name + '/uninstall'):
                     self.set_environ(game_name, self.mylib_download_dir, self.mylib_install_dir)
                     uninstall_command = (data_dir + '/scripts/mylib/' + game_name + '/uninstall')
-                    os.system(uninstall_command)
+                    subprocess.call([uninstall_command])
 
                 button.set_label(_("Install"))
 
@@ -4808,19 +4817,20 @@ class GUI:
 
             if remove_game:
 
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
+                game_install_dir = self.goglib_install_dir + '/' + game_name
+                subprocess.call(['rm', '-R', '-f', game_install_dir])
 
                 dosbox_game_path = os.getenv('HOME') + '/.games_nebula/games/.dosbox/' + game_name
-                os.system('rm -R -f ' + dosbox_game_path)
+                subprocess.call(['rm', '-R', '-f', dosbox_game_path])
                 wine_game_path = os.getenv('HOME') + '/.games_nebula/wine_prefix/drive_c/Games/' + game_name
-                os.system('rm -R -f ' + wine_game_path)
+                subprocess.call(['rm', '-R', '-f', wine_game_path])
 
                 if os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/uninstall'):
 
                     self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
 
                     uninstall_command = (data_dir + '/scripts/goglib/' + game_name + '/uninstall')
-                    os.system(uninstall_command)
+                    subprocess.call([uninstall_command])
 
                 button.set_label(_("Install"))
 
@@ -4915,7 +4925,7 @@ class GUI:
             settings_py_path = nebula_dir + '/scripts/mylib/' + game_name + '/settings.py'
 
         if os.path.exists(settings_py_path):
-            os.system('cp ' + settings_py_path + ' ' + game_dir)
+            subprocess.call(['cp', settings_py_path, game_dir])
             os.system('echo "Writing settings.sh"')
             settings_lines = ['#!/bin/bash\n',
             'python "$INSTALL_DIR/' + game_name + '/settings.py"']
@@ -4923,7 +4933,7 @@ class GUI:
             for line in settings_lines:
                 settings_file.write(line)
             settings_file.close()
-            os.system('chmod +x ' + game_dir + '/settings.sh')
+            subprocess.call(['chmod', '+x', game_dir + '/settings.sh'])
 
         if self.own_prefix:
             config_file = open(game_dir + '/config.ini', 'w')
@@ -5066,13 +5076,13 @@ class GUI:
 
                 files_path = game_dir + '/tmp/data/noarch/data/'
                 files_to_move = os.listdir(files_path)
-                os.system('mv ' + game_dir + '/tmp/data/noarch/*_single.conf ' +
-                game_dir + '/dosbox_game.conf')
+                game_conf_path = '"' + game_dir + '"/tmp/data/noarch/*_single.conf'
+                os.system('mv ' + game_conf_path + ' "' + game_dir + '"/dosbox_game.conf')
 
                 if '_settings.conf' in ' '.join(files_to_move_lower):
                     settings_conf_exists = True
-                    os.system('mv ' + game_dir + '/tmp/data/noarch/*_settings.conf ' +
-                    game_dir + '/dosbox_settings.conf')
+                    settings_conf_path = '"' + game_dir + '"/tmp/data/noarch/*_settings.conf'
+                    os.system('mv ' + settings_conf_path + ' "' + game_dir + '"/dosbox_settings.conf')
                 else:
                     settings_conf_exists = False
 
@@ -5127,9 +5137,9 @@ class GUI:
                 for line in start_lines:
                     start_file.write(line)
                 start_file.close()
-                os.system('chmod +x ' + game_dir + '/start.sh')
+                subprocess.call(['chmod', '+x', game_dir + '/start.sh'])
 
-                os.system('mkdir -p ' + game_dir + '/game')
+                subprocess.call(['mkdir', '-p', game_dir + '/game'])
                 command = []
                 for f in files_to_move:
                     command.extend(('mv', files_path + f, game_dir + '/game'))
@@ -5162,9 +5172,9 @@ class GUI:
                 for line in start_lines:
                     start_file.write(line)
                 start_file.close()
-                os.system('chmod +x ' + game_dir + '/start.sh')
+                subprocess.call(['chmod', '+x', game_dir + '/start.sh'])
 
-                os.system('mkdir -p ' + game_dir + '/game')
+                subprocess.call(['mkdir', '-p', game_dir + '/game'])
                 command = []
                 for f in files_to_move:
                     command.extend(('mv', files_path + f, game_dir + '/game'))
@@ -5215,13 +5225,13 @@ class GUI:
 
                 game_data_dir_files = os.listdir(game_data_dir)
 
-                os.system('mv ' + game_data_dir + '*_single.conf ' +
-                        game_dir + '/dosbox_game.conf')
+                game_conf_path = '"' + game_data_dir + '"/*_single.conf'
+                os.system('mv ' + game_conf_path + ' "' + game_dir + '"/dosbox_game.conf')
 
                 if '_settings.conf' in ''.join(game_data_dir_files):
                     settings_conf_exists = True
-                    os.system('mv ' + game_data_dir + '*_settings.conf ' +
-                            game_dir + '/dosbox_settings.conf')
+                    settings_conf_path = '"' + game_data_dir + '"/*_settings.conf'
+                    os.system('mv ' + settings_conf_path + ' "' + game_dir + '"/dosbox_settings.conf')
                 else:
                     settings_conf_exists = False
 
@@ -5273,7 +5283,7 @@ class GUI:
                 for line in start_lines:
                     start_file.write(line)
                 start_file.close()
-                os.system('chmod +x ' + game_dir + '/start.sh')
+                subprocess.call(['chmod', '+x', game_dir + '/start.sh'])
 
             elif ('scummvm' in files_to_move_lower) or ('scummvm' in tmp_root_files_lower):
 
@@ -5314,7 +5324,7 @@ class GUI:
                     for line in start_lines:
                         start_file.write(line)
                     start_file.close()
-                    os.system('chmod +x ' + game_dir + '/start.sh')
+                    subprocess.call(['chmod', '+x', game_dir + '/start.sh'])
 
             else:
 
@@ -5346,7 +5356,7 @@ class GUI:
                 for line in start_lines:
                     start_file.write(line)
                 start_file.close()
-                os.system('chmod +x ' + game_dir + '/start.sh')
+                subprocess.call(['chmod', '+x', game_dir + '/start.sh'])
 
             #~ os.system('mkdir -p ' + game_dir + '/game')
             command = []
@@ -5364,7 +5374,8 @@ class GUI:
                     _("Impossible to install.")
                 )
 
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name)
+                game_install_dir = self.goglib_install_dir + '/' + game_name
+                subprocess.call(['rm', '-R', '-f', game_install_dir])
                 command = ['echo', 'Impossible to install']
 
             else:
@@ -5375,7 +5386,7 @@ class GUI:
             settings_py_path = nebula_dir + '/scripts/goglib/' + game_name + '/settings.py'
 
         if os.path.exists(settings_py_path):
-            os.system('cp ' + settings_py_path + ' ' + game_dir)
+            subprocess.call(['cp', settings_py_path, game_dir])
             os.system('echo "Writing settings.sh"')
             settings_lines = ['#!/bin/bash\n',
             'python "$INSTALL_DIR/' + game_name + '/settings.py"']
@@ -5383,7 +5394,7 @@ class GUI:
             for line in settings_lines:
                 settings_file.write(line)
             settings_file.close()
-            os.system('chmod +x ' + game_dir + '/settings.sh')
+            subprocess.call(['chmod', '+x', game_dir + '/settings.sh'])
 
         goglib_name_to_pid_install_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
                 flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
@@ -5497,7 +5508,7 @@ class GUI:
 
                             start_gog_path = game_dir + '/start_gog.sh'
                             if not os.path.exists(start_gog_path):
-                                os.system('mv ' + start_file_path + ' ' + start_gog_path)
+                                subprocess.call(['mv', start_file_path, start_gog_path])
 
                             start_lines = ['#!/bin/bash\n',
                             'python "$NEBULA_DIR/launcher_native.py" ' + game_name]
@@ -5506,7 +5517,7 @@ class GUI:
                             for line in start_lines:
                                 start_file.write(line)
                             start_file.close()
-                            os.system('chmod +x ' + start_file_path)
+                            subprocess.call(['chmod', '+x', start_file_path])
 
                     for progress_bar in queue_progress_bars_list:
                         if progress_bar.get_name() == game_name:
@@ -5518,14 +5529,15 @@ class GUI:
                        #~ if frame.get_name() == game_name:
                            #~ frame.destroy()
 
-                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/tmp')
-                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/tmp')
-                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/app')
-                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/game')
-                    os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/commonappdata')
+                    subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/tmp'])
+                    subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/game/tmp'])
+                    subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/game/app'])
+                    subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/game/game'])
+                    subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/game/commonappdata'])
 
                     if self.goglib_keep_installers == False:
-                        os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
+                        game_download_dir = self.goglib_download_dir + '/' + game_name
+                        subprocess.call(['rm', '-R', '-f', game_download_dir])
 
                     self.update_queue_banners()
 
@@ -5552,15 +5564,16 @@ class GUI:
                 #~ for frame in queue_game_frame_list:
                    #~ if frame.get_name() == game_name:
                        #~ frame.destroy()
-
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/tmp')
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/tmp')
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/app')
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/game')
-                os.system('rm -R -f ' + self.goglib_install_dir + '/' + game_name + '/game/commonappdata')
+                
+                subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/tmp'])
+                subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/game/tmp'])
+                subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/game/app'])
+                subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/game/game'])
+                subprocess.call(['rm', '-R', self.goglib_install_dir + '/' + game_name + '/game/commonappdata'])
 
                 if self.goglib_keep_installers == False:
-                    os.system('rm -R -f ' + self.goglib_download_dir + '/' + game_name)
+                    game_download_dir = self.goglib_download_dir + '/' + game_name
+                    subprocess.call(['rm', '-R', '-f', game_download_dir])
 
                 self.update_queue_banners()
 
@@ -5585,7 +5598,8 @@ class GUI:
 
                 if self.mylib_keep_installers == False:
                     if os.path.exists(self.mylib_download_dir + '/' + game_name):
-                        os.system('rm -R -f ' + self.mylib_download_dir + '/' + game_name)
+                        game_download_dir = self.mylib_download_dir + '/' + game_name
+                        subprocess.call(['rm', '-R', '-f', game_download_dir])
 
                 self.update_queue_banners()
 
@@ -5746,7 +5760,7 @@ class GUI:
 
         os.environ['WINEPREFIX'] = os.getenv('HOME') + '/.games_nebula/wine_prefix'
 
-        os.system('python ' + nebula_dir + '/settings_wine.py')
+        subprocess.call(['python', nebula_dir + '/settings_wine.py'])
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
@@ -5763,7 +5777,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        os.system(sys.executable + ' ' + nebula_dir + '/winetricks_cache_backup.py')
+        subprocess.call([sys.executable, nebula_dir + '/winetricks_cache_backup.py'])
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
@@ -5782,9 +5796,9 @@ class GUI:
 
         if self.scummvm == 'path':
             self.scummvm_dir = self.scummvm_path + '/' + self.scummvm_version + '/bin'
-            os.system(self.scummvm_dir + '/scummvm -F -c ' + config_dir + '/scummvmrc')
+            subprocess.call([self.scummvm_dir + '/scummvm', '-F', '-c', config_dir + '/scummvmrc'])
         if self.scummvm == 'system':
-            os.system('scummvm -F -c ' + config_dir + '/scummvmrc')
+            subprocess.call(['scummvm', '-F', '-c', config_dir + '/scummvmrc'])
 
         self.main_window.show()
         if len(self.additional_windows_list) != 0:
@@ -5814,8 +5828,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        lib_has_new_scripts = os.system(sys.executable + ' ' + nebula_dir + \
-                '/get_scripts.py ' + lib + ' ' + str(overwrite))
+        lib_has_new_scripts = subprocess.call([sys.executable, nebula_dir + '/get_scripts.py', lib, str(overwrite)])
 
         # Ugly but works
         if lib_has_new_scripts == 0:
@@ -5848,8 +5861,7 @@ class GUI:
 
         dosbox_global_config = os.getenv('HOME') + '/.games_nebula/config/dosbox.conf'
 
-        os.system('python ' + nebula_dir + '/settings_dosbox.py ' \
-        + dosbox_global_config + ' global ' + dosbox_version)
+        subprocess.call(['python', nebula_dir + '/settings_dosbox.py', dosbox_global_config, 'global', dosbox_version])
 
         # TODO Use if special config tool for svn-daum build exists (settings_dosbox_svn_daum.py)
         #~ if (dosbox_version == 'stable') or (dosbox_version == 'svn'):
@@ -5953,10 +5965,10 @@ class GUI:
 
             if change_dir:
 
-                os.system('mv -f ' + self.goglib_install_dir + '/* ' + \
-                new_goglib_install_dir + ' && rmdir ' + self.goglib_install_dir)
+                os.system('mv -f "' + self.goglib_install_dir + '"/* "' + \
+                new_goglib_install_dir + '" && rmdir "' + self.goglib_install_dir + '"')
 
-                os.system('rm ' + new_goglib_install_dir + '/*/.configured > /dev/null 2>&1')
+                os.system('rm "' + new_goglib_install_dir + '"/*/.configured > /dev/null 2>&1')
 
                 self.goglib_install_dir = new_goglib_install_dir
 
@@ -5982,10 +5994,10 @@ class GUI:
 
             if change_dir:
 
-                os.system('mv -f ' + self.mylib_install_dir + '/* ' + \
-                new_mylib_install_dir + ' && rmdir ' + self.mylib_install_dir)
+                os.system('mv -f "' + self.mylib_install_dir + '"/* "' + \
+                new_mylib_install_dir + '" && rmdir "' + self.mylib_install_dir + '"')
 
-                os.system('rm ' + new_mylib_install_dir + '/*/.configured > /dev/null 2>&1')
+                os.system('rm "' + new_mylib_install_dir + '"/*/.configured > /dev/null 2>&1')
 
                 self.mylib_install_dir = new_mylib_install_dir
 
@@ -6232,9 +6244,9 @@ class GUI:
         if change_user:
 
             if os.path.exists(os.getenv('HOME') + '/.games_nebula/config/games_list'):
-                os.system('rm ' + os.getenv('HOME') + '/.games_nebula/config/games_list')
+                subprocess.call(['rm', os.getenv('HOME') + '/.games_nebula/config/games_list'])
             if os.path.exists(os.getenv('HOME') + '/.config/lgogdownloader'):
-                os.system('rm -r ' + os.getenv('HOME') + '/.config/lgogdownloader')
+                subprocess.call(['rm', '-r', os.getenv('HOME') + '/.config/lgogdownloader'])
 
             self.config_save()
 
