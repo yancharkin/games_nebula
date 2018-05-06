@@ -554,8 +554,9 @@ class GUI:
 
         self.create_link()
 
-        os.system('python ' + nebula_dir + '/settings_dosbox.py ' + \
-        self.install_dir + '/' + self.game_name + '/dosbox.conf local ' + dosbox_version)
+        subprocess.call([sys.executable, nebula_dir + '/settings_dosbox.py', \
+                self.install_dir + '/' + self.game_name + '/dosbox.conf',
+                'local', dosbox_version])
 
         #~ if (dosbox_version == 'stable') or (dosbox_version == 'svn'):
             #~ os.system('python ' + nebula_dir + '/settings_dosbox.py ' + \
@@ -608,7 +609,7 @@ class GUI:
                 if (len(config_parser.sections()) == 1) and \
                         (len(config_parser.options('sdl')) == 0):
 
-                    os.system('rm ' + dosbox_conf)
+                    if os.path.exists(dosbox_conf): os.remove(dosbox_conf)
 
     def cb_button_remap_keys(self, button):
 
@@ -626,13 +627,13 @@ class GUI:
         gn_tmp_dosbox_conf.close()
 
         launch_command = dosbox_bin + ' -conf /tmp/gn_tmp_dosbox.conf' + \
-        ' -conf ' + self.install_dir + '/' + self.game_name + '/dosbox.conf' + \
+        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox.conf"' + \
         ' -startmapper'
 
-        # FIX Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
+        # TODO Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
         os.system('export SDL_VIDEO_FULLSCREEN_HEAD=0 && ' + launch_command)
 
-        os.system('rm /tmp/gn_tmp_dosbox.conf')
+        if os.path.exists('/tmp/gn_tmp_dosbox.conf'): os.remove('/tmp/gn_tmp_dosbox.conf')
 
         self.main_window.show()
 
@@ -653,10 +654,10 @@ class GUI:
 
         self.create_link()
 
-        launch_command = dosbox_bin + ' -conf ' + \
-        os.getenv('HOME') + '/.games_nebula/config/dosbox.conf' + \
-        ' -conf ' + self.install_dir + '/' + self.game_name + '/dosbox.conf' + \
-        ' -conf ' + self.install_dir + '/' + self.game_name + '/dosbox_game.conf'
+        launch_command = dosbox_bin + ' -conf "' + \
+        os.getenv('HOME') + '/.games_nebula/config/dosbox.conf"' + \
+        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox.conf"' + \
+        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox_game.conf"'
 
         os.system(self.command_before)
         # FIX Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
@@ -684,10 +685,10 @@ class GUI:
 
         self.create_link()
 
-        launch_command = dosbox_bin + ' -conf ' + \
-        os.getenv('HOME') + '/.games_nebula/config/dosbox.conf' + \
-        ' -conf ' + self.install_dir + '/' + self.game_name + '/dosbox.conf' + \
-        ' -conf ' + self.install_dir + '/' + self.game_name + '/dosbox_settings.conf'
+        launch_command = dosbox_bin + ' -conf "' + \
+        os.getenv('HOME') + '/.games_nebula/config/dosbox.conf"' + \
+        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox.conf"' + \
+        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox_settings.conf"'
 
         # FIX Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
         os.system('export SDL_VIDEO_FULLSCREEN_HEAD=0 && ' + launch_command)
@@ -731,13 +732,13 @@ class GUI:
             if global_dosbox == 'system':
                 dosbox_bin = 'dosbox'
             if global_dosbox == 'path':
-                dosbox_bin = global_dosbox_path + '/' + global_dosbox_version + '/bin/dosbox'
+                dosbox_bin = '"' + global_dosbox_path + '/' + global_dosbox_version + '/bin/dosbox"'
 
         elif self.dosbox == 'system':
             dosbox_bin = 'dosbox'
 
         elif self.dosbox == 'path':
-            dosbox_bin = self.dosbox_path + '/' + self.dosbox_version + '/bin/dosbox'
+            dosbox_bin = '"' + self.dosbox_path + '/' + self.dosbox_version + '/bin/dosbox"'
 
         return dosbox_bin
 
@@ -745,9 +746,9 @@ class GUI:
         link_dir = os.getenv('HOME') + '/.games_nebula/games/.dosbox/'
         link = link_dir + self.game_name
         game_dir = self.install_dir + '/' + self.game_name + '/game'
-        os.system('mkdir -p ' + link_dir)
-        os.system('rm ' + link + ' > /dev/null 2>&1')
-        os.system('ln -s ' + game_dir + ' ' + link)
+        if not os.path.exists(link_dir): os.makedirs(link_dir)
+        if os.path.exists(link) or os.path.islink(link): os.remove(link)
+        os.symlink(game_dir, link)
 
     def cb_entries(self, entry):
         if entry.get_name() == 'command_before':

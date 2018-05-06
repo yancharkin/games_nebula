@@ -107,7 +107,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        command = '$WINELOADER uninstaller'
+        command = '"$WINELOADER" uninstaller'
         os.system(command)
 
         self.main_window.show()
@@ -167,7 +167,7 @@ class GUI:
 
     def cb_button_open_prefix(self, button):
 
-        os.system('xdg-open ' + self.wineprefix_path + '/drive_c')
+        os.system('xdg-open "' + self.wineprefix_path + '/drive_c"')
 
     def cb_button_controllers(self, button):
 
@@ -176,7 +176,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        command = '$WINELOADER control joy.cpl'
+        command = '"$WINELOADER" control joy.cpl'
         os.system(command)
 
         self.main_window.show()
@@ -188,7 +188,7 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        command = '$WINELOADER winecfg'
+        command = '"$WINELOADER" winecfg'
         os.system(command)
 
         self.main_window.show()

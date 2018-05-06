@@ -833,7 +833,7 @@ class GUI:
         self.set_win_ver_command()
         self.set_additions_command()
 
-        launch_command = 'python ' + nebula_dir + '/settings_wine.py'
+        launch_command = 'python "' + nebula_dir + '/settings_wine.py"'
 
         full_command = self.win_ver_command + '\n' + \
         self.additions_command + '\n' + \
@@ -857,7 +857,7 @@ class GUI:
         self.set_win_ver_command()
         self.set_additions_command()
 
-        launch_command = self.install_dir + '/' + self.game_name + '/settings.sh'
+        launch_command = '"' + self.install_dir + '/' + self.game_name + '/settings.sh"'
 
         full_command = self.win_ver_command + '\n' + \
         self.additions_command + '\n' + \
@@ -957,8 +957,8 @@ class GUI:
         if (os.path.exists(self.install_dir + '/' + self.game_name + '/additions.sh')) and \
                 (not os.path.exists(self.install_dir + '/' + self.game_name + '/.configured')):
 
-            os.system('touch ' + self.install_dir + '/' + self.game_name + '/.configured')
-            self.additions_command = self.install_dir + '/' + self.game_name + '/additions.sh'
+            open(self.install_dir + '/' + self.game_name + '/.configured', 'a').close()
+            self.additions_command = '"' + self.install_dir + '/' + self.game_name + '/additions.sh"'
 
         else:
             self.additions_command = ''
@@ -1010,41 +1010,41 @@ class GUI:
         if arg != '':
             if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
             and (self.virtual_desktop_height != ''):
-                self.launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
-                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
                 self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
-                ' ' + '"' + exe_name + '" ' + arg
+                ' ' + '"' + exe_name + '" "' + arg + '"'
 
             elif self.virtual_desktop == True:
-                self.launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
-                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
-                '640x480 ' + '"' + exe_name + '" ' + arg
+                ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
+                '640x480 ' + '"' + exe_name + '" "' + arg + '"'
             else:
-                self.launch_command = '$WINELOADER "' + exe_name + '" ' + arg
+                self.launch_command = '"$WINELOADER" "' + exe_name + '" "' + arg + '"'
         else:
             if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
             and (self.virtual_desktop_height != ''):
-                self.launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
-                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
                 self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
                 ' ' + '"' + exe_name + '"'
 
             elif self.virtual_desktop == True:
-                self.launch_command = '$WINELOADER reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
+                self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
-                ' && $WINELOADER explorer /desktop=' + self.game_name + ',' + \
+                ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
                 '640x480 ' + '"' + exe_name + '"'
             else:
-                self.launch_command = '$WINELOADER "' + exe_name + '"'
+                self.launch_command = '"$WINELOADER" "' + exe_name + '"'
 
     def set_mouse_capture_command(self):
         if self.mouse_capture == True:
-            self.mouse_capture_command = "$WINELOADER reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v 'GrabFullscreen' /t REG_SZ /d 'Y' /f"
+            self.mouse_capture_command = '"$WINELOADER" reg add "HKEY_CURRENT_USER\Software\Wine\X11 Driver" /v "GrabFullscreen" /t REG_SZ /d "Y" /f'
         else:
-            self.mouse_capture_command = "$WINELOADER reg add 'HKEY_CURRENT_USER\Software\Wine\X11 Driver' /v 'GrabFullscreen' /t REG_SZ /d 'N' /f"
+            self.mouse_capture_command = '"$WINELOADER" reg add "HKEY_CURRENT_USER\Software\Wine\X11 Driver" /v "GrabFullscreen" /t REG_SZ /d "N" /f'
 
     def set_wineprefix(self):
         if self.own_prefix == True:
@@ -1056,9 +1056,9 @@ class GUI:
         link_dir = self.wineprefix + '/drive_c/Games/'
         link = link_dir + self.game_name
         game_dir = self.install_dir + '/' + self.game_name + '/game'
-        os.system('mkdir -p ' + link_dir)
-        os.system('rm ' + link + ' > /dev/null 2>&1')
-        os.system('ln -s ' + game_dir + ' ' + link)
+        if not os.path.exists(link_dir): os.makedirs(link_dir)
+        if os.path.exists(link) or os.path.islink(link): os.remove(link)
+        os.symlink(game_dir, link)
 
     def get_exe_path(self):
 
@@ -1097,7 +1097,8 @@ class GUI:
 
     def cb_checkbutton_prefix(self, button):
 
-        os.system('rm ' + self.install_dir + '/' + self.game_name + '/.configured' + ' > /dev/null 2>&1')
+        if os.path.exists(self.install_dir + '/' + self.game_name + '/.configured'):
+            os.remove(self.install_dir + '/' + self.game_name + '/.configured')
 
         if button.get_active() == False:
             self.own_prefix = False

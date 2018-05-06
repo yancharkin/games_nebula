@@ -391,7 +391,7 @@ class GUI:
             )
         if self.dosbox_language != '':
             if not os.path.exists(self.dosbox_language):
-                os.system('touch ' + self.dosbox_language)
+                open(self.dosbox_language, 'a').close()
             languagefile = Gio.File.new_for_path(self.dosbox_language)
             self.filechooser_language.set_file(languagefile)
 

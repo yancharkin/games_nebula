@@ -421,7 +421,7 @@ class GUI:
             launch_command = self.install_dir + '/' + self.game_name + '/start_gn.sh'
 
         os.system(self.command_before)
-        os.system(launch_command)
+        subprocess.call([launch_command])
         os.system(self.command_after)
 
         self.switch_monitor('OFF')
@@ -455,10 +455,8 @@ class GUI:
         while Gtk.events_pending():
             Gtk.main_iteration()
 
-        launch_command = self.install_dir + '/' + self.game_name + '/settings.sh ' + \
-        self.install_dir + ' ' + nebula_dir
-
-        os.system(launch_command)
+        subprocess.call([self.install_dir + '/' + self.game_name + '/settings.sh', \
+                self.install_dir, nebula_dir])
 
         self.config_save()
         os.execl(sys.executable, sys.executable, __file__, self.game_name)

@@ -44,7 +44,7 @@ def autosetup(lib, install_dir, game_name):
                 start_gog_path = install_dir + '/' + game_name + '/start_gog.sh'
 
                 if os.path.exists(start_file_path):
-                    os.system('mv ' + start_file_path + ' ' + start_gog_path)
+                    os.rename(start_file_path, start_gog_path)
 
                 start_lines = ['#!/bin/bash\n',
                 'python "$NEBULA_DIR/launcher_native.py" ' + game_name]
@@ -53,7 +53,7 @@ def autosetup(lib, install_dir, game_name):
                 for line in start_lines:
                     start_file.write(line)
                 start_file.close()
-                os.system('chmod +x ' + start_file_path)
+                os.chmod(start_file_path, 0o711)
 
                 if '/' in native_exe:
                     native_exe_dir = native_exe.split('/')[0]
@@ -71,7 +71,7 @@ def autosetup(lib, install_dir, game_name):
                 for line in start_gn_lines:
                     start_gn_file.write(line)
                 start_gn_file.close()
-                os.system('chmod +x ' + start_gn_file_path)
+                os.chmod(start_gn_file_path, 0o711)
 
         if parser.has_option(game_name, 'native_settings_exe'):
             native_settings_exe = parser.get(game_name, 'native_settings_exe')
@@ -94,7 +94,7 @@ def autosetup(lib, install_dir, game_name):
                 for line in start_gn_lines:
                     start_gn_file.write(line)
                 start_gn_file.close()
-                os.system('chmod +x ' + start_gn_file_path)
+                os.chmod(start_gn_file_path, 0o711)
 
         if parser.has_option(game_name, 'win_exe'):
             win_exe = parser.get(game_name, 'win_exe')
@@ -115,7 +115,7 @@ def autosetup(lib, install_dir, game_name):
                 for line in start_lines:
                     start_file.write(line)
                 start_file.close()
-                os.system('chmod +x ' + start_file_path)
+                os.chmod(start_file_path, 0o711)
 
         if parser.has_option(game_name, 'win_settings_exe'):
             win_settings_exe = parser.get(game_name, 'win_settings_exe')
@@ -131,7 +131,7 @@ def autosetup(lib, install_dir, game_name):
                 for line in settings_lines:
                     settings_file.write(line)
                 settings_file.close()
-                os.system('chmod +x ' + settings_file_path)
+                os.chmod(settings_file_path, 0o711)
 
         if parser.has_option(game_name, 'winetricks'):
             winetricks = parser.get(game_name, 'winetricks')
@@ -146,7 +146,7 @@ def autosetup(lib, install_dir, game_name):
                 for line in additions_lines:
                     additions_file.write(line)
                 additions_file.close()
-                os.system('chmod +x ' + additions_file_path)
+                os.chmod(additions_file_path, 0o711)
 
         if parser.has_option(game_name, 'dos_iso'):
             dos_iso = parser.get(game_name, 'dos_iso')
@@ -172,7 +172,7 @@ def autosetup(lib, install_dir, game_name):
                 for line in start_lines:
                     start_file.write(line)
                 start_file.close()
-                os.system('chmod +x ' + start_file_path)
+                os.chmod(start_file_path, 0o711)
 
                 game_conf_lines = ['[autoexec]\n',
                 '@echo off\n',
@@ -248,7 +248,7 @@ def autosetup(lib, install_dir, game_name):
                 for line in start_lines:
                     start_file.write(line)
                 start_file.close()
-                os.system('chmod +x ' + start_file_path)
+                os.chmod(start_file_path, 0o711)
 
                 scummvmrc_lines = ['[' + scummvm_name + ']\n',
                 'gameid=' + scummvm_id + '\n']
@@ -297,7 +297,7 @@ def autosetup(lib, install_dir, game_name):
                     additions_file.write(line)
 
                 additions_file.close()
-                os.system('chmod +x ' + additions_file_path)
+                os.chmod(additions_file_path, 0o711)
 
 if __name__ == "__main__":
     import sys

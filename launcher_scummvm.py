@@ -1,4 +1,4 @@
-import sys, os, subprocess, re
+import sys, os, subprocess, re, shutil
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -86,7 +86,7 @@ class GUI:
                 if name_line in scummvmrc_content[i]:
                     name_line_index = i
 
-            os.system('cp ' + scummvmrc_main_path + ' ' + scummvmrc_path)
+            shutil.copy(scummvmrc_main_path, scummvmrc_path)
 
             scummvmrc_file = open(scummvmrc_path, 'a')
 
@@ -567,21 +567,21 @@ class GUI:
         if self.scummvm == 'global':
 
             if global_scummvm == 'system':
-                launch_command = 'scummvm --no-fullscreen -c ' + self.install_dir \
-                + '/' + self.game_name + '/scummvmrc'
+                launch_command = 'scummvm --no-fullscreen -c "' + self.install_dir \
+                + '/' + self.game_name + '/scummvmrc"'
             if global_scummvm == 'path':
-                launch_command = global_scummvm_path + '/' + global_scummvm_version + \
-                '/bin/scummvm --no-fullscreen -c ' + self.install_dir \
-                + '/' + self.game_name + '/scummvmrc'
+                launch_command = '"' + global_scummvm_path + '/' + global_scummvm_version + \
+                '/bin/scummvm" --no-fullscreen -c "' + self.install_dir \
+                + '/' + self.game_name + '/scummvmrc"'
 
         elif self.scummvm == 'system':
-            launch_command = 'scummvm --no-fullscreen -c ' + self.install_dir \
-            + '/' + self.game_name + '/scummvmrc'
+            launch_command = 'scummvm --no-fullscreen -c "' + self.install_dir \
+            + '/' + self.game_name + '/scummvmrc"'
 
         elif self.scummvm == 'path':
-            launch_command = self.scummvm_path + '/' + self.scummvm_version + \
-            '/bin/scummvm --no-fullscreen -c ' + self.install_dir \
-            + '/' + self.game_name + '/scummvmrc'
+            launch_command = '"' + self.scummvm_path + '/' + self.scummvm_version + \
+            '/bin/scummvm" --no-fullscreen -c "' + self.install_dir \
+            + '/' + self.game_name + '/scummvmrc"'
 
         os.system(launch_command)
 
@@ -607,16 +607,16 @@ class GUI:
             if global_scummvm == 'system':
                 scummvm_bin = 'scummvm'
             if global_scummvm == 'path':
-                scummvm_bin = global_scummvm_path + '/' + global_scummvm_version + '/bin/scummvm'
+                scummvm_bin = '"' + global_scummvm_path + '/' + global_scummvm_version + '/bin/scummvm"'
 
         elif self.scummvm == 'system':
             scummvm_bin = 'scummvm'
 
         elif self.scummvm == 'path':
-            scummvm_bin = self.scummvm_path + '/' + self.scummvm_version + '/bin/scummvm'
+            scummvm_bin = '"' + self.scummvm_path + '/' + self.scummvm_version + '/bin/scummvm"'
 
-        launch_command = scummvm_bin + ' -c ' + self.install_dir + '/' +\
-        self.game_name + '/scummvmrc ' + self.scummvm_game_name
+        launch_command = scummvm_bin + ' -c "' + self.install_dir + '/' +\
+        self.game_name + '/scummvmrc" ' + self.scummvm_game_name
 
         os.system(self.command_before)
         os.system(launch_command)

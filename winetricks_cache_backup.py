@@ -65,10 +65,10 @@ class GUI:
             self.winetricks_cache_backup = global_config_parser.get('emulation settings', 'winetricks_cache_backup')
 
         if not os.path.exists(self.winetricks_cache):
-            os.system('mkdir -p ' + self.winetricks_cache)
+            os.makedirs(self.winetricks_cache)
 
         if not os.path.exists(self.winetricks_cache_backup):
-            os.system('mkdir -p ' + self.winetricks_cache_backup)
+            os.makedirs(self.winetricks_cache_backup)
 
         config_file = open(os.getenv('HOME') + '/.games_nebula/config/config.ini', 'w')
         global_config_parser.write(config_file)

@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, subprocess, shutil
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
@@ -129,8 +129,8 @@ class GUI:
         else:
             new_scripts_dir = tmp + '/games_nebula_' + self.lib + '_scripts-master/'
 
-        os.system('7z x -aoa -o' + tmp + ' ' + archive_path)
-        os.system('rm ' + new_scripts_dir + 'LICENSE > /dev/null 2>&1')
+        subprocess.call(['7z', 'x', '-aoa', '-o' + tmp, archive_path])
+        os.remove(new_scripts_dir + 'LICENSE')
 
         git_sctipts = os.listdir(new_scripts_dir)
         existing_scripts_0 = os.listdir(scripts_dir_0)
@@ -141,13 +141,13 @@ class GUI:
         for script in git_sctipts:
             if script not in existing_scripts:
                 new_scripts.append(script)
-                os.system('mv ' + new_scripts_dir + script + ' ' + scripts_dir_0)
+                os.rename(new_scripts_dir + script, scripts_dir_0)
 
         if self.overwrite == True:
-            os.system('cp -r ' + new_scripts_dir + '* ' + scripts_dir_0)
+            os.system('cp -r "' + new_scripts_dir + '"* "' + scripts_dir_0 + '"')
 
-        os.system('rm -r ' + new_scripts_dir)
-        os.system('rm ' + archive_path + ' > /dev/null 2>&1')
+        shutil.rmtree(new_scripts_dir)
+        os.remove(archive_path)
 
         new_scripts = sorted(new_scripts)
         n_new_scripts = len(new_scripts)
