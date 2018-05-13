@@ -366,7 +366,7 @@ class GUI:
         self.goglib_new_games_list = []
         self.goglib_updated_games_list = []
 
-        command = ['lgogdownloader', '--exclude', '1,2,4,8,16,32','--list']
+        command = ['lgogdownloader', '--exclude', 'all','--list']
 
         pid, stdin, stdout, stderr = GLib.spawn_async(
             command,
@@ -2977,7 +2977,7 @@ class GUI:
 
         self.window_update_message.show_all()
 
-        command = ['lgogdownloader', '--exclude', '1,2,4,8,16,32','--list-details']
+        command = ['lgogdownloader', '--exclude', 'all','--list-details']
 
         pid, stdin, stdout, stderr = GLib.spawn_async(command,
                 flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
@@ -4881,13 +4881,13 @@ class GUI:
                 self.preferred_language = self.lang_index[self.goglib_lang]
 
                 if self.goglib_download_extras == False:
-                    command = ['lgogdownloader', '--download', '--ignore-dlc-count', '--platform', '4,1', \
-                                '--language', self.preferred_language + ',1,', '--game', game_name + '$', \
-                                '--directory=' + self.goglib_download_dir + '/', '--exclude', '2,4,16']
+                    command = ['lgogdownloader', '--download', '--ignore-dlc-count', '--platform', 'linux,windows', \
+                                '--language', self.preferred_language + ',en,', '--game', game_name + '$', \
+                                '--directory=' + self.goglib_download_dir + '/', '--exclude', 'extras,patches,covers']
                 elif self.goglib_download_extras == True:
-                    command = ['lgogdownloader', '--download', '--ignore-dlc-count', '--platform', '4,1', \
-                                '--language', self.preferred_language + ',1,', '--game', game_name + '$', \
-                                '--directory=' + self.goglib_download_dir + '/', '--exclude', '4,16']
+                    command = ['lgogdownloader', '--download', '--ignore-dlc-count', '--platform', 'linux,windows', \
+                                '--language', self.preferred_language + ',en,', '--game', game_name + '$', \
+                                '--directory=' + self.goglib_download_dir + '/', '--exclude', 'patches,covers']
 
                 goglib_name_to_pid_download_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
                         flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,

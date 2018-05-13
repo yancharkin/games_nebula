@@ -9,7 +9,7 @@ def b2str(b):
 def goglib_get_games_list():
 
     proc = subprocess.Popen(['lgogdownloader', '--exclude', \
-    '1,2,4,8,16,32', '--list-details'],stdout=subprocess.PIPE)
+    'all', '--list-details'],stdout=subprocess.PIPE)
     games_detailed_list = proc.stdout.readlines()
     stdoutdata, stderrdata = proc.communicate()
 
