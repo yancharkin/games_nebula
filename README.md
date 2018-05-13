@@ -47,7 +47,7 @@ Unofficial Linux client for GOG.
 </details>
 
 ## Installation
-For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/packages/games_nebula/) (thanks to [mwohlert](https://github.com/mwohlert)). For other distros there is no "proper" packages yet. But it's not that hard to install.
+
 ### 1. Install dependencies
 
 - **Mandatory dependencies** - with this dependencies installed you can install and run native games only.
@@ -71,6 +71,8 @@ Python 3
     sudo apt install gksu xterm curl tar p7zip-full cabextract unshield ffmpeg megatools wine winetricks dosbox scummvm
     
 #### Archlinux
+
+'Games Nebula' available in [AUR](https://aur.archlinux.org/packages/games_nebula/), but that's unofficial package maintained by [mwohlert](https://github.com/mwohlert), so I can't guarantee that it's up-to-date.
 
 *Mandatory dependencies:*
 
