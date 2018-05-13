@@ -59,11 +59,11 @@ For **Archlinux** 'Games Nebula' available in [AUR](https://aur.archlinux.org/pa
 
 Python 2
 
-    sudo apt install python-gi python-bs4 python-lxml python-requests python-pil python-dateutil lgogdownloader innoextract x11-xserver-utils
+    sudo apt install python-gi python-bs4 python-lxml python-requests python-tz python-pil python-dateutil lgogdownloader innoextract x11-xserver-utils
 
 Python 3
 
-    sudo apt install python3-gi python3-bs4 python3-lxml python3-requests  python3-pil python3-dateutil lgogdownloader innoextract x11-xserver-utils
+    sudo apt install python3-gi python3-bs4 python3-lxml python3-requests python3-tz python3-pil python3-dateutil lgogdownloader innoextract x11-xserver-utils
 
 
 *Optional dependencies:*
@@ -76,11 +76,11 @@ Python 3
 
 Python 2
 
-    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow python2-requests python2-dateutil webkit2gtk innoextract xorg-xrandr
+    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow python2-requests python2-pytz python2-dateutil webkit2gtk innoextract xorg-xrandr
 
 Python 3
 
-    sudo pacman -S python-gobject python-beautifulsoup4 python-lxml python-pillow python-requests python-dateutil webkit2gtk innoextract xorg-xrandr
+    sudo pacman -S python-gobject python-beautifulsoup4 python-lxml python-pillow python-requests python3-pytz python-dateutil webkit2gtk innoextract xorg-xrandr
 
 AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)
 
@@ -96,11 +96,11 @@ AUR: [megatools](https://aur.archlinux.org/packages/megatools/)
 
 Python 2
 
-    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 python-requests python-dateutil innoextract xorg-x11-server-utils
+    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 python-requests pytz python-dateutil innoextract xorg-x11-server-utils
 
 Python 3
 
-    sudo dnf install python3 python3-gobject python3-pillow python3-beautifulsoup4 python3-requests python3-dateutil innoextract xorg-x11-server-utils
+    sudo dnf install python3 python3-gobject python3-pillow python3-beautifulsoup4 python3-requests pytz python3-dateutil innoextract xorg-x11-server-utils
 
 Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/lgogdownloader/)
 
