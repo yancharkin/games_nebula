@@ -4588,8 +4588,7 @@ class GUI:
 
             if self.goglib_keep_installers == False:
                 game_download_dir = self.goglib_download_dir + '/' + game_name
-                if os.path.exists(game_download_dir):
-                    shutil.rmtree(game_download_dir)
+                if os.path.exists(game_download_dir): shutil.rmtree(game_download_dir)
 
             for i in range(self.goglib_number_of_games_to_show):
                 if goglib_setup_buttons_list[i].get_name() == game_name:
@@ -4604,12 +4603,10 @@ class GUI:
 
             if self.goglib_keep_installers == False:
                 game_download_dir = self.goglib_download_dir + '/' + game_name
-                if os.path.exists(game_download_dir):
-                    shutil.rmtree(game_download_dir)
+                if os.path.exists(game_download_dir): shutil.rmtree(game_download_dir)
 
             game_install_dir = self.goglib_install_dir + '/' + game_name
-            if os.path.exists(game_install_dir):
-                shutil.rmtree(game_install_dir)
+            if os.path.exists(game_install_dir): shutil.rmtree(game_install_dir)
 
             for i in range(self.goglib_number_of_games_to_show):
                 if goglib_setup_buttons_list[i].get_name() == game_name:
@@ -4621,12 +4618,10 @@ class GUI:
 
             if self.goglib_keep_installers == False:
                 game_download_dir = self.goglib_download_dir + '/' + game_name
-                if os.path.exists(game_download_dir):
-                    shutil.rmtree(game_download_dir)
+                if os.path.exists(game_download_dir): shutil.rmtree(game_download_dir)
 
             game_install_dir = self.goglib_install_dir + '/' + game_name
-            if os.path.exists(game_install_dir):
-                shutil.rmtree(game_install_dir)
+            if os.path.exists(game_install_dir): shutil.rmtree(game_install_dir)
 
             for i in range(self.goglib_number_of_games_to_show):
                 if goglib_setup_buttons_list[i].get_name() == game_name:
@@ -4653,12 +4648,10 @@ class GUI:
             if self.mylib_keep_installers == False:
 
                 game_download_dir = self.mylib_download_dir + '/' + game_name
-                if os.path.exists(game_download_dir):
-                    shutil.rmtree(game_download_dir)
+                if os.path.exists(game_download_dir): shutil.rmtree(game_download_dir)
 
             game_install_dir = self.mylib_install_dir + '/' + game_name
-            if os.path.exists(game_install_dir):
-                shutil.rmtree(game_install_dir)
+            if os.path.exists(game_install_dir): shutil.rmtree(game_install_dir)
 
             for i in range(self.mylib_number_of_games_to_show):
                 if mylib_setup_buttons_list[i].get_name() == game_name:
@@ -4739,6 +4732,7 @@ class GUI:
     def mylib_setup_game(self, button):
 
         game_name = button.get_name()
+        self.set_environ(game_name, self.mylib_download_dir, self.mylib_install_dir)
 
         if not os.path.exists(self.mylib_install_dir + '/' + game_name + '/start.sh'):
 
@@ -4767,15 +4761,15 @@ class GUI:
             if remove_game:
 
                 game_install_dir = self.mylib_install_dir + '/' + game_name
-                shutil.rmtree(game_install_dir)
+                if os.path.exists(game_install_dir): shutil.rmtree(game_install_dir)
 
                 dosbox_game_path = os.getenv('HOME') + '/.games_nebula/games/.dosbox/' + game_name
-                shutil.rmtree(dosbox_game_path)
+                if os.path.islink(dosbox_game_path): os.remove(dosbox_game_path)
                 wine_game_path = os.getenv('HOME') + '/.games_nebula/wine_prefix/drive_c/Games/' + game_name
-                shutil.rmtree(wine_game_path)
+                if os.path.islink(wine_game_path): os.remove(wine_game_path)
 
                 if os.path.exists(data_dir + '/scripts/mylib/' + game_name + '/uninstall'):
-                    self.set_environ(game_name, self.mylib_download_dir, self.mylib_install_dir)
+                    #~ self.set_environ(game_name, self.mylib_download_dir, self.mylib_install_dir)
                     uninstall_command = (data_dir + '/scripts/mylib/' + game_name + '/uninstall')
                     subprocess.call([uninstall_command])
 
@@ -4790,6 +4784,7 @@ class GUI:
     def goglib_setup_game(self, button):
 
         game_name = button.get_name()
+        self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
 
         if not os.path.exists(self.goglib_install_dir + '/' + game_name + '/start.sh'):
 
@@ -4818,17 +4813,15 @@ class GUI:
             if remove_game:
 
                 game_install_dir = self.goglib_install_dir + '/' + game_name
-                shutil.rmtree(game_install_dir)
+                if os.path.exists(game_install_dir): shutil.rmtree(game_install_dir)
 
                 dosbox_game_path = os.getenv('HOME') + '/.games_nebula/games/.dosbox/' + game_name
-                shutil.rmtree(dosbox_game_path)
+                if os.path.islink(dosbox_game_path): os.remove(dosbox_game_path)
                 wine_game_path = os.getenv('HOME') + '/.games_nebula/wine_prefix/drive_c/Games/' + game_name
-                shutil.rmtree(wine_game_path)
+                if os.path.islink(wine_game_path): os.remove(wine_game_path)
 
                 if os.path.exists(data_dir + '/scripts/goglib/' + game_name + '/uninstall'):
-
-                    self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
-
+                    #~ self.set_environ(game_name, self.goglib_download_dir, self.goglib_install_dir)
                     uninstall_command = (data_dir + '/scripts/goglib/' + game_name + '/uninstall')
                     subprocess.call([uninstall_command])
 
@@ -4997,9 +4990,13 @@ class GUI:
                         '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
 
             elif self.installer_type == 'exe':
-                command = ['innoextract', '--gog', \
+                #~ command = ['innoextract', '--gog', \
+                        #~ self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
+                        #~ '-d', self.goglib_install_dir + '/' + game_name + '/game']
+                command = [sys.executable,
+                        nebula_dir + '/extractor.py', \
                         self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
-                        '-d', self.goglib_install_dir + '/' + game_name + '/game']
+                        self.goglib_install_dir + '/' + game_name + '/game']
 
         elif number_of_installers == 0:
             self.goglib_install_game(goglib_installation_queue[0])
@@ -5310,8 +5307,19 @@ class GUI:
                                 ini_file = file_name
                     if ini_file != None:
                         ini_file_path = game_data_dir + '__support/app/' + ini_file
+                    else:
 
-                if ini_file != None:
+                        if os.path.exists(game_data_dir + '__support'):
+
+                            proc = subprocess.Popen(
+                                    ['ls "' + game_data_dir + '__support/"*.ini'],
+                                    shell=True,
+                                    stdout=subprocess.PIPE
+                            )
+
+                            ini_file_path = proc.stdout.readline().decode('utf-8').strip()
+
+                if ini_file_path != None:
 
                     scummvmrc_path = game_dir + '/scummvmrc'
 
@@ -5378,7 +5386,7 @@ class GUI:
                 )
 
                 game_install_dir = self.goglib_install_dir + '/' + game_name
-                shutil.rmtree(game_install_dir)
+                if os.path.exists(game_install_dir): shutil.rmtree(game_install_dir)
                 command = ['echo', 'Impossible to install']
 
             else:
@@ -5549,7 +5557,7 @@ class GUI:
 
                     if self.goglib_keep_installers == False:
                         game_download_dir = self.goglib_download_dir + '/' + game_name
-                        shutil.rmtree(game_download_dir)
+                        if os.path.exists(game_download_dir): shutil.rmtree(game_download_dir)
 
                     self.update_queue_banners()
 
@@ -5594,7 +5602,7 @@ class GUI:
 
                 if self.goglib_keep_installers == False:
                     game_download_dir = self.goglib_download_dir + '/' + game_name
-                    shutil.rmtree(game_download_dir)
+                    if os.path.exists(game_download_dir): shutil.rmtree(game_download_dir)
 
                 self.update_queue_banners()
 
@@ -5620,7 +5628,7 @@ class GUI:
                 if self.mylib_keep_installers == False:
                     if os.path.exists(self.mylib_download_dir + '/' + game_name):
                         game_download_dir = self.mylib_download_dir + '/' + game_name
-                        shutil.rmtree(game_download_dir)
+                        if os.path.exists(game_download_dir): shutil.rmtree(game_download_dir)
 
                 self.update_queue_banners()
 
@@ -6265,12 +6273,10 @@ class GUI:
         if change_user:
 
             game_list_file = os.getenv('HOME') + '/.games_nebula/config/games_list'
-            if os.path.exists(game_list_file):
-                os.remove(game_list_file)
+            if os.path.exists(game_list_file): os.remove(game_list_file)
 
             lgogdownloader_dir = os.getenv('HOME') + '/.config/lgogdownloader'
-            if os.path.exists(lgogdownloader_dir):
-                shutil.rmtree(lgogdownloader_dir)
+            if os.path.exists(lgogdownloader_dir): shutil.rmtree(lgogdownloader_dir)
 
             self.config_save()
 
