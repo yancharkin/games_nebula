@@ -7,8 +7,12 @@ nebula_dir = os.getenv('NEBULA_DIR')
 
 def get_files_info(dest_dir):
 
-    with open(dest_dir + 'install_script.iss', 'r', encoding='utf-8') as f:
-        raw_data = f.read().splitlines()
+    if sys.version_info[0] == 3:
+        with open(dest_dir + 'install_script.iss', 'r', encoding='utf-8') as f:
+            raw_data = f.read().splitlines()
+    else:
+        with open(dest_dir + 'install_script.iss', 'r') as f:
+            raw_data = f.read().splitlines()
 
     files_dict = {}
     chunks_dict = {}
