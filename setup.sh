@@ -2,10 +2,10 @@
 
 PYGOGAPI='https://github.com/yancharkin/pygogapi/archive/master.zip'
 GOGLIB_SCRIPTS1='https://github.com/yancharkin/games_nebula_goglib_scripts/archive/master.zip'
-GOGLIB_SCRIPTS2='https://bitbucket.org/yancharkin/games_nebula_goglib_scripts/get/aa89e1e9ab7d.zip'
+GOGLIB_SCRIPTS2='https://bitbucket.org/yancharkin/games_nebula_goglib_scripts/get/master.zip'
 GOGLIB_SCRIPTS3='https://gitlab.com/yancharkin/games_nebula_goglib_scripts/-/archive/master/games_nebula_goglib_scripts-master.zip'
 MYLIB_SCRIPTS1='https://github.com/yancharkin/games_nebula_mylib_scripts/archive/master.zip'
-MYLIB_SCRIPTS2='https://bitbucket.org/yancharkin/games_nebula_mylib_scripts/get/b3a46d8ffa65.zip'
+MYLIB_SCRIPTS2='https://bitbucket.org/yancharkin/games_nebula_mylib_scripts/get/master.zip'
 MYLIB_SCRIPTS3='https://gitlab.com/yancharkin/games_nebula_mylib_scripts/-/archive/master/games_nebula_mylib_scripts-master.zip'
 GOGLIB_IMAGES1='https://github.com/yancharkin/games_nebula_goglib_images/archive/master.zip'
 MYLIB_IMAGES1='https://github.com/yancharkin/games_nebula_mylib_images/archive/master.zip'
