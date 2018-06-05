@@ -1,6 +1,9 @@
 # Games Nebula
 Unofficial Linux client for GOG.
 
+**Main repository (for now): [Github](https://github.com/yancharkin/games_nebula) - report issues and make pull requests here**
+**Mirrors: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula/src/master/), [Gitlab](https://gitlab.com/yancharkin/games_nebula)**
+
 ## Features
 - Listing, downloading and installing games from your gog library
 - Possibility to create you own (non-gog) library by writing simple scripts
