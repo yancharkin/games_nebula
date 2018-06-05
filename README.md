@@ -29,19 +29,19 @@ Unofficial Linux client for GOG.
 
 **Main window**
 
-![main window screenshot](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/main_window.jpg  "Main window")
+![main window screenshot](images/screenshots/main_window.jpg  "Main window")
 
 **DOSBox Configuration Utility**
 
-![dosbox utility screenshot](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/dosbox_utility.jpg  "DOSBox Configuration Utility")
+![dosbox utility screenshot](images/screenshots/dosbox_utility.jpg  "DOSBox Configuration Utility")
 
 **Wine, DOSBox and ScummVM launchers**
 
-![launchers screenshot](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/launchers.png  "Launchers")
+![launchers screenshot](images/screenshots/launchers.png  "Launchers")
 
 **Configuration utilities for 'Arcanum: Of Steamworks and Magick Obscura' and 'Planescape: Torment'**
 
-![conf_utilities](https://raw.githubusercontent.com/yancharkin/games_nebula/master/images/screenshots/conf_utilities.png  "Configuration Utilities")
+![conf_utilities](images/screenshots/conf_utilities.png  "Configuration Utilities")
 </p>
 </details>
 
