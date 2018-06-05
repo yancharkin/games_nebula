@@ -1,4 +1,58 @@
 ### Common #####################################################################
+question_y_n () {
+
+QUESTION="$1"
+COMMAND1="$2"
+COMMAND2="$3" # ":" can be used to pass "true" (empty command)
+
+echo "$QUESTION [y/n]"
+read ANSWER
+
+if [ "$ANSWER" == "y" ] || [ "$ANSWER" == "Y" ] || [ "$ANSWER" == "n" ] || [ "$ANSWER" == "N" ]; then
+    INCORRECT_ANSWER=0
+    if [ "$ANSWER" == "y" ] || [ "$ANSWER" == "Y" ]; then
+        ANSWER="y"
+    else
+        ANSWER="n"
+    fi
+else
+    INCORRECT_ANSWER=1
+fi
+
+while  [ "$INCORRECT_ANSWER" == 1 ]; do
+
+    echo "Incorrect answer"
+
+    echo "$QUESTION [y/n]"
+    read ANSWER
+
+    if [ "$ANSWER" == "y" ] || [ "$ANSWER" == "Y" ] || [ "$ANSWER" == "n" ] || [ "$ANSWER" == "N" ]; then
+        INCORRECT_ANSWER=0
+        if [ "$ANSWER" == "y" ] || [ "$ANSWER" == "Y" ]; then
+            ANSWER="y"
+        else
+            ANSWER="n"
+        fi
+    else
+        INCORRECT_ANSWER=1
+    fi
+
+done
+
+if [ "$ANSWER" == "y" ]; then
+    eval "$COMMAND1"
+else
+    eval "$COMMAND2"
+fi
+
+}
+
+error_message () {
+    MESSAGE="$1"
+    echo "$MESSAGE"
+    exit 1
+}
+
 proc_timer () {
 pid="$1"
 msg="$2"
