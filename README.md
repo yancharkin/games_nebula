@@ -140,5 +140,5 @@ Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/l
 ## Links
 - Scripts repository for gog games: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula_goglib_scripts/src), [Github](https://github.com/yancharkin/games_nebula_goglib_scripts), [Gitlab](https://gitlab.com/yancharkin/games_nebula_goglib_scripts)
 - Scripts repository for non-gog games: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula_mylib_scripts/src/master/), [Github](https://github.com/yancharkin/games_nebula_mylib_scripts), [Gitlab](https://gitlab.com/yancharkin/games_nebula_mylib_scripts)
-- [pygogapi](https://github.com/Yepoleb/pygogapi) by @Yepoleb
+- [pygogapi](https://github.com/Yepoleb/pygogapi) by [Yepoleb](https://github.com/Yepoleb)
 - My fork of [pygogapi](https://github.com/yancharkin/pygogapi) - works both in python 2 and 3 (at least partially)
