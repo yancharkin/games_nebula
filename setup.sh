@@ -27,30 +27,41 @@ extract_all () {
         7z x -aoa -o"$DIR/tmp/pygogapi" "$DIR/tmp/pygogapi.zip"
         if [ ! -d "$DIR/gogapi" ]; then
             mv "$DIR/tmp/pygogapi/pygogapi-master/gogapi" "$DIR/"
+        else
+            cp -r "$DIR/tmp/pygogapi/pygogapi-master/gogapi/"* "$DIR/gogapi/"
         fi
     fi
     if [ -f "$DIR/tmp/goglib_scripts.zip" ]; then
         7z x -aoa -o"$DIR/tmp/goglib_scripts" "$DIR/tmp/goglib_scripts.zip"
         if [ ! -d "$DIR/scripts/goglib" ]; then
-            mv "$DIR/tmp/goglib_scripts/games_nebula_goglib_scripts-master" "$DIR/scripts/goglib"
+            mv "$DIR/tmp/goglib_scripts/"* "$DIR/scripts/goglib"
+        else
+            cp -r "$DIR/tmp/goglib_scripts/"*/* "$DIR/scripts/goglib/"
         fi
     fi
     if [ -f "$DIR/tmp/mylib_scripts.zip" ]; then
         7z x -aoa -o"$DIR/tmp/mylib_scripts" "$DIR/tmp/mylib_scripts.zip"
         if [ ! -d "$DIR/scripts/mylib" ]; then
-            mv "$DIR/tmp/mylib_scripts/games_nebula_mylib_scripts-master" "$DIR/scripts/mylib"
+            mv "$DIR/tmp/mylib_scripts/"*/free "$DIR/scripts/mylib"
+        else
+            cp -r "$DIR/tmp/mylib_scripts/"*/free/* "$DIR/scripts/mylib/"
         fi
+        cp -r "$DIR/tmp/mylib_scripts/"*/autosetup.ini "$DIR/scripts/mylib/"
     fi
     if [ -f "$DIR/tmp/goglib_images.zip" ]; then
         7z x -aoa -o"$DIR/tmp/goglib_images" "$DIR/tmp/goglib_images.zip"
         if [ ! -d "$DIR/images/goglib" ]; then
-            mv "$DIR/tmp/goglib_images/games_nebula_goglib_images-master" "$DIR/images/goglib"
+            mv "$DIR/tmp/goglib_images/"* "$DIR/images/goglib"
+        else
+            cp -r "$DIR/tmp/goglib_images/"*/* "$DIR/images/goglib/"
         fi
     fi
     if [ -f "$DIR/tmp/mylib_images.zip" ]; then
         7z x -aoa -o"$DIR/tmp/mylib_images" "$DIR/tmp/mylib_images.zip"
         if [ ! -d "$DIR/images/mylib" ]; then
-            mv "$DIR/tmp/mylib_images/games_nebula_mylib_images-master" "$DIR/images/mylib"
+            mv "$DIR/tmp/mylib_images/"* "$DIR/images/mylib"
+        else
+            cp -r "$DIR/tmp/mylib_images/"*/* "$DIR/images/mylib/"
         fi
     fi
     if [ -f "$DIR/tmp/innounp.rar" ]; then
@@ -58,7 +69,7 @@ extract_all () {
         mkdir -p "$DIR/bin"
         mv "$DIR/tmp/innounp/innounp.exe" "$DIR/bin/"
     fi
-    rm -r "$DIR/tmp"
+    #~ rm -r "$DIR/tmp"
 }
 
 create_launcher () {
