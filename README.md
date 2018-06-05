@@ -1,7 +1,7 @@
 # Games Nebula
 Unofficial Linux client for GOG.
 
-**Main repository (for now): [Github](https://github.com/yancharkin/games_nebula) - report issues and make pull requests here**
+**Main repository (for now): [Github](https://github.com/yancharkin/games_nebula) - report issues and make pull requests here**  
 **Mirrors: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula/src/master/), [Gitlab](https://gitlab.com/yancharkin/games_nebula)**
 
 ## Features
