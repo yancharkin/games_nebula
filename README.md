@@ -1,17 +1,6 @@
 # Games Nebula
 Unofficial Linux client for GOG.
 
-- **[Features](#features)**  
-- **[Screenshots](#screenshots)**  
-- **[Installation](#installation)**  
-   * [Debian/Ubuntu](#debianubuntu)  
-   * [Archlinux](#archlinux)  
-   * [Fedora](#fedora)  
-- **[Shortcuts](#shortcuts)**  
-- **[Roadmap](#roadmap)**  
-- **[Links](#links)**  
-
-
 ## Features
 - Listing, downloading and installing games from your gog library
 - Possibility to create you own (non-gog) library by writing simple scripts
@@ -23,9 +12,6 @@ Unofficial Linux client for GOG.
 ...and some other stuff.
 
 ## Screenshots
-<details>
-<summary>Click to show/hide screenshots</summary>
-<p>
 
 **Main window**
 
@@ -42,8 +28,6 @@ Unofficial Linux client for GOG.
 **Configuration utilities for 'Arcanum: Of Steamworks and Magick Obscura' and 'Planescape: Torment'**
 
 ![conf_utilities](images/screenshots/conf_utilities.png  "Configuration Utilities")
-</p>
-</details>
 
 ## Installation
 
