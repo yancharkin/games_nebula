@@ -69,7 +69,7 @@ extract_all () {
         mkdir -p "$DIR/bin"
         mv "$DIR/tmp/innounp/innounp.exe" "$DIR/bin/"
     fi
-    #~ rm -r "$DIR/tmp"
+    rm -r "$DIR/tmp"
 }
 
 create_launcher () {
