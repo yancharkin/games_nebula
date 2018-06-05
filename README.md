@@ -1,16 +1,15 @@
 # Games Nebula
 Unofficial Linux client for GOG.
 
-- **[Features](https://github.com/yancharkin/games_nebula#features)**  
-- **[Screenshots](https://github.com/yancharkin/games_nebula#screenshots)**  
-- **[Installation](https://github.com/yancharkin/games_nebula#installation)**  
-   * [Debian/Ubuntu](https://github.com/yancharkin/games_nebula#debianubuntu)  
-   * [Archlinux](https://github.com/yancharkin/games_nebula#archlinux)  
-   * [Fedora](https://github.com/yancharkin/games_nebula#fedora)  
-- **[Shortcuts](https://github.com/yancharkin/games_nebula#shortcuts)**  
-- **[Roadmap](https://github.com/yancharkin/games_nebula#roadmap)**  
-- **[Troubleshooting](https://github.com/yancharkin/games_nebula#troubleshooting)**  
-- **[Also...](https://github.com/yancharkin/games_nebula#also)**  
+- **[Features](#features)**  
+- **[Screenshots](#screenshots)**  
+- **[Installation](#installation)**  
+   * [Debian/Ubuntu](#debianubuntu)  
+   * [Archlinux](#archlinux)  
+   * [Fedora](#fedora)  
+- **[Shortcuts](#shortcuts)**  
+- **[Roadmap](#roadmap)**  
+- **[Links](#links)**  
 
 
 ## Features
@@ -59,16 +58,16 @@ Unofficial Linux client for GOG.
 
 Python 2
 
-    sudo apt install python-gi python-bs4 python-lxml python-requests python-tz python-pil python-dateutil lgogdownloader innoextract x11-xserver-utils
+    sudo apt install python-gi python-bs4 python-lxml python-requests python-tz python-pil python-dateutil lgogdownloader innoextract x11-xserver-utils curl p7zip-full
 
 Python 3
 
-    sudo apt install python3-gi python3-bs4 python3-lxml python3-requests python3-tz python3-pil python3-dateutil lgogdownloader innoextract x11-xserver-utils
+    sudo apt install python3-gi python3-bs4 python3-lxml python3-requests python3-tz python3-pil python3-dateutil lgogdownloader innoextract x11-xserver-utils curl p7zip-full
 
 
 *Optional dependencies:*
 
-    sudo apt install gksu xterm curl tar p7zip-full cabextract unshield ffmpeg megatools wine winetricks dosbox scummvm
+    sudo apt install gksu xterm tar cabextract unshield ffmpeg megatools wine winetricks dosbox scummvm
     
 #### Archlinux
 
@@ -78,17 +77,17 @@ Python 3
 
 Python 2
 
-    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow python2-requests python2-pytz python2-dateutil webkit2gtk innoextract xorg-xrandr
+    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow python2-requests python2-pytz python2-dateutil webkit2gtk innoextract xorg-xrandr curl p7zip
 
 Python 3
 
-    sudo pacman -S python-gobject python-beautifulsoup4 python-lxml python-pillow python-requests python3-pytz python-dateutil webkit2gtk innoextract xorg-xrandr
+    sudo pacman -S python-gobject python-beautifulsoup4 python-lxml python-pillow python-requests python3-pytz python-dateutil webkit2gtk innoextract xorg-xrandr curl p7zip
 
 AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)
 
 *Optional dependencies:*
 
-    sudo pacman -S gksu xterm curl tar p7zip cabextract unshield ffmpeg wine winetricks dosbox scummvm
+    sudo pacman -S gksu xterm tar cabextract unshield ffmpeg wine winetricks dosbox scummvm
     
 AUR: [megatools](https://aur.archlinux.org/packages/megatools/)
 
@@ -98,23 +97,23 @@ AUR: [megatools](https://aur.archlinux.org/packages/megatools/)
 
 Python 2
 
-    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 python-requests pytz python-dateutil innoextract xorg-x11-server-utils
+    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 python-requests pytz python-dateutil innoextract xorg-x11-server-utils curl p7zip p7zip-plugins
 
 Python 3
 
-    sudo dnf install python3 python3-gobject python3-pillow python3-beautifulsoup4 python3-requests pytz python3-dateutil innoextract xorg-x11-server-utils
+    sudo dnf install python3 python3-gobject python3-pillow python3-beautifulsoup4 python3-requests pytz python3-dateutil innoextract xorg-x11-server-utils curl p7zip p7zip-plugins
 
 Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/lgogdownloader/)
 
 *Optional dependencies:*
 
-    sudo dnf install xterm curl tar p7zip p7zip-plugins cabextract unshield megatools wine winetricks dosbox scummvm
+    sudo dnf install xterm tar cabextract unshield megatools wine winetricks dosbox scummvm
 
 [RPM Fusion](https://rpmfusion.org/): ffmpeg
 
 ### 2. Install application
-- Download the [latest release](https://github.com/yancharkin/games_nebula/releases) and extract it anywhere you like.
-- Run **setup.sh**. It will create shortcut in main menu.
+- Download and extract, or clone **games_nebula (master branch)** anywhere you like
+- Run **setup.sh** in **terminal**. Script will download additional components (internet connection required) and create launcher
 
 ## Shortcuts
 - **Ctrl + F** - Toggle fullscreen
@@ -130,32 +129,16 @@ Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/l
 - **RMB on game image** - add/edit tags
 
 ## Roadmap
-While poorly coded, 'Games Nebula' has all features that I intended to include in it, so no new features planned.
 
-**Things need to be done:**
-- fix bugs
-- organize code
-- improve code quality
-- ~~port to python3~~
+- *~~port to python3~~*
+- ***organize code & improve code quality (WIP)***
+
 - ***write replacement for lgogdownloader (WIP)***
-- create proper packages
+- *create proper packages*
 
-## Troubleshooting
 
-**Problem.** ‘Games Nebula’ fails to launch / something wrong and I don’t know why  
-**Solution.** Launch 'start.sh' in terminal to get more info
-
-**Problem.** Windows game crashes even though 'Games Nebula' has installation script for it  
-**Solution.** A lot of things can go wrong with Windows games :)
-- Your hardware may be not good enough (even if game works in Windows, it needs more resources when using Wine)
-- If you're using one wine prefix for all games, some dlls may conflict with each other. Usually it's better to use a separate prefix for every game (can be enabled in main settings or in the launcher)
-- Some games won't  work if you are enable virtual desktop
-
-**Problem.** Native Linux game fails to launch  
-**Solution.** Check GOG store page, maybe you need to install additional libraries. Check terminal output.
-
-## Also...
-- [Scripts repository for gog games](https://github.com/yancharkin/games_nebula_goglib_scripts)
-- [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
+## Links
+- Scripts repository for gog games: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula_goglib_scripts/src), [Github](https://github.com/yancharkin/games_nebula_goglib_scripts), [Gitlab](https://gitlab.com/yancharkin/games_nebula_goglib_scripts)
+- Scripts repository for non-gog games: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula_mylib_scripts/src/master/), [Github](https://github.com/yancharkin/games_nebula_mylib_scripts), [Gitlab](https://gitlab.com/yancharkin/games_nebula_mylib_scripts)
 - [pygogapi](https://github.com/Yepoleb/pygogapi) by @Yepoleb
 - My fork of [pygogapi](https://github.com/yancharkin/pygogapi) - works both in python 2 and 3 (at least partially)
