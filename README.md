@@ -100,7 +100,7 @@ Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/l
 
 ### 2. Install application
 - Download and extract, or clone **games_nebula (master branch)** anywhere you like
-- Run **setup.sh** in **terminal**. Script will download additional components (internet connection required) and create launcher
+- Run **setup.sh** in **terminal**. Script will download additional components (internet connection required) and create launcher. **Be careful any changes made to files in the app's directory will be overwritten!** 
 
 ## Shortcuts
 - **Ctrl + F** - Toggle fullscreen
