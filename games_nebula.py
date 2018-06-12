@@ -4871,7 +4871,7 @@ class GUI:
                 if not os.path.exists(self.goglib_download_dir + '/' +  game_name):
                         os.makedirs(self.goglib_download_dir + '/' +  game_name)
 
-                self.preferred_language = self.lang_index[self.goglib_lang]
+                self.preferred_language = self.lang_index[self.goglib_lang.lower()]
 
                 if self.goglib_download_extras == False:
                     command = ['lgogdownloader', '--download', '--ignore-dlc-count', '--platform', 'linux,windows', \
