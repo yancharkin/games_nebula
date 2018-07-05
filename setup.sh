@@ -9,7 +9,7 @@ MYLIB_SCRIPTS2='https://bitbucket.org/yancharkin/games_nebula_mylib_scripts/get/
 MYLIB_SCRIPTS3='https://gitlab.com/yancharkin/games_nebula_mylib_scripts/-/archive/master/games_nebula_mylib_scripts-master.zip'
 GOGLIB_IMAGES1='https://github.com/yancharkin/games_nebula_goglib_images/archive/master.zip'
 MYLIB_IMAGES1='https://github.com/yancharkin/games_nebula_mylib_images/archive/master.zip'
-INNOUNP='https://sourceforge.net/projects/innounp/files/latest/download?source=files'
+INNOEXTRACT='https://github.com/dscharrer/innoextract/releases/download/1.7/innoextract-1.7-linux.tar.xz'
 
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do
@@ -20,6 +20,11 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 source "$DIR/scripts/shell_functions.sh"
+
+ARCH=$(get_arch i)
+if [ "$ARCH" != "amd64" ]; then
+    ARCH="i686"
+fi
 
 # Functions
 extract_all () {
@@ -64,10 +69,11 @@ extract_all () {
             cp -r "$DIR/tmp/mylib_images/"*/* "$DIR/images/mylib/"
         fi
     fi
-    if [ -f "$DIR/tmp/innounp.rar" ]; then
-        7z x -aoa -o"$DIR/tmp/innounp" "$DIR/tmp/innounp.rar"
+    if [ -f "$DIR/tmp/innoextract.tar.xz" ]; then
+        mkdir -p "$DIR/tmp/innoextract"
+        tar xf "$DIR/tmp/innoextract.tar.xz" --strip-components=2 -C "$DIR/tmp/innoextract"
         mkdir -p "$DIR/bin"
-        mv "$DIR/tmp/innounp/innounp.exe" "$DIR/bin/"
+        mv "$DIR/tmp/innoextract/$ARCH/innoextract" "$DIR/bin/"
     fi
     rm -r "$DIR/tmp"
 }
@@ -109,7 +115,7 @@ curl -L -o '$DIR/tmp/goglib_images.zip' -C - '$GOGLIB_IMAGES1' || \
 error_message 'Failed to download goglib_images' && \
 curl -L -o '$DIR/tmp/mylib_images.zip' -C - '$MYLIB_IMAGES1' || \
 error_message 'Failed to download mylib_images' && \
-curl -L -o '$DIR/tmp/innounp.rar' -C - '$INNOUNP' && \
+curl -L -o '$DIR/tmp/innoextract.tar.xz' -C - '$INNOEXTRACT' && \
 extract_all || error_message 'Failed to extract files' && \
 create_launcher && \
 echo 'Done' && \
@@ -137,8 +143,8 @@ question_y_n "Download mylib_images?" \
 "curl -L -o '$DIR/tmp/mylib_images.zip' -C - '$MYLIB_IMAGES1' || \
 error_message 'Failed to download mylib_images'" \
 :
-question_y_n "Download innounp?" \
-"curl -L -o '$DIR/tmp/innounp.rar' -C - '$INNOUNP'" \
+question_y_n "Download innoextract?" \
+"curl -L -o '$DIR/tmp/innoextract.tar.xz' -C - '$INNOEXTRACT'" \
 :
 extract_all || error_message "Failed to extract files" && \
 create_launcher && \
