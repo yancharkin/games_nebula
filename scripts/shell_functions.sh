@@ -1,3 +1,23 @@
+### Colors #####################################################################
+COLOR_RESET='\033[0m'
+COLOR_BLACK='\033[0;30m'
+COLOR_RED='\033[0;31m'
+COLOR_GREEN='\033[0;32m'
+COLOR_ORANGE='\033[0;33m'
+COLOR_BLUE='\033[0;34m'
+COLOR_PURPLE='\033[0;35m'
+COLOR_CYAN='\033[0;36m'
+COLOR_CYAN='\033[0;36m'
+COLOR_LIGHT_GRAY='\033[0;37m'
+COLOR_DARK_GRAY='\033[1;30m'
+COLOR_LIGHT_RED='\033[1;31m'
+COLOR_LIGHT_GREEN='\033[1;32m'
+COLOR_YELLOW='\033[1;33m'
+COLOR_LIGHT_BLUE='\033[1;34m'
+COLOR_LIGHT_PURPLE='\033[1;35m'
+COLOR_LIGHT_CYAN='\033[1;36m'
+COLOR_WHITE='\033[1;37m'
+
 ### Common #####################################################################
 question_y_n () {
 
@@ -5,12 +25,14 @@ QUESTION="$1"
 COMMAND1="$2"
 COMMAND2="$3" # ":" can be used to pass "true" (empty command)
 
-echo "$QUESTION [y/n]"
-read ANSWER
+echo -ne "${COLOR_LIGHT_CYAN}\n$QUESTION [y/n]${COLOR_RESET} > "
+read -n 1 ANSWER
+echo -ne "\n"
 
 if [ "$ANSWER" == "y" ] || [ "$ANSWER" == "Y" ] || [ "$ANSWER" == "n" ] || [ "$ANSWER" == "N" ]; then
     INCORRECT_ANSWER=0
     if [ "$ANSWER" == "y" ] || [ "$ANSWER" == "Y" ]; then
+        echo -ne "\n"
         ANSWER="y"
     else
         ANSWER="n"
@@ -24,7 +46,7 @@ while  [ "$INCORRECT_ANSWER" == 1 ]; do
     echo "Incorrect answer"
 
     echo "$QUESTION [y/n]"
-    read ANSWER
+    read -n 1 ANSWER
 
     if [ "$ANSWER" == "y" ] || [ "$ANSWER" == "Y" ] || [ "$ANSWER" == "n" ] || [ "$ANSWER" == "N" ]; then
         INCORRECT_ANSWER=0
@@ -49,7 +71,7 @@ fi
 
 error_message () {
     MESSAGE="$1"
-    echo "$MESSAGE"
+    echo -ne "${COLOR_LIGHT_RED}\n$MESSAGE${COLOR_RESET}\n"
     exit 1
 }
 
@@ -63,7 +85,7 @@ i=$[$i + 1]
 sec=$[$i / 10]
 echo "$msg - $sec""s"
 done
-echo "Done"
+echo -ne "${COLOR_LIGHT_GREEN}\nDone!${COLOR_RESET}\n"
 }
 
 get_arch () {
