@@ -101,43 +101,46 @@ mkdir -p "$DIR/tmp"
 curl -L -o "$DIR/tmp/pygogapi.zip" "$PYGOGAPI" || \
 error_message "Failed to download pygogapi"
 
+question_y_n "Download innoextract binary? (Useful only if you system innoextract version < 1.7)." \
+"curl -L -o '$DIR/tmp/innoextract.tar.xz' '$INNOEXTRACT'" \
+:
 
 if [ "$INSTALLATION_TYPE" == "auto" ]; then
 
     curl -L -o "$DIR/tmp/goglib_scripts.zip" "$GOGLIB_SCRIPTS1" || \
     curl -L -o "$DIR/tmp/goglib_scripts.zip" "$GOGLIB_SCRIPTS2" || \
     curl -L -o "$DIR/tmp/goglib_scripts.zip" "$GOGLIB_SCRIPTS3" || \
-    error_message "Failed to download goglib_scripts" && \
+    error_message "Failed to download goglib_scripts" &&
     curl -L -o "$DIR/tmp/mylib_scripts.zip" "$MYLIB_SCRIPTS1" || \
     curl -L -o "$DIR/tmp/mylib_scripts.zip" "$MYLIB_SCRIPTS2" || \
     curl -L -o "$DIR/tmp/mylib_scripts.zip" "$MYLIB_SCRIPTS3" || \
-    error_message "Failed to download mylib_scripts" && \
+    error_message "Failed to download mylib_scripts" &&
     curl -L -o "$DIR/tmp/goglib_images.zip" "$GOGLIB_IMAGES1" || \
-    error_message "Failed to download goglib_images" && \
+    error_message "Failed to download goglib_images" &&
     curl -L -o "$DIR/tmp/mylib_images.zip" "$MYLIB_IMAGES1" || \
-    error_message "Failed to download mylib_images" && \
-    extract_all || error_message "Failed to extract files" && \
+    error_message "Failed to download mylib_images" &&
+    extract_all || error_message "Failed to extract files" &&
     echo -ne "${COLOR_LIGHT_GREEN}\nInstallation successful!${COLOR_RESET}\n"
 
 else
 
-    # Install all essential components:
-    question_y_n "Install/reinstall all essential components?" \
+    # Install all components:
+    question_y_n "Install/reinstall all components?" \
     "curl -L -o '$DIR/tmp/goglib_scripts.zip' '$GOGLIB_SCRIPTS1' || \
     curl -L -o '$DIR/tmp/goglib_scripts.zip' '$GOGLIB_SCRIPTS2' || \
     curl -L -o '$DIR/tmp/goglib_scripts.zip' '$GOGLIB_SCRIPTS3' || \
-    error_message 'Failed to download goglib_scripts' && \
+    error_message 'Failed to download goglib_scripts' &&
     curl -L -o '$DIR/tmp/mylib_scripts.zip' '$MYLIB_SCRIPTS1' || \
     curl -L -o '$DIR/tmp/mylib_scripts.zip' '$MYLIB_SCRIPTS2' || \
     curl -L -o '$DIR/tmp/mylib_scripts.zip' '$MYLIB_SCRIPTS3' || \
-    error_message 'Failed to download mylib_scripts' && \
+    error_message 'Failed to download mylib_scripts' &&
     curl -L -o '$DIR/tmp/goglib_images.zip' '$GOGLIB_IMAGES1' || \
-    error_message 'Failed to download goglib_images' && \
+    error_message 'Failed to download goglib_images' &&
     curl -L -o '$DIR/tmp/mylib_images.zip' '$MYLIB_IMAGES1' || \
-    error_message 'Failed to download mylib_images' && \
-    create_launcher && \
-    extract_all || error_message 'Failed to extract files' && \
-    echo -ne '${COLOR_LIGHT_GREEN}\nInstallation successful!${COLOR_RESET}\n' && \
+    error_message 'Failed to download mylib_images' &&
+    question_y_n 'Create launcher?' create_launcher : &&
+    extract_all || error_message 'Failed to extract files' &&
+    echo -ne '${COLOR_LIGHT_GREEN}\nInstallation successful!${COLOR_RESET}\n' &&
     exit 0" \
     :
 
@@ -162,11 +165,8 @@ else
     "curl -L -o '$DIR/tmp/mylib_images.zip' '$MYLIB_IMAGES1' || \
     error_message 'Failed to download mylib_images'" \
     :
-    question_y_n "Download innoextract binary? (Useful only if you system innoextract version < 1.7)." \
-    "curl -L -o '$DIR/tmp/innoextract.tar.xz' '$INNOEXTRACT'" \
-    :
-    extract_all || error_message "Failed to extract files" && \
-    create_launcher && \
+    extract_all || error_message "Failed to extract files" &&
+    question_y_n "Create launcher?" create_launcher : &&
     echo -ne "${COLOR_LIGHT_GREEN}\nInstallation successful!${COLOR_RESET}\n"
 
 fi
