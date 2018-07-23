@@ -101,10 +101,6 @@ mkdir -p "$DIR/tmp"
 curl -L -o "$DIR/tmp/pygogapi.zip" "$PYGOGAPI" || \
 error_message "Failed to download pygogapi"
 
-question_y_n "Download innoextract binary? (Useful only if you system innoextract version < 1.7)." \
-"curl -L -o '$DIR/tmp/innoextract.tar.xz' '$INNOEXTRACT'" \
-:
-
 if [ "$INSTALLATION_TYPE" == "auto" ]; then
 
     curl -L -o "$DIR/tmp/goglib_scripts.zip" "$GOGLIB_SCRIPTS1" || \
@@ -125,6 +121,9 @@ if [ "$INSTALLATION_TYPE" == "auto" ]; then
 else
 
     # Install all components:
+    question_y_n "Download innoextract binary? (Useful only if you system innoextract version < 1.7)." \
+    "curl -L -o '$DIR/tmp/innoextract.tar.xz' '$INNOEXTRACT'" \
+    :
     question_y_n "Install/reinstall all components?" \
     "curl -L -o '$DIR/tmp/goglib_scripts.zip' '$GOGLIB_SCRIPTS1' || \
     curl -L -o '$DIR/tmp/goglib_scripts.zip' '$GOGLIB_SCRIPTS2' || \
