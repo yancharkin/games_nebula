@@ -4,6 +4,10 @@ Unofficial Linux client for GOG.
 **Main repository (for now): [Github](https://github.com/yancharkin/games_nebula) - report issues and make pull requests here**  
 **Mirrors: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula/src/master/), [Gitlab](https://gitlab.com/yancharkin/games_nebula)**
 
+**Games Nebula is a prototype software, it works OK for me and for at least few dozen people, but that doesn't necessarily mean it will work (without issues) for you. You can face different problems using it, if you're not ready for that, then don't use this software.**
+
+You can find installation instruction below, **it's the only supported way of installation**, I do not provide any distro-specific packages. If you installed the application using another way (AUR for example), try re-install using instruction before reporting a bug.
+
 ## Features
 - Listing, downloading and installing games from your gog library
 - Possibility to create you own (non-gog) library by writing simple scripts
@@ -99,8 +103,13 @@ Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/l
 [RPM Fusion](https://rpmfusion.org/): ffmpeg
 
 ### 2. Install application
-- Download and extract, or clone **games_nebula (master branch)** anywhere you like
-- Run **setup.sh** in **terminal**. Script will download additional components (internet connection required) and create launcher. **Be careful any changes made to files in the app's directory will be overwritten!** 
+- download and extract, or clone **games_nebula (master branch)** anywhere you like
+- run **setup.sh** in **terminal** (use **sudo** if you don't have write permission on a directory where you put GN)
+- script will ask you a number of questions (press "y" or "n" to answer):
+    * you can download innoextract binary (useful **only** if your system innoextract version < "1.7")
+    * if you installing GN for the first time, you probably should answer "y" to the second question to install all components
+    * if you answer "n" to the second question, script will give you option to select which components to install (or update)
+    * finally you'll be asked if you'd like to create launcher
 
 ## Shortcuts
 - **Ctrl + F** - Toggle fullscreen
