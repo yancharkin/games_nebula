@@ -16,7 +16,7 @@ You can find installation instruction below, **it's the only supported way of in
 - Utilities and patches for some games
 - Advanced tagging
 
-...and some other stuff.
+...and more.
 
 ## Screenshots
 
@@ -49,11 +49,11 @@ You can find installation instruction below, **it's the only supported way of in
 
 Python 2
 
-    sudo apt install python-gi python-bs4 python-lxml python-requests python-tz python-pil python-dateutil lgogdownloader innoextract x11-xserver-utils curl p7zip-full
+    sudo apt install python-gi python-bs4 python-lxml python-requests python-tz python-pil python-dateutil gir1.2-webkit2-4.0 lgogdownloader innoextract x11-xserver-utils curl p7zip-full
 
 Python 3
 
-    sudo apt install python3-gi python3-bs4 python3-lxml python3-requests python3-tz python3-pil python3-dateutil lgogdownloader innoextract x11-xserver-utils curl p7zip-full
+    sudo apt install python3-gi python3-bs4 python3-lxml python3-requests python3-tz python3-pil python3-dateutil gir1.2-webkit2-4.0 lgogdownloader innoextract x11-xserver-utils curl p7zip-full
 
 
 *Optional dependencies:*
