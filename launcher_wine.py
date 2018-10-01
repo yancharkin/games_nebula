@@ -1006,23 +1006,24 @@ class GUI:
                 exe = exe_name.split('.exe ')[0] + '.exe'
                 arg = exe_name.split('.exe ')[1]
                 exe_name = exe
+            exe_name = exe_name.replace(" ", "\ ")
 
         if arg != '':
             if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
-            and (self.virtual_desktop_height != ''):
+                    and (self.virtual_desktop_height != ''):
                 self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
                 ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
                 self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
-                ' ' + '"' + exe_name + '" "' + arg + '"'
+                ' ' + exe_name + ' ' + arg
 
             elif self.virtual_desktop == True:
                 self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
                 ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
-                '640x480 ' + '"' + exe_name + '" "' + arg + '"'
+                '640x480 ' + exe_name + ' ' + arg
             else:
-                self.launch_command = '"$WINELOADER" "' + exe_name + '" "' + arg + '"'
+                self.launch_command = '"$WINELOADER" ' + exe_name + ' ' + arg
         else:
             if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
             and (self.virtual_desktop_height != ''):
@@ -1030,15 +1031,15 @@ class GUI:
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
                 ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
                 self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
-                ' ' + '"' + exe_name + '"'
+                ' ' + exe_name
 
             elif self.virtual_desktop == True:
                 self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
                 ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
-                '640x480 ' + '"' + exe_name + '"'
+                '640x480 ' + exe_name
             else:
-                self.launch_command = '"$WINELOADER" "' + exe_name + '"'
+                self.launch_command = '"$WINELOADER" ' + exe_name
 
     def set_mouse_capture_command(self):
         if self.mouse_capture == True:
