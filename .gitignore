@@ -88,6 +88,9 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Vim
+*.swp
+
 # Games Nebula
 start.sh
 create_launcher.sh

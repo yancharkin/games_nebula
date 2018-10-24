@@ -91,6 +91,10 @@ goglib_tags_file = config_dir + '/goglib_tags.ini'
 mylib_tags_file = config_dir + '/mylib_tags.ini'
 app_icon = GdkPixbuf.Pixbuf.new_from_file(nebula_dir + '/images/icon.png')
 
+banner_width = 518
+banner_height = 240
+banner_gap = 60
+
 gettext.bindtextdomain('games_nebula', nebula_dir + '/locale')
 gettext.textdomain('games_nebula')
 _ = gettext.gettext
@@ -793,7 +797,7 @@ class GUI:
             gtk_grid_game.attach(gtk_button_setup, 0, 1, 1, 1)
             gtk_grid_game.attach(gtk_button_launch, 1, 1, 1, 1)
 
-            max_pixbuf_width = self.scale_level * (518 + 60)
+            max_pixbuf_width = self.scale_level * (banner_width + banner_gap)
             number_of_columns = int(self.goglib_box_width / max_pixbuf_width)
             self.grid_autoresize(number_of_columns)
 
@@ -1110,7 +1114,7 @@ class GUI:
             mylib_image_path = paths.get_image_path('mylib', self.mylib_shown_games_list[i])
 
             pixbuf = GdkPixbuf.Pixbuf.new_from_file(mylib_image_path)
-            pixbuf = pixbuf.scale_simple(518 * self.mylib_scale_level, 240 * self.mylib_scale_level, InterpType.BILINEAR)
+            pixbuf = pixbuf.scale_simple(banner_width * self.mylib_scale_level, banner_height * self.mylib_scale_level, InterpType.BILINEAR)
 
             mylib_game_banner = Gtk.Image(
                 name = self.mylib_shown_games_list[i],
@@ -1143,7 +1147,7 @@ class GUI:
             mylib_game_grid.attach(mylib_setup_button, 0, 1, 1, 1)
             mylib_game_grid.attach(mylib_launch_button, 1, 1, 1, 1)
 
-            max_pixbuf_width = self.mylib_scale_level * (518 + 60)
+            max_pixbuf_width = self.mylib_scale_level * (banner_width + banner_gap)
             number_of_columns = int(self.mylib_box_width / max_pixbuf_width)
             self.mylib_grid_autoresize(number_of_columns)
 
@@ -2557,9 +2561,9 @@ class GUI:
             margin_left = 20,
             )
 
-        pixbuf_width = (self.mylib_box_width -  60) / 5
-        scale_level = float(pixbuf_width)/518
-        pixbuf_height = 240 * scale_level
+        pixbuf_width = (self.mylib_box_width -  banner_gap) / 5
+        scale_level = float(pixbuf_width)/banner_width
+        pixbuf_height = banner_height * scale_level
 
         for i in range(self.mylib_number_of_games_to_show):
             if self.mylib_shown_games_list[i] == game_name:
@@ -2643,9 +2647,9 @@ class GUI:
             margin_left = 20,
             )
 
-        pixbuf_width = (self.goglib_box_width -  60) / 5
-        scale_level = float(pixbuf_width)/518
-        pixbuf_height = 240 * scale_level
+        pixbuf_width = (self.goglib_box_width -  banner_gap) / 5
+        scale_level = float(pixbuf_width)/banner_width
+        pixbuf_height = banner_height * scale_level
 
         for i in range(self.goglib_number_of_games_to_show):
             if self.goglib_shown_games_list[i] == game_name:
@@ -2808,12 +2812,12 @@ class GUI:
 
     def update_mylib_grid(self):
 
-        max_pixbuf_width = self.mylib_scale_level * (518 + 90)
+        max_pixbuf_width = self.mylib_scale_level * (banner_width + 90)
 
         number_of_columns = int(self.mylib_box_width / max_pixbuf_width)
 
-        new_pixbuf_width = self.mylib_scale_level * 518
-        new_pixbuf_height = self.mylib_scale_level * 240
+        new_pixbuf_width = self.mylib_scale_level * banner_width
+        new_pixbuf_height = self.mylib_scale_level * banner_height
 
         for i in range(0, self.mylib_number_of_games_to_show):
 
@@ -2866,12 +2870,12 @@ class GUI:
 
     def update_goglib_grid(self):
 
-        max_pixbuf_width = self.scale_level * (518 + 90)
+        max_pixbuf_width = self.scale_level * (banner_width + 90)
 
         number_of_columns = int(self.goglib_box_width / max_pixbuf_width)
 
-        new_pixbuf_width = self.scale_level * 518
-        new_pixbuf_height = self.scale_level * 240
+        new_pixbuf_width = self.scale_level * banner_width
+        new_pixbuf_height = self.scale_level * banner_height
 
         for i in range(0, self.goglib_number_of_games_to_show):
 
@@ -3056,12 +3060,12 @@ class GUI:
     def update_queue_banners(self):
 
         if self.goglib_box_width != 1:
-            new_downloads_pixbuf_width = (self.goglib_box_width -  60) / 5
+            new_downloads_pixbuf_width = (self.goglib_box_width -  banner_gap) / 5
         else:
-            new_downloads_pixbuf_width = (self.mylib_box_width -  60) / 5
+            new_downloads_pixbuf_width = (self.mylib_box_width -  banner_gap) / 5
 
-        downloads_pixbuf_scale_level = float(new_downloads_pixbuf_width)/518
-        new_downloads_pixbuf_height = 240 * downloads_pixbuf_scale_level
+        downloads_pixbuf_scale_level = float(new_downloads_pixbuf_width)/banner_width
+        new_downloads_pixbuf_height = banner_height * downloads_pixbuf_scale_level
 
         if queue_game_image_list:
             for i in range(0, len(queue_game_image_list)):

@@ -16,7 +16,8 @@ except:
     from urllib.request import HTTPError as urllib_httperror
 
 def goglib_get_banner(banner_path, *args):
-
+    
+    banner_height = 240
     game_name = os.path.basename(banner_path).split('.jpg')[0]
 
     req = urllib_request('https://www.gog.com/game/' + game_name)
@@ -26,7 +27,7 @@ def goglib_get_banner(banner_path, *args):
         game_page_content = game_page.read()
         soup = BeautifulSoup(game_page_content, 'lxml')
         raw_data = soup.find('picture').find_all('source')
-        banner_url = raw_data[0]['srcset']
+        banner_url = raw_data[0]['srcset'].split('_')[0] + '.jpg'
 
         if banner_url.startswith('http'):
             banner_req = urllib_request(banner_url)
@@ -39,9 +40,9 @@ def goglib_get_banner(banner_path, *args):
         banner_file.close()
 
         pic_src = Image.open(banner_path)
-        scale_lvl = 240/float(pic_src.size[1])
+        scale_lvl = banner_height/float(pic_src.size[1])
         scaled_width = int(float(pic_src.size[0])*scale_lvl)
-        pic = pic_src.resize((scaled_width, 240), PIL.Image.ANTIALIAS)
+        pic = pic_src.resize((scaled_width, banner_height), PIL.Image.ANTIALIAS)
         if len(args) > 0:
             pic = pic.convert('L')
         pic.save(banner_path)
