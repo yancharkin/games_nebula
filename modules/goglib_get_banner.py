@@ -25,8 +25,8 @@ def goglib_get_banner(banner_path, *args):
         game_page = urllib_urlopen(req)
         game_page_content = game_page.read()
         soup = BeautifulSoup(game_page_content, 'lxml')
-        raw_data = soup.findAll(attrs={'name':'og:image'})
-        banner_url = raw_data[0]['content']
+        raw_data = soup.find('picture').find_all('source')
+        banner_url = raw_data[0]['srcset']
 
         if banner_url.startswith('http'):
             banner_req = urllib_request(banner_url)
