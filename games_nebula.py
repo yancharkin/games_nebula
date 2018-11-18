@@ -33,7 +33,7 @@ except:
 from modules import mylib_create_banner, mylib_get_data, mylib_tags_create, mylib_tags_get_all, \
 mylib_tags_get, goglib_check_authorization, goglib_check_connection, goglib_get_data, \
 goglib_get_games_list, goglib_tags_create, goglib_tags_get_all, goglib_tags_get, autosetup, \
-monitors, paths
+monitors, paths, image_to_grayscale
 
 style_provider_1 = Gtk.CssProvider()
 
@@ -2880,9 +2880,14 @@ class GUI:
         for i in range(0, self.goglib_number_of_games_to_show):
 
             if self.goglib_shown_games_list[i] not in self.goglib_available_games:
-                # TODO (?) Do not read images from file everytime, use pixbuf (create at start)
                 goglib_image_path = paths.get_image_path('goglib', self.goglib_shown_games_list[i], 'gray')
-                pixbuf = GdkPixbuf.Pixbuf.new_from_file(goglib_image_path)
+                try:
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(goglib_image_path)
+                except:
+                    image_path0 = paths.get_image_path('goglib', self.goglib_shown_games_list[i], 'normal')
+                    image_path1 = paths.get_image_path('goglib', self.goglib_shown_games_list[i], 'gray')
+                    image_to_grayscale.image_to_grayscale(image_path0, image_path1)
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file(image_path1)
                 goglib_setup_buttons_list[i].set_sensitive(False)
                 goglib_launch_buttons_list[i].set_sensitive(False)
             else:
