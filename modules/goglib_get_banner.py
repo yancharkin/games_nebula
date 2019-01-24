@@ -4,6 +4,8 @@ import lxml
 import PIL
 from PIL import Image
 
+from modules import goglib_recreate_banner
+
 try:
     from urllib2 import Request as urllib_request
     from urllib2 import urlopen as urllib_urlopen
@@ -16,9 +18,10 @@ except:
     from urllib.request import HTTPError as urllib_httperror
 
 def goglib_get_banner(banner_path, *args):
-    
+
     banner_height = 240
     game_name = os.path.basename(banner_path).split('.jpg')[0]
+    print("Getting picture for: '" + game_name + "'")
 
     req = urllib_request('https://www.gog.com/game/' + game_name)
 
@@ -27,6 +30,7 @@ def goglib_get_banner(banner_path, *args):
         game_page_content = game_page.read()
         soup = BeautifulSoup(game_page_content, 'lxml')
         raw_data = soup.find('picture').find_all('source')
+
         banner_url = raw_data[0]['srcset'].split('_')[0] + '.jpg'
 
         if banner_url.startswith('http'):
@@ -52,3 +56,5 @@ def goglib_get_banner(banner_path, *args):
     except urllib_httperror as e:
         print(e.code)
         print(e.read())
+    except:
+        goglib_recreate_banner.goglib_recreate_banner(game_name, banner_path)
