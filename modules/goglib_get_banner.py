@@ -4,7 +4,13 @@ import lxml
 import PIL
 from PIL import Image
 import json
-from fuzzywuzzy import fuzz
+
+try:
+    from fuzzywuzzy import fuzz
+    use_fuzzy = True
+except:
+    print('you may want to use <pip install fuzzywuzzy> for more accurate images')
+    use_fuzzy = False
 
 from modules import goglib_recreate_banner
 
@@ -22,16 +28,21 @@ except:
 SEARCH_API = 'https://embed.gog.com/games/ajax/filtered?mediaType=game&search='
 
 def find_image(query):
+    global use_fuzzy
     product_json = json.loads(urllib_urlopen(SEARCH_API + query.replace('_', ' ')).read().decode('utf-8'))
-    print(product_json)
-    best_match = None
-    closest_ratio = 0
-    for product in product_json['products']:
-        ratio = fuzz.token_set_ratio(query, product['slug'])
-        if ratio > closest_ratio:
-            closest_ratio = ratio
-            best_match = product
-    return 'https:' + best_match['image'] + '.jpg'
+    if use_fuzzy:
+        best_match = None
+        closest_ratio = 0
+        for product in product_json['products']:
+            ratio = fuzz.token_set_ratio(query, product['slug'])
+            if ratio > closest_ratio:
+                closest_ratio = ratio
+                best_match = product
+        return 'https:' + best_match['image'] + '.jpg'
+    else:
+        for product in product_json['products']:
+            if product['slug'] == query:
+                return 'https:' + product['image'] + '.jpg'
 
 def goglib_get_banner(banner_path, *args):
 
