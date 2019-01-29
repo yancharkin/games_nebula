@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import lxml
 import PIL
 from PIL import Image
+import json
+from fuzzywuzzy import fuzz
 
 from modules import goglib_recreate_banner
 
@@ -17,21 +19,27 @@ except:
     from urllib.request import URLError as urllib_urlerror
     from urllib.request import HTTPError as urllib_httperror
 
+SEARCH_API = 'https://embed.gog.com/games/ajax/filtered?mediaType=game&search='
+
+def find_image(query):
+    product_json = json.loads(urllib_urlopen(SEARCH_API + query.replace('_', ' ')).read().decode('utf-8'))
+    print(product_json)
+    best_match = None
+    closest_ratio = 0
+    for product in product_json['products']:
+        ratio = fuzz.token_set_ratio(query, product['slug'])
+        if ratio > closest_ratio:
+            closest_ratio = ratio
+            best_match = product
+    return 'https:' + best_match['image'] + '.jpg'
+
 def goglib_get_banner(banner_path, *args):
 
     banner_height = 240
     game_name = os.path.basename(banner_path).split('.jpg')[0]
-    print("Getting picture for: '" + game_name + "'")
-
-    req = urllib_request('https://www.gog.com/game/' + game_name)
 
     try:
-        game_page = urllib_urlopen(req)
-        game_page_content = game_page.read()
-        soup = BeautifulSoup(game_page_content, 'lxml')
-        raw_data = soup.find('picture').find_all('source')
-
-        banner_url = raw_data[0]['srcset'].split('_')[0] + '.jpg'
+        banner_url = find_image(game_name)
 
         if banner_url.startswith('http'):
             banner_req = urllib_request(banner_url)
