@@ -33,15 +33,8 @@ def get_image_path(lib, game_name, *args):
     elif os.path.exists(path_1):
         return path_1
     else:
-        if lib == 'goglib':
-            # FIX Hack to prevent crash in launchers (trying to create banner for game that not in lib)
-            if len(args) < 2:
-                if color == 'normal':
-                    goglib_get_banner.goglib_get_banner(path_0)
-                if color == 'gray':
-                    goglib_get_banner.goglib_get_banner(path_0, 'gray')
         if lib == 'mylib':
-            # Same as above
+            # FIX Hack to prevent crash in launchers (trying to create banner for game that not in lib)
             if len(args) == 0:
                 mylib_create_banner.mylib_create_banner(game_name)
         return path_0

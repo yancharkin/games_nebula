@@ -1,9 +1,8 @@
 import os
-from bs4 import BeautifulSoup
-import lxml
 import PIL
 from PIL import Image
 
+from gogapi import GogApi, Token
 from modules import goglib_recreate_banner
 
 try:
@@ -17,27 +16,25 @@ except:
     from urllib.request import URLError as urllib_urlerror
     from urllib.request import HTTPError as urllib_httperror
 
-def goglib_get_banner(banner_path, *args):
+def goglib_get_banner(banner_path, unavailable_path, game_id, *args):
 
     banner_height = 240
     game_name = os.path.basename(banner_path).split('.jpg')[0]
     print("Getting picture for: '" + game_name + "'")
 
-    req = urllib_request('https://www.gog.com/game/' + game_name)
-
     try:
-        game_page = urllib_urlopen(req)
-        game_page_content = game_page.read()
-        soup = BeautifulSoup(game_page_content, 'lxml')
-        raw_data = soup.find('picture').find_all('source')
+        token_path = os.getenv('HOME') + '/.config/lgogdownloader/galaxy_tokens.json'
+        token = Token.from_file(token_path)
+        if token.expired():
+            token.refresh()
+            token.save(token_path)
+        api = GogApi(token)
 
-        banner_url = raw_data[0]['srcset'].split('_')[0] + '.jpg'
+        prod = api.product(game_id)
+        prod.update_galaxy(expand=True)
+        banner_url = 'https:' + ''.join(prod.image_logo.split('_glx_logo'))
 
-        if banner_url.startswith('http'):
-            banner_req = urllib_request(banner_url)
-        else:
-            banner_req = urllib_request('https:' + banner_url)
-
+        banner_req = urllib_request(banner_url)
         banner_data = urllib_urlopen(banner_req).read()
         banner_file = open(banner_path, 'wb')
         banner_file.write(banner_data)
@@ -47,9 +44,9 @@ def goglib_get_banner(banner_path, *args):
         scale_lvl = banner_height/float(pic_src.size[1])
         scaled_width = int(float(pic_src.size[0])*scale_lvl)
         pic = pic_src.resize((scaled_width, banner_height), PIL.Image.ANTIALIAS)
-        if len(args) > 0:
-            pic = pic.convert('L')
         pic.save(banner_path)
+        pic = pic.convert('L')
+        pic.save(unavailable_path)
 
     except urllib_urlerror as e:
         print(e.reason)
