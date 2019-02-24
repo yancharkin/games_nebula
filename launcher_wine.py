@@ -299,6 +299,54 @@ class GUI:
         else:
             self.command_after = config_parser.get('Settings', 'command_after')
 
+        if not config_parser.has_option('Settings', 'custom_exe_0_path'):
+            self.custom_exe_0_path = ''
+            config_parser.set('Settings', 'custom_exe_0_path', str(self.custom_exe_0_path))
+        else:
+            self.custom_exe_0_path = config_parser.get('Settings', 'custom_exe_0_path')
+
+        if not config_parser.has_option('Settings', 'custom_exe_0_name'):
+            self.custom_exe_0_name = ''
+            config_parser.set('Settings', 'custom_exe_0_name', str(self.custom_exe_0_name))
+        else:
+            self.custom_exe_0_name = config_parser.get('Settings', 'custom_exe_0_name')
+
+        if not config_parser.has_option('Settings', 'custom_exe_1_path'):
+            self.custom_exe_1_path = ''
+            config_parser.set('Settings', 'custom_exe_1_path', str(self.custom_exe_1_path))
+        else:
+            self.custom_exe_1_path = config_parser.get('Settings', 'custom_exe_1_path')
+
+        if not config_parser.has_option('Settings', 'custom_exe_1_name'):
+            self.custom_exe_1_name = ''
+            config_parser.set('Settings', 'custom_exe_1_name', str(self.custom_exe_1_name))
+        else:
+            self.custom_exe_1_name = config_parser.get('Settings', 'custom_exe_1_name')
+
+        if not config_parser.has_option('Settings', 'custom_exe_2_path'):
+            self.custom_exe_2_path = ''
+            config_parser.set('Settings', 'custom_exe_2_path', str(self.custom_exe_2_path))
+        else:
+            self.custom_exe_2_path = config_parser.get('Settings', 'custom_exe_2_path')
+
+        if not config_parser.has_option('Settings', 'custom_exe_2_name'):
+            self.custom_exe_2_name = ''
+            config_parser.set('Settings', 'custom_exe_2_name', str(self.custom_exe_2_name))
+        else:
+            self.custom_exe_2_name = config_parser.get('Settings', 'custom_exe_2_name')
+
+        if not config_parser.has_option('Settings', 'custom_exe_3_path'):
+            self.custom_exe_3_path = ''
+            config_parser.set('Settings', 'custom_exe_3_path', str(self.custom_exe_3_path))
+        else:
+            self.custom_exe_3_path = config_parser.get('Settings', 'custom_exe_3_path')
+
+        if not config_parser.has_option('Settings', 'custom_exe_3_name'):
+            self.custom_exe_3_name = ''
+            config_parser.set('Settings', 'custom_exe_3_name', str(self.custom_exe_3_name))
+        else:
+            self.custom_exe_3_name = config_parser.get('Settings', 'custom_exe_3_name')
+
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)
         new_config_file.close()
@@ -324,6 +372,14 @@ class GUI:
         config_parser.set('Settings', 'command_before', str(self.command_before))
         config_parser.set('Settings', 'command_after', str(self.command_after))
         config_parser.set('Settings', 'winearch', str(self.winearch))
+        config_parser.set('Settings', 'custom_exe_0_path', str(self.custom_exe_0_path))
+        config_parser.set('Settings', 'custom_exe_0_name', str(self.custom_exe_0_name))
+        config_parser.set('Settings', 'custom_exe_1_path', str(self.custom_exe_1_path))
+        config_parser.set('Settings', 'custom_exe_1_name', str(self.custom_exe_1_name))
+        config_parser.set('Settings', 'custom_exe_2_path', str(self.custom_exe_2_path))
+        config_parser.set('Settings', 'custom_exe_2_name', str(self.custom_exe_2_name))
+        config_parser.set('Settings', 'custom_exe_3_path', str(self.custom_exe_3_path))
+        config_parser.set('Settings', 'custom_exe_3_name', str(self.custom_exe_3_name))
 
         new_config_file = open(config_file, 'w')
         config_parser.write(new_config_file)
@@ -699,6 +755,161 @@ class GUI:
 
         self.button_game.connect('clicked', self.cb_button_game)
 
+###############################################################################
+        frame_custom_exe = Gtk.Frame(
+            label = _("Alternative executables:"),
+            label_xalign = 0.5,
+            #margin_bottom = 10,
+            margin_left = 10,
+            margin_right = 10,
+        )
+
+        box_custom_exes = Gtk.Box(
+            orientation = Gtk.Orientation.VERTICAL,
+            spacing = 5,
+            margin_top = 10,
+            margin_bottom = 10,
+            margin_left = 10,
+            margin_right = 10,
+        )
+
+        self.button_add_custom_exe = Gtk.Button(
+            image = Gtk.Image(stock=Gtk.STOCK_ADD),
+            hexpand = True
+        )
+        self.button_add_custom_exe.connect('clicked', self.cb_button_add_custom_exe)
+
+###############################################################################
+        self.box_custom_exe_0 = Gtk.Box(
+            orientation = Gtk.Orientation.HORIZONTAL,
+            spacing = 5,
+            no_show_all = True
+        )
+        self.button_custom_exe_0_path = Gtk.Button(hexpand=True)
+        if self.custom_exe_0_path == '':
+            self.button_custom_exe_0_path.set_label(_("<Select an executable>"))
+        else:
+            self.button_custom_exe_0_path.set_label(self.custom_exe_0_name)
+        self.button_custom_exe_0_path.connect('clicked', self.cb_button_custom_exe_0_path)
+
+        self.button_custom_exe_0_clear = Gtk.Button(
+            image = Gtk.Image(stock=Gtk.STOCK_CLEAR),
+            tooltip_text = _("Clear"),
+            #label = _("Clear"),
+        )
+        self.button_custom_exe_0_clear.connect('clicked', self.cb_button_custom_exe_0_clear)
+
+        self.button_custom_exe_0_run = Gtk.Button(
+            image = Gtk.Image(stock=Gtk.STOCK_MEDIA_PLAY),
+            tooltip_text = _("Run"),
+            #label = _("Run"),
+        )
+        self.button_custom_exe_0_run.connect('clicked', self.cb_button_custom_exe_0_run)
+
+        self.box_custom_exe_0.add(self.button_custom_exe_0_path)
+        self.box_custom_exe_0.add(self.button_custom_exe_0_clear)
+        self.box_custom_exe_0.add(self.button_custom_exe_0_run)
+
+###############################################################################
+        self.box_custom_exe_1 = Gtk.Box(
+            orientation = Gtk.Orientation.HORIZONTAL,
+            spacing = 5,
+            no_show_all = True
+        )
+        self.button_custom_exe_1_path = Gtk.Button(hexpand=True)
+        if self.custom_exe_1_path == '':
+            self.button_custom_exe_1_path.set_label(_("<Select an executable>"))
+        else:
+            self.button_custom_exe_1_path.set_label(self.custom_exe_1_name)
+        self.button_custom_exe_1_path.connect('clicked', self.cb_button_custom_exe_1_path)
+
+        self.button_custom_exe_1_clear = Gtk.Button(
+            image = Gtk.Image(stock=Gtk.STOCK_CLEAR),
+            tooltip_text = _("Clear"),
+            #label = _("Clear"),
+        )
+        self.button_custom_exe_1_clear.connect('clicked', self.cb_button_custom_exe_1_clear)
+
+        self.button_custom_exe_1_run = Gtk.Button(
+            image = Gtk.Image(stock=Gtk.STOCK_MEDIA_PLAY),
+            tooltip_text = _("Run"),
+            #label = _("Run"),
+        )
+        self.button_custom_exe_1_run.connect('clicked', self.cb_button_custom_exe_1_run)
+
+        self.box_custom_exe_1.add(self.button_custom_exe_1_path)
+        self.box_custom_exe_1.add(self.button_custom_exe_1_clear)
+        self.box_custom_exe_1.add(self.button_custom_exe_1_run)
+###############################################################################
+        self.box_custom_exe_2 = Gtk.Box(
+            orientation = Gtk.Orientation.HORIZONTAL,
+            spacing = 5,
+            no_show_all = True
+        )
+        self.button_custom_exe_2_path = Gtk.Button(hexpand=True)
+        if self.custom_exe_2_path == '':
+            self.button_custom_exe_2_path.set_label(_("<Select an executable>"))
+        else:
+            self.button_custom_exe_2_path.set_label(self.custom_exe_2_name)
+        self.button_custom_exe_2_path.connect('clicked', self.cb_button_custom_exe_2_path)
+
+        self.button_custom_exe_2_clear = Gtk.Button(
+            image = Gtk.Image(stock=Gtk.STOCK_CLEAR),
+            tooltip_text = _("Clear"),
+            #label = _("Clear"),
+        )
+        self.button_custom_exe_2_clear.connect('clicked', self.cb_button_custom_exe_2_clear)
+
+        self.button_custom_exe_2_run = Gtk.Button(
+            image = Gtk.Image(stock=Gtk.STOCK_MEDIA_PLAY),
+            tooltip_text = _("Run"),
+            #label = _("Run"),
+        )
+        self.button_custom_exe_2_run.connect('clicked', self.cb_button_custom_exe_2_run)
+
+        self.box_custom_exe_2.add(self.button_custom_exe_2_path)
+        self.box_custom_exe_2.add(self.button_custom_exe_2_clear)
+        self.box_custom_exe_2.add(self.button_custom_exe_2_run)
+###############################################################################
+        self.box_custom_exe_3 = Gtk.Box(
+            orientation = Gtk.Orientation.HORIZONTAL,
+            spacing = 5,
+            no_show_all = True
+        )
+        self.button_custom_exe_3_path = Gtk.Button(hexpand=True)
+        if self.custom_exe_3_path == '':
+            self.button_custom_exe_3_path.set_label(_("<Select an executable>"))
+        else:
+            self.button_custom_exe_3_path.set_label(self.custom_exe_3_name)
+        self.button_custom_exe_3_path.connect('clicked', self.cb_button_custom_exe_3_path)
+
+        self.button_custom_exe_3_clear = Gtk.Button(
+            image = Gtk.Image(stock=Gtk.STOCK_CLEAR),
+            tooltip_text = _("Clear"),
+            #label = _("Clear"),
+        )
+        self.button_custom_exe_3_clear.connect('clicked', self.cb_button_custom_exe_3_clear)
+
+        self.button_custom_exe_3_run = Gtk.Button(
+            image = Gtk.Image(stock=Gtk.STOCK_MEDIA_PLAY),
+            tooltip_text = _("Run"),
+            #label = _("Run"),
+        )
+        self.button_custom_exe_3_run.connect('clicked', self.cb_button_custom_exe_3_run)
+
+        self.box_custom_exe_3.add(self.button_custom_exe_3_path)
+        self.box_custom_exe_3.add(self.button_custom_exe_3_clear)
+        self.box_custom_exe_3.add(self.button_custom_exe_3_run)
+###############################################################################
+        box_custom_exes.add(self.box_custom_exe_0)
+        box_custom_exes.add(self.box_custom_exe_1)
+        box_custom_exes.add(self.box_custom_exe_2)
+        box_custom_exes.add(self.box_custom_exe_3)
+        box_custom_exes.add(self.button_add_custom_exe)
+        frame_custom_exe.add(box_custom_exes)
+
+###############################################################################
+
         self.checkbutton_show_launcher = Gtk.CheckButton(
             label = _("Always show launcher")
             )
@@ -724,11 +935,13 @@ class GUI:
         self.grid.attach(self.combobox_monitor, 1, 4, 1, 1)
         self.grid.attach(self.button_settings, 0, 5, 2, 1)
         self.grid.attach(self.button_game, 0, 6, 2, 1)
-        self.grid.attach(self.checkbutton_show_launcher, 0, 7, 2, 1)
+        self.grid.attach(frame_custom_exe, 0, 7, 2, 1)
+        self.grid.attach(self.checkbutton_show_launcher, 0, 8, 2, 1)
         self.main_window.add(self.grid)
 
         if self.launcher == True:
             self.main_window.show_all()
+            self.show_custom_exes()
         else:
             self.launch_game()
 
@@ -914,7 +1127,7 @@ class GUI:
         self.config_save()
         self.launch_game()
 
-    def launch_game(self):
+    def launch_game(self, exe_name=None, exe_path=None):
 
         self.switch_monitor('ON')
 
@@ -927,11 +1140,15 @@ class GUI:
         self.set_win_ver_command()
         self.set_mouse_capture_command()
         self.set_additions_command()
-        self.set_launch_command()
 
-        exe_name, exe_path_no_exe = self.get_exe_path()
-        cd_command =    'cd "' + self.install_dir + '/' + self.game_name + \
-                        '/game/' + exe_path_no_exe + '"'
+        if exe_name == None:
+            self.set_launch_command()
+            exe_name, exe_path_no_exe = self.get_exe_path()
+            cd_command =    'cd "' + self.install_dir + '/' + self.game_name + \
+                    '/game/' + exe_path_no_exe + '"'
+        else:
+            self.set_launch_command(exe_name, exe_path)
+            cd_command = 'cd "' + exe_path + '"'
 
         full_command = cd_command + '\n' + \
         self.win_ver_command + '\n' + \
@@ -995,9 +1212,10 @@ class GUI:
             self.win_ver_command = '$WINELOADER reg delete "HKEY_CURRENT_USER\Software\Wine\AppDefaults\\' + \
                 exe_name + '" /f'
 
-    def set_launch_command(self):
+    def set_launch_command(self, exe_name=None, exe_path=None):
 
-        exe_name, exe_path_no_exe = self.get_exe_path()
+        if exe_name == None:
+            exe_name = self.get_exe_path()[0]
 
         arg = ''
         if ' ' in exe_name:
@@ -1016,7 +1234,6 @@ class GUI:
                 ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
                 self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
                 ' ' + exe_name + ' ' + arg
-
             elif self.virtual_desktop == True:
                 self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
@@ -1026,13 +1243,12 @@ class GUI:
                 self.launch_command = '"$WINELOADER" ' + exe_name + ' ' + arg
         else:
             if (self.virtual_desktop == True) and (self.virtual_desktop_width != '') \
-            and (self.virtual_desktop_height != ''):
+                    and (self.virtual_desktop_height != ''):
                 self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
                 ' && "$WINELOADER" explorer /desktop="' + self.game_name + '",' + \
                 self.virtual_desktop_width + 'x' + self.virtual_desktop_height + \
                 ' ' + exe_name
-
             elif self.virtual_desktop == True:
                 self.launch_command = '"$WINELOADER" reg add "HKEY_USERS\S-1-5-21-0-0-0-1000\Control Panel\Colors" /v \
                 "Background" /t REG_SZ /d "0 0 0" /f' + \
@@ -1137,8 +1353,121 @@ class GUI:
     def cb_combobox_winearch(self, combobox):
         self.winearch = combobox.get_active_text()
 
-    def win64_available(self):
+    def cb_button_add_custom_exe(self, button):
+        for box in button.get_parent().get_children()[0:-1]:
+            if not box.is_visible():
+                box.set_visible(True)
+                children = box.get_children()
+                for child in children:
+                    child.show()
+                children[-1].set_sensitive(False)
+                break
 
+        visible = 0
+        for box in button.get_parent().get_children()[0:-1]:
+            if box.is_visible():
+                visible += 1
+        if visible == 4:
+                button.hide()
+
+    def setup_custom_exe(self, button):
+        file_path = ''
+        file_name = ''
+
+        dialog = Gtk.FileChooserDialog(
+            _("Select an executable"),
+            self.main_window,
+            Gtk.FileChooserAction.OPEN,
+            (
+                Gtk.STOCK_CANCEL,
+                Gtk.ResponseType.CANCEL,
+                Gtk.STOCK_OPEN,
+                Gtk.ResponseType.OK
+            )
+        )
+
+        dialog.set_current_folder(self.wineprefix + '/drive_c/Games/' + self.game_name)
+
+        file_filter = Gtk.FileFilter()
+        file_filter.set_name("*.exe")
+        file_filter.add_pattern("*.exe")
+        dialog.add_filter(file_filter)
+
+        response = dialog.run()
+
+        if response == Gtk.ResponseType.OK:
+            file_path = dialog.get_current_folder()
+            file_name = dialog.get_filename().split('/')[-1]
+            if '.exe' in file_name:
+                button.set_label(file_name)
+                button.get_parent().get_children()[-1].set_sensitive(True)
+            dialog.destroy()
+        else:
+            dialog.destroy()
+
+        return file_path, file_name
+
+    def cb_button_custom_exe_0_path(self, button):
+        self.custom_exe_0_path, self.custom_exe_0_name = self.setup_custom_exe(button)
+
+    def cb_button_custom_exe_1_path(self, button):
+        self.custom_exe_1_path, self.custom_exe_1_name = self.setup_custom_exe(button)
+
+    def cb_button_custom_exe_2_path(self, button):
+        self.custom_exe_2_path, self.custom_exe_2_name = self.setup_custom_exe(button)
+
+    def cb_button_custom_exe_3_path(self, button):
+        self.custom_exe_3_path, self.custom_exe_3_name = self.setup_custom_exe(button)
+
+    def cb_button_custom_exe_0_clear(self, button):
+        self.custom_exe_0_name = ''
+        self.custom_exe_0_path = ''
+        self.button_custom_exe_0_path.set_label(_("<Select an executable>"))
+        self.box_custom_exe_0.hide()
+        self.button_add_custom_exe.show()
+        self.config_save()
+
+    def cb_button_custom_exe_1_clear(self, button):
+        self.custom_exe_1_name = ''
+        self.custom_exe_1_path = ''
+        self.button_custom_exe_1_path.set_label(_("<Select an executable>"))
+        self.box_custom_exe_1.hide()
+        self.button_add_custom_exe.show()
+        self.config_save()
+
+    def cb_button_custom_exe_2_clear(self, button):
+        self.custom_exe_2_name = ''
+        self.custom_exe_2_path = ''
+        self.button_custom_exe_2_path.set_label(_("<Select an executable>"))
+        self.box_custom_exe_2.hide()
+        self.button_add_custom_exe.show()
+        self.config_save()
+
+    def cb_button_custom_exe_3_clear(self, button):
+        self.custom_exe_3_name = ''
+        self.custom_exe_3_path = ''
+        self.button_custom_exe_3_path.set_label(_("<Select an executable>"))
+        self.box_custom_exe_3.hide()
+        self.button_add_custom_exe.show()
+        self.config_save()
+
+    def cb_button_custom_exe_0_run(self, button):
+        self.config_save()
+        self.launch_game(self.custom_exe_0_name, self.custom_exe_0_path)
+
+    def cb_button_custom_exe_1_run(self, button):
+        self.config_save()
+        self.launch_game(self.custom_exe_1_name, self.custom_exe_1_path)
+
+    def cb_button_custom_exe_2_run(self, button):
+        self.config_save()
+        self.launch_game(self.custom_exe_2_name, self.custom_exe_2_path)
+
+    def cb_button_custom_exe_3_run(self, button):
+        self.config_save()
+        self.launch_game(self.custom_exe_3_name, self.custom_exe_3_path)
+
+    def win64_available(self):
         wine_bin, \
         wineserver_bin, \
         wine_lib = self.get_wine_bin_path()
@@ -1160,6 +1489,24 @@ class GUI:
             self.combobox_winearch.set_visible(False)
             self.winearch = 'win32'
             return False
+
+    def show_custom_exes(self):
+        if self.custom_exe_0_path != '':
+            self.box_custom_exe_0.set_visible(True)
+            for child in self.box_custom_exe_0.get_children():
+                child.show()
+        if self.custom_exe_1_path != '':
+            self.box_custom_exe_1.set_visible(True)
+            for child in self.box_custom_exe_1.get_children():
+                child.show()
+        if self.custom_exe_2_path != '':
+            self.box_custom_exe_2.set_visible(True)
+            for child in self.box_custom_exe_2.get_children():
+                child.show()
+        if self.custom_exe_3_path != '':
+            self.box_custom_exe_3.set_visible(True)
+            for child in self.box_custom_exe_3.get_children():
+                child.show()
 
 def main():
     import sys
