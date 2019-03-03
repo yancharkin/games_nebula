@@ -16,7 +16,7 @@ def games_info(data_dir):
     with open(games_list, 'r') as in_file:
         for line in in_file:
             if 'gamename: ' in line:
-                game_name = line.split('name: ',1)[1].replace('\n', '')
+                game_name = line.split('gamename: ',1)[1].replace('\n', '')
                 list_names.append(game_name)
             if 'product id: ' in line:
                 game_id = line.split('product id: ',1)[1].replace('\n', '')
@@ -41,7 +41,7 @@ def games_info(data_dir):
         banner_path_0 = data_dir + '/images/goglib/' + list_names[i] + '.jpg'
         banner_path_1 = nebula_dir + '/images/goglib/' + list_names[i] + '.jpg'
         unavailable_path = data_dir + '/images/goglib/unavailable/' + list_names[i] + '.jpg'
-        game_id = name2id[list_names[i]]
+        game_id = name2id.get(list_names[i], None)
 
         if (not os.path.exists(banner_path_0)) and (not os.path.exists(banner_path_1)):
             goglib_get_banner.goglib_get_banner(banner_path_0, unavailable_path, game_id)
