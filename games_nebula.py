@@ -5094,9 +5094,12 @@ class GUI:
 
                 def update_conf_file(file_path):
 
-                    file_to_change = open(file_path, 'r')
-                    file_content = file_to_change.readlines()
-                    file_to_change.close()
+                    if sys.version[0] == '2':
+                        with open(file_path, 'r') as file_to_change:
+                            file_content = file_to_change.readlines()
+                    else:
+                        with open(file_path, 'r', errors='replace') as file_to_change:
+                            file_content = file_to_change.readlines()
 
                     c_mount_command = 'mount c ' + os.getenv('HOME') + \
                     '/.games_nebula/games/.dosbox/' + game_name + '\n'
@@ -5233,23 +5236,32 @@ class GUI:
                 #~ if 'dosbox' in tmp_root_files_lower:
                     #~ game_data_dir = tmp_root_path
 
-                game_data_dir_files = os.listdir(game_data_dir)
-
                 game_conf_path = '"' + game_data_dir + '"/*_single.conf'
+                if not os.path.exists(game_conf_path):
+                    game_data_dir = tmp_root_path
+                    game_conf_path = '"' + game_data_dir + '"__support/app/*_single.conf'
+                game_data_dir_files = os.listdir(game_data_dir)
                 os.system('mv ' + game_conf_path + ' "' + game_dir + '"/dosbox_game.conf')
 
                 if '_settings.conf' in ''.join(game_data_dir_files):
                     settings_conf_exists = True
                     settings_conf_path = '"' + game_data_dir + '"/*_settings.conf'
                     os.system('mv ' + settings_conf_path + ' "' + game_dir + '"/dosbox_settings.conf')
+                elif os.path.exists(tmp_root_path + '__support/app/*_settings.conf'):
+                    settings_conf_exists = True
+                    settings_conf_path = tmp_root_path + '__support/app/*_settings.conf'
+                    os.system('mv ' + settings_conf_path + ' "' + game_dir + '"/dosbox_settings.conf')
                 else:
                     settings_conf_exists = False
 
                 def update_conf_file(file_path):
 
-                    file_to_change = open(file_path, 'r')
-                    file_content = file_to_change.readlines()
-                    file_to_change.close()
+                    if sys.version[0] == '2':
+                        with open(file_path, 'r') as file_to_change:
+                            file_content = file_to_change.readlines()
+                    else:
+                        with open(file_path, 'r', errors='replace') as file_to_change:
+                            file_content = file_to_change.readlines()
 
                     c_mount_command = 'mount c ' + os.getenv('HOME') + \
                     '/.games_nebula/games/.dosbox/' + game_name + '\n'
@@ -5266,15 +5278,15 @@ class GUI:
                             tmp_list = file_content[i].split(' ')[2:]
                             tmp_list[0] = tmp_list[0].strip('"\\.')
                             iso = ' '.join(tmp_list)
-                            if tmp_list[0] not in files_to_move:
-                                iso = iso.lower()
+                            #if tmp_list[0] not in files_to_move:
+                            #    iso = iso.lower()
                             file_content[i] = d_imgmount_command + iso + 'cls\n'
                         elif 'mount d' in file_content[i].lower():
                             tmp_list = file_content[i].split(' ')[2:]
                             tmp_list[0] = tmp_list[0].strip('"\\.')
                             data_dir = ' '.join(tmp_list)
-                            if tmp_list[0] not in files_to_move:
-                                data_dir = data_dir.lower()
+                            #if tmp_list[0] not in files_to_move:
+                            #    data_dir = data_dir.lower()
                             file_content[i] = d_mount_command + data_dir + 'cls\n'
 
                     file_to_change = open(file_path, 'w')
@@ -5382,6 +5394,11 @@ class GUI:
             command = []
             for f in files_to_move:
                 command.extend(('mv', files_path + f, game_dir + '/game'))
+
+            if os.path.exists(game_dir + '/game/app'):
+                os.system('cp -r ' + '"' + game_dir + '/game/app/"* "' + game_dir + '/game/"')
+            if os.path.exists(game_dir + '/game/__support/app'):
+                os.system('cp -r ' + '"' + game_dir + '/game/__support/app/"* "' + game_dir + '/game/"')
 
         else:
 
