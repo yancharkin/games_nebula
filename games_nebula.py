@@ -80,6 +80,7 @@ mylib_installation_queue = []
 
 goglib_name_to_pid_download_dict = {}
 goglib_name_to_pid_unpack_dict = {}
+goglib_name_to_pid_install_dlc_dict = {}
 goglib_name_to_pid_install_dict = {}
 
 mylib_name_to_pid_install_dict = {}
@@ -4975,13 +4976,15 @@ class GUI:
         files_list = sorted(files_list)
 
         self.installer_type = 'none'
+        self.dlcs_count = 0
         number_of_installers = 0
         versions = []
 
         for line in files_list:
-
             if '.sh' in line:
                 self.installer_type = 'sh'
+                dlcs_dir = self.goglib_download_dir + '/' + game_name + '/dlc'
+                self.dlcs_count = len(os.listdir(dlcs_dir))
                 versions.append(line)
                 number_of_installers += 1
             elif '.exe' in line:
@@ -5021,6 +5024,39 @@ class GUI:
         self.source_id_out = io.add_watch(GLib.IO_IN|GLib.IO_HUP,
                                  self.watch_process,
                                  'goglib_unpack_game',
+                                 priority=GLib.PRIORITY_HIGH)
+
+    def goglib_install_dlc(self, game_name):
+
+        self.progressbar_goglib.set_text(_("Installing DLC..."))
+
+        dlcs_dir = self.goglib_download_dir + '/' + game_name + '/dlc'
+        dlcs = os.listdir(dlcs_dir)
+        dlc_name = dlcs[self.dlcs_count - 1]
+        dlc_dir = dlcs_dir + '/' + dlc_name
+        dlc_files = os.listdir(dlc_dir)
+        dlc_installer = None
+        for file_name in dlc_files:
+            if '.sh' in file_name:
+                dlc_installer = file_name
+        if dlc_installer != None:
+            dlc_installer_full_path = dlc_dir + '/' + dlc_installer
+            command = [
+                    'unzip', '-o',
+                    dlc_installer_full_path,
+                    '-d', self.goglib_install_dir + '/' + game_name + '/tmp'
+            ]
+
+        goglib_name_to_pid_install_dlc_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
+                flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+                standard_output=True,
+                standard_error=True)
+
+        io = GLib.IOChannel(stdout)
+
+        self.source_id_out = io.add_watch(GLib.IO_IN|GLib.IO_HUP,
+                                 self.watch_process,
+                                 'goglib_install_dlc',
                                  priority=GLib.PRIORITY_HIGH)
 
     def goglib_install_game(self, game_name):
@@ -5498,14 +5534,12 @@ class GUI:
                 GLib.source_remove(self.source_id_out)
 
                 if self.unpack_canceled == False:
-
-                    #GLib.source_remove(self.source_id_out)
-                    #GLib.source_remove(self.source_id_err)
-
-                    self.goglib_install_game(game_name)
-
-                    del goglib_name_to_pid_unpack_dict[game_name]
-
+                    if self.dlcs_count == 0:
+                        self.goglib_install_game(game_name)
+                        del goglib_name_to_pid_unpack_dict[game_name]
+                    else:
+                        self.goglib_install_dlc(game_name)
+                        del goglib_name_to_pid_unpack_dict[game_name]
                 else:
                     del goglib_name_to_pid_unpack_dict[game_name]
                     del goglib_installation_queue[0]
@@ -5513,6 +5547,16 @@ class GUI:
                     self.unpack_canceled = False
 
                 return False
+
+            if process_name == 'goglib_install_dlc':
+                game_name = goglib_installation_queue[0]
+                GLib.source_remove(self.source_id_out)
+                del goglib_name_to_pid_install_dlc_dict[game_name]
+                self.dlcs_count -= 1
+                if self.dlcs_count == 0:
+                    self.goglib_install_game(game_name)
+                else:
+                    self.goglib_install_dlc(game_name)
 
             if process_name == 'goglib_install_game':
                 game_name = goglib_installation_queue[0]
