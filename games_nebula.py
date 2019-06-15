@@ -5046,6 +5046,8 @@ class GUI:
                     dlc_installer_full_path,
                     '-d', self.goglib_install_dir + '/' + game_name + '/tmp'
             ]
+        else:
+            command = ['echo', 'DLC not installable. Skipping.']
 
         goglib_name_to_pid_install_dlc_dict[game_name], stdin, stdout, stderr = GLib.spawn_async(command,
                 flags=GLib.SpawnFlags.SEARCH_PATH|GLib.SpawnFlags.DO_NOT_REAP_CHILD,
