@@ -4984,7 +4984,8 @@ class GUI:
             if '.sh' in line:
                 self.installer_type = 'sh'
                 dlcs_dir = self.goglib_download_dir + '/' + game_name + '/dlc'
-                self.dlcs_count = len(os.listdir(dlcs_dir))
+                if os.path.exists(dlcs_dir):
+                    self.dlcs_count = len(os.listdir(dlcs_dir))
                 versions.append(line)
                 number_of_installers += 1
             elif '.exe' in line:
