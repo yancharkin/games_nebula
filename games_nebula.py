@@ -5421,6 +5421,11 @@ class GUI:
                         config_file.write('own_prefix = True')
                         config_file.close()
 
+                    subprocess.call([
+                            'mv',
+                            game_dir + '/game/unins000.exe',
+                            game_dir + '/game/unins000.bak'
+                    ])
                     files_in_game_dir = os.listdir(game_data_dir)
                     n_exe = 0
                     for file_name in files_in_game_dir:
