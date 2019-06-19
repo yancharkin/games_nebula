@@ -732,13 +732,13 @@ class GUI:
             if global_dosbox == 'system':
                 dosbox_bin = 'dosbox'
             if global_dosbox == 'path':
-                dosbox_bin = '"' + global_dosbox_path + '/' + global_dosbox_version + '/bin/dosbox"'
+                dosbox_bin = global_dosbox_path + '/' + global_dosbox_version + '/bin/dosbox'
 
         elif self.dosbox == 'system':
             dosbox_bin = 'dosbox'
 
         elif self.dosbox == 'path':
-            dosbox_bin = '"' + self.dosbox_path + '/' + self.dosbox_version + '/bin/dosbox"'
+            dosbox_bin = self.dosbox_path + '/' + self.dosbox_version + '/bin/dosbox'
 
         return dosbox_bin
 
