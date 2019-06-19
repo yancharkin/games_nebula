@@ -626,14 +626,20 @@ class GUI:
 
         gn_tmp_dosbox_conf.close()
 
-        launch_command = dosbox_bin + ' -conf /tmp/gn_tmp_dosbox.conf' + \
-        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox.conf"' + \
-        ' -startmapper'
+        launch_command = [
+                dosbox_bin,
+                '-conf',
+                '/tmp/gn_tmp_dosbox.conf',
+                '-conf',
+                self.install_dir + '/' + self.game_name + '/dosbox.conf',
+                '-startmapper'
+        ]
 
-        # TODO Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
-        os.system('export SDL_VIDEO_FULLSCREEN_HEAD=0 && ' + launch_command)
+        os.environ['SDL_VIDEO_FULLSCREEN_HEAD'] = '0'
+        subprocess.call(launch_command)
 
-        if os.path.exists('/tmp/gn_tmp_dosbox.conf'): os.remove('/tmp/gn_tmp_dosbox.conf')
+        if os.path.exists('/tmp/gn_tmp_dosbox.conf'):
+            os.remove('/tmp/gn_tmp_dosbox.conf')
 
         self.main_window.show()
 
@@ -654,14 +660,19 @@ class GUI:
 
         self.create_link()
 
-        launch_command = dosbox_bin + ' -conf "' + \
-        os.getenv('HOME') + '/.games_nebula/config/dosbox.conf"' + \
-        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox.conf"' + \
-        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox_game.conf"'
+        launch_command = [
+                dosbox_bin,
+                '-conf',
+                os.getenv('HOME') + '/.games_nebula/config/dosbox.conf',
+                '-conf',
+                self.install_dir + '/' + self.game_name + '/dosbox.conf',
+                '-conf',
+                self.install_dir + '/' + self.game_name + '/dosbox_game.conf'
+        ]
 
         os.system(self.command_before)
-        # FIX Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
-        os.system('export SDL_VIDEO_FULLSCREEN_HEAD=0 && ' + launch_command)
+        os.environ['SDL_VIDEO_FULLSCREEN_HEAD'] = '0'
+        subprocess.call(launch_command)
         os.system(self.command_after)
 
         output = self.monitor_primary.split()[0]
@@ -685,13 +696,18 @@ class GUI:
 
         self.create_link()
 
-        launch_command = dosbox_bin + ' -conf "' + \
-        os.getenv('HOME') + '/.games_nebula/config/dosbox.conf"' + \
-        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox.conf"' + \
-        ' -conf "' + self.install_dir + '/' + self.game_name + '/dosbox_settings.conf"'
+        launch_command = [
+                dosbox_bin,
+                '-conf',
+                os.getenv('HOME') + '/.games_nebula/config/dosbox.conf',
+                '-conf',
+                self.install_dir + '/' + self.game_name + '/dosbox.conf',
+                '-conf',
+                self.install_dir + '/' + self.game_name + '/dosbox_settings.conf'
+        ]
 
-        # FIX Make 'SDL_VIDEO_FULLSCREEN_HEAD' optional (?)
-        os.system('export SDL_VIDEO_FULLSCREEN_HEAD=0 && ' + launch_command)
+        os.environ['SDL_VIDEO_FULLSCREEN_HEAD'] = '0'
+        subprocess.call(launch_command)
 
         output = self.monitor_primary.split()[0]
         os.system('xrandr --output '+ output + ' --primary')
