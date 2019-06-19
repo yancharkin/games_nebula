@@ -5211,8 +5211,19 @@ class GUI:
                     scummvmrc_path = game_dir + '/scummvmrc'
 
                     conf = ConfigParser()
-                    conf.read(ini_file_path)
-                    scummvm_name = conf.sections()[1]
+                    # Reading config may failed (for example if an option duplicated in the section)
+                    try:
+                        conf.read(ini_file_path)
+                        scummvm_name = conf.sections()[1]
+                    except:
+                        with open(ini_file_path, 'r') as f:
+                            f_content = f.readlines()
+                        section_index = 0
+                        for line in f_content:
+                            if '[' in line:
+                                section_index += 1
+                                if section_index > 0:
+                                    scummvm_name = line.replace('[', '').replace(']', '')
 
                     os.rename(ini_file_path, scummvmrc_path)
 
