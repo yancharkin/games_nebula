@@ -5009,7 +5009,8 @@ class GUI:
                 command = [sys.executable,
                         nebula_dir + '/extractor.py', \
                         self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
-                        self.goglib_install_dir + '/' + game_name + '/game']
+                        self.goglib_install_dir + '/' + game_name, 'exe']
+                        #self.goglib_install_dir + '/' + game_name + '/game']
 
         elif number_of_installers == 0:
             self.goglib_install_game(goglib_installation_queue[0])
@@ -5241,156 +5242,116 @@ class GUI:
 
             game_dir = self.goglib_install_dir + '/' + game_name
             tmp_root_path = game_dir + '/game/'
-            tmp_game_path = game_dir + '/game/game/'
-            tmp_app_path = game_dir + '/game/app/'
-
-            tmp_root_files = os.listdir(tmp_root_path)
-
-            tmp_game_files_n = 0
-            if os.path.exists(tmp_game_path):
-                tmp_game_files = os.listdir(tmp_game_path)
-                tmp_game_files_n = len(tmp_game_files)
-
-            tmp_app_files_n = 0
-            if os.path.exists(tmp_app_path):
-                tmp_app_files = os.listdir(tmp_app_path)
-                tmp_app_files_n = len(tmp_app_files)
-
-            if tmp_game_files_n > tmp_app_files_n:
-                files_path = tmp_game_path
-                files_to_move = tmp_game_files
-                game_data_dir = tmp_game_path
+            if not os.path.exists(tmp_root_path):
+                command = ['echo', 'Installation canceled']
+                os.system('rm -r ' + game_dir)
             else:
-                files_path = tmp_app_path
-                files_to_move = tmp_app_files
-                game_data_dir = tmp_app_path
+                tmp_game_path = game_dir + '/game/game/'
+                tmp_app_path = game_dir + '/game/app/'
 
-            tmp_root_files_lower = [file_name.lower() for file_name in tmp_root_files]
-            files_to_move_lower = [file_name.lower() for file_name in files_to_move]
+                tmp_root_files = os.listdir(tmp_root_path)
 
-            if ('dosbox' in files_to_move_lower) or ('dosbox' in tmp_root_files_lower):
+                tmp_game_files_n = 0
+                if os.path.exists(tmp_game_path):
+                    tmp_game_files = os.listdir(tmp_game_path)
+                    tmp_game_files_n = len(tmp_game_files)
 
-                set_dosbox_mapper_file(game_dir)
+                tmp_app_files_n = 0
+                if os.path.exists(tmp_app_path):
+                    tmp_app_files = os.listdir(tmp_app_path)
+                    tmp_app_files_n = len(tmp_app_files)
 
-                #~ if 'dosbox' in tmp_root_files_lower:
-                    #~ game_data_dir = tmp_root_path
-
-                game_conf_path = '"' + game_data_dir + '"/*_single.conf'
-                if not os.path.exists(game_conf_path):
-                    game_data_dir = tmp_root_path
-                    game_conf_path = '"' + game_data_dir + '"__support/app/*_single.conf'
-                game_data_dir_files = os.listdir(game_data_dir)
-                os.system('mv ' + game_conf_path + ' "' + game_dir + '"/dosbox_game.conf')
-
-                if '_settings.conf' in ''.join(game_data_dir_files):
-                    settings_conf_exists = True
-                    settings_conf_path = '"' + game_data_dir + '"/*_settings.conf'
-                    os.system('mv ' + settings_conf_path + ' "' + game_dir + '"/dosbox_settings.conf')
-                elif os.path.exists(tmp_root_path + '__support/app/*_settings.conf'):
-                    settings_conf_exists = True
-                    settings_conf_path = tmp_root_path + '__support/app/*_settings.conf'
-                    os.system('mv ' + settings_conf_path + ' "' + game_dir + '"/dosbox_settings.conf')
+                tmp_root_files_lower = [file_name.lower() for file_name in tmp_root_files]
+                files_to_move_lower = []
+                if tmp_game_files_n != tmp_app_files_n:
+                    move_files = True
+                    if tmp_game_files_n > tmp_app_files_n:
+                        files_path = tmp_game_path
+                        files_to_move = tmp_game_files
+                        game_data_dir = tmp_game_path
+                    elif tmp_game_files_n < tmp_app_files_n:
+                        files_path = tmp_app_path
+                        files_to_move = tmp_app_files
+                        game_data_dir = tmp_app_path
+                    files_to_move_lower = [file_name.lower() for file_name in files_to_move]
                 else:
-                    settings_conf_exists = False
-
-                def update_conf_file(file_path):
-
-                    if sys.version[0] == '2':
-                        with open(file_path, 'r') as file_to_change:
-                            file_content = file_to_change.readlines()
-                    else:
-                        with open(file_path, 'r', errors='replace') as file_to_change:
-                            file_content = file_to_change.readlines()
-
-                    c_mount_command = 'mount c ' + os.getenv('HOME') + \
-                    '/.games_nebula/games/.dosbox/' + game_name + '\n'
-                    d_imgmount_command = 'imgmount d ' + os.getenv('HOME') + \
-                    '/.games_nebula/games/.dosbox/' + game_name + '/'
-                    d_mount_command = 'mount d ' + os.getenv('HOME') + \
-                    '/.games_nebula/games/.dosbox/' + game_name + '/'
-
-                    for i in range(len(file_content)):
-                        if 'mount c' in file_content[i].lower():
-                            file_content[i] = c_mount_command + 'c:\n'
-
-                        if 'imgmount d' in file_content[i].lower():
-                            tmp_list = file_content[i].split(' ')[2:]
-                            tmp_list[0] = tmp_list[0].strip('"\\.')
-                            iso = ' '.join(tmp_list)
-                            #if tmp_list[0] not in files_to_move:
-                            #    iso = iso.lower()
-                            file_content[i] = d_imgmount_command + iso + 'cls\n'
-                        elif 'mount d' in file_content[i].lower():
-                            tmp_list = file_content[i].split(' ')[2:]
-                            tmp_list[0] = tmp_list[0].strip('"\\.')
-                            data_dir = ' '.join(tmp_list)
-                            #if tmp_list[0] not in files_to_move:
-                            #    data_dir = data_dir.lower()
-                            file_content[i] = d_mount_command + data_dir + 'cls\n'
-
-                    file_to_change = open(file_path, 'w')
-                    for line in file_content:
-                        file_to_change.write(line)
-                    file_to_change.close()
-
-                update_conf_file(game_dir + '/dosbox_game.conf')
-                if settings_conf_exists:
-                    update_conf_file(game_dir + '/dosbox_settings.conf')
-
-                start_lines = ['#!/bin/bash\n',
-                'python "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
-
-                start_file = open(game_dir + '/start.sh', 'w')
-                for line in start_lines:
-                    start_file.write(line)
-                start_file.close()
-                os.chmod(game_dir + '/start.sh', 0o711)
-
-            elif ('scummvm' in files_to_move_lower) or ('scummvm' in tmp_root_files_lower):
-
-                if 'scummvm' in tmp_root_files_lower:
+                    move_files = False
                     game_data_dir = tmp_root_path
-                game_data_dir_files = os.listdir(game_data_dir)
 
-                ini_file = None
-                for file_name in game_data_dir_files:
-                    if '.ini' in file_name.lower():
-                        ini_file = file_name
+                if ('dosbox' in files_to_move_lower) or ('dosbox' in tmp_root_files_lower):
 
-                if ini_file != None:
-                    ini_file_path = game_data_dir + ini_file
-                else:
-                    if os.path.exists(game_data_dir + '__support/app/'):
-                        files_list = os.listdir(game_data_dir + '__support/app/')
-                        for file_name in files_list:
-                            if '.ini' in file_name.lower():
-                                ini_file = file_name
-                    if ini_file != None:
-                        ini_file_path = game_data_dir + '__support/app/' + ini_file
+                    os.system('rm -r ' + game_dir + '/wine_prefix')
+                    set_dosbox_mapper_file(game_dir)
+
+                    #~ if 'dosbox' in tmp_root_files_lower:
+                        #~ game_data_dir = tmp_root_path
+
+                    game_conf_path = '"' + game_data_dir + '"/*_single.conf'
+                    if not os.path.exists(game_conf_path):
+                        game_data_dir = tmp_root_path
+                        game_conf_path = '"' + game_data_dir + '"__support/app/*_single.conf'
+                        if not os.path.exists(game_conf_path):
+                            game_conf_path = '"' + game_data_dir + '"*_single.conf'
+                    game_data_dir_files = os.listdir(game_data_dir)
+                    os.system('mv ' + game_conf_path + ' "' + game_dir + '"/dosbox_game.conf')
+
+                    if '_settings.conf' in ''.join(game_data_dir_files):
+                        settings_conf_exists = True
+                        settings_conf_path = '"' + game_data_dir + '"/*_settings.conf'
+                        os.system('mv ' + settings_conf_path + ' "' + game_dir + '"/dosbox_settings.conf')
+                    elif os.path.exists(tmp_root_path + '__support/app/*_settings.conf'):
+                        settings_conf_exists = True
+                        settings_conf_path = tmp_root_path + '__support/app/*_settings.conf'
+                        os.system('mv ' + settings_conf_path + ' "' + game_dir + '"/dosbox_settings.conf')
                     else:
+                        settings_conf_exists = False
 
-                        if os.path.exists(game_data_dir + '__support'):
+                    def update_conf_file(file_path):
 
-                            proc = subprocess.Popen(
-                                    ['ls "' + game_data_dir + '__support/"*.ini'],
-                                    shell=True,
-                                    stdout=subprocess.PIPE
-                            )
+                        if sys.version[0] == '2':
+                            with open(file_path, 'r') as file_to_change:
+                                file_content = file_to_change.readlines()
+                        else:
+                            with open(file_path, 'r', errors='replace') as file_to_change:
+                                file_content = file_to_change.readlines()
 
-                            ini_file_path = proc.stdout.readline().decode('utf-8').strip()
+                        c_mount_command = 'mount c ' + os.getenv('HOME') + \
+                        '/.games_nebula/games/.dosbox/' + game_name + '\n'
+                        d_imgmount_command = 'imgmount d ' + os.getenv('HOME') + \
+                        '/.games_nebula/games/.dosbox/' + game_name + '/'
+                        d_mount_command = 'mount d ' + os.getenv('HOME') + \
+                        '/.games_nebula/games/.dosbox/' + game_name + '/'
 
-                if ini_file_path != None:
+                        for i in range(len(file_content)):
+                            if 'mount c' in file_content[i].lower():
+                                file_content[i] = c_mount_command + 'c:\n'
 
-                    scummvmrc_path = game_dir + '/scummvmrc'
+                            if 'imgmount d' in file_content[i].lower():
+                                tmp_list = file_content[i].split(' ')[2:]
+                                tmp_list[0] = tmp_list[0].strip('"\\.')
+                                iso = ' '.join(tmp_list)
+                                #if tmp_list[0] not in files_to_move:
+                                #    iso = iso.lower()
+                                file_content[i] = d_imgmount_command + iso + 'cls\n'
+                            elif 'mount d' in file_content[i].lower():
+                                tmp_list = file_content[i].split(' ')[2:]
+                                tmp_list[0] = tmp_list[0].strip('"\\.')
+                                data_dir = ' '.join(tmp_list)
+                                #if tmp_list[0] not in files_to_move:
+                                #    data_dir = data_dir.lower()
+                                file_content[i] = d_mount_command + data_dir + 'cls\n'
 
-                    conf = ConfigParser()
-                    conf.read(ini_file_path)
-                    scummvm_name = conf.sections()[1]
+                        file_to_change = open(file_path, 'w')
+                        for line in file_content:
+                            file_to_change.write(line)
+                        file_to_change.close()
 
-                    os.rename(ini_file_path, scummvmrc_path)
+                    update_conf_file(game_dir + '/dosbox_game.conf')
+                    if settings_conf_exists:
+                        update_conf_file(game_dir + '/dosbox_settings.conf')
 
                     start_lines = ['#!/bin/bash\n',
-                    'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
+                    'python "$NEBULA_DIR/launcher_dosbox.py" ' + game_name]
 
                     start_file = open(game_dir + '/start.sh', 'w')
                     for line in start_lines:
@@ -5398,46 +5359,103 @@ class GUI:
                     start_file.close()
                     os.chmod(game_dir + '/start.sh', 0o711)
 
-            else:
+                elif ('scummvm' in files_to_move_lower) or ('scummvm' in tmp_root_files_lower):
 
-                if self.own_prefix:
-                    config_file = open(game_dir + '/config.ini', 'w')
-                    config_file.write('[Settings]\n')
-                    config_file.write('own_prefix = True')
-                    config_file.close()
+                    os.system('rm -r ' + game_dir + '/wine_prefix')
 
-                files_in_game_dir = os.listdir(game_data_dir)
-                n_exe = 0
-                for file_name in files_in_game_dir:
-                    if '.exe' in file_name.lower():
-                        exe_name =  '"' + file_name + '"'
-                        n_exe += 1
+                    if 'scummvm' in tmp_root_files_lower:
+                        game_data_dir = tmp_root_path
+                    game_data_dir_files = os.listdir(game_data_dir)
 
-                if n_exe == 0:
-                    for file_name in tmp_root_files:
+                    ini_file = None
+                    for file_name in game_data_dir_files:
+                        if '.ini' in file_name.lower():
+                            ini_file = file_name
+
+                    if ini_file != None:
+                        ini_file_path = game_data_dir + ini_file
+                    else:
+                        if os.path.exists(game_data_dir + '__support/app/'):
+                            files_list = os.listdir(game_data_dir + '__support/app/')
+                            for file_name in files_list:
+                                if '.ini' in file_name.lower():
+                                    ini_file = file_name
+                        if ini_file != None:
+                            ini_file_path = game_data_dir + '__support/app/' + ini_file
+                        else:
+
+                            if os.path.exists(game_data_dir + '__support'):
+
+                                proc = subprocess.Popen(
+                                        ['ls "' + game_data_dir + '__support/"*.ini'],
+                                        shell=True,
+                                        stdout=subprocess.PIPE
+                                )
+
+                                ini_file_path = proc.stdout.readline().decode('utf-8').strip()
+
+                    if ini_file_path != None:
+
+                        scummvmrc_path = game_dir + '/scummvmrc'
+
+                        conf = ConfigParser()
+                        conf.read(ini_file_path)
+                        scummvm_name = conf.sections()[1]
+
+                        os.rename(ini_file_path, scummvmrc_path)
+
+                        start_lines = ['#!/bin/bash\n',
+                        'python "$NEBULA_DIR/launcher_scummvm.py" ' + game_name + ' ' + scummvm_name]
+
+                        start_file = open(game_dir + '/start.sh', 'w')
+                        for line in start_lines:
+                            start_file.write(line)
+                        start_file.close()
+                        os.chmod(game_dir + '/start.sh', 0o711)
+
+                else:
+
+                    if self.own_prefix:
+                        config_file = open(game_dir + '/config.ini', 'w')
+                        config_file.write('[Settings]\n')
+                        config_file.write('own_prefix = True')
+                        config_file.close()
+
+                    files_in_game_dir = os.listdir(game_data_dir)
+                    n_exe = 0
+                    for file_name in files_in_game_dir:
                         if '.exe' in file_name.lower():
                             exe_name =  '"' + file_name + '"'
-                        n_exe += 1
+                            n_exe += 1
 
-                if n_exe != 1:
-                    exe_name = 'NOEXE'
+                    if n_exe == 0:
+                        for file_name in tmp_root_files:
+                            if '.exe' in file_name.lower():
+                                exe_name =  '"' + file_name + '"'
+                            n_exe += 1
 
-                start_lines = ['#!/bin/bash\n',
-                'python "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' ' + exe_name]
-                start_file = open(game_dir + '/start.sh', 'w')
-                for line in start_lines:
-                    start_file.write(line)
-                start_file.close()
-                os.chmod(game_dir + '/start.sh', 0o711)
+                    if n_exe != 1:
+                        exe_name = 'NOEXE'
 
-            command = []
-            for f in files_to_move:
-                command.extend(('mv', files_path + f, game_dir + '/game'))
+                    start_lines = ['#!/bin/bash\n',
+                    'python "$NEBULA_DIR/launcher_wine.py" ' + game_name + ' ' + exe_name]
+                    start_file = open(game_dir + '/start.sh', 'w')
+                    for line in start_lines:
+                        start_file.write(line)
+                    start_file.close()
+                    os.chmod(game_dir + '/start.sh', 0o711)
 
-            if os.path.exists(game_dir + '/game/app'):
-                os.system('cp -r ' + '"' + game_dir + '/game/app/"* "' + game_dir + '/game/"')
-            if os.path.exists(game_dir + '/game/__support/app'):
-                os.system('cp -r ' + '"' + game_dir + '/game/__support/app/"* "' + game_dir + '/game/"')
+                if move_files:
+                    command = []
+                    for f in files_to_move:
+                        command.extend(('mv', files_path + f, game_dir + '/game'))
+                else:
+                    command = ['echo', 'No need to move files.']
+
+                if os.path.exists(game_dir + '/game/app'):
+                    os.system('cp -r ' + '"' + game_dir + '/game/app/"* "' + game_dir + '/game/"')
+                if os.path.exists(game_dir + '/game/__support/app'):
+                    os.system('cp -r ' + '"' + game_dir + '/game/__support/app/"* "' + game_dir + '/game/"')
 
         else:
 

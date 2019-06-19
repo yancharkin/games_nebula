@@ -2,8 +2,40 @@ import os
 import subprocess
 import shutil
 import zlib
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
 
 nebula_dir = os.getenv('NEBULA_DIR')
+
+def simple_message(message_type, text_1, text_2):
+
+    message_dialog = Gtk.MessageDialog(
+        None,
+        0,
+        message_type,
+        Gtk.ButtonsType.OK,
+        text_1
+    )
+
+    message_dialog.format_secondary_text(text_2)
+    content_area = message_dialog.get_content_area()
+    content_area.set_property('margin-left', 10)
+    content_area.set_property('margin-right', 10)
+    content_area.set_property('margin-top', 10)
+    content_area.set_property('margin-bottom', 10)
+
+    try:
+        content_area_label = content_area.get_children()[0].get_children()[0].get_children()[1]
+        content_area_label.set_property('justify', Gtk.Justification.CENTER)
+    except AttributeError:
+        content_area_label = content_area.get_children()[0].get_children()[1].get_children()[1]
+        content_area_label.set_property('justify', Gtk.Justification.CENTER)
+    except:
+        pass
+
+    message_dialog.run()
+    message_dialog.destroy()
 
 def get_files_info(dest_dir):
 
@@ -123,17 +155,90 @@ def innoextact(file_path, dest_dir):
 
     subprocess.call([innoextract, '--gog', file_path, '-d', dest_dir])
 
+def wine(file_path, dest_dir):
+
+    wineprefix_path = dest_dir + '/wine_prefix'
+    os.environ['WINEPREFIX'] = wineprefix_path
+    #os.environ['WINEDEBUG'] = '-all'
+    os.environ['WINEDLLOVERRIDES'] = 'mshtml,mscoree=d'
+    if not os.path.exists(wineprefix_path):
+        os.makedirs(wineprefix_path)
+    dest_dir = dest_dir + '/game'
+    proc = subprocess.Popen(['winepath', '-w', dest_dir], stdout=subprocess.PIPE)
+    dest_dir_win = proc.stdout.readline().decode('utf-8').strip()
+
+    subprocess.call([
+        'wine',
+        file_path,
+        '/DIR=' + dest_dir_win,
+        '/VERYSILENT',
+        '/SUPPRESSMSGBOXES'
+    ])
+    if not os.path.exists(dest_dir):
+        simple_message(
+            Gtk.MessageType.INFO,
+            "Info",
+            "Do not change the installation path!"
+        )
+        while Gtk.events_pending():
+            Gtk.main_iteration_do(False)
+        subprocess.call([
+            'wine',
+            file_path,
+            '/LANG=english',
+            '/DIR=' + dest_dir_win,
+        ])
+
+#    # Multi-part installers or some installers (created with particular inno setup version) can't be installed silently
+#    simple_message(
+#        Gtk.MessageType.INFO,
+#        "Info",
+#        "Do not change the installation path!"
+#    )
+#    while Gtk.events_pending():
+#        Gtk.main_iteration_do(False)
+#    subprocess.call([
+#        'wine',
+#        file_path,
+#        '/LANG=english',
+#        '/DIR=' + dest_dir_win,
+#    ])
+#
+#    #installer_dir = os.path.dirname(file_path)
+#    #installer_files_n = len(os.listdir(installer_dir))
+#    #if installer_files_n == 1:
+#    #    # Good solution, completely silent installation
+#    #    subprocess.call([
+#    #        'wine',
+#    #        file_path,
+#    #        '/DIR=' + dest_dir_win,
+#    #        '/VERYSILENT',
+#    #        '/SUPPRESSMSGBOXES'
+#    #    ])
+#    #else:
+#    #    # Multi-part installers (if that's the problem)
+#    #    simple_message(
+#    #        Gtk.MessageType.INFO,
+#    #        "Info",
+#    #        "Do not change the installation path!"
+#    #    )
+#    #    while Gtk.events_pending():
+#    #        Gtk.main_iteration_do(False)
+#    #    subprocess.call([
+#    #        'wine',
+#    #        file_path,
+#    #        '/LANG=english',
+#    #        '/DIR=' + dest_dir_win,
+#    #    ])
+
 def extract(file_path, dest_dir, *args):
-
-    if dest_dir[-1] != '/': dest_dir += '/'
-
-    #~ # Process additional args (if needed)
-    #~ if len(args[0]) > 0: pass
-
-    if os.path.exists(nebula_dir + '/bin/innounp.exe'):
-        innounp(file_path, dest_dir)
-    else:
-        innoextact(file_path, dest_dir)
+    #if dest_dir[-1] != '/':
+    #    dest_dir += '/'
+    installer_type = args[0][0]
+    if installer_type == 'exe':
+        wine(file_path, dest_dir)
+    elif installer_type == 'sh':
+        print('Exract using unzip')
 
 if __name__ == '__main__':
     import sys
