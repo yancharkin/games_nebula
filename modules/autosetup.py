@@ -27,7 +27,7 @@ def autosetup(lib, install_dir, game_name):
     else:
         parser.read(path_1)
 
-    if parser.has_section(game_name):
+    if (os.path.exists(install_dir + '/' + game_name)) and (parser.has_section(game_name)):
 
         if parser.has_option(game_name, 'image'):
             image = parser.get(game_name, 'image')
