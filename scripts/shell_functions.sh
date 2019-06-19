@@ -83,9 +83,9 @@ while [ -e "/proc/$pid" ]; do
 sleep 0.1
 i=$[$i + 1]
 sec=$[$i / 10]
-echo "$msg - $sec""s"
+echo -ne "\r$msg - $sec""s"
 done
-echo -ne "${COLOR_LIGHT_GREEN}\nDone!${COLOR_RESET}\n"
+echo -ne "${COLOR_LIGHT_GREEN}\r\nDone!${COLOR_RESET}\n"
 }
 
 get_arch () {
