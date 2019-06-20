@@ -4981,11 +4981,11 @@ class GUI:
         versions = []
 
         for line in files_list:
+            dlcs_dir = self.goglib_download_dir + '/' + game_name + '/dlc'
+            if os.path.exists(dlcs_dir):
+                self.dlcs_count = len(os.listdir(dlcs_dir))
             if '.sh' in line:
                 self.installer_type = 'sh'
-                dlcs_dir = self.goglib_download_dir + '/' + game_name + '/dlc'
-                if os.path.exists(dlcs_dir):
-                    self.dlcs_count = len(os.listdir(dlcs_dir))
                 versions.append(line)
                 number_of_installers += 1
             elif '.exe' in line:
@@ -4996,21 +4996,23 @@ class GUI:
         versions = sorted(versions)
 
         if number_of_installers > 0:
-
+            installer_full_path = self.goglib_download_dir + '/' + game_name + '/' + versions[-1]
             if self.installer_type == 'sh':
-                command = ['unzip', '-o', \
-                        self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
-                        '-d', self.goglib_install_dir + '/' + game_name + '/tmp']
-
+                command = [
+                        sys.executable,
+                        nebula_dir + '/extractor.py',
+                        installer_full_path,
+                        self.goglib_install_dir + '/' + game_name + '/tmp',
+                        'sh'
+                ]
             elif self.installer_type == 'exe':
-                #~ command = ['innoextract', '--gog', \
-                        #~ self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
-                        #~ '-d', self.goglib_install_dir + '/' + game_name + '/game']
-                command = [sys.executable,
-                        nebula_dir + '/extractor.py', \
-                        self.goglib_download_dir + '/' + game_name + '/' + versions[-1], \
-                        self.goglib_install_dir + '/' + game_name, 'exe']
-                        #self.goglib_install_dir + '/' + game_name + '/game']
+                command = [
+                        sys.executable,
+                        nebula_dir + '/extractor.py',
+                        installer_full_path,
+                        self.goglib_install_dir + '/' + game_name,
+                        'exe'
+                ]
 
         elif number_of_installers == 0:
             self.goglib_install_game(goglib_installation_queue[0])
@@ -5039,15 +5041,31 @@ class GUI:
         dlc_files = os.listdir(dlc_dir)
         dlc_installer = None
         for file_name in dlc_files:
-            if '.sh' in file_name:
-                dlc_installer = file_name
+            if self.installer_type == 'exe':
+                if '.exe' in file_name:
+                    dlc_installer = file_name
+            elif self.installer_type == 'sh':
+                if '.sh' in file_name:
+                    dlc_installer = file_name
         if dlc_installer != None:
             dlc_installer_full_path = dlc_dir + '/' + dlc_installer
-            command = [
-                    'unzip', '-o',
-                    dlc_installer_full_path,
-                    '-d', self.goglib_install_dir + '/' + game_name + '/tmp'
-            ]
+            if self.installer_type == 'sh':
+                command = [
+                        sys.executable,
+                        nebula_dir + '/extractor.py',
+                        dlc_installer_full_path,
+                        self.goglib_install_dir + '/' + game_name + '/tmp',
+                        'sh'
+                ]
+            elif self.installer_type == 'exe':
+                command = [
+                        sys.executable,
+                        nebula_dir + '/extractor.py',
+                        dlc_installer_full_path,
+                        self.goglib_install_dir + '/' + game_name,
+                        'exe'
+                ]
+            print("Installing DLC")
         else:
             command = ['echo', 'DLC not installable. Skipping.']
 
