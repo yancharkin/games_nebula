@@ -49,11 +49,11 @@ You can find installation instruction below, **it's the only supported way of in
 
 Python 2
 
-    sudo apt install python-gi python-bs4 python-lxml python-requests python-tz python-pil python-dateutil gir1.2-webkit2-4.0 lgogdownloader innoextract x11-xserver-utils curl p7zip-full
+    sudo apt install python-gi python-bs4 python-lxml python-requests python-tz python-pil python-dateutil gir1.2-webkit2-4.0 lgogdownloader x11-xserver-utils curl p7zip-full
 
 Python 3
 
-    sudo apt install python3-gi python3-bs4 python3-lxml python3-requests python3-tz python3-pil python3-dateutil gir1.2-webkit2-4.0 lgogdownloader innoextract x11-xserver-utils curl p7zip-full
+    sudo apt install python3-gi python3-bs4 python3-lxml python3-requests python3-tz python3-pil python3-dateutil gir1.2-webkit2-4.0 lgogdownloader x11-xserver-utils curl p7zip-full
 
 
 *Optional dependencies:*
@@ -68,11 +68,11 @@ Python 3
 
 Python 2
 
-    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow python2-requests python2-pytz python2-dateutil webkit2gtk innoextract xorg-xrandr curl p7zip
+    sudo pacman -S python2-gobject python2-beautifulsoup4 python2-lxml python2-pillow python2-requests python2-pytz python2-dateutil webkit2gtk xorg-xrandr curl p7zip
 
 Python 3
 
-    sudo pacman -S python-gobject python-beautifulsoup4 python-lxml python-pillow python-requests python3-pytz python-dateutil webkit2gtk innoextract xorg-xrandr curl p7zip
+    sudo pacman -S python-gobject python-beautifulsoup4 python-lxml python-pillow python-requests python3-pytz python-dateutil webkit2gtk xorg-xrandr curl p7zip
 
 AUR: [htmlcxx](https://aur.archlinux.org/packages/htmlcxx/), [lgogdownloader](https://aur.archlinux.org/packages/lgogdownloader/)
 
@@ -88,11 +88,11 @@ AUR: [megatools](https://aur.archlinux.org/packages/megatools/)
 
 Python 2
 
-    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 python-requests pytz python-dateutil innoextract xorg-x11-server-utils curl p7zip p7zip-plugins
+    sudo dnf install python python-gobject python2-pillow python-beautifulsoup4 python-requests pytz python-dateutil xorg-x11-server-utils curl p7zip p7zip-plugins
 
 Python 3
 
-    sudo dnf install python3 python3-gobject python3-pillow python3-beautifulsoup4 python3-requests pytz python3-dateutil innoextract xorg-x11-server-utils curl p7zip p7zip-plugins
+    sudo dnf install python3 python3-gobject python3-pillow python3-beautifulsoup4 python3-requests pytz python3-dateutil xorg-x11-server-utils curl p7zip p7zip-plugins
 
 Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/lgogdownloader/)
 
@@ -106,7 +106,6 @@ Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/l
 - download and extract, or clone **games_nebula (master branch)** anywhere you like
 - run **setup.sh** in **terminal** (use **sudo** if you don't have write permission on a directory where you put GN)
 - script will ask you a number of questions (press "y" or "n" to answer):
-    * you can download innoextract binary (useful **only** if your system innoextract version < "1.7")
     * if you installing GN for the first time, you probably should answer "y" to the second question to install all components
     * if you answer "n" to the second question, script will give you option to select which components to install (or update)
     * finally you'll be asked if you'd like to create launcher
