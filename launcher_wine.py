@@ -1,4 +1,4 @@
-import sys, os, subprocess, re
+import sys, os, subprocess, re, logging, shutil
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk, GdkPixbuf
@@ -10,6 +10,8 @@ except:
     from configparser import ConfigParser as ConfigParser
 
 from modules import monitors, paths
+
+logger = logging.Logger('launcher')
 
 global_config_file = os.getenv('HOME') + '/.games_nebula/config/config.ini'
 global_config_parser = ConfigParser()
@@ -1103,7 +1105,7 @@ class GUI:
 
         if self.wine == 'global':
             if global_wine == 'system':
-                wine_bin = 'wine'
+                wine_bin = shutil.which('wine')
                 wineserver_bin = ''
                 wine_lib = ''
             if global_wine == 'path':
@@ -1112,7 +1114,7 @@ class GUI:
                 wineserver_bin = wine_path + '/bin/wineserver'
                 wine_lib = wine_path + '/lib'
         elif self.wine == 'system':
-            wine_bin = 'wine'
+            wine_bin = shutil.which('wine')
             wineserver_bin = ''
             wine_lib = ''
         elif self.wine == 'path':
