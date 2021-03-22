@@ -3742,10 +3742,12 @@ class GUI:
 
         path = self.filechooserbutton_wine.get_filename()
         full_list = os.listdir(path)
-
-        for o in full_list:
-            if os.path.isdir(path + '/' + o):
-                ver_list.append(o)
+        try:
+            for o in full_list:
+                if os.path.isdir(path + '/' + o):
+                    ver_list.append(o)
+        except TypeError:
+            pass
 
         ver_list = sorted(ver_list)
 
@@ -3763,9 +3765,12 @@ class GUI:
         path = self.filechooserbutton_dosbox.get_filename()
         full_list = os.listdir(path)
 
-        for o in full_list:
-            if os.path.isdir(path + '/' + o):
-                ver_list.append(o)
+        try:
+            for o in full_list:
+                if os.path.isdir(path + '/' + o):
+                    ver_list.append(o)
+        except TypeError:
+            pass
 
         ver_list = sorted(ver_list)
 
@@ -3781,9 +3786,12 @@ class GUI:
         path = self.filechooserbutton_scummvm.get_filename()
         full_list = os.listdir(path)
 
-        for o in full_list:
-            if os.path.isdir(path + '/' + o):
-                ver_list.append(o)
+        try:
+            for o in full_list:
+                if os.path.isdir(path + '/' + o):
+                    ver_list.append(o)
+        except TypeError:
+            pass
 
         ver_list = sorted(ver_list)
 
