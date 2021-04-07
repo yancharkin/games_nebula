@@ -496,22 +496,18 @@ class GUI:
             self.launch_game()
 
     def populate_dosbox_versions_combobox(self):
-
         ver_list = []
-
         path = self.filechooser_button.get_filename()
-        full_list = os.listdir(path)
-
-        for o in full_list:
-            if os.path.isdir(path + '/' + o):
-                ver_list.append(o)
-
-        ver_list = sorted(ver_list)
-
-        for i in range(len(ver_list)):
-            self.combobox_version.append_text(ver_list[i])
-            if ver_list[i] == self.dosbox_version:
-                self.combobox_version.set_active(i)
+        if path:
+            full_list = os.listdir(path)
+            for o in full_list:
+                if os.path.isdir(path + '/' + o):
+                    ver_list.append(o)
+            ver_list = sorted(ver_list)
+            for i in range(len(ver_list)):
+                self.combobox_version.append_text(ver_list[i])
+                if ver_list[i] == self.dosbox_version:
+                    self.combobox_version.set_active(i)
 
     def cb_filechooser_button(self, button):
         self.dosbox_path = button.get_filename()

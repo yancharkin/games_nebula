@@ -974,24 +974,20 @@ class GUI:
         self.combobox_win_ver.set_active(self.win_ver)
 
     def populate_wine_versions_combobox(self):
-
         ver_list = []
-
         path = self.filechooser_button.get_filename()
-        full_list = os.listdir(path)
-
-        for o in full_list:
-            if os.path.isdir(path + '/' + o):
-                ver_list.append(o)
-
-        ver_list = sorted(ver_list)
-
-        ver_index = 0
-        for i in range(len(ver_list)):
-            self.combobox_version.append_text(ver_list[i])
-            if ver_list[i] == self.wine_version:
-                ver_index = i
-        self.combobox_version.set_active(ver_index)
+        if path:
+            full_list = os.listdir(path)
+            for o in full_list:
+                if os.path.isdir(path + '/' + o):
+                    ver_list.append(o)
+            ver_list = sorted(ver_list)
+            ver_index = 0
+            for i in range(len(ver_list)):
+                self.combobox_version.append_text(ver_list[i])
+                if ver_list[i] == self.wine_version:
+                    ver_index = i
+            self.combobox_version.set_active(ver_index)
 
     def wine_prefix_arch(self):
         if not os.path.exists(os.getenv('HOME') + '/.games_nebula/wine_prefix/drive_c/windows/syswow64'):
