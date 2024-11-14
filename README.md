@@ -1,9 +1,6 @@
 # Games Nebula
 Unofficial Linux client for GOG.
 
-**Main repository (for now): [Github](https://github.com/yancharkin/games_nebula) - report issues and make pull requests here**  
-**Mirrors: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula/src/master/), [Gitlab](https://gitlab.com/yancharkin/games_nebula)**
-
 **Games Nebula is a prototype software, it works OK for me and for at least few dozen people, but that doesn't necessarily mean it will work (without issues) for you. You can face different problems using it, if you're not ready for that, then don't use this software.**
 
 You can find installation instruction below, **it's the only supported way of installation**, I do not provide any distro-specific packages. If you installed the application using another way (AUR for example), try re-install using instruction before reporting a bug.
@@ -133,7 +130,7 @@ Fedora CORP: [lgogdownloader](https://copr.fedorainfracloud.org/coprs/mmansell/l
 
 
 ## Links
-- Scripts repository for gog games: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula_goglib_scripts/src), [Github](https://github.com/yancharkin/games_nebula_goglib_scripts), [Gitlab](https://gitlab.com/yancharkin/games_nebula_goglib_scripts)
-- Scripts repository for non-gog games: [Bitbucket](https://bitbucket.org/yancharkin/games_nebula_mylib_scripts/src/master/), [Github](https://github.com/yancharkin/games_nebula_mylib_scripts), [Gitlab](https://gitlab.com/yancharkin/games_nebula_mylib_scripts)
+- [Scripts repository for gog games](https://github.com/yancharkin/games_nebula_goglib_scripts)
+- [Scripts repository for non-gog games](https://github.com/yancharkin/games_nebula_mylib_scripts)
 - [pygogapi](https://github.com/Yepoleb/pygogapi) by [Yepoleb](https://github.com/Yepoleb)
 - My fork of [pygogapi](https://github.com/yancharkin/pygogapi) - works both in python 2 and 3 (at least partially)
