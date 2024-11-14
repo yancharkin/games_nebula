@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Games Nebula
+Comment=Unofficial client for GOG
+Type=Application
+Exec=games_nebula --gui
+Icon=games_nebula
+Terminal=true
+StartupNotify=true
+Categories=Game;

@@ -1,0 +1,27 @@
+# Maintainer: Ivan Yancharkin <yancharkin@gmail.com>
+
+pkgname="games_nebula"
+pkgver=2024.dev1
+pkgrel=1
+pkgdesc="Unofficial client for GOG.",
+url="https://github.com/yancharkin/games_nebula"
+arch=('any')
+license=('MIT')
+makedepends=('python-build' 'python-installer' 'python-wheel')
+depends=('python' 'python-pyqt6')
+
+pkgver() {
+    ver=$(cat ../../src/games_nebula/_version.py | head -1 | rev | cut -d "'" -f 2 | rev)
+    echo "${ver}"
+    #echo "${ver/./_}"
+}
+
+build() {
+    cd ../..
+    python -m build --wheel --no-isolation
+}
+
+package() {
+    cd ../..
+    python -m installer --destdir="${pkgdir}" dist/*.whl
+}

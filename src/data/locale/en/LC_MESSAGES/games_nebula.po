@@ -1,0 +1,894 @@
+# English translations for games_nebula package.
+# Copyright (C) 2022 THE games_nebula'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the games_nebula package.
+#  <yancharkin@gmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: games_nebula 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-14 17:47+0400\n"
+"PO-Revision-Date: 2024-11-14 17:48+0400\n"
+"Last-Translator: <yancharkin@gmail.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Bookmarks: -1,54,-1,-1,-1,-1,-1,-1,-1,-1\n"
+
+#: ../src/games_nebula/client/api_wrapper.py:177
+msgid "Login form contains reCAPTCHA."
+msgstr "Login form contains reCAPTCHA."
+
+#: ../src/games_nebula/client/api_wrapper.py:180
+#: ../src/games_nebula/client/commands.py:358
+#: ../src/games_nebula/client/cli/interactive.py:50
+#: ../src/games_nebula/client/cli/noninteractive.py:34
+msgid "Email"
+msgstr "Email"
+
+#: ../src/games_nebula/client/api_wrapper.py:182
+#: ../src/games_nebula/client/cli/noninteractive.py:37
+msgid "Password"
+msgstr "Password"
+
+#: ../src/games_nebula/client/api_wrapper.py:214
+msgid "Enter two-step security code"
+msgstr "Enter two-step security code"
+
+#: ../src/games_nebula/client/api_wrapper.py:232
+msgid "Failed to obtain a login token."
+msgstr "Failed to obtain a login token."
+
+#: ../src/games_nebula/client/api_wrapper.py:236
+msgid ""
+"Failed to log in. Try again later or open this link in a browser and "
+"authorize:\n"
+msgstr ""
+"Failed to log in. Try again later or open this link in a browser and "
+"authorize:\n"
+
+#: ../src/games_nebula/client/api_wrapper.py:243
+msgid "Paste or input it here"
+msgstr "Paste or input it here"
+
+#: ../src/games_nebula/client/api_wrapper.py:245
+msgid "Failed to log in."
+msgstr "Failed to log in."
+
+#: ../src/games_nebula/client/api_wrapper.py:368
+msgid "Impossible to create/update local DB in offline mode."
+msgstr "Impossible to create/update local DB in offline mode."
+
+#: ../src/games_nebula/client/api_wrapper.py:420
+msgid "Getting info about"
+msgstr "Getting info about"
+
+#: ../src/games_nebula/client/api_wrapper.py:497
+#: ../src/games_nebula/client/commands.py:220
+msgid "Not available in offline mode."
+msgstr "Not available in offline mode."
+
+#: ../src/games_nebula/client/commands.py:51
+msgid "Couldn't get info for"
+msgstr "Couldn't get info for"
+
+#: ../src/games_nebula/client/commands.py:53
+#: ../src/games_nebula/client/commands.py:312
+#: ../src/games_nebula/client/commands.py:319
+msgid "The game identifier is missing."
+msgstr "The game identifier is missing."
+
+#: ../src/games_nebula/client/commands.py:65
+#: ../src/games_nebula/client/launcher.py:34
+#: ../src/games_nebula/client/uninstaller.py:37
+msgid "Invalid identifier"
+msgstr "Invalid identifier"
+
+#: ../src/games_nebula/client/commands.py:103
+msgid "Genres"
+msgstr "Genres"
+
+#: ../src/games_nebula/client/commands.py:105
+msgid "Category"
+msgstr "Category"
+
+#: ../src/games_nebula/client/commands.py:106
+msgid "Tags"
+msgstr "Tags"
+
+#: ../src/games_nebula/client/commands.py:107
+msgid "Supported OSes"
+msgstr "Supported OSes"
+
+#: ../src/games_nebula/client/commands.py:108
+msgid "Languages"
+msgstr "Languages"
+
+#: ../src/games_nebula/client/commands.py:109
+msgid "Download size"
+msgstr "Download size"
+
+#: ../src/games_nebula/client/commands.py:110
+#: ../src/games_nebula/client/downloader.py:42
+msgid "Version"
+msgstr "Version"
+
+#: ../src/games_nebula/client/commands.py:111
+msgid "Store page"
+msgstr "Store page"
+
+#: ../src/games_nebula/client/commands.py:115
+msgid "Description"
+msgstr "Description"
+
+#: ../src/games_nebula/client/commands.py:198
+#: ../src/games_nebula/client/commands.py:238
+#: ../src/games_nebula/client/commands.py:352
+msgid "Unknown command"
+msgstr "Unknown command"
+
+#: ../src/games_nebula/client/commands.py:232
+msgid "Not enough arguments."
+msgstr "Not enough arguments."
+
+#: ../src/games_nebula/client/commands.py:282
+msgid "Impossible to download in offline mode."
+msgstr "Impossible to download in offline mode."
+
+#: ../src/games_nebula/client/commands.py:291
+msgid "Download canceled."
+msgstr "Download canceled."
+
+#: ../src/games_nebula/client/commands.py:297
+msgid "The game is already installed."
+msgstr "The game is already installed."
+
+#: ../src/games_nebula/client/commands.py:308
+msgid "Installation canceled."
+msgstr "Installation canceled."
+
+#: ../src/games_nebula/client/commands.py:357
+msgid "Username"
+msgstr "Username"
+
+#: ../src/games_nebula/client/commands.py:359
+msgid "Number of games"
+msgstr "Number of games"
+
+#: ../src/games_nebula/client/config.py:103
+msgid "Invalid value for"
+msgstr "Invalid value for"
+
+#: ../src/games_nebula/client/config.py:119
+msgid "Unknown option"
+msgstr "Unknown option"
+
+#: ../src/games_nebula/client/downloader.py:24
+msgid "No installer is available for"
+msgstr "No installer is available for"
+
+#: ../src/games_nebula/client/downloader.py:39
+#: ../src/games_nebula/client/gui/main_window.py:118
+msgid "Title"
+msgstr "Title"
+
+#: ../src/games_nebula/client/downloader.py:40
+#: ../src/games_nebula/client/gui/main_window.py:118
+#: ../src/games_nebula/client/gui/main_window.py:302
+#: ../src/games_nebula/client/gui/main_window.py:310
+#: ../src/games_nebula/client/gui/sort_filter_proxy_model.py:83
+#: ../src/games_nebula/client/gui/sort_filter_proxy_model.py:94
+msgid "Language"
+msgstr "Language"
+
+#: ../src/games_nebula/client/downloader.py:41
+#: ../src/games_nebula/client/gui/main_window.py:118
+#: ../src/games_nebula/client/gui/main_window.py:301
+#: ../src/games_nebula/client/gui/main_window.py:309
+#: ../src/games_nebula/client/gui/sort_filter_proxy_model.py:81
+#: ../src/games_nebula/client/gui/sort_filter_proxy_model.py:92
+msgid "OS"
+msgstr "OS"
+
+#: ../src/games_nebula/client/downloader.py:43
+msgid "Total size"
+msgstr "Total size"
+
+#: ../src/games_nebula/client/installer.py:69
+msgid "Removing installer."
+msgstr "Removing installer."
+
+#: ../src/games_nebula/client/installer.py:73
+msgid "The setup file was not found."
+msgstr "The setup file was not found."
+
+#: ../src/games_nebula/client/installer.py:115
+msgid "Windows installer. Impossible to install without WINE."
+msgstr "Windows installer. Impossible to install without WINE."
+
+#: ../src/games_nebula/client/launcher.py:25
+msgid "Launching"
+msgstr "Launching"
+
+#: ../src/games_nebula/client/launcher.py:26
+#: ../src/games_nebula/client/uninstaller.py:23
+msgid "from"
+msgstr "from"
+
+#: ../src/games_nebula/client/launcher.py:30
+msgid "is not correctly installed."
+msgstr "is not correctly installed."
+
+#: ../src/games_nebula/client/launcher.py:32
+msgid "is not installed."
+msgstr "is not installed."
+
+#: ../src/games_nebula/client/launcher.py:92
+msgid "Launch using DOSBox."
+msgstr "Launch using DOSBox."
+
+#: ../src/games_nebula/client/launcher.py:97
+msgid "DOSBox not found. Is it installed?"
+msgstr "DOSBox not found. Is it installed?"
+
+#: ../src/games_nebula/client/launcher.py:104
+msgid "Launch using ScummVM."
+msgstr "Launch using ScummVM."
+
+#: ../src/games_nebula/client/launcher.py:107
+msgid "ScummVM not found. Is it installed?"
+msgstr "ScummVM not found. Is it installed?"
+
+#: ../src/games_nebula/client/launcher.py:113
+msgid "Launch using WINE."
+msgstr "Launch using WINE."
+
+#: ../src/games_nebula/client/launcher.py:129
+msgid "Windows game. Impossible to launch without WINE."
+msgstr "Windows game. Impossible to launch without WINE."
+
+#: ../src/games_nebula/client/logger.py:21
+msgid "line"
+msgstr "line"
+
+#: ../src/games_nebula/client/uninstaller.py:22
+msgid "Uninstalling"
+msgstr "Uninstalling"
+
+#: ../src/games_nebula/client/uninstaller.py:35
+msgid "not installed."
+msgstr "not installed."
+
+#: ../src/games_nebula/client/cli/argparse_tr_hack.py:3
+msgid "usage: "
+msgstr "Usage: "
+
+#: ../src/games_nebula/client/cli/argparse_tr_hack.py:18
+msgid "options"
+msgstr "Options"
+
+#: ../src/games_nebula/client/cli/argparse_tr_hack.py:19
+msgid "show this help message and exit"
+msgstr "Show this help message and exit."
+
+#: ../src/games_nebula/client/cli/argparse_tr_hack.py:21
+#, python-format
+msgid "unrecognized arguments: %s"
+msgstr "unrecognized arguments: %s"
+
+#: ../src/games_nebula/client/cli/argparse_tr_hack.py:24
+#, python-format
+msgid "the following arguments are required: %s"
+msgstr "the following arguments are required: %s"
+
+#: ../src/games_nebula/client/cli/argparse_tr_hack.py:26
+msgid "expected one argument"
+msgstr "expected one argument"
+
+#: ../src/games_nebula/client/cli/argparse_tr_hack.py:36
+#, python-format
+msgid "%(prog)s: error: %(message)s\n"
+msgstr "%(prog)s: error: %(message)s\n"
+
+#: ../src/games_nebula/client/cli/header.py:21
+#: ../src/games_nebula/client/cli/header.py:23
+#: ../src/games_nebula/client/cli/help.py:47
+#: ../src/games_nebula/client/cli/help.py:68
+#: ../src/games_nebula/client/cli/interactive.py:192
+#: ../src/games_nebula/client/cli/valid_commands.py:25
+msgid "help"
+msgstr "help"
+
+#: ../src/games_nebula/client/cli/header.py:26
+msgid "Games Nebula version"
+msgstr "Games Nebula version"
+
+#: ../src/games_nebula/client/cli/header.py:28
+msgid "Authorized user"
+msgstr "Authorized user"
+
+#: ../src/games_nebula/client/cli/header.py:29
+msgid "For available commands type"
+msgstr "For available commands type"
+
+#: ../src/games_nebula/client/cli/header.py:30
+msgid "or press TAB"
+msgstr "or press TAB"
+
+#: ../src/games_nebula/client/cli/help.py:48
+#: ../src/games_nebula/client/cli/help.py:69
+#: ../src/games_nebula/client/cli/valid_commands.py:12
+msgid "config"
+msgstr "config"
+
+#: ../src/games_nebula/client/cli/help.py:49
+#: ../src/games_nebula/client/cli/help.py:70
+#: ../src/games_nebula/client/cli/valid_commands.py:29
+msgid "set"
+msgstr "set"
+
+#: ../src/games_nebula/client/cli/help.py:50
+#: ../src/games_nebula/client/cli/help.py:71
+#: ../src/games_nebula/client/cli/help.py:86
+#: ../src/games_nebula/client/cli/valid_commands.py:30
+#: ../src/games_nebula/client/cli/valid_commands.py:40
+msgid "show"
+msgstr "show"
+
+#: ../src/games_nebula/client/cli/help.py:51
+#: ../src/games_nebula/client/cli/help.py:62
+#: ../src/games_nebula/client/cli/help.py:72
+#: ../src/games_nebula/client/cli/help.py:83
+#: ../src/games_nebula/client/cli/valid_commands.py:13
+#: ../src/games_nebula/client/cli/valid_commands.py:42
+msgid "download"
+msgstr "download"
+
+#: ../src/games_nebula/client/cli/help.py:52
+#: ../src/games_nebula/client/cli/help.py:73
+#: ../src/games_nebula/client/cli/valid_commands.py:15
+msgid "info"
+msgstr "info"
+
+#: ../src/games_nebula/client/cli/help.py:53
+#: ../src/games_nebula/client/cli/help.py:63
+#: ../src/games_nebula/client/cli/help.py:74
+#: ../src/games_nebula/client/cli/help.py:84
+#: ../src/games_nebula/client/cli/valid_commands.py:16
+#: ../src/games_nebula/client/cli/valid_commands.py:43
+msgid "install"
+msgstr "install"
+
+#: ../src/games_nebula/client/cli/help.py:54
+#: ../src/games_nebula/client/cli/help.py:75
+#: ../src/games_nebula/client/cli/valid_commands.py:17
+msgid "launch"
+msgstr "launch"
+
+#: ../src/games_nebula/client/cli/help.py:55
+#: ../src/games_nebula/client/cli/help.py:76
+#: ../src/games_nebula/client/cli/valid_commands.py:18
+msgid "list"
+msgstr "list"
+
+#: ../src/games_nebula/client/cli/help.py:56
+#: ../src/games_nebula/client/cli/help.py:77
+#: ../src/games_nebula/client/cli/interactive.py:125
+#: ../src/games_nebula/client/cli/interactive.py:127
+#: ../src/games_nebula/client/cli/interactive.py:221
+#: ../src/games_nebula/client/cli/interactive.py:226
+#: ../src/games_nebula/client/cli/valid_commands.py:33
+msgid "all"
+msgstr "all"
+
+#: ../src/games_nebula/client/cli/help.py:57
+#: ../src/games_nebula/client/cli/help.py:78
+#: ../src/games_nebula/client/cli/valid_commands.py:34
+msgid "downloaded"
+msgstr "downloaded"
+
+#: ../src/games_nebula/client/cli/help.py:58
+#: ../src/games_nebula/client/cli/help.py:79
+#: ../src/games_nebula/client/cli/valid_commands.py:35
+msgid "installed"
+msgstr "installed"
+
+#: ../src/games_nebula/client/cli/help.py:59
+#: ../src/games_nebula/client/cli/help.py:80
+#: ../src/games_nebula/client/cli/valid_commands.py:24
+msgid "queue"
+msgstr "queue"
+
+#: ../src/games_nebula/client/cli/help.py:60
+#: ../src/games_nebula/client/cli/help.py:81
+#: ../src/games_nebula/client/cli/valid_commands.py:38
+msgid "add"
+msgstr "add"
+
+#: ../src/games_nebula/client/cli/help.py:61
+#: ../src/games_nebula/client/cli/help.py:82
+#: ../src/games_nebula/client/cli/valid_commands.py:11
+#: ../src/games_nebula/client/cli/valid_commands.py:41
+msgid "clear"
+msgstr "clear"
+
+#: ../src/games_nebula/client/cli/help.py:64
+#: ../src/games_nebula/client/cli/help.py:85
+#: ../src/games_nebula/client/cli/valid_commands.py:39
+msgid "remove"
+msgstr "remove"
+
+#: ../src/games_nebula/client/cli/help.py:65
+#: ../src/games_nebula/client/cli/help.py:87
+#: ../src/games_nebula/client/cli/valid_commands.py:20
+#: ../src/games_nebula/client/cli/valid_commands.py:44
+msgid "uninstall"
+msgstr "uninstall"
+
+#: ../src/games_nebula/client/cli/help.py:91
+msgid "Available commands"
+msgstr "Available commands"
+
+#: ../src/games_nebula/client/cli/help.py:92
+msgid "Type"
+msgstr "Type"
+
+#: ../src/games_nebula/client/cli/help.py:93
+msgid "<command>"
+msgstr "<command>"
+
+#: ../src/games_nebula/client/cli/help.py:93
+msgid "to get help on the specific <command>."
+msgstr "to get help on the specific <command>."
+
+#: ../src/games_nebula/client/cli/help.py:94
+msgid "Clear the terminal screen."
+msgstr "Clear the terminal screen."
+
+#: ../src/games_nebula/client/cli/help.py:96
+msgid "View current configuration or change one of the options."
+msgstr "View current configuration or change one of the options."
+
+#: ../src/games_nebula/client/cli/help.py:98
+msgid "<option>"
+msgstr "<option>"
+
+#: ../src/games_nebula/client/cli/help.py:99
+msgid "set value for the <option>."
+msgstr "set value for the <option>."
+
+#: ../src/games_nebula/client/cli/help.py:102
+msgid "view current configuration."
+msgstr "view current configuration."
+
+#: ../src/games_nebula/client/cli/help.py:103
+msgid "<game> - download the <game>."
+msgstr "<game> - download the <game>."
+
+#: ../src/games_nebula/client/cli/help.py:104
+msgid "Quit the application."
+msgstr "Quit the application."
+
+#: ../src/games_nebula/client/cli/help.py:105
+msgid "<game> - show information about the <game>."
+msgstr "<game> - show information about the <game>."
+
+#: ../src/games_nebula/client/cli/help.py:106
+msgid "<game> - install the <game>."
+msgstr "<game> - install the <game>."
+
+#: ../src/games_nebula/client/cli/help.py:107
+msgid "<game> - launch the <game>."
+msgstr "<game> - launch the <game>."
+
+#: ../src/games_nebula/client/cli/help.py:108
+msgid "List games."
+msgstr "List games."
+
+#: ../src/games_nebula/client/cli/help.py:110
+msgid "list all owned games."
+msgstr "list all owned games."
+
+#: ../src/games_nebula/client/cli/help.py:112
+msgid "list only downloaded games."
+msgstr "list only downloaded games."
+
+#: ../src/games_nebula/client/cli/help.py:114
+msgid "list only installed games."
+msgstr "list only installed games."
+
+#: ../src/games_nebula/client/cli/help.py:115
+msgid "Log in to the GOG account."
+msgstr "Log in to the GOG account."
+
+#: ../src/games_nebula/client/cli/help.py:116
+msgid "Log out from the GOG account."
+msgstr "Log out from the GOG account."
+
+#: ../src/games_nebula/client/cli/help.py:117
+msgid "Manipulate the queue."
+msgstr "Manipulate the queue."
+
+#: ../src/games_nebula/client/cli/help.py:118
+#: ../src/games_nebula/client/cli/help.py:126
+msgid "<game1, game2...>"
+msgstr "<game1, game2...>"
+
+#: ../src/games_nebula/client/cli/help.py:119
+msgid "add <game/games> to the queue. Simple regex supported."
+msgstr "add <game/games> to the queue. Simple regex supported."
+
+#: ../src/games_nebula/client/cli/help.py:121
+msgid "clear the queue."
+msgstr "clear the queue."
+
+#: ../src/games_nebula/client/cli/help.py:123
+msgid "download games from the queue."
+msgstr "download games from the queue."
+
+#: ../src/games_nebula/client/cli/help.py:125
+msgid "install games from the queue."
+msgstr "install games from the queue."
+
+#: ../src/games_nebula/client/cli/help.py:127
+msgid "remove <game/games> from the queue. Simple regex supported."
+msgstr "remove <game/games> from the queue. Simple regex supported."
+
+#: ../src/games_nebula/client/cli/help.py:129
+msgid "show the queue."
+msgstr "show the queue."
+
+#: ../src/games_nebula/client/cli/help.py:131
+msgid "uninstall games from the queue."
+msgstr "uninstall games from the queue."
+
+#: ../src/games_nebula/client/cli/help.py:132
+msgid "Restart the application."
+msgstr "Restart the application."
+
+#: ../src/games_nebula/client/cli/help.py:133
+msgid "<game> - uninstall the <game>."
+msgstr "<game> - uninstall the <game>."
+
+#: ../src/games_nebula/client/cli/help.py:134
+msgid "Update information about owned products."
+msgstr "Update information about owned products."
+
+#: ../src/games_nebula/client/cli/help.py:135
+msgid "Show information about the logged-in user."
+msgstr "Show information about the logged-in user."
+
+#: ../src/games_nebula/client/cli/interactive.py:87
+#: ../src/games_nebula/client/gui/gui.py:50
+msgid "Not authorized."
+msgstr "Not authorized."
+
+#: ../src/games_nebula/client/cli/interactive.py:90
+#: ../src/games_nebula/client/gui/gui.py:53
+msgid "GOG server not available."
+msgstr "GOG server not available."
+
+#: ../src/games_nebula/client/cli/interactive.py:92
+#: ../src/games_nebula/client/gui/gui.py:57
+msgid "Starting in offline mode."
+msgstr "Starting in offline mode."
+
+#: ../src/games_nebula/client/cli/interactive.py:95
+#: ../src/games_nebula/client/gui/gui.py:64
+msgid "Can't be started in offline mode."
+msgstr "Can't be started in offline mode."
+
+#: ../src/games_nebula/client/cli/interactive.py:132
+msgid "Unknown command:"
+msgstr "Unknown command:"
+
+#: ../src/games_nebula/client/cli/noninteractive.py:28
+msgid "Unofficial client for GOG."
+msgstr "Unofficial client for GOG."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:31
+msgid "If there is a logged-in user keep his credentials and switch user."
+msgstr "If there is a logged-in user keep his credentials and switch user."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:35
+msgid "email"
+msgstr "email"
+
+#: ../src/games_nebula/client/cli/noninteractive.py:38
+msgid "password"
+msgstr "password"
+
+#: ../src/games_nebula/client/cli/noninteractive.py:42
+msgid "And remove the user credentials from the computer."
+msgstr "And remove the user credentials from the computer."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:47
+msgid "Show current configuration."
+msgstr "Show current configuration."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:51
+msgid "Set preferred OS and save to configuration file."
+msgstr "Set preferred OS and save to configuration file."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:52
+msgid "os"
+msgstr "os"
+
+#: ../src/games_nebula/client/cli/noninteractive.py:55
+msgid "Set locale and save to configuration file."
+msgstr "Set locale and save to configuration file."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:56
+msgid "locale"
+msgstr "locale"
+
+#: ../src/games_nebula/client/cli/noninteractive.py:59
+msgid ""
+"Set preferred language (for downloaded files) and save to configuration file."
+msgstr ""
+"Set preferred language (for downloaded files) and save to configuration file."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:60
+msgid "lang"
+msgstr "lang"
+
+#: ../src/games_nebula/client/cli/noninteractive.py:63
+msgid "Set download directory and save to configuration file."
+msgstr "Set download directory and save to configuration file."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:64
+#: ../src/games_nebula/client/cli/noninteractive.py:68
+msgid "path"
+msgstr "path"
+
+#: ../src/games_nebula/client/cli/noninteractive.py:67
+msgid "Set installation directory and save to configuration file."
+msgstr "Set installation directory and save to configuration file."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:76
+#: ../src/games_nebula/client/cli/noninteractive.py:80
+#: ../src/games_nebula/client/cli/noninteractive.py:84
+#: ../src/games_nebula/client/cli/noninteractive.py:88
+#: ../src/games_nebula/client/cli/noninteractive.py:92
+msgid "game"
+msgstr "game"
+
+#: ../src/games_nebula/client/cli/noninteractive.py:95
+msgid "Show version."
+msgstr "Show version."
+
+#: ../src/games_nebula/client/cli/noninteractive.py:157
+msgid "To start an interactive shell, run the program without arguments."
+msgstr "To start an interactive shell, run the program without arguments."
+
+#: ../src/games_nebula/client/cli/pager.py:39
+msgid "Press 'Enter' to show the next page."
+msgstr "Press 'Enter' to show the next page."
+
+#: ../src/games_nebula/client/cli/valid_commands.py:14
+msgid "exit"
+msgstr "exit"
+
+#: ../src/games_nebula/client/cli/valid_commands.py:19
+msgid "restart"
+msgstr "restart"
+
+#: ../src/games_nebula/client/cli/valid_commands.py:21
+msgid "update"
+msgstr "update"
+
+#: ../src/games_nebula/client/cli/valid_commands.py:22
+msgid "logout"
+msgstr "logout"
+
+#: ../src/games_nebula/client/cli/valid_commands.py:23
+msgid "login"
+msgstr "login"
+
+#: ../src/games_nebula/client/cli/valid_commands.py:26
+msgid "user"
+msgstr "user"
+
+#: ../src/games_nebula/client/cli/valid_commands.py:47
+msgid "completetely"
+msgstr "completetely"
+
+#: ../src/games_nebula/client/gui/gamewidget.py:26
+msgid "Install"
+msgstr "Install"
+
+#: ../src/games_nebula/client/gui/gamewidget.py:28
+msgid "Play"
+msgstr "Play"
+
+#: ../src/games_nebula/client/gui/gui.py:36
+msgid "Application started."
+msgstr "Application started."
+
+#: ../src/games_nebula/client/gui/gui.py:69
+msgid "Application closed."
+msgstr "Application closed."
+
+#: ../src/games_nebula/client/gui/login.py:37
+msgid "Could not parse code from the query:"
+msgstr "Could not parse code from the query:"
+
+#: ../src/games_nebula/client/gui/main_window.py:118
+msgid "Genre"
+msgstr "Genre"
+
+#: ../src/games_nebula/client/gui/main_window.py:119
+#: ../src/games_nebula/client/gui/main_window.py:303
+#: ../src/games_nebula/client/gui/main_window.py:311
+#: ../src/games_nebula/client/gui/sort_filter_proxy_model.py:85
+#: ../src/games_nebula/client/gui/sort_filter_proxy_model.py:96
+msgid "Developer"
+msgstr "Developer"
+
+#: ../src/games_nebula/client/gui/main_window.py:119
+#: ../src/games_nebula/client/gui/main_window.py:304
+#: ../src/games_nebula/client/gui/main_window.py:312
+#: ../src/games_nebula/client/gui/sort_filter_proxy_model.py:87
+#: ../src/games_nebula/client/gui/sort_filter_proxy_model.py:98
+msgid "Publiser"
+msgstr "Publiser"
+
+#: ../src/games_nebula/client/gui/main_window.py:215
+msgid "Search..."
+msgstr "Search..."
+
+#: ../src/games_nebula/client/gui/main_window.py:225
+#: ../src/games_nebula/client/gui/main_window.py:235
+#: ../src/games_nebula/client/gui/main_window.py:240
+#: ../src/games_nebula/client/gui/main_window.py:245
+#: ../src/games_nebula/client/gui/main_window.py:257
+#: ../src/games_nebula/client/gui/main_window.py:258
+#: ../src/games_nebula/client/gui/main_window.py:259
+#: ../src/games_nebula/client/gui/main_window.py:260
+msgid "All"
+msgstr "All"
+
+#: ../src/games_nebula/client/gui/main_window.py:227
+#: ../src/games_nebula/client/gui/main_window.py:257
+#: ../src/games_nebula/client/utils/unzipper.py:114
+msgid "Installed"
+msgstr "Installed"
+
+#: ../src/games_nebula/client/gui/main_window.py:229
+#: ../src/games_nebula/client/gui/main_window.py:257
+msgid "Not installed"
+msgstr "Not installed"
+
+#: ../src/games_nebula/client/gui/main_window.py:360
+msgid "View mode (Ctl+V)"
+msgstr "View mode (Ctl+V)"
+
+#: ../src/games_nebula/client/gui/main_window.py:369
+msgid "Settings (Ctl+S)"
+msgstr "Settings (Ctl+S)"
+
+#: ../src/games_nebula/client/gui/main_window.py:397
+msgid "LIBRARY"
+msgstr "LIBRARY"
+
+#: ../src/games_nebula/client/gui/main_window.py:399
+msgid "DOWNLOADS"
+msgstr "DOWNLOADS"
+
+#: ../src/games_nebula/client/gui/setup_window.py:54
+msgid "Launching..."
+msgstr "Launching..."
+
+#: ../src/games_nebula/client/gui/systray.py:24
+msgid "Settings"
+msgstr "Settings"
+
+#: ../src/games_nebula/client/gui/systray.py:26
+msgid "Exit"
+msgstr "Exit"
+
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:12
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:22
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:23
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:33
+msgid "B"
+msgstr "B"
+
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:14
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:24
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:25
+msgid "KB"
+msgstr "KB"
+
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:16
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:26
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:27
+msgid "MB"
+msgstr "MB"
+
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:18
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:28
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:29
+msgid "GB"
+msgstr "GB"
+
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:20
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:30
+#: ../src/games_nebula/client/utils/convert_from_bytes.py:31
+msgid "TB"
+msgstr "TB"
+
+#: ../src/games_nebula/client/utils/downloader.py:24
+msgid "Preparing download. Sending request."
+msgstr "Preparing download. Sending request."
+
+#: ../src/games_nebula/client/utils/downloader.py:29
+msgid "The file is already completely downloaded."
+msgstr "The file is already completely downloaded."
+
+#: ../src/games_nebula/client/utils/downloader.py:41
+msgid "Checking available space."
+msgstr "Checking available space."
+
+#: ../src/games_nebula/client/utils/downloader.py:45
+msgid "Not enough space for"
+msgstr "Not enough space for"
+
+#: ../src/games_nebula/client/utils/downloader.py:46
+#: ../src/games_nebula/client/utils/unzipper.py:40
+msgid "Available"
+msgstr "Available"
+
+#: ../src/games_nebula/client/utils/downloader.py:47
+#: ../src/games_nebula/client/utils/unzipper.py:41
+msgid "Required"
+msgstr "Required"
+
+#: ../src/games_nebula/client/utils/downloader.py:55
+msgid "Download started."
+msgstr "Download started."
+
+#: ../src/games_nebula/client/utils/downloader.py:76
+msgid "Download completed."
+msgstr "Download completed."
+
+#: ../src/games_nebula/client/utils/downloader.py:130
+msgid "Downloading"
+msgstr "Downloading"
+
+#: ../src/games_nebula/client/utils/downloader.py:132
+msgid "Downloaded"
+msgstr "Downloaded"
+
+#: ../src/games_nebula/client/utils/downloader.py:165
+msgid "Preallocating space."
+msgstr "Preallocating space."
+
+#: ../src/games_nebula/client/utils/reinput.py:20
+msgid "The minimum number of characters is"
+msgstr "The minimum number of characters is"
+
+#: ../src/games_nebula/client/utils/reinput.py:26
+msgid "Only numeric characters are allowed."
+msgstr "Only numeric characters are allowed."
+
+#: ../src/games_nebula/client/utils/unzipper.py:39
+msgid "Not enough disk space."
+msgstr "Not enough disk space."
+
+#: ../src/games_nebula/client/utils/unzipper.py:111
+msgid "Installing"
+msgstr "Installing"
+
+#~ msgid "To start an interactive shell, run the program without arguments.\n"
+#~ msgstr ""
+#~ "To start an interactive shell, run the program without arguments\n"
+#~ ".\n"
+
+#, fuzzy
+#~ msgid "--login"
+#~ msgstr "login"
