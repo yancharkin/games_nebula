@@ -1,32 +1,40 @@
 # Games Nebula
 
-Unofficial (Linux) CLI and GUI(WIP) client for GOG.
+Unofficial (Linux) CLI and GUI (WIP) client for GOG.
 
 ## Important Disclaimer
 
 **The application is only partially functional (more info below), and its development is currently on hold. The original plan was to release it in 2022, but *unforeseen circumstances* delayed progress, and I have had different priorities since then. As of writing this, I've found some time to piece together the already written code and create a somewhat usable application.**
 
-**The previous (prototype) version is available [here]() and likely still works.**
+**The previous (prototype) version is available [here](https://github.com/yancharkin/games_nebula/tree/prototype) and likely still works.**
+
+## Differences from the prototype version:
+
+- Much better code quality (though still not necessarily perfect)
+- Qt instead of GTK
+- Both CLI and GUI clients
+- Very few dependencies
+- Not fully functional yet :)
 
 ## What it is and what it is not
 
-It is a simple application for listing, downloading, installing, and playing games from GOG - nothing more. One notable feature is that, with the app, you can make an offline copy of your GOG library without having to install every single game. I'd also like to add most (but not all) features from the [prototype](), so you can check it out to get an idea of what to expect. However, in general, I’d like to keep it even simpler.
+It is a simple application for listing, downloading, installing, and playing games from GOG - nothing more. One notable feature is that, with the app, you can make an offline copy of your GOG library without having to install every single game. I'd also like to add most (but not all) features from the [prototype](https://github.com/yancharkin/games_nebula/tree/prototype), so you can check it out to get an idea of what to expect. However, in general, I’d like to keep it even simpler.
 
 It is **not** a full-featured client like GOG Galaxy, both because it’s impossible for someone outside of CD Projekt to create one, and because I don’t want to.
 
 ## CLI
-Mostly complete. There may still be a few bugs here and there, but it should be usable. It can be used in both interactive (shell-like) mode and non-interactive mode (like a simpler version of [lgogdownloader]()).
+Mostly complete. There may still be a few bugs here and there, but it should be usable. It can be used in both interactive (shell-like) mode and non-interactive mode (like a simpler version of [lgogdownloader](https://github.com/Sude-/lgogdownloader)).
 
 <p align="center">
-        <img src="screenshots/screenshot_cli.webp" width="80%">
+        <img src="https://github.com/yancharkin/games_nebula/blob/main/screenshots/screenshot_cli.webp" width="80%">
 </p>
 
-## GUI
+## GUI (WIP)
 
 Almost nothing works yet. It's possible to view and sort your library, and launch games that were installed using the CLI client. Also, the first launch will take some time, as the app needs to download images for all the games in the library, and right now it is implemented in a less-than-ideal way.
 
 <p align="center">
-        <img src="screenshots/screenshot_gui.webp" width="80%">
+        <img src="https://github.com/yancharkin/games_nebula/blob/main/screenshots/screenshot_gui.webp" width="80%">
 </p>
 
 
@@ -46,7 +54,7 @@ Nothing(?) for CLI, PyQt and PyQtWebEngine 5 or 6 for GUI
 
 - Type 'games_nebula' (without any arguments) in the terminal to run the interactive CLI app.
 - Type 'games_nebula --help' in the terminal to see which arguments can be used with the non-interactive CLI app.
-- Type 'games_nebula --gui' to run the GUI version of the app.
+- Type 'games_nebula --gui'  in the terminal to run the GUI version of the app.
 
 ## More OSes
 
