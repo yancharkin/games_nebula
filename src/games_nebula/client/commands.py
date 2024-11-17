@@ -152,13 +152,15 @@ class Commands:
                         listdir_target_dir = os.listdir(target_dir_path)
                     for cur_os_dir in listdir_target_dir:
                         os_dir_path = f'{target_dir_path}/{cur_os_dir}'
-                        if os.path.exists(os_dir_path):
+                        if os.path.exists(os_dir_path) and os.path.isdir(os_dir_path):
                             listdir_os_dir = [lang_dir]
                             if not lang_dir:
                                 listdir_os_dir = os.listdir(os_dir_path)
                             for cur_lang_dir in listdir_os_dir:
                                 lang_dir_path = f'{os_dir_path}/{cur_lang_dir}'
-                                if os.path.exists(lang_dir_path) and os.listdir(lang_dir_path):
+                                if os.path.exists(lang_dir_path) \
+                                        and os.path.isdir(lang_dir_path) \
+                                        and os.listdir(lang_dir_path):
                                     key = f'{cur_os_dir}, {cur_lang_dir}'
                                     if key not in games_dict.keys():
                                         if command == 'installed':
